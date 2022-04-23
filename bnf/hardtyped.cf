@@ -1,0 +1,84 @@
+entrypoints Program;
+
+Progr. Program ::= Stm ;
+
+-- Statements
+
+ImportAs. Stm ::= "-|" Identifier "as" Identifier ;
+ImportPlain. Stm ::= "-|" Identifier ;
+
+If. Stm ::=  IfStart Else ;
+IfStart1. IfStart ::= "|" Expression ":" Body ;
+Else1. Else ::= "|:" Body ;
+
+Let. Stm ::= "let" Identifier ":" Type "=" Expression "in" Expression ;
+
+Letrec. Stm ::= "letrec" Identifier ":" Type ;
+
+Body1. Body ::= Expression ;
+
+Expression1. Expression ::= Conjunction ;
+Expression2. Expression ::= "{" Conjunction "}" ;
+
+Conjunction1. Conjunction ::= Relation Relation ;
+
+Relation1. Relation ::= Factor ;
+Relation2. Relation ::= Factor Operand Factor ; 
+
+Factor1. Factor ::= Term ;
+Factor2. Factor ::= Term PlusMinus Term ;
+
+Term1. Term ::= Unary;
+Term2. Term ::= Unary MultDiv Unary ;
+
+Unary1. Unary ::= Expression ;
+Unary2. Unary ::= Literal ;
+Unary3. Unary ::= UnaryPrefix Identifier Ascription ;
+
+Ascription1. Ascription ::= "as" Type;
+
+ArrayLiteral. Literal ::= "[" Expression "]" ;
+FunctionLiteral. Literal ::= "/\\" FunctionParameters "." FunctionBody ;
+RecordLiteral. Literal ::= "{" RecordElement "}";
+
+RecordElement1. RecordElement ::= Identifier "=" Expression ;
+FunctionParameters1. FunctionParameters ::= Identifier ":" Type ;
+FunctionBody1. FunctionBody ::= Body ;
+
+-- Types
+Identifier1. Identifier ::= String ;
+
+Int. Type ::= "Int" ;
+Real. Type ::= "Real" ;
+String. Type ::= "String" ;
+Boolean. Type ::= "Boolean" ;
+Unit. Type ::= "Unit" ;
+
+FunctionTypeIndicator. Type ::= Type "->" Type ;
+
+Less. Operand ::= "<" ;
+LessEql. Operand ::= "<=" ;
+More. Operand ::= ">" ;
+MoreEql. Operand ::= ">=" ; 
+Eql. Operand ::= "=" ;
+NotEql. Operand ::= "/=" ;
+
+Plus. PlusMinus ::= "+" ;
+Minus. PlusMinus ::= "-" ;
+
+Mult. MultDiv ::= "*" ;
+Div. MultDiv ::= "/" ;
+
+
+PlusPfx. UnaryPrefix ::= "+" ;
+MinusPfx. UnaryPrefix ::= "-" ;
+NotPfx. UnaryPrefix ::= "not" ;
+
+token Int digit+ ;
+token Real (digit+ '.' digit+ ('e' '-'? digit+)?);
+token String ('"' ((char - ["\"\\"]) | ('\\' ["\"\\tnrf"]))* '"') ;
+-- token Boolean "true" | "false";
+token Unit (letter (letter | digit+ | '_' | '\'')*) ;
+
+comment "//" ;
+comment "/*" "*/";
