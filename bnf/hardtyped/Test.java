@@ -9,7 +9,7 @@ import java_cup.runtime.*;
 
 public class Test
 {
-  Yylex l;
+  public Yylex l;
   parser p;
 
   public Test(String[] args)
