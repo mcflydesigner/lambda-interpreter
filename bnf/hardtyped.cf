@@ -23,7 +23,7 @@ Expression2. Expression ::= "{" Conjunction "}" ;
 Conjunction1. Conjunction ::= Relation Relation ;
 
 Relation1. Relation ::= Factor ;
-Relation2. Relation ::= Factor Operand Factor ; 
+Relation2. Relation ::= Factor Operand Factor ;
 
 Factor1. Factor ::= Term ;
 Factor2. Factor ::= Term PlusMinus Term ;
@@ -46,11 +46,11 @@ FunctionParameters1. FunctionParameters ::= Identifier ":" Type ;
 FunctionBody1. FunctionBody ::= Body ;
 
 -- Types
-Identifier1. Identifier ::= String ;
+Identifier1. Identifier ::= Str ;
 
 Int. Type ::= "Int" ;
 Real. Type ::= "Real" ;
-String. Type ::= "String" ;
+Str. Type ::= "Str" ;
 Boolean. Type ::= "Boolean" ;
 Unit. Type ::= "Unit" ;
 
@@ -59,7 +59,7 @@ FunctionTypeIndicator. Type ::= Type "->" Type ;
 Less. Operand ::= "<" ;
 LessEql. Operand ::= "<=" ;
 More. Operand ::= ">" ;
-MoreEql. Operand ::= ">=" ; 
+MoreEql. Operand ::= ">=" ;
 Eql. Operand ::= "=" ;
 NotEql. Operand ::= "/=" ;
 
@@ -76,7 +76,7 @@ NotPfx. UnaryPrefix ::= "not" ;
 
 token Int digit+ ;
 token Real (digit+ '.' digit+ ('e' '-'? digit+)?);
-token String ('"' ((char - ["\"\\"]) | ('\\' ["\"\\tnrf"]))* '"') ;
+token Str ('"' ((char - ["\"\\"]) | ('\\' ["\"\\tnrf"]))* '"') ;
 -- token Boolean "true" | "false";
 token Unit (letter (letter | digit+ | '_' | '\'')*) ;
 
