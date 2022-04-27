@@ -1,9 +1,8 @@
 plugins {
     id 'java'
-    id "org.xbib.gradle.plugin.jflex" version "1.6.0"
 }
 
-group 'org.example'
+group 'com.interpreter'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -11,7 +10,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'java_cup:java_cup:0.9e'
+    implementation files('./bnf/Cup/java-cup-11b.jar')
+    implementation files('./bnf/Cup/java-cup-11b-runtime.jar')
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
@@ -23,11 +23,8 @@ test {
 
 sourceSets {
     main {
-        jflex {
-            srcDir "./bnf/java/hardtyped"
-        }
         java {
-            srcDirs './bnf/java/hardtyped'
+            srcDirs './bnf'
         }
     }
 }
