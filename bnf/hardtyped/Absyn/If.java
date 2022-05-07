@@ -2,24 +2,23 @@
 
 package hardtyped.Absyn;
 
-public class If  extends Stm {
-  public final IfStart ifstart_;
-  public final Else else_;
-  public If(IfStart p1, Else p2) { ifstart_ = p1; else_ = p2; }
+public class If  extends Expr {
+  public final Expr expr_1, expr_2, expr_3;
+  public If(Expr p1, Expr p2, Expr p3) { expr_1 = p1; expr_2 = p2; expr_3 = p3; }
 
-  public <R,A> R accept(hardtyped.Absyn.Stm.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.If) {
       hardtyped.Absyn.If x = (hardtyped.Absyn.If)o;
-      return this.ifstart_.equals(x.ifstart_) && this.else_.equals(x.else_);
+      return this.expr_1.equals(x.expr_1) && this.expr_2.equals(x.expr_2) && this.expr_3.equals(x.expr_3);
     }
     return false;
   }
 
   public int hashCode() {
-    return 37*(this.ifstart_.hashCode())+this.else_.hashCode();
+    return 37*(37*(this.expr_1.hashCode())+this.expr_2.hashCode())+this.expr_3.hashCode();
   }
 
 

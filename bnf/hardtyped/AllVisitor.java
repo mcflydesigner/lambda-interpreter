@@ -6,25 +6,5 @@ package hardtyped;
 
 public interface AllVisitor<R,A> extends
   hardtyped.Absyn.Program.Visitor<R,A>,
-  hardtyped.Absyn.Stm.Visitor<R,A>,
-  hardtyped.Absyn.IfStart.Visitor<R,A>,
-  hardtyped.Absyn.Else.Visitor<R,A>,
-  hardtyped.Absyn.Body.Visitor<R,A>,
-  hardtyped.Absyn.Expression.Visitor<R,A>,
-  hardtyped.Absyn.Conjunction.Visitor<R,A>,
-  hardtyped.Absyn.Relation.Visitor<R,A>,
-  hardtyped.Absyn.Factor.Visitor<R,A>,
-  hardtyped.Absyn.Term.Visitor<R,A>,
-  hardtyped.Absyn.Unary.Visitor<R,A>,
-  hardtyped.Absyn.Ascription.Visitor<R,A>,
-  hardtyped.Absyn.Literal.Visitor<R,A>,
-  hardtyped.Absyn.RecordElement.Visitor<R,A>,
-  hardtyped.Absyn.FunctionParameters.Visitor<R,A>,
-  hardtyped.Absyn.FunctionBody.Visitor<R,A>,
-  hardtyped.Absyn.Identifier.Visitor<R,A>,
-  hardtyped.Absyn.Type.Visitor<R,A>,
-  hardtyped.Absyn.Operand.Visitor<R,A>,
-  hardtyped.Absyn.PlusMinus.Visitor<R,A>,
-  hardtyped.Absyn.MultDiv.Visitor<R,A>,
-  hardtyped.Absyn.UnaryPrefix.Visitor<R,A>
+  hardtyped.Absyn.Expr.Visitor<R,A>
 {}
