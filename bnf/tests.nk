@@ -1,0 +1,144 @@
+// COMMENTS
+/ Incorrect comments with one line
+
+// Correct comment with one line
+
+-- Incorrect comments with one line
+
+*/ Incorrect comment with
+multiple lines */
+
+/* Correct comment with
+multiple lines */
+
+*/ Incorrect comment with
+multiple lines /*
+
+/ Incorrect comment with
+multiple lines /
+
+
+// IMPORTS
+// Correct import
+-| math.nk as math
+-| std.nk
+
+// Incorrect import
+import math.nk as math
+#include math
+math.nk as math
+
+
+// DECLARATIONS
+// Correct declarations
+let n: Integer = 5;
+let r: Real = 10.5;
+let b: Boolean = True;
+let s: String = "Simple string";
+let u: Unit = print (s);
+
+// Incorrect declarations
+n: Integer = 5;
+n -> Integer = 5;
+let n: Integer = ;
+let Integer:n = 5;
+n = 5;
+r: Real = 10.5;
+b: Boolean = True;
+s: String = "Simple string";
+u: Unit = print (s);
+
+
+// FUNCTIONS
+// Correct function defining
+let concat = /\ x: String. y: String. {
+    x + y
+};
+let id = /\ x: String. { x };
+
+// Incorrect function defining
+let concat = func (x: String, y: String) {
+    x + y
+};
+let concat = /\ x: String. y: String. {
+    x + y
+};
+let concat = /\ x: String, y: String {
+    x + y
+};
+let concat = /\ (x: String. y: String) {
+    x + y
+};
+let concat = (/\ x: String. y: String.) {
+    x + y
+};
+
+concat ("Hello,", "World");
+
+
+// TYPE INFERENCE
+// Correct type inference
+let n = 5 in // type inference
+math.sqrt (n);
+
+// Incorrect type inference
+let n = 5;
+math.sqrt (n);
+
+
+// RECORDS
+// Correct record
+let Vector3d = {x1: Real, x2: Real, x3: Real};
+
+// Incorrect record
+let Vector3d = (x1: Real, x2: Real, x3: Real);
+let Vector3d = x1: Real, x2: Real, x3: Real;
+let Vector3d = {x1: Real. x2: Real. x3: Real};
+let Vector3d = {x1 Real, x2 Real, x3 Real};
+
+
+// CONDITIONS
+// Correct condition
+letrec factorial =
+/\ n: Nat. {
+    |  (n == 1): n
+    |:  n * factorial (n-1)
+};
+
+// Incorrect condition
+letrec factorial =
+/\ n: Nat. {
+    if  (n == 1): n
+    else  n * factorial (n-1)
+};
+letrec factorial =
+/\ n: Nat. {
+    if  (n == 1): n
+    elif (n != 1):  n * factorial (n-1)
+};
+letrec factorial =
+/\ n: Nat. {
+    |  (n == 1): n
+    || (n == 2): n
+    |:  n * factorial (n-1)
+};
+
+
+// LISTS
+//Correct lists
+let l1 = [1, 3, 2];
+let l_empty = [];
+let l = ["String", 1, true]
+
+// Incorrect lists
+let l1 = [1] * 5;
+let l1 = [1; 2; 3];
+
+
+// TYPE ASCRIPTION
+// Correct type ascription
+let n = 5 as Integer;
+
+// Incorrect type ascription
+let n = 5: Integer;
+let n = 5.Integer;
