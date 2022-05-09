@@ -1,0 +1,1 @@
+let n: String = "test" as Integer;
