@@ -16,6 +16,10 @@ start_Expr returns [ hardtyped.Absyn.Expr result ]
   : x=expr EOF
     { $result = $x.result; }
   ;
+start_InExpr returns [ hardtyped.Absyn.InExpr result ]
+  : x=inExpr EOF
+    { $result = $x.result; }
+  ;
 start_VarDec returns [ hardtyped.Absyn.VarDec result ]
   : x=varDec EOF
     { $result = $x.result; }
@@ -34,7 +38,7 @@ listExpr returns [ hardtyped.Absyn.ListExpr result ]
     { $result = $p_3_3.result; $result.addFirst($p_3_1.result); }
   ;
 expr returns [ hardtyped.Absyn.Expr result ]
-  : Surrogate_id_SYMB_1 p_1_2=varDec Surrogate_id_SYMB_2 p_1_4=expr Surrogate_id_SYMB_3
+  : Surrogate_id_SYMB_1 p_1_2=varDec Surrogate_id_SYMB_2 p_1_4=inExpr Surrogate_id_SYMB_3
     { $result = new hardtyped.Absyn.Function($p_1_2.result,$p_1_4.result); }
   | p_2_1=expr Surrogate_id_SYMB_4 p_2_3=expr Surrogate_id_SYMB_5
     { $result = new hardtyped.Absyn.ApplyFunction($p_2_1.result,$p_2_3.result); }
@@ -58,12 +62,16 @@ expr returns [ hardtyped.Absyn.Expr result ]
     { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_11_1.getText())); }
   | p_12_1=STRING
     { $result = new hardtyped.Absyn.StringValue($p_12_1.getText().substring(1, $p_12_1.getText().length()-1)); }
-  | p_13_1=expr Surrogate_id_SYMB_0 p_13_3=expr
-    { $result = new hardtyped.Absyn.MultipleExpressions($p_13_1.result,$p_13_3.result); }
-  | p_14_1=expr Surrogate_id_SYMB_0
-    { $result = $p_14_1.result; }
-  | p_15_1=IDENT
-    { $result = new hardtyped.Absyn.AtomicExpression($p_15_1.getText()); }
+  | p_13_1=IDENT
+    { $result = new hardtyped.Absyn.AtomicExpression($p_13_1.getText()); }
+  ;
+inExpr returns [ hardtyped.Absyn.InExpr result ]
+  : p_1_1=inExpr Surrogate_id_SYMB_0 p_1_3=inExpr
+    { $result = new hardtyped.Absyn.MultipleExpressions($p_1_1.result,$p_1_3.result); }
+  | p_2_1=inExpr Surrogate_id_SYMB_0
+    { $result = new hardtyped.Absyn.FinalExpression($p_2_1.result); }
+  | p_3_1=expr
+    { $result = new hardtyped.Absyn.InnerExpression($p_3_1.result); }
   ;
 varDec returns [ hardtyped.Absyn.VarDec result ]
   : p_1_1=varDec Surrogate_id_SYMB_11 p_1_3=varDec

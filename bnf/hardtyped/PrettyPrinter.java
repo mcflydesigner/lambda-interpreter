@@ -95,6 +95,21 @@ public class PrettyPrinter
     buf_.delete(0,buf_.length());
     return temp;
   }
+  public static String print(hardtyped.Absyn.InExpr foo)
+  {
+    pp(foo, 0);
+    trim();
+    String temp = buf_.toString();
+    buf_.delete(0,buf_.length());
+    return temp;
+  }
+  public static String show(hardtyped.Absyn.InExpr foo)
+  {
+    sh(foo);
+    String temp = buf_.toString();
+    buf_.delete(0,buf_.length());
+    return temp;
+  }
   public static String print(hardtyped.Absyn.VarDec foo)
   {
     pp(foo, 0);
@@ -158,7 +173,7 @@ public class PrettyPrinter
        render("/\\");
        pp(_function.vardec_, 0);
        render("{");
-       pp(_function.expr_, 0);
+       pp(_function.inexpr_, 0);
        render("}");
        if (_i_ > 0) render(_R_PAREN);
     }
@@ -263,20 +278,40 @@ public class PrettyPrinter
        printQuoted(_stringvalue.string_);
        if (_i_ > 0) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.MultipleExpressions)
-    {
-       hardtyped.Absyn.MultipleExpressions _multipleexpressions = (hardtyped.Absyn.MultipleExpressions) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_multipleexpressions.expr_1, 0);
-       render(";");
-       pp(_multipleexpressions.expr_2, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
     else     if (foo instanceof hardtyped.Absyn.AtomicExpression)
     {
        hardtyped.Absyn.AtomicExpression _atomicexpression = (hardtyped.Absyn.AtomicExpression) foo;
        if (_i_ > 0) render(_L_PAREN);
        pp(_atomicexpression.ident_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+
+  }
+
+  private static void pp(hardtyped.Absyn.InExpr foo, int _i_)
+  {
+    if (foo instanceof hardtyped.Absyn.MultipleExpressions)
+    {
+       hardtyped.Absyn.MultipleExpressions _multipleexpressions = (hardtyped.Absyn.MultipleExpressions) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_multipleexpressions.inexpr_1, 0);
+       render(";");
+       pp(_multipleexpressions.inexpr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.FinalExpression)
+    {
+       hardtyped.Absyn.FinalExpression _finalexpression = (hardtyped.Absyn.FinalExpression) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_finalexpression.inexpr_, 0);
+       render(";");
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.InnerExpression)
+    {
+       hardtyped.Absyn.InnerExpression _innerexpression = (hardtyped.Absyn.InnerExpression) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_innerexpression.expr_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
 
@@ -379,7 +414,7 @@ public class PrettyPrinter
        render("(");
        render("Function");
        sh(_function.vardec_);
-       sh(_function.expr_);
+       sh(_function.inexpr_);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.ApplyFunction)
@@ -480,21 +515,41 @@ public class PrettyPrinter
        sh(_stringvalue.string_);
        render(")");
     }
-    if (foo instanceof hardtyped.Absyn.MultipleExpressions)
-    {
-       hardtyped.Absyn.MultipleExpressions _multipleexpressions = (hardtyped.Absyn.MultipleExpressions) foo;
-       render("(");
-       render("MultipleExpressions");
-       sh(_multipleexpressions.expr_1);
-       sh(_multipleexpressions.expr_2);
-       render(")");
-    }
     if (foo instanceof hardtyped.Absyn.AtomicExpression)
     {
        hardtyped.Absyn.AtomicExpression _atomicexpression = (hardtyped.Absyn.AtomicExpression) foo;
        render("(");
        render("AtomicExpression");
        sh(_atomicexpression.ident_);
+       render(")");
+    }
+  }
+
+  private static void sh(hardtyped.Absyn.InExpr foo)
+  {
+    if (foo instanceof hardtyped.Absyn.MultipleExpressions)
+    {
+       hardtyped.Absyn.MultipleExpressions _multipleexpressions = (hardtyped.Absyn.MultipleExpressions) foo;
+       render("(");
+       render("MultipleExpressions");
+       sh(_multipleexpressions.inexpr_1);
+       sh(_multipleexpressions.inexpr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.FinalExpression)
+    {
+       hardtyped.Absyn.FinalExpression _finalexpression = (hardtyped.Absyn.FinalExpression) foo;
+       render("(");
+       render("FinalExpression");
+       sh(_finalexpression.inexpr_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.InnerExpression)
+    {
+       hardtyped.Absyn.InnerExpression _innerexpression = (hardtyped.Absyn.InnerExpression) foo;
+       render("(");
+       render("InnerExpression");
+       sh(_innerexpression.expr_);
        render(")");
     }
   }

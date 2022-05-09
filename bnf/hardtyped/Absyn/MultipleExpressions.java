@@ -2,23 +2,23 @@
 
 package hardtyped.Absyn;
 
-public class MultipleExpressions  extends Expr {
-  public final Expr expr_1, expr_2;
-  public MultipleExpressions(Expr p1, Expr p2) { expr_1 = p1; expr_2 = p2; }
+public class MultipleExpressions  extends InExpr {
+  public final InExpr inexpr_1, inexpr_2;
+  public MultipleExpressions(InExpr p1, InExpr p2) { inexpr_1 = p1; inexpr_2 = p2; }
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.InExpr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.MultipleExpressions) {
       hardtyped.Absyn.MultipleExpressions x = (hardtyped.Absyn.MultipleExpressions)o;
-      return this.expr_1.equals(x.expr_1) && this.expr_2.equals(x.expr_2);
+      return this.inexpr_1.equals(x.inexpr_1) && this.inexpr_2.equals(x.inexpr_2);
     }
     return false;
   }
 
   public int hashCode() {
-    return 37*(this.expr_1.hashCode())+this.expr_2.hashCode();
+    return 37*(this.inexpr_1.hashCode())+this.inexpr_2.hashCode();
   }
 
 

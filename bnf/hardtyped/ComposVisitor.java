@@ -6,6 +6,7 @@ package hardtyped;
 
 public class ComposVisitor<A> implements
   hardtyped.Absyn.Expr.Visitor<hardtyped.Absyn.Expr,A>,
+  hardtyped.Absyn.InExpr.Visitor<hardtyped.Absyn.InExpr,A>,
   hardtyped.Absyn.VarDec.Visitor<hardtyped.Absyn.VarDec,A>,
   hardtyped.Absyn.Type.Visitor<hardtyped.Absyn.Type,A>
 {
@@ -13,8 +14,8 @@ public class ComposVisitor<A> implements
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Function p, A arg)
     {
       hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
-      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
-      return new hardtyped.Absyn.Function(vardec_, expr_);
+      hardtyped.Absyn.InExpr inexpr_ = p.inexpr_.accept(this, arg);
+      return new hardtyped.Absyn.Function(vardec_, inexpr_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.ApplyFunction p, A arg)
     {
@@ -81,16 +82,28 @@ public class ComposVisitor<A> implements
       String string_ = p.string_;
       return new hardtyped.Absyn.StringValue(string_);
     }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.MultipleExpressions p, A arg)
-    {
-      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
-      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
-      return new hardtyped.Absyn.MultipleExpressions(expr_1, expr_2);
-    }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.AtomicExpression p, A arg)
     {
       String ident_ = p.ident_;
       return new hardtyped.Absyn.AtomicExpression(ident_);
+    }
+
+    /* InExpr */
+    public hardtyped.Absyn.InExpr visit(hardtyped.Absyn.MultipleExpressions p, A arg)
+    {
+      hardtyped.Absyn.InExpr inexpr_1 = p.inexpr_1.accept(this, arg);
+      hardtyped.Absyn.InExpr inexpr_2 = p.inexpr_2.accept(this, arg);
+      return new hardtyped.Absyn.MultipleExpressions(inexpr_1, inexpr_2);
+    }
+    public hardtyped.Absyn.InExpr visit(hardtyped.Absyn.FinalExpression p, A arg)
+    {
+      hardtyped.Absyn.InExpr inexpr_ = p.inexpr_.accept(this, arg);
+      return new hardtyped.Absyn.FinalExpression(inexpr_);
+    }
+    public hardtyped.Absyn.InExpr visit(hardtyped.Absyn.InnerExpression p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.InnerExpression(expr_);
     }
 
     /* VarDec */

@@ -28,6 +28,16 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_Expr(hardtypedParser.Start_ExprContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_InExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_InExpr(hardtypedParser.Start_InExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_InExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_InExpr(hardtypedParser.Start_InExprContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_VarDec}.
 	 * @param ctx the parse tree
 	 */
@@ -67,6 +77,16 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(hardtypedParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#inExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterInExpr(hardtypedParser.InExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#inExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitInExpr(hardtypedParser.InExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#varDec}.
 	 * @param ctx the parse tree

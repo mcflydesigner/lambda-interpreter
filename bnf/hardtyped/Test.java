@@ -70,7 +70,7 @@ public class Test
   {
     /* The default parser is the first-defined entry point. */
     /* Other options are: */
-    /* expr, varDec, type */
+    /* expr, inExpr, varDec, type */
     hardtypedParser.Start_ListExprContext pc = p.start_ListExpr();
     hardtyped.Absyn.ListExpr ast = pc.result;
     System.out.println();

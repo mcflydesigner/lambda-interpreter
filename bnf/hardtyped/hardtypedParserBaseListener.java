@@ -40,6 +40,18 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStart_InExpr(hardtypedParser.Start_InExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_InExpr(hardtypedParser.Start_InExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStart_VarDec(hardtypedParser.Start_VarDecContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -83,6 +95,18 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr(hardtypedParser.ExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInExpr(hardtypedParser.InExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInExpr(hardtypedParser.InExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

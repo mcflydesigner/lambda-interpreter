@@ -17,7 +17,6 @@ public abstract class Expr implements java.io.Serializable {
     public R visit(hardtyped.Absyn.IntValue p, A arg);
     public R visit(hardtyped.Absyn.RealValue p, A arg);
     public R visit(hardtyped.Absyn.StringValue p, A arg);
-    public R visit(hardtyped.Absyn.MultipleExpressions p, A arg);
     public R visit(hardtyped.Absyn.AtomicExpression p, A arg);
 
   }

@@ -1,6 +1,1 @@
-/\ x: String. {
-    print (x);
-    /\ y: String. {
-       print (y)
-    } (x);
-}
+let n: Integer = 45;
