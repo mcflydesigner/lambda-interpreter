@@ -65,7 +65,7 @@ expr returns [ hardtyped.Absyn.Expr result ]
   | p_13_1=IDENT
     { $result = new hardtyped.Absyn.AtomicExpression($p_13_1.getText()); }
   | Surrogate_id_SYMB_4 p_14_2=expr Surrogate_id_SYMB_5
-    { $result = $p_14_2.result; }
+    { $result = new hardtyped.Absyn.ParenthesesExpression($p_14_2.result); }
   ;
 inExpr returns [ hardtyped.Absyn.InExpr result ]
   : p_1_1=inExpr Surrogate_id_SYMB_0 p_1_3=inExpr

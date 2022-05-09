@@ -31,7 +31,7 @@ InnerExpression. InExpr ::= Expr;
 
 -- Utility expressions
 AtomicExpression. Expr ::= Ident;
-_. Expr ::= "(" Expr ")";
+ParenthesesExpression. Expr ::= "(" Expr ")";
 
 
 -- Variable declarations

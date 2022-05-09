@@ -87,6 +87,11 @@ public class ComposVisitor<A> implements
       String ident_ = p.ident_;
       return new hardtyped.Absyn.AtomicExpression(ident_);
     }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.ParenthesesExpression p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.ParenthesesExpression(expr_);
+    }
 
     /* InExpr */
     public hardtyped.Absyn.InExpr visit(hardtyped.Absyn.MultipleExpressions p, A arg)

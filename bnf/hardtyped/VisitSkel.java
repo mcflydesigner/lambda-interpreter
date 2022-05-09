@@ -90,6 +90,11 @@ public class VisitSkel
       //p.ident_;
       return null;
     }
+    public R visit(hardtyped.Absyn.ParenthesesExpression p, A arg)
+    { /* Code for ParenthesesExpression goes here */
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
   }
   public class InExprVisitor<R,A> implements hardtyped.Absyn.InExpr.Visitor<R,A>
   {

@@ -1,1 +1,1 @@
-let n: Integer = 5+(3*2);
+let n: Integer = 5*(2+3);

@@ -585,7 +585,7 @@ public class hardtypedParser extends Parser {
 				((ExprContext)_localctx).p_14_2 = expr(0);
 				setState(91);
 				match(Surrogate_id_SYMB_5);
-				 ((ExprContext)_localctx).result =  ((ExprContext)_localctx).p_14_2.result; 
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.ParenthesesExpression(((ExprContext)_localctx).p_14_2.result); 
 				}
 				break;
 			}

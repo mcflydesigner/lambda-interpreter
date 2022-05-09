@@ -285,6 +285,15 @@ public class PrettyPrinter
        pp(_atomicexpression.ident_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
+    else     if (foo instanceof hardtyped.Absyn.ParenthesesExpression)
+    {
+       hardtyped.Absyn.ParenthesesExpression _parenthesesexpression = (hardtyped.Absyn.ParenthesesExpression) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       render("(");
+       pp(_parenthesesexpression.expr_, 0);
+       render(")");
+       if (_i_ > 0) render(_R_PAREN);
+    }
 
   }
 
@@ -521,6 +530,14 @@ public class PrettyPrinter
        render("(");
        render("AtomicExpression");
        sh(_atomicexpression.ident_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.ParenthesesExpression)
+    {
+       hardtyped.Absyn.ParenthesesExpression _parenthesesexpression = (hardtyped.Absyn.ParenthesesExpression) foo;
+       render("(");
+       render("ParenthesesExpression");
+       sh(_parenthesesexpression.expr_);
        render(")");
     }
   }

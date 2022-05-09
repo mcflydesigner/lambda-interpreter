@@ -19,6 +19,7 @@ public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     public R visit(hardtyped.Absyn.RealValue p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.StringValue p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.AtomicExpression p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.ParenthesesExpression p, A arg) { return visitDefault(p, arg); }
     public R visitDefault(hardtyped.Absyn.Expr p, A arg) {
       throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
     }

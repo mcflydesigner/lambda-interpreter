@@ -80,6 +80,11 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       R r = leaf(arg);
       return r;
     }
+    public R visit(hardtyped.Absyn.ParenthesesExpression p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
 
 /* InExpr */
     public R visit(hardtyped.Absyn.MultipleExpressions p, A arg) {
