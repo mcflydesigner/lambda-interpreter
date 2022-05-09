@@ -24,14 +24,14 @@ IntValue. Expr ::= Integer;
 RealValue. Expr ::= Double;
 StringValue. Expr ::= String;
 
-
--- Utility expressions
-AtomicExpression. Expr ::= Ident;
-
--- In-function expressions
+-- In-function expressions - todo: remove it
 MultipleExpressions. InExpr ::= InExpr ";" InExpr;
 FinalExpression. InExpr ::= InExpr ";";
 InnerExpression. InExpr ::= Expr;
+
+-- Utility expressions
+AtomicExpression. Expr ::= Ident;
+_. Expr ::= "(" Expr ")";
 
 
 -- Variable declarations

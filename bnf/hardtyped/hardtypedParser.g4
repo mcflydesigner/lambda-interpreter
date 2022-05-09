@@ -64,6 +64,8 @@ expr returns [ hardtyped.Absyn.Expr result ]
     { $result = new hardtyped.Absyn.StringValue($p_12_1.getText().substring(1, $p_12_1.getText().length()-1)); }
   | p_13_1=IDENT
     { $result = new hardtyped.Absyn.AtomicExpression($p_13_1.getText()); }
+  | Surrogate_id_SYMB_4 p_14_2=expr Surrogate_id_SYMB_5
+    { $result = $p_14_2.result; }
   ;
 inExpr returns [ hardtyped.Absyn.InExpr result ]
   : p_1_1=inExpr Surrogate_id_SYMB_0 p_1_3=inExpr
