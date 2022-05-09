@@ -1,7 +1,10 @@
 #!/bin/bash
 
-cd bnf
+cd ./bnf
 rm -r hardtyped
 bnfc --java --antlr ./hardtyped.cf
-cd ..
+bnfc --latex ./hardtyped.cf -o doc/
+cd ./doc
+latexmk -pdf ./hardtyped.tex
+cd ../../
 mvn clean install
