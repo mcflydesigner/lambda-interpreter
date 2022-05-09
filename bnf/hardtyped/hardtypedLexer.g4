@@ -8,21 +8,26 @@ fragment CAPITAL : [A-Z\u00C0-\u00D6\u00D8-\u00DE] ;
 fragment SMALL   : [a-z\u00DF-\u00F6\u00F8-\u00FF] ;
 fragment DIGIT   : [0-9] ;
 Surrogate_id_SYMB_0 : ';' ;
-Surrogate_id_SYMB_1 : '0' ;
-Surrogate_id_SYMB_2 : '(' ;
-Surrogate_id_SYMB_3 : ')' ;
-Surrogate_id_SYMB_4 : '{' ;
-Surrogate_id_SYMB_5 : '}' ;
-Surrogate_id_SYMB_6 : 'else' ;
-Surrogate_id_SYMB_7 : 'false' ;
-Surrogate_id_SYMB_8 : 'fun' ;
-Surrogate_id_SYMB_9 : 'if' ;
-Surrogate_id_SYMB_10 : 'iszero' ;
-Surrogate_id_SYMB_11 : 'pred' ;
-Surrogate_id_SYMB_12 : 'return' ;
-Surrogate_id_SYMB_13 : 'succ' ;
-Surrogate_id_SYMB_14 : 'then' ;
-Surrogate_id_SYMB_15 : 'true' ;
+Surrogate_id_SYMB_1 : '/\\' ;
+Surrogate_id_SYMB_2 : '{' ;
+Surrogate_id_SYMB_3 : '}' ;
+Surrogate_id_SYMB_4 : '(' ;
+Surrogate_id_SYMB_5 : ')' ;
+Surrogate_id_SYMB_6 : '+' ;
+Surrogate_id_SYMB_7 : '-' ;
+Surrogate_id_SYMB_8 : '*' ;
+Surrogate_id_SYMB_9 : '/' ;
+Surrogate_id_SYMB_10 : '=' ;
+Surrogate_id_SYMB_11 : '.' ;
+Surrogate_id_SYMB_12 : ':' ;
+Surrogate_id_SYMB_13 : 'Boolean' ;
+Surrogate_id_SYMB_14 : 'Integer' ;
+Surrogate_id_SYMB_15 : 'Real' ;
+Surrogate_id_SYMB_16 : 'String' ;
+Surrogate_id_SYMB_17 : 'Unit' ;
+Surrogate_id_SYMB_18 : 'as' ;
+Surrogate_id_SYMB_19 : 'in' ;
+Surrogate_id_SYMB_20 : 'let' ;
 COMMENT_antlr_builtin
 : (
 '//' ~[\r\n]* (('\r'? '\n')|EOF)
@@ -32,10 +37,13 @@ MULTICOMMENT_antlr_builtin
 '/*' (.)*? '*/'
 ) -> skip;
 
+// String token type
+STRING : '"' -> more, mode(STRINGMODE);
 
-
-
-
+// Double predefined token type
+DOUBLE : DIGIT+ '.' DIGIT+ ('e' '-'? DIGIT+)?;
+//Integer predefined token type
+INTEGER : DIGIT+;
 // Identifier token type
 fragment
 IDENTIFIER_FIRST : LETTER | '_';
@@ -46,4 +54,9 @@ WS : (' ' | '\r' | '\t' | '\n' | '\f')+ ->  skip;
 fragment
 Escapable : ('"' | '\\' | 'n' | 't' | 'r' | 'f');
 ErrorToken : . ;
-
+mode STRESCAPE;
+STRESCAPED : Escapable  -> more, popMode ;
+mode STRINGMODE;
+STRINGESC : '\\' -> more , pushMode(STRESCAPE);
+STRINGEND : '"' ->  type(STRING), mode(DEFAULT_MODE);
+STRINGTEXT : ~["\\] -> more;

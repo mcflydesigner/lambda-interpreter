@@ -5,6 +5,7 @@ package hardtyped;
 /** All Visitor */
 
 public interface AllVisitor<R,A> extends
-  hardtyped.Absyn.Program.Visitor<R,A>,
-  hardtyped.Absyn.Expr.Visitor<R,A>
+  hardtyped.Absyn.Expr.Visitor<R,A>,
+  hardtyped.Absyn.VarDec.Visitor<R,A>,
+  hardtyped.Absyn.Type.Visitor<R,A>
 {}

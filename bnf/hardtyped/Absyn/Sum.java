@@ -2,16 +2,16 @@
 
 package hardtyped.Absyn;
 
-public class Application  extends Expr {
+public class Sum  extends Expr {
   public final Expr expr_1, expr_2;
-  public Application(Expr p1, Expr p2) { expr_1 = p1; expr_2 = p2; }
+  public Sum(Expr p1, Expr p2) { expr_1 = p1; expr_2 = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.Application) {
-      hardtyped.Absyn.Application x = (hardtyped.Absyn.Application)o;
+    if (o instanceof hardtyped.Absyn.Sum) {
+      hardtyped.Absyn.Sum x = (hardtyped.Absyn.Sum)o;
       return this.expr_1.equals(x.expr_1) && this.expr_2.equals(x.expr_2);
     }
     return false;

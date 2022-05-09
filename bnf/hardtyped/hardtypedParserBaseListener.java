@@ -16,18 +16,6 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStart_Program(hardtypedParser.Start_ProgramContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStart_Program(hardtypedParser.Start_ProgramContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterStart_ListExpr(hardtypedParser.Start_ListExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -52,13 +40,25 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram(hardtypedParser.ProgramContext ctx) { }
+	@Override public void enterStart_VarDec(hardtypedParser.Start_VarDecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram(hardtypedParser.ProgramContext ctx) { }
+	@Override public void exitStart_VarDec(hardtypedParser.Start_VarDecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_Type(hardtypedParser.Start_TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Type(hardtypedParser.Start_TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -83,6 +83,30 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr(hardtypedParser.ExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVarDec(hardtypedParser.VarDecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarDec(hardtypedParser.VarDecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterType(hardtypedParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitType(hardtypedParser.TypeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

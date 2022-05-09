@@ -1,22 +1,44 @@
 comment "//" ;
 comment "/*" "*/" ;
 
+separator Expr ";";
 
-ProgramExprs.  Program ::= [Expr] ;
+-- Functions
+Function. Expr ::= "/\\" VarDec "{" Expr "}";
+ApplyFunction. Expr ::= Expr "(" Expr ")";
 
-separator Expr ";" ;
 
-ConstTrue.  Expr  ::= "true" ;
-ConstFalse. Expr  ::= "false" ;
-If.         Expr  ::= "if" Expr "then" Expr "else" Expr ;
+-- Basic operations
+Sum. Expr ::= Expr "+" Expr;
+Substract. Expr::= Expr "-" Expr;
+Multiply. Expr ::= Expr "*" Expr;
+Divide. Expr ::= Expr "/" Expr;
 
-ConstZero.  Expr  ::= "0" ;
-Succ.       Expr  ::= "succ" Expr ;
-Pred.       Expr  ::= "pred" Expr ;
-IsZero.     Expr  ::= "iszero" Expr ;
+-- Variable initializers
+Let. Expr ::= "let" VarDec "=" Expr;
+LetInference. Expr ::= "let" VarDec "=" Expr "in" Expr;
+LetAscription. Expr ::= "let" VarDec "=" Expr "as" Type;
 
-Var.          Expr ::= Ident ;
-Abstraction.  Expr ::= "fun" "(" Ident ")" "{" "return" Expr "}" ;
-Application.  Expr ::= Expr Expr ;
+-- Values
+IntValue. Expr ::= Integer;
+RealValue. Expr ::= Double;
+StringValue. Expr ::= String;
 
-_. Expr ::= "(" Expr ")" ;
+
+-- Utility expressions
+MultipleExpressions. Expr ::= Expr ";" Expr;
+_ . Expr ::= Expr ";";
+AtomicExpression. Expr ::= Ident;
+
+-- Variable declarations
+MultipleVars. VarDec ::= VarDec "." VarDec ;
+MultipleVarsFinal. VarDec ::= VarDec ".";
+TypedVar. VarDec ::= Ident ":" Type;
+UntypedVar. VarDec ::= Ident;
+
+-- Types
+IntType. Type ::= "Integer";
+RealType. Type ::= "Real";
+BoolType. Type ::= "Boolean";
+StringType. Type ::= "String";
+UnitType. Type ::= "Unit";

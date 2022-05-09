@@ -2,23 +2,23 @@
 
 package hardtyped.Absyn;
 
-public class Succ  extends Expr {
-  public final Expr expr_;
-  public Succ(Expr p1) { expr_ = p1; }
+public class RealValue  extends Expr {
+  public final Double double_;
+  public RealValue(Double p1) { double_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.Succ) {
-      hardtyped.Absyn.Succ x = (hardtyped.Absyn.Succ)o;
-      return this.expr_.equals(x.expr_);
+    if (o instanceof hardtyped.Absyn.RealValue) {
+      hardtyped.Absyn.RealValue x = (hardtyped.Absyn.RealValue)o;
+      return this.double_.equals(x.double_);
     }
     return false;
   }
 
   public int hashCode() {
-    return this.expr_.hashCode();
+    return this.double_.hashCode();
   }
 
 

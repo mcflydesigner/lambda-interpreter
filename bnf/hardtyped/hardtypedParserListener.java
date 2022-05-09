@@ -8,16 +8,6 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface hardtypedParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_Program}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_Program(hardtypedParser.Start_ProgramContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_Program}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_Program(hardtypedParser.Start_ProgramContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_ListExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -38,15 +28,25 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_Expr(hardtypedParser.Start_ExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#program}.
+	 * Enter a parse tree produced by {@link hardtypedParser#start_VarDec}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgram(hardtypedParser.ProgramContext ctx);
+	void enterStart_VarDec(hardtypedParser.Start_VarDecContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#program}.
+	 * Exit a parse tree produced by {@link hardtypedParser#start_VarDec}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgram(hardtypedParser.ProgramContext ctx);
+	void exitStart_VarDec(hardtypedParser.Start_VarDecContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Type}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Type(hardtypedParser.Start_TypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Type}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Type(hardtypedParser.Start_TypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#listExpr}.
 	 * @param ctx the parse tree
@@ -67,4 +67,24 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(hardtypedParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#varDec}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarDec(hardtypedParser.VarDecContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#varDec}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarDec(hardtypedParser.VarDecContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterType(hardtypedParser.TypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitType(hardtypedParser.TypeContext ctx);
 }

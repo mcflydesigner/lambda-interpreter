@@ -2,16 +2,16 @@
 
 package hardtyped.Absyn;
 
-public class Var  extends Expr {
+public class UntypedVar  extends VarDec {
   public final String ident_;
-  public Var(String p1) { ident_ = p1; }
+  public UntypedVar(String p1) { ident_ = p1; }
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.VarDec.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.Var) {
-      hardtyped.Absyn.Var x = (hardtyped.Absyn.Var)o;
+    if (o instanceof hardtyped.Absyn.UntypedVar) {
+      hardtyped.Absyn.UntypedVar x = (hardtyped.Absyn.UntypedVar)o;
       return this.ident_.equals(x.ident_);
     }
     return false;

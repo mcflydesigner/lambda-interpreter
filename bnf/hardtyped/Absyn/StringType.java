@@ -2,14 +2,14 @@
 
 package hardtyped.Absyn;
 
-public class ConstTrue  extends Expr {
-  public ConstTrue() { }
+public class StringType  extends Type {
+  public StringType() { }
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Type.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.ConstTrue) {
+    if (o instanceof hardtyped.Absyn.StringType) {
       return true;
     }
     return false;

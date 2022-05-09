@@ -1,4 +1,7 @@
 #!/bin/bash
 
-bnfc --java --antlr ./bnf/hardtyped.cf
+cd bnf
+rm -r hardtyped
+bnfc --java --antlr ./hardtyped.cf
+cd ..
 mvn clean install

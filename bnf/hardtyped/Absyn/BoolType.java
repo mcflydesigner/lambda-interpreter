@@ -2,14 +2,14 @@
 
 package hardtyped.Absyn;
 
-public class ConstFalse  extends Expr {
-  public ConstFalse() { }
+public class BoolType  extends Type {
+  public BoolType() { }
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Type.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.ConstFalse) {
+    if (o instanceof hardtyped.Absyn.BoolType) {
       return true;
     }
     return false;
