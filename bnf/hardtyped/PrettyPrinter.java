@@ -202,6 +202,16 @@ public class PrettyPrinter
        render(")");
        if (_i_ > 0) render(_R_PAREN);
     }
+    else     if (foo instanceof hardtyped.Absyn.PrintFunction)
+    {
+       hardtyped.Absyn.PrintFunction _printfunction = (hardtyped.Absyn.PrintFunction) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_printfunction.print_, 0);
+       render("(");
+       pp(_printfunction.expr_, 0);
+       render(")");
+       if (_i_ > 0) render(_R_PAREN);
+    }
     else     if (foo instanceof hardtyped.Absyn.Sum)
     {
        hardtyped.Absyn.Sum _sum = (hardtyped.Absyn.Sum) foo;
@@ -469,6 +479,15 @@ public class PrettyPrinter
        render("ApplyFunction");
        sh(_applyfunction.expr_1);
        sh(_applyfunction.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.PrintFunction)
+    {
+       hardtyped.Absyn.PrintFunction _printfunction = (hardtyped.Absyn.PrintFunction) foo;
+       render("(");
+       render("PrintFunction");
+       sh(_printfunction.print_);
+       sh(_printfunction.expr_);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.Sum)

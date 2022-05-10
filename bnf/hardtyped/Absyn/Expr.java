@@ -7,6 +7,7 @@ public abstract class Expr implements java.io.Serializable {
   public interface Visitor <R,A> {
     public R visit(hardtyped.Absyn.Function p, A arg);
     public R visit(hardtyped.Absyn.ApplyFunction p, A arg);
+    public R visit(hardtyped.Absyn.PrintFunction p, A arg);
     public R visit(hardtyped.Absyn.Sum p, A arg);
     public R visit(hardtyped.Absyn.Substract p, A arg);
     public R visit(hardtyped.Absyn.Multiply p, A arg);

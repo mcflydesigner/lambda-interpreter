@@ -6,7 +6,7 @@ separator Expr ";";
 -- Functions
 Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
 ApplyFunction. Expr ::= Expr "(" Expr ")";
-
+PrintFunction. Expr ::= Print "(" Expr ")";
 
 -- Basic operations
 Sum. Expr ::= Expr "+" Expr;
@@ -54,3 +54,4 @@ UnitType. Type ::= "Unit";
 
 token BoolValue {"true"} | {"false"};
 token UnitValue {"unit"};
+token Print {"print"};

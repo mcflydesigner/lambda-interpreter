@@ -24,6 +24,12 @@ public class ComposVisitor<A> implements
       hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
       return new hardtyped.Absyn.ApplyFunction(expr_1, expr_2);
     }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.PrintFunction p, A arg)
+    {
+      String print_ = p.print_;
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.PrintFunction(print_, expr_);
+    }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Sum p, A arg)
     {
       hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);

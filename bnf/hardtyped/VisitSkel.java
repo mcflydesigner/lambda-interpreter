@@ -26,6 +26,12 @@ public class VisitSkel
       p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
+    public R visit(hardtyped.Absyn.PrintFunction p, A arg)
+    { /* Code for PrintFunction goes here */
+      //p.print_;
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.Sum p, A arg)
     { /* Code for Sum goes here */
       p.expr_1.accept(new ExprVisitor<R,A>(), arg);
