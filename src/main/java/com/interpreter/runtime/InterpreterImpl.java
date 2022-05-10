@@ -3,6 +3,7 @@ package com.interpreter.runtime;
 import com.interpreter.runtime.environment.Environment;
 import hardtyped.Absyn.Expr;
 import hardtyped.Absyn.Let;
+import hardtyped.Absyn.LetAscription;
 import hardtyped.Absyn.ListExpr;
 
 public class InterpreterImpl implements Interpreter {
@@ -17,6 +18,8 @@ public class InterpreterImpl implements Interpreter {
     private void parseExpr(Expr expr) {
         if (expr instanceof Let) {
             parseLet(expr);
+        } else if (expr instanceof LetAscription) {
+
         }
 
     }
