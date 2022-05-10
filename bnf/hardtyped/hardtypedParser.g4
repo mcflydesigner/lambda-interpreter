@@ -54,22 +54,26 @@ expr returns [ hardtyped.Absyn.Expr result ]
     { $result = new hardtyped.Absyn.Multiply($p_5_1.result,$p_5_3.result); }
   | p_6_1=expr Surrogate_id_SYMB_9 p_6_3=expr
     { $result = new hardtyped.Absyn.Divide($p_6_1.result,$p_6_3.result); }
-  | Surrogate_id_SYMB_20 p_7_2=varDec Surrogate_id_SYMB_10 p_7_4=expr
-    { $result = new hardtyped.Absyn.Let($p_7_2.result,$p_7_4.result); }
-  | Surrogate_id_SYMB_20 p_8_2=varDec Surrogate_id_SYMB_10 p_8_4=expr Surrogate_id_SYMB_19 p_8_6=expr
-    { $result = new hardtyped.Absyn.LetInference($p_8_2.result,$p_8_4.result,$p_8_6.result); }
-  | Surrogate_id_SYMB_20 p_9_2=varDec Surrogate_id_SYMB_10 p_9_4=expr Surrogate_id_SYMB_18 p_9_6=type
-    { $result = new hardtyped.Absyn.LetAscription($p_9_2.result,$p_9_4.result,$p_9_6.result); }
-  | p_10_1=INTEGER
-    { $result = new hardtyped.Absyn.IntValue(Integer.parseInt($p_10_1.getText())); }
-  | p_11_1=DOUBLE
-    { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_11_1.getText())); }
-  | p_12_1=STRING
-    { $result = new hardtyped.Absyn.StringValue($p_12_1.getText().substring(1, $p_12_1.getText().length()-1)); }
-  | p_13_1=IDENT
-    { $result = new hardtyped.Absyn.AtomicExpression($p_13_1.getText()); }
-  | Surrogate_id_SYMB_4 p_14_2=expr Surrogate_id_SYMB_5
-    { $result = new hardtyped.Absyn.ParenthesesExpression($p_14_2.result); }
+  | Surrogate_id_SYMB_6 p_7_2=expr
+    { $result = new hardtyped.Absyn.UnaryPlus($p_7_2.result); }
+  | Surrogate_id_SYMB_7 p_8_2=expr
+    { $result = new hardtyped.Absyn.UnaryMinus($p_8_2.result); }
+  | Surrogate_id_SYMB_20 p_9_2=varDec Surrogate_id_SYMB_10 p_9_4=expr
+    { $result = new hardtyped.Absyn.Let($p_9_2.result,$p_9_4.result); }
+  | Surrogate_id_SYMB_20 p_10_2=varDec Surrogate_id_SYMB_10 p_10_4=expr Surrogate_id_SYMB_19 p_10_6=expr
+    { $result = new hardtyped.Absyn.LetInference($p_10_2.result,$p_10_4.result,$p_10_6.result); }
+  | Surrogate_id_SYMB_20 p_11_2=varDec Surrogate_id_SYMB_10 p_11_4=expr Surrogate_id_SYMB_18 p_11_6=type
+    { $result = new hardtyped.Absyn.LetAscription($p_11_2.result,$p_11_4.result,$p_11_6.result); }
+  | p_12_1=INTEGER
+    { $result = new hardtyped.Absyn.IntValue(Integer.parseInt($p_12_1.getText())); }
+  | p_13_1=DOUBLE
+    { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_13_1.getText())); }
+  | p_14_1=STRING
+    { $result = new hardtyped.Absyn.StringValue($p_14_1.getText().substring(1, $p_14_1.getText().length()-1)); }
+  | p_15_1=IDENT
+    { $result = new hardtyped.Absyn.AtomicExpression($p_15_1.getText()); }
+  | Surrogate_id_SYMB_4 p_16_2=expr Surrogate_id_SYMB_5
+    { $result = new hardtyped.Absyn.ParenthesesExpression($p_16_2.result); }
   ;
 inExpr returns [ hardtyped.Absyn.InExpr result ]
   : p_1_1=inExpr Surrogate_id_SYMB_0 p_1_3=inExpr

@@ -12,6 +12,8 @@ public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     public R visit(hardtyped.Absyn.Substract p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Multiply p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Divide p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.UnaryPlus p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.UnaryMinus p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Let p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.LetInference p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.LetAscription p, A arg) { return visitDefault(p, arg); }

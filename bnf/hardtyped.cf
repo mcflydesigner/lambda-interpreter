@@ -14,6 +14,9 @@ Substract. Expr::= Expr "-" Expr;
 Multiply. Expr ::= Expr "*" Expr;
 Divide. Expr ::= Expr "/" Expr;
 
+UnaryPlus. Expr ::= "+" Expr;
+UnaryMinus. Expr ::= "-" Expr;
+
 -- Variable initializers
 Let. Expr ::= "let" VarDec "=" Expr;
 LetInference. Expr ::= "let" VarDec "=" Expr "in" Expr;

@@ -450,19 +450,21 @@ public class hardtypedParser extends Parser {
 		public ExprContext p_6_1;
 		public FuncArgContext p_1_2;
 		public InExprContext p_1_4;
-		public VarDecContext p_7_2;
-		public ExprContext p_7_4;
-		public VarDecContext p_8_2;
-		public ExprContext p_8_4;
-		public ExprContext p_8_6;
+		public ExprContext p_7_2;
+		public ExprContext p_8_2;
 		public VarDecContext p_9_2;
 		public ExprContext p_9_4;
-		public TypeContext p_9_6;
-		public Token p_10_1;
-		public Token p_11_1;
+		public VarDecContext p_10_2;
+		public ExprContext p_10_4;
+		public ExprContext p_10_6;
+		public VarDecContext p_11_2;
+		public ExprContext p_11_4;
+		public TypeContext p_11_6;
 		public Token p_12_1;
 		public Token p_13_1;
-		public ExprContext p_14_2;
+		public Token p_14_1;
+		public Token p_15_1;
+		public ExprContext p_16_2;
 		public ExprContext p_3_3;
 		public ExprContext p_4_3;
 		public ExprContext p_5_3;
@@ -477,16 +479,18 @@ public class hardtypedParser extends Parser {
 		public InExprContext inExpr() {
 			return getRuleContext(InExprContext.class,0);
 		}
-		public TerminalNode Surrogate_id_SYMB_20() { return getToken(hardtypedParser.Surrogate_id_SYMB_20, 0); }
-		public TerminalNode Surrogate_id_SYMB_10() { return getToken(hardtypedParser.Surrogate_id_SYMB_10, 0); }
-		public VarDecContext varDec() {
-			return getRuleContext(VarDecContext.class,0);
-		}
+		public TerminalNode Surrogate_id_SYMB_6() { return getToken(hardtypedParser.Surrogate_id_SYMB_6, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
+		}
+		public TerminalNode Surrogate_id_SYMB_7() { return getToken(hardtypedParser.Surrogate_id_SYMB_7, 0); }
+		public TerminalNode Surrogate_id_SYMB_20() { return getToken(hardtypedParser.Surrogate_id_SYMB_20, 0); }
+		public TerminalNode Surrogate_id_SYMB_10() { return getToken(hardtypedParser.Surrogate_id_SYMB_10, 0); }
+		public VarDecContext varDec() {
+			return getRuleContext(VarDecContext.class,0);
 		}
 		public TerminalNode Surrogate_id_SYMB_19() { return getToken(hardtypedParser.Surrogate_id_SYMB_19, 0); }
 		public TerminalNode Surrogate_id_SYMB_18() { return getToken(hardtypedParser.Surrogate_id_SYMB_18, 0); }
@@ -499,8 +503,6 @@ public class hardtypedParser extends Parser {
 		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
 		public TerminalNode Surrogate_id_SYMB_4() { return getToken(hardtypedParser.Surrogate_id_SYMB_4, 0); }
 		public TerminalNode Surrogate_id_SYMB_5() { return getToken(hardtypedParser.Surrogate_id_SYMB_5, 0); }
-		public TerminalNode Surrogate_id_SYMB_6() { return getToken(hardtypedParser.Surrogate_id_SYMB_6, 0); }
-		public TerminalNode Surrogate_id_SYMB_7() { return getToken(hardtypedParser.Surrogate_id_SYMB_7, 0); }
 		public TerminalNode Surrogate_id_SYMB_8() { return getToken(hardtypedParser.Surrogate_id_SYMB_8, 0); }
 		public TerminalNode Surrogate_id_SYMB_9() { return getToken(hardtypedParser.Surrogate_id_SYMB_9, 0); }
 		public ExprContext(ParserRuleContext parent, int invokingState) {
@@ -532,7 +534,7 @@ public class hardtypedParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(102);
+			setState(110);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
@@ -553,92 +555,110 @@ public class hardtypedParser extends Parser {
 			case 2:
 				{
 				setState(67);
-				match(Surrogate_id_SYMB_20);
+				match(Surrogate_id_SYMB_6);
 				setState(68);
-				((ExprContext)_localctx).p_7_2 = varDec();
-				setState(69);
-				match(Surrogate_id_SYMB_10);
-				setState(70);
-				((ExprContext)_localctx).p_7_4 = expr(8);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Let(((ExprContext)_localctx).p_7_2.result,((ExprContext)_localctx).p_7_4.result); 
+				((ExprContext)_localctx).p_7_2 = expr(10);
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.UnaryPlus(((ExprContext)_localctx).p_7_2.result); 
 				}
 				break;
 			case 3:
 				{
-				setState(73);
-				match(Surrogate_id_SYMB_20);
-				setState(74);
-				((ExprContext)_localctx).p_8_2 = varDec();
-				setState(75);
-				match(Surrogate_id_SYMB_10);
-				setState(76);
-				((ExprContext)_localctx).p_8_4 = expr(0);
-				setState(77);
-				match(Surrogate_id_SYMB_19);
-				setState(78);
-				((ExprContext)_localctx).p_8_6 = expr(7);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.LetInference(((ExprContext)_localctx).p_8_2.result,((ExprContext)_localctx).p_8_4.result,((ExprContext)_localctx).p_8_6.result); 
+				setState(71);
+				match(Surrogate_id_SYMB_7);
+				setState(72);
+				((ExprContext)_localctx).p_8_2 = expr(9);
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.UnaryMinus(((ExprContext)_localctx).p_8_2.result); 
 				}
 				break;
 			case 4:
 				{
-				setState(81);
+				setState(75);
 				match(Surrogate_id_SYMB_20);
-				setState(82);
+				setState(76);
 				((ExprContext)_localctx).p_9_2 = varDec();
-				setState(83);
+				setState(77);
 				match(Surrogate_id_SYMB_10);
-				setState(84);
-				((ExprContext)_localctx).p_9_4 = expr(0);
-				setState(85);
-				match(Surrogate_id_SYMB_18);
-				setState(86);
-				((ExprContext)_localctx).p_9_6 = type();
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.LetAscription(((ExprContext)_localctx).p_9_2.result,((ExprContext)_localctx).p_9_4.result,((ExprContext)_localctx).p_9_6.result); 
+				setState(78);
+				((ExprContext)_localctx).p_9_4 = expr(8);
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Let(((ExprContext)_localctx).p_9_2.result,((ExprContext)_localctx).p_9_4.result); 
 				}
 				break;
 			case 5:
 				{
-				setState(89);
-				((ExprContext)_localctx).p_10_1 = match(INTEGER);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.IntValue(Integer.parseInt(((ExprContext)_localctx).p_10_1.getText())); 
+				setState(81);
+				match(Surrogate_id_SYMB_20);
+				setState(82);
+				((ExprContext)_localctx).p_10_2 = varDec();
+				setState(83);
+				match(Surrogate_id_SYMB_10);
+				setState(84);
+				((ExprContext)_localctx).p_10_4 = expr(0);
+				setState(85);
+				match(Surrogate_id_SYMB_19);
+				setState(86);
+				((ExprContext)_localctx).p_10_6 = expr(7);
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.LetInference(((ExprContext)_localctx).p_10_2.result,((ExprContext)_localctx).p_10_4.result,((ExprContext)_localctx).p_10_6.result); 
 				}
 				break;
 			case 6:
 				{
+				setState(89);
+				match(Surrogate_id_SYMB_20);
+				setState(90);
+				((ExprContext)_localctx).p_11_2 = varDec();
 				setState(91);
-				((ExprContext)_localctx).p_11_1 = match(DOUBLE);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.RealValue(Double.parseDouble(((ExprContext)_localctx).p_11_1.getText())); 
+				match(Surrogate_id_SYMB_10);
+				setState(92);
+				((ExprContext)_localctx).p_11_4 = expr(0);
+				setState(93);
+				match(Surrogate_id_SYMB_18);
+				setState(94);
+				((ExprContext)_localctx).p_11_6 = type();
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.LetAscription(((ExprContext)_localctx).p_11_2.result,((ExprContext)_localctx).p_11_4.result,((ExprContext)_localctx).p_11_6.result); 
 				}
 				break;
 			case 7:
 				{
-				setState(93);
-				((ExprContext)_localctx).p_12_1 = match(STRING);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.StringValue(((ExprContext)_localctx).p_12_1.getText().substring(1, ((ExprContext)_localctx).p_12_1.getText().length()-1)); 
+				setState(97);
+				((ExprContext)_localctx).p_12_1 = match(INTEGER);
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.IntValue(Integer.parseInt(((ExprContext)_localctx).p_12_1.getText())); 
 				}
 				break;
 			case 8:
 				{
-				setState(95);
-				((ExprContext)_localctx).p_13_1 = match(IDENT);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.AtomicExpression(((ExprContext)_localctx).p_13_1.getText()); 
+				setState(99);
+				((ExprContext)_localctx).p_13_1 = match(DOUBLE);
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.RealValue(Double.parseDouble(((ExprContext)_localctx).p_13_1.getText())); 
 				}
 				break;
 			case 9:
 				{
-				setState(97);
+				setState(101);
+				((ExprContext)_localctx).p_14_1 = match(STRING);
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.StringValue(((ExprContext)_localctx).p_14_1.getText().substring(1, ((ExprContext)_localctx).p_14_1.getText().length()-1)); 
+				}
+				break;
+			case 10:
+				{
+				setState(103);
+				((ExprContext)_localctx).p_15_1 = match(IDENT);
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.AtomicExpression(((ExprContext)_localctx).p_15_1.getText()); 
+				}
+				break;
+			case 11:
+				{
+				setState(105);
 				match(Surrogate_id_SYMB_4);
-				setState(98);
-				((ExprContext)_localctx).p_14_2 = expr(0);
-				setState(99);
+				setState(106);
+				((ExprContext)_localctx).p_16_2 = expr(0);
+				setState(107);
 				match(Surrogate_id_SYMB_5);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.ParenthesesExpression(((ExprContext)_localctx).p_14_2.result); 
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.ParenthesesExpression(((ExprContext)_localctx).p_16_2.result); 
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(132);
+			setState(140);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -646,7 +666,7 @@ public class hardtypedParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(130);
+					setState(138);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 					case 1:
@@ -655,12 +675,12 @@ public class hardtypedParser extends Parser {
 						_localctx.p_3_1 = _prevctx;
 						_localctx.p_3_1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(104);
-						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
-						setState(105);
+						setState(112);
+						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
+						setState(113);
 						match(Surrogate_id_SYMB_6);
-						setState(106);
-						((ExprContext)_localctx).p_3_3 = expr(13);
+						setState(114);
+						((ExprContext)_localctx).p_3_3 = expr(15);
 						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Sum(((ExprContext)_localctx).p_3_1.result,((ExprContext)_localctx).p_3_3.result); 
 						}
 						break;
@@ -670,12 +690,12 @@ public class hardtypedParser extends Parser {
 						_localctx.p_4_1 = _prevctx;
 						_localctx.p_4_1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(109);
-						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-						setState(110);
+						setState(117);
+						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
+						setState(118);
 						match(Surrogate_id_SYMB_7);
-						setState(111);
-						((ExprContext)_localctx).p_4_3 = expr(12);
+						setState(119);
+						((ExprContext)_localctx).p_4_3 = expr(14);
 						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Substract(((ExprContext)_localctx).p_4_1.result,((ExprContext)_localctx).p_4_3.result); 
 						}
 						break;
@@ -685,12 +705,12 @@ public class hardtypedParser extends Parser {
 						_localctx.p_5_1 = _prevctx;
 						_localctx.p_5_1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(114);
-						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(115);
+						setState(122);
+						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
+						setState(123);
 						match(Surrogate_id_SYMB_8);
-						setState(116);
-						((ExprContext)_localctx).p_5_3 = expr(11);
+						setState(124);
+						((ExprContext)_localctx).p_5_3 = expr(13);
 						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Multiply(((ExprContext)_localctx).p_5_1.result,((ExprContext)_localctx).p_5_3.result); 
 						}
 						break;
@@ -700,12 +720,12 @@ public class hardtypedParser extends Parser {
 						_localctx.p_6_1 = _prevctx;
 						_localctx.p_6_1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(119);
-						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(120);
+						setState(127);
+						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
+						setState(128);
 						match(Surrogate_id_SYMB_9);
-						setState(121);
-						((ExprContext)_localctx).p_6_3 = expr(10);
+						setState(129);
+						((ExprContext)_localctx).p_6_3 = expr(12);
 						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Divide(((ExprContext)_localctx).p_6_1.result,((ExprContext)_localctx).p_6_3.result); 
 						}
 						break;
@@ -715,13 +735,13 @@ public class hardtypedParser extends Parser {
 						_localctx.p_2_1 = _prevctx;
 						_localctx.p_2_1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(124);
-						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
-						setState(125);
+						setState(132);
+						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
+						setState(133);
 						match(Surrogate_id_SYMB_4);
-						setState(126);
+						setState(134);
 						((ExprContext)_localctx).p_2_3 = expr(0);
-						setState(127);
+						setState(135);
 						match(Surrogate_id_SYMB_5);
 						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.ApplyFunction(((ExprContext)_localctx).p_2_1.result,((ExprContext)_localctx).p_2_3.result); 
 						}
@@ -729,7 +749,7 @@ public class hardtypedParser extends Parser {
 					}
 					} 
 				}
-				setState(134);
+				setState(142);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
@@ -792,12 +812,12 @@ public class hardtypedParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(136);
+			setState(144);
 			((InExprContext)_localctx).p_3_1 = expr(0);
 			 ((InExprContext)_localctx).result =  new hardtyped.Absyn.InnerExpression(((InExprContext)_localctx).p_3_1.result); 
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(149);
+			setState(157);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -805,7 +825,7 @@ public class hardtypedParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(147);
+					setState(155);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 					case 1:
@@ -814,11 +834,11 @@ public class hardtypedParser extends Parser {
 						_localctx.p_1_1 = _prevctx;
 						_localctx.p_1_1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_inExpr);
-						setState(139);
+						setState(147);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(140);
+						setState(148);
 						match(Surrogate_id_SYMB_0);
-						setState(141);
+						setState(149);
 						((InExprContext)_localctx).p_1_3 = inExpr(4);
 						 ((InExprContext)_localctx).result =  new hardtyped.Absyn.MultipleExpressions(((InExprContext)_localctx).p_1_1.result,((InExprContext)_localctx).p_1_3.result); 
 						}
@@ -829,9 +849,9 @@ public class hardtypedParser extends Parser {
 						_localctx.p_2_1 = _prevctx;
 						_localctx.p_2_1 = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_inExpr);
-						setState(144);
+						setState(152);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(145);
+						setState(153);
 						match(Surrogate_id_SYMB_0);
 						 ((InExprContext)_localctx).result =  new hardtyped.Absyn.FinalExpression(((InExprContext)_localctx).p_2_1.result); 
 						}
@@ -839,7 +859,7 @@ public class hardtypedParser extends Parser {
 					}
 					} 
 				}
-				setState(151);
+				setState(159);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			}
@@ -886,17 +906,17 @@ public class hardtypedParser extends Parser {
 		FuncArgContext _localctx = new FuncArgContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_funcArg);
 		try {
-			setState(161);
+			setState(169);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(152);
+				setState(160);
 				((FuncArgContext)_localctx).p_1_1 = varDec();
-				setState(153);
+				setState(161);
 				match(Surrogate_id_SYMB_11);
-				setState(154);
+				setState(162);
 				((FuncArgContext)_localctx).p_1_3 = funcArg();
 				 ((FuncArgContext)_localctx).result =  new hardtyped.Absyn.MultipleArgs(((FuncArgContext)_localctx).p_1_1.result,((FuncArgContext)_localctx).p_1_3.result); 
 				}
@@ -904,9 +924,9 @@ public class hardtypedParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(157);
+				setState(165);
 				((FuncArgContext)_localctx).p_2_1 = varDec();
-				setState(158);
+				setState(166);
 				match(Surrogate_id_SYMB_11);
 				 ((FuncArgContext)_localctx).result =  new hardtyped.Absyn.FinalArg(((FuncArgContext)_localctx).p_2_1.result); 
 				}
@@ -952,17 +972,17 @@ public class hardtypedParser extends Parser {
 		VarDecContext _localctx = new VarDecContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_varDec);
 		try {
-			setState(170);
+			setState(178);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(163);
+				setState(171);
 				((VarDecContext)_localctx).p_1_1 = match(IDENT);
-				setState(164);
+				setState(172);
 				match(Surrogate_id_SYMB_12);
-				setState(165);
+				setState(173);
 				((VarDecContext)_localctx).p_1_3 = type();
 				 ((VarDecContext)_localctx).result =  new hardtyped.Absyn.TypedVar(((VarDecContext)_localctx).p_1_1.getText(),((VarDecContext)_localctx).p_1_3.result); 
 				}
@@ -970,7 +990,7 @@ public class hardtypedParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(168);
+				setState(176);
 				((VarDecContext)_localctx).p_2_1 = match(IDENT);
 				 ((VarDecContext)_localctx).result =  new hardtyped.Absyn.UntypedVar(((VarDecContext)_localctx).p_2_1.getText()); 
 				}
@@ -1013,13 +1033,13 @@ public class hardtypedParser extends Parser {
 		TypeContext _localctx = new TypeContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_type);
 		try {
-			setState(182);
+			setState(190);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case Surrogate_id_SYMB_14:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(172);
+				setState(180);
 				match(Surrogate_id_SYMB_14);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.IntType(); 
 				}
@@ -1027,7 +1047,7 @@ public class hardtypedParser extends Parser {
 			case Surrogate_id_SYMB_15:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(174);
+				setState(182);
 				match(Surrogate_id_SYMB_15);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.RealType(); 
 				}
@@ -1035,7 +1055,7 @@ public class hardtypedParser extends Parser {
 			case Surrogate_id_SYMB_13:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(176);
+				setState(184);
 				match(Surrogate_id_SYMB_13);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.BoolType(); 
 				}
@@ -1043,7 +1063,7 @@ public class hardtypedParser extends Parser {
 			case Surrogate_id_SYMB_16:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(178);
+				setState(186);
 				match(Surrogate_id_SYMB_16);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.StringType(); 
 				}
@@ -1051,7 +1071,7 @@ public class hardtypedParser extends Parser {
 			case Surrogate_id_SYMB_17:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(180);
+				setState(188);
 				match(Surrogate_id_SYMB_17);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.UnitType(); 
 				}
@@ -1083,15 +1103,15 @@ public class hardtypedParser extends Parser {
 	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 12);
+			return precpred(_ctx, 14);
 		case 1:
-			return precpred(_ctx, 11);
-		case 2:
-			return precpred(_ctx, 10);
-		case 3:
-			return precpred(_ctx, 9);
-		case 4:
 			return precpred(_ctx, 13);
+		case 2:
+			return precpred(_ctx, 12);
+		case 3:
+			return precpred(_ctx, 11);
+		case 4:
+			return precpred(_ctx, 15);
 		}
 		return true;
 	}
@@ -1106,61 +1126,64 @@ public class hardtypedParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3 \u00bb\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3 \u00c3\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3"+
 		"\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b"+
 		"\3\b\3\b\3\b\5\b<\n\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t"+
 		"\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3"+
-		"\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\5\ti\n\t\3\t\3"+
 		"\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t"+
-		"\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\t\u0085\n\t\f\t\16\t\u0088\13\t\3\n\3\n"+
-		"\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\7\n\u0096\n\n\f\n\16\n\u0099"+
-		"\13\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u00a4\n\13\3\f"+
-		"\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00ad\n\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r"+
-		"\3\r\3\r\5\r\u00b9\n\r\3\r\2\4\20\22\16\2\4\6\b\n\f\16\20\22\24\26\30"+
-		"\2\2\2\u00c5\2\32\3\2\2\2\4\36\3\2\2\2\6\"\3\2\2\2\b&\3\2\2\2\n*\3\2\2"+
-		"\2\f.\3\2\2\2\16;\3\2\2\2\20h\3\2\2\2\22\u0089\3\2\2\2\24\u00a3\3\2\2"+
-		"\2\26\u00ac\3\2\2\2\30\u00b8\3\2\2\2\32\33\5\16\b\2\33\34\7\2\2\3\34\35"+
-		"\b\2\1\2\35\3\3\2\2\2\36\37\5\20\t\2\37 \7\2\2\3 !\b\3\1\2!\5\3\2\2\2"+
-		"\"#\5\22\n\2#$\7\2\2\3$%\b\4\1\2%\7\3\2\2\2&\'\5\24\13\2\'(\7\2\2\3()"+
-		"\b\5\1\2)\t\3\2\2\2*+\5\26\f\2+,\7\2\2\3,-\b\6\1\2-\13\3\2\2\2./\5\30"+
-		"\r\2/\60\7\2\2\3\60\61\b\7\1\2\61\r\3\2\2\2\62<\b\b\1\2\63\64\5\20\t\2"+
-		"\64\65\b\b\1\2\65<\3\2\2\2\66\67\5\20\t\2\678\7\3\2\289\5\16\b\29:\b\b"+
-		"\1\2:<\3\2\2\2;\62\3\2\2\2;\63\3\2\2\2;\66\3\2\2\2<\17\3\2\2\2=>\b\t\1"+
-		"\2>?\7\4\2\2?@\5\24\13\2@A\7\5\2\2AB\5\22\n\2BC\7\6\2\2CD\b\t\1\2Di\3"+
-		"\2\2\2EF\7\27\2\2FG\5\26\f\2GH\7\r\2\2HI\5\20\t\nIJ\b\t\1\2Ji\3\2\2\2"+
-		"KL\7\27\2\2LM\5\26\f\2MN\7\r\2\2NO\5\20\t\2OP\7\26\2\2PQ\5\20\t\tQR\b"+
-		"\t\1\2Ri\3\2\2\2ST\7\27\2\2TU\5\26\f\2UV\7\r\2\2VW\5\20\t\2WX\7\25\2\2"+
-		"XY\5\30\r\2YZ\b\t\1\2Zi\3\2\2\2[\\\7\33\2\2\\i\b\t\1\2]^\7\32\2\2^i\b"+
-		"\t\1\2_`\7\37\2\2`i\b\t\1\2ab\7\34\2\2bi\b\t\1\2cd\7\7\2\2de\5\20\t\2"+
-		"ef\7\b\2\2fg\b\t\1\2gi\3\2\2\2h=\3\2\2\2hE\3\2\2\2hK\3\2\2\2hS\3\2\2\2"+
-		"h[\3\2\2\2h]\3\2\2\2h_\3\2\2\2ha\3\2\2\2hc\3\2\2\2i\u0086\3\2\2\2jk\f"+
-		"\16\2\2kl\7\t\2\2lm\5\20\t\17mn\b\t\1\2n\u0085\3\2\2\2op\f\r\2\2pq\7\n"+
-		"\2\2qr\5\20\t\16rs\b\t\1\2s\u0085\3\2\2\2tu\f\f\2\2uv\7\13\2\2vw\5\20"+
-		"\t\rwx\b\t\1\2x\u0085\3\2\2\2yz\f\13\2\2z{\7\f\2\2{|\5\20\t\f|}\b\t\1"+
-		"\2}\u0085\3\2\2\2~\177\f\17\2\2\177\u0080\7\7\2\2\u0080\u0081\5\20\t\2"+
-		"\u0081\u0082\7\b\2\2\u0082\u0083\b\t\1\2\u0083\u0085\3\2\2\2\u0084j\3"+
-		"\2\2\2\u0084o\3\2\2\2\u0084t\3\2\2\2\u0084y\3\2\2\2\u0084~\3\2\2\2\u0085"+
-		"\u0088\3\2\2\2\u0086\u0084\3\2\2\2\u0086\u0087\3\2\2\2\u0087\21\3\2\2"+
-		"\2\u0088\u0086\3\2\2\2\u0089\u008a\b\n\1\2\u008a\u008b\5\20\t\2\u008b"+
-		"\u008c\b\n\1\2\u008c\u0097\3\2\2\2\u008d\u008e\f\5\2\2\u008e\u008f\7\3"+
-		"\2\2\u008f\u0090\5\22\n\6\u0090\u0091\b\n\1\2\u0091\u0096\3\2\2\2\u0092"+
-		"\u0093\f\4\2\2\u0093\u0094\7\3\2\2\u0094\u0096\b\n\1\2\u0095\u008d\3\2"+
-		"\2\2\u0095\u0092\3\2\2\2\u0096\u0099\3\2\2\2\u0097\u0095\3\2\2\2\u0097"+
-		"\u0098\3\2\2\2\u0098\23\3\2\2\2\u0099\u0097\3\2\2\2\u009a\u009b\5\26\f"+
-		"\2\u009b\u009c\7\16\2\2\u009c\u009d\5\24\13\2\u009d\u009e\b\13\1\2\u009e"+
-		"\u00a4\3\2\2\2\u009f\u00a0\5\26\f\2\u00a0\u00a1\7\16\2\2\u00a1\u00a2\b"+
-		"\13\1\2\u00a2\u00a4\3\2\2\2\u00a3\u009a\3\2\2\2\u00a3\u009f\3\2\2\2\u00a4"+
-		"\25\3\2\2\2\u00a5\u00a6\7\34\2\2\u00a6\u00a7\7\17\2\2\u00a7\u00a8\5\30"+
-		"\r\2\u00a8\u00a9\b\f\1\2\u00a9\u00ad\3\2\2\2\u00aa\u00ab\7\34\2\2\u00ab"+
-		"\u00ad\b\f\1\2\u00ac\u00a5\3\2\2\2\u00ac\u00aa\3\2\2\2\u00ad\27\3\2\2"+
-		"\2\u00ae\u00af\7\21\2\2\u00af\u00b9\b\r\1\2\u00b0\u00b1\7\22\2\2\u00b1"+
-		"\u00b9\b\r\1\2\u00b2\u00b3\7\20\2\2\u00b3\u00b9\b\r\1\2\u00b4\u00b5\7"+
-		"\23\2\2\u00b5\u00b9\b\r\1\2\u00b6\u00b7\7\24\2\2\u00b7\u00b9\b\r\1\2\u00b8"+
-		"\u00ae\3\2\2\2\u00b8\u00b0\3\2\2\2\u00b8\u00b2\3\2\2\2\u00b8\u00b4\3\2"+
-		"\2\2\u00b8\u00b6\3\2\2\2\u00b9\31\3\2\2\2\13;h\u0084\u0086\u0095\u0097"+
-		"\u00a3\u00ac\u00b8";
+		"\3\t\3\t\3\t\3\t\5\tq\n\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t"+
+		"\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\t\u008d"+
+		"\n\t\f\t\16\t\u0090\13\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3"+
+		"\n\7\n\u009e\n\n\f\n\16\n\u00a1\13\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13"+
+		"\3\13\3\13\5\13\u00ac\n\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00b5\n\f\3"+
+		"\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\5\r\u00c1\n\r\3\r\2\4\20\22\16"+
+		"\2\4\6\b\n\f\16\20\22\24\26\30\2\2\2\u00cf\2\32\3\2\2\2\4\36\3\2\2\2\6"+
+		"\"\3\2\2\2\b&\3\2\2\2\n*\3\2\2\2\f.\3\2\2\2\16;\3\2\2\2\20p\3\2\2\2\22"+
+		"\u0091\3\2\2\2\24\u00ab\3\2\2\2\26\u00b4\3\2\2\2\30\u00c0\3\2\2\2\32\33"+
+		"\5\16\b\2\33\34\7\2\2\3\34\35\b\2\1\2\35\3\3\2\2\2\36\37\5\20\t\2\37 "+
+		"\7\2\2\3 !\b\3\1\2!\5\3\2\2\2\"#\5\22\n\2#$\7\2\2\3$%\b\4\1\2%\7\3\2\2"+
+		"\2&\'\5\24\13\2\'(\7\2\2\3()\b\5\1\2)\t\3\2\2\2*+\5\26\f\2+,\7\2\2\3,"+
+		"-\b\6\1\2-\13\3\2\2\2./\5\30\r\2/\60\7\2\2\3\60\61\b\7\1\2\61\r\3\2\2"+
+		"\2\62<\b\b\1\2\63\64\5\20\t\2\64\65\b\b\1\2\65<\3\2\2\2\66\67\5\20\t\2"+
+		"\678\7\3\2\289\5\16\b\29:\b\b\1\2:<\3\2\2\2;\62\3\2\2\2;\63\3\2\2\2;\66"+
+		"\3\2\2\2<\17\3\2\2\2=>\b\t\1\2>?\7\4\2\2?@\5\24\13\2@A\7\5\2\2AB\5\22"+
+		"\n\2BC\7\6\2\2CD\b\t\1\2Dq\3\2\2\2EF\7\t\2\2FG\5\20\t\fGH\b\t\1\2Hq\3"+
+		"\2\2\2IJ\7\n\2\2JK\5\20\t\13KL\b\t\1\2Lq\3\2\2\2MN\7\27\2\2NO\5\26\f\2"+
+		"OP\7\r\2\2PQ\5\20\t\nQR\b\t\1\2Rq\3\2\2\2ST\7\27\2\2TU\5\26\f\2UV\7\r"+
+		"\2\2VW\5\20\t\2WX\7\26\2\2XY\5\20\t\tYZ\b\t\1\2Zq\3\2\2\2[\\\7\27\2\2"+
+		"\\]\5\26\f\2]^\7\r\2\2^_\5\20\t\2_`\7\25\2\2`a\5\30\r\2ab\b\t\1\2bq\3"+
+		"\2\2\2cd\7\33\2\2dq\b\t\1\2ef\7\32\2\2fq\b\t\1\2gh\7\37\2\2hq\b\t\1\2"+
+		"ij\7\34\2\2jq\b\t\1\2kl\7\7\2\2lm\5\20\t\2mn\7\b\2\2no\b\t\1\2oq\3\2\2"+
+		"\2p=\3\2\2\2pE\3\2\2\2pI\3\2\2\2pM\3\2\2\2pS\3\2\2\2p[\3\2\2\2pc\3\2\2"+
+		"\2pe\3\2\2\2pg\3\2\2\2pi\3\2\2\2pk\3\2\2\2q\u008e\3\2\2\2rs\f\20\2\2s"+
+		"t\7\t\2\2tu\5\20\t\21uv\b\t\1\2v\u008d\3\2\2\2wx\f\17\2\2xy\7\n\2\2yz"+
+		"\5\20\t\20z{\b\t\1\2{\u008d\3\2\2\2|}\f\16\2\2}~\7\13\2\2~\177\5\20\t"+
+		"\17\177\u0080\b\t\1\2\u0080\u008d\3\2\2\2\u0081\u0082\f\r\2\2\u0082\u0083"+
+		"\7\f\2\2\u0083\u0084\5\20\t\16\u0084\u0085\b\t\1\2\u0085\u008d\3\2\2\2"+
+		"\u0086\u0087\f\21\2\2\u0087\u0088\7\7\2\2\u0088\u0089\5\20\t\2\u0089\u008a"+
+		"\7\b\2\2\u008a\u008b\b\t\1\2\u008b\u008d\3\2\2\2\u008cr\3\2\2\2\u008c"+
+		"w\3\2\2\2\u008c|\3\2\2\2\u008c\u0081\3\2\2\2\u008c\u0086\3\2\2\2\u008d"+
+		"\u0090\3\2\2\2\u008e\u008c\3\2\2\2\u008e\u008f\3\2\2\2\u008f\21\3\2\2"+
+		"\2\u0090\u008e\3\2\2\2\u0091\u0092\b\n\1\2\u0092\u0093\5\20\t\2\u0093"+
+		"\u0094\b\n\1\2\u0094\u009f\3\2\2\2\u0095\u0096\f\5\2\2\u0096\u0097\7\3"+
+		"\2\2\u0097\u0098\5\22\n\6\u0098\u0099\b\n\1\2\u0099\u009e\3\2\2\2\u009a"+
+		"\u009b\f\4\2\2\u009b\u009c\7\3\2\2\u009c\u009e\b\n\1\2\u009d\u0095\3\2"+
+		"\2\2\u009d\u009a\3\2\2\2\u009e\u00a1\3\2\2\2\u009f\u009d\3\2\2\2\u009f"+
+		"\u00a0\3\2\2\2\u00a0\23\3\2\2\2\u00a1\u009f\3\2\2\2\u00a2\u00a3\5\26\f"+
+		"\2\u00a3\u00a4\7\16\2\2\u00a4\u00a5\5\24\13\2\u00a5\u00a6\b\13\1\2\u00a6"+
+		"\u00ac\3\2\2\2\u00a7\u00a8\5\26\f\2\u00a8\u00a9\7\16\2\2\u00a9\u00aa\b"+
+		"\13\1\2\u00aa\u00ac\3\2\2\2\u00ab\u00a2\3\2\2\2\u00ab\u00a7\3\2\2\2\u00ac"+
+		"\25\3\2\2\2\u00ad\u00ae\7\34\2\2\u00ae\u00af\7\17\2\2\u00af\u00b0\5\30"+
+		"\r\2\u00b0\u00b1\b\f\1\2\u00b1\u00b5\3\2\2\2\u00b2\u00b3\7\34\2\2\u00b3"+
+		"\u00b5\b\f\1\2\u00b4\u00ad\3\2\2\2\u00b4\u00b2\3\2\2\2\u00b5\27\3\2\2"+
+		"\2\u00b6\u00b7\7\21\2\2\u00b7\u00c1\b\r\1\2\u00b8\u00b9\7\22\2\2\u00b9"+
+		"\u00c1\b\r\1\2\u00ba\u00bb\7\20\2\2\u00bb\u00c1\b\r\1\2\u00bc\u00bd\7"+
+		"\23\2\2\u00bd\u00c1\b\r\1\2\u00be\u00bf\7\24\2\2\u00bf\u00c1\b\r\1\2\u00c0"+
+		"\u00b6\3\2\2\2\u00c0\u00b8\3\2\2\2\u00c0\u00ba\3\2\2\2\u00c0\u00bc\3\2"+
+		"\2\2\u00c0\u00be\3\2\2\2\u00c1\31\3\2\2\2\13;p\u008c\u008e\u009d\u009f"+
+		"\u00ab\u00b4\u00c0";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

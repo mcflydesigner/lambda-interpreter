@@ -48,6 +48,16 @@ public class ComposVisitor<A> implements
       hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
       return new hardtyped.Absyn.Divide(expr_1, expr_2);
     }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.UnaryPlus p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.UnaryPlus(expr_);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.UnaryMinus p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.UnaryMinus(expr_);
+    }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Let p, A arg)
     {
       hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);

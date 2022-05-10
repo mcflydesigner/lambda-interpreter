@@ -50,6 +50,16 @@ public class VisitSkel
       p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
+    public R visit(hardtyped.Absyn.UnaryPlus p, A arg)
+    { /* Code for UnaryPlus goes here */
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.UnaryMinus p, A arg)
+    { /* Code for UnaryMinus goes here */
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.Let p, A arg)
     { /* Code for Let goes here */
       p.vardec_.accept(new VarDecVisitor<R,A>(), arg);

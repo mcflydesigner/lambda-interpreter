@@ -238,6 +238,22 @@ public class PrettyPrinter
        pp(_divide.expr_2, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
+    else     if (foo instanceof hardtyped.Absyn.UnaryPlus)
+    {
+       hardtyped.Absyn.UnaryPlus _unaryplus = (hardtyped.Absyn.UnaryPlus) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       render("+");
+       pp(_unaryplus.expr_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.UnaryMinus)
+    {
+       hardtyped.Absyn.UnaryMinus _unaryminus = (hardtyped.Absyn.UnaryMinus) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       render("-");
+       pp(_unaryminus.expr_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
     else     if (foo instanceof hardtyped.Absyn.Let)
     {
        hardtyped.Absyn.Let _let = (hardtyped.Absyn.Let) foo;
@@ -489,6 +505,22 @@ public class PrettyPrinter
        render("Divide");
        sh(_divide.expr_1);
        sh(_divide.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.UnaryPlus)
+    {
+       hardtyped.Absyn.UnaryPlus _unaryplus = (hardtyped.Absyn.UnaryPlus) foo;
+       render("(");
+       render("UnaryPlus");
+       sh(_unaryplus.expr_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.UnaryMinus)
+    {
+       hardtyped.Absyn.UnaryMinus _unaryminus = (hardtyped.Absyn.UnaryMinus) foo;
+       render("(");
+       render("UnaryMinus");
+       sh(_unaryminus.expr_);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.Let)

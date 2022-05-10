@@ -11,6 +11,8 @@ public abstract class Expr implements java.io.Serializable {
     public R visit(hardtyped.Absyn.Substract p, A arg);
     public R visit(hardtyped.Absyn.Multiply p, A arg);
     public R visit(hardtyped.Absyn.Divide p, A arg);
+    public R visit(hardtyped.Absyn.UnaryPlus p, A arg);
+    public R visit(hardtyped.Absyn.UnaryMinus p, A arg);
     public R visit(hardtyped.Absyn.Let p, A arg);
     public R visit(hardtyped.Absyn.LetInference p, A arg);
     public R visit(hardtyped.Absyn.LetAscription p, A arg);
