@@ -51,3 +51,6 @@ RealType. Type ::= "Real";
 BoolType. Type ::= "Boolean";
 StringType. Type ::= "String";
 UnitType. Type ::= "Unit";
+
+token BoolValue {"true"} | {"false"};
+token UnitValue {"unit"};

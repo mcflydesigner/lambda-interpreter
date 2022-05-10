@@ -88,8 +88,12 @@ All other symbols are terminals.\\
 \begin{tabular}{lll}
 {\nonterminal{Expr}} & {\arrow}  &{\terminal{/$\backslash$}} {\nonterminal{FuncArg}} {\terminal{\{}} {\nonterminal{InExpr}} {\terminal{\}}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
- & {\delimit}  &{\nonterminal{BinaryOp}}  \\
- & {\delimit}  &{\nonterminal{UnaryOp}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$+$}}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$-$}}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{*}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{/}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\terminal{{$+$}}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\terminal{{$-$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}} {\terminal{in}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}} {\terminal{as}} {\nonterminal{Type}}  \\
@@ -98,18 +102,6 @@ All other symbols are terminals.\\
  & {\delimit}  &{\nonterminal{String}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
  & {\delimit}  &{\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{BinaryOp}} & {\arrow}  &{\nonterminal{Expr}} {\terminal{{$+$}}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$-$}}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\nonterminal{Expr}} {\terminal{*}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\nonterminal{Expr}} {\terminal{/}} {\nonterminal{Expr}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{UnaryOp}} & {\arrow}  &{\terminal{{$+$}}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\terminal{{$-$}}} {\nonterminal{Expr}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}

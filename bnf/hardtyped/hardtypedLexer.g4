@@ -37,6 +37,8 @@ MULTICOMMENT_antlr_builtin
 '/*' (.)*? '*/'
 ) -> skip;
 
+BoolValue : 't''r''u''e'|'f''a''l''s''e';
+UnitValue : 'u''n''i''t';
 // String token type
 STRING : '"' -> more, mode(STRINGMODE);
 

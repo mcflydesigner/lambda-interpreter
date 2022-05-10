@@ -24,7 +24,8 @@ public class hardtypedParser extends Parser {
 		Surrogate_id_SYMB_14=15, Surrogate_id_SYMB_15=16, Surrogate_id_SYMB_16=17, 
 		Surrogate_id_SYMB_17=18, Surrogate_id_SYMB_18=19, Surrogate_id_SYMB_19=20, 
 		Surrogate_id_SYMB_20=21, COMMENT_antlr_builtin=22, MULTICOMMENT_antlr_builtin=23, 
-		DOUBLE=24, INTEGER=25, IDENT=26, WS=27, ErrorToken=28, STRING=29, STRINGESC=30;
+		BoolValue=24, UnitValue=25, DOUBLE=26, INTEGER=27, IDENT=28, WS=29, ErrorToken=30, 
+		STRING=31, STRINGESC=32;
 	public static final int
 		RULE_start_ListExpr = 0, RULE_start_Expr = 1, RULE_start_InExpr = 2, RULE_start_FuncArg = 3, 
 		RULE_start_VarDec = 4, RULE_start_Type = 5, RULE_listExpr = 6, RULE_expr = 7, 
@@ -38,7 +39,7 @@ public class hardtypedParser extends Parser {
 		null, "';'", "'/\\'", "'{'", "'}'", "'('", "')'", "'+'", "'-'", "'*'", 
 		"'/'", "'='", "'.'", "':'", "'Boolean'", "'Integer'", "'Real'", "'String'", 
 		"'Unit'", "'as'", "'in'", "'let'", null, null, null, null, null, null, 
-		null, "'\"'", "'\\'"
+		null, null, null, "'\"'", "'\\'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "Surrogate_id_SYMB_0", "Surrogate_id_SYMB_1", "Surrogate_id_SYMB_2", 
@@ -48,7 +49,8 @@ public class hardtypedParser extends Parser {
 		"Surrogate_id_SYMB_14", "Surrogate_id_SYMB_15", "Surrogate_id_SYMB_16", 
 		"Surrogate_id_SYMB_17", "Surrogate_id_SYMB_18", "Surrogate_id_SYMB_19", 
 		"Surrogate_id_SYMB_20", "COMMENT_antlr_builtin", "MULTICOMMENT_antlr_builtin", 
-		"DOUBLE", "INTEGER", "IDENT", "WS", "ErrorToken", "STRING", "STRINGESC"
+		"BoolValue", "UnitValue", "DOUBLE", "INTEGER", "IDENT", "WS", "ErrorToken", 
+		"STRING", "STRINGESC"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -1126,7 +1128,7 @@ public class hardtypedParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3 \u00c3\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"\u00c3\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3"+
 		"\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b"+
@@ -1154,36 +1156,36 @@ public class hardtypedParser extends Parser {
 		"OP\7\r\2\2PQ\5\20\t\nQR\b\t\1\2Rq\3\2\2\2ST\7\27\2\2TU\5\26\f\2UV\7\r"+
 		"\2\2VW\5\20\t\2WX\7\26\2\2XY\5\20\t\tYZ\b\t\1\2Zq\3\2\2\2[\\\7\27\2\2"+
 		"\\]\5\26\f\2]^\7\r\2\2^_\5\20\t\2_`\7\25\2\2`a\5\30\r\2ab\b\t\1\2bq\3"+
-		"\2\2\2cd\7\33\2\2dq\b\t\1\2ef\7\32\2\2fq\b\t\1\2gh\7\37\2\2hq\b\t\1\2"+
-		"ij\7\34\2\2jq\b\t\1\2kl\7\7\2\2lm\5\20\t\2mn\7\b\2\2no\b\t\1\2oq\3\2\2"+
-		"\2p=\3\2\2\2pE\3\2\2\2pI\3\2\2\2pM\3\2\2\2pS\3\2\2\2p[\3\2\2\2pc\3\2\2"+
-		"\2pe\3\2\2\2pg\3\2\2\2pi\3\2\2\2pk\3\2\2\2q\u008e\3\2\2\2rs\f\20\2\2s"+
-		"t\7\t\2\2tu\5\20\t\21uv\b\t\1\2v\u008d\3\2\2\2wx\f\17\2\2xy\7\n\2\2yz"+
-		"\5\20\t\20z{\b\t\1\2{\u008d\3\2\2\2|}\f\16\2\2}~\7\13\2\2~\177\5\20\t"+
-		"\17\177\u0080\b\t\1\2\u0080\u008d\3\2\2\2\u0081\u0082\f\r\2\2\u0082\u0083"+
-		"\7\f\2\2\u0083\u0084\5\20\t\16\u0084\u0085\b\t\1\2\u0085\u008d\3\2\2\2"+
-		"\u0086\u0087\f\21\2\2\u0087\u0088\7\7\2\2\u0088\u0089\5\20\t\2\u0089\u008a"+
-		"\7\b\2\2\u008a\u008b\b\t\1\2\u008b\u008d\3\2\2\2\u008cr\3\2\2\2\u008c"+
-		"w\3\2\2\2\u008c|\3\2\2\2\u008c\u0081\3\2\2\2\u008c\u0086\3\2\2\2\u008d"+
-		"\u0090\3\2\2\2\u008e\u008c\3\2\2\2\u008e\u008f\3\2\2\2\u008f\21\3\2\2"+
-		"\2\u0090\u008e\3\2\2\2\u0091\u0092\b\n\1\2\u0092\u0093\5\20\t\2\u0093"+
-		"\u0094\b\n\1\2\u0094\u009f\3\2\2\2\u0095\u0096\f\5\2\2\u0096\u0097\7\3"+
-		"\2\2\u0097\u0098\5\22\n\6\u0098\u0099\b\n\1\2\u0099\u009e\3\2\2\2\u009a"+
-		"\u009b\f\4\2\2\u009b\u009c\7\3\2\2\u009c\u009e\b\n\1\2\u009d\u0095\3\2"+
-		"\2\2\u009d\u009a\3\2\2\2\u009e\u00a1\3\2\2\2\u009f\u009d\3\2\2\2\u009f"+
-		"\u00a0\3\2\2\2\u00a0\23\3\2\2\2\u00a1\u009f\3\2\2\2\u00a2\u00a3\5\26\f"+
-		"\2\u00a3\u00a4\7\16\2\2\u00a4\u00a5\5\24\13\2\u00a5\u00a6\b\13\1\2\u00a6"+
-		"\u00ac\3\2\2\2\u00a7\u00a8\5\26\f\2\u00a8\u00a9\7\16\2\2\u00a9\u00aa\b"+
-		"\13\1\2\u00aa\u00ac\3\2\2\2\u00ab\u00a2\3\2\2\2\u00ab\u00a7\3\2\2\2\u00ac"+
-		"\25\3\2\2\2\u00ad\u00ae\7\34\2\2\u00ae\u00af\7\17\2\2\u00af\u00b0\5\30"+
-		"\r\2\u00b0\u00b1\b\f\1\2\u00b1\u00b5\3\2\2\2\u00b2\u00b3\7\34\2\2\u00b3"+
-		"\u00b5\b\f\1\2\u00b4\u00ad\3\2\2\2\u00b4\u00b2\3\2\2\2\u00b5\27\3\2\2"+
-		"\2\u00b6\u00b7\7\21\2\2\u00b7\u00c1\b\r\1\2\u00b8\u00b9\7\22\2\2\u00b9"+
-		"\u00c1\b\r\1\2\u00ba\u00bb\7\20\2\2\u00bb\u00c1\b\r\1\2\u00bc\u00bd\7"+
-		"\23\2\2\u00bd\u00c1\b\r\1\2\u00be\u00bf\7\24\2\2\u00bf\u00c1\b\r\1\2\u00c0"+
-		"\u00b6\3\2\2\2\u00c0\u00b8\3\2\2\2\u00c0\u00ba\3\2\2\2\u00c0\u00bc\3\2"+
-		"\2\2\u00c0\u00be\3\2\2\2\u00c1\31\3\2\2\2\13;p\u008c\u008e\u009d\u009f"+
-		"\u00ab\u00b4\u00c0";
+		"\2\2\2cd\7\35\2\2dq\b\t\1\2ef\7\34\2\2fq\b\t\1\2gh\7!\2\2hq\b\t\1\2ij"+
+		"\7\36\2\2jq\b\t\1\2kl\7\7\2\2lm\5\20\t\2mn\7\b\2\2no\b\t\1\2oq\3\2\2\2"+
+		"p=\3\2\2\2pE\3\2\2\2pI\3\2\2\2pM\3\2\2\2pS\3\2\2\2p[\3\2\2\2pc\3\2\2\2"+
+		"pe\3\2\2\2pg\3\2\2\2pi\3\2\2\2pk\3\2\2\2q\u008e\3\2\2\2rs\f\20\2\2st\7"+
+		"\t\2\2tu\5\20\t\21uv\b\t\1\2v\u008d\3\2\2\2wx\f\17\2\2xy\7\n\2\2yz\5\20"+
+		"\t\20z{\b\t\1\2{\u008d\3\2\2\2|}\f\16\2\2}~\7\13\2\2~\177\5\20\t\17\177"+
+		"\u0080\b\t\1\2\u0080\u008d\3\2\2\2\u0081\u0082\f\r\2\2\u0082\u0083\7\f"+
+		"\2\2\u0083\u0084\5\20\t\16\u0084\u0085\b\t\1\2\u0085\u008d\3\2\2\2\u0086"+
+		"\u0087\f\21\2\2\u0087\u0088\7\7\2\2\u0088\u0089\5\20\t\2\u0089\u008a\7"+
+		"\b\2\2\u008a\u008b\b\t\1\2\u008b\u008d\3\2\2\2\u008cr\3\2\2\2\u008cw\3"+
+		"\2\2\2\u008c|\3\2\2\2\u008c\u0081\3\2\2\2\u008c\u0086\3\2\2\2\u008d\u0090"+
+		"\3\2\2\2\u008e\u008c\3\2\2\2\u008e\u008f\3\2\2\2\u008f\21\3\2\2\2\u0090"+
+		"\u008e\3\2\2\2\u0091\u0092\b\n\1\2\u0092\u0093\5\20\t\2\u0093\u0094\b"+
+		"\n\1\2\u0094\u009f\3\2\2\2\u0095\u0096\f\5\2\2\u0096\u0097\7\3\2\2\u0097"+
+		"\u0098\5\22\n\6\u0098\u0099\b\n\1\2\u0099\u009e\3\2\2\2\u009a\u009b\f"+
+		"\4\2\2\u009b\u009c\7\3\2\2\u009c\u009e\b\n\1\2\u009d\u0095\3\2\2\2\u009d"+
+		"\u009a\3\2\2\2\u009e\u00a1\3\2\2\2\u009f\u009d\3\2\2\2\u009f\u00a0\3\2"+
+		"\2\2\u00a0\23\3\2\2\2\u00a1\u009f\3\2\2\2\u00a2\u00a3\5\26\f\2\u00a3\u00a4"+
+		"\7\16\2\2\u00a4\u00a5\5\24\13\2\u00a5\u00a6\b\13\1\2\u00a6\u00ac\3\2\2"+
+		"\2\u00a7\u00a8\5\26\f\2\u00a8\u00a9\7\16\2\2\u00a9\u00aa\b\13\1\2\u00aa"+
+		"\u00ac\3\2\2\2\u00ab\u00a2\3\2\2\2\u00ab\u00a7\3\2\2\2\u00ac\25\3\2\2"+
+		"\2\u00ad\u00ae\7\36\2\2\u00ae\u00af\7\17\2\2\u00af\u00b0\5\30\r\2\u00b0"+
+		"\u00b1\b\f\1\2\u00b1\u00b5\3\2\2\2\u00b2\u00b3\7\36\2\2\u00b3\u00b5\b"+
+		"\f\1\2\u00b4\u00ad\3\2\2\2\u00b4\u00b2\3\2\2\2\u00b5\27\3\2\2\2\u00b6"+
+		"\u00b7\7\21\2\2\u00b7\u00c1\b\r\1\2\u00b8\u00b9\7\22\2\2\u00b9\u00c1\b"+
+		"\r\1\2\u00ba\u00bb\7\20\2\2\u00bb\u00c1\b\r\1\2\u00bc\u00bd\7\23\2\2\u00bd"+
+		"\u00c1\b\r\1\2\u00be\u00bf\7\24\2\2\u00bf\u00c1\b\r\1\2\u00c0\u00b6\3"+
+		"\2\2\2\u00c0\u00b8\3\2\2\2\u00c0\u00ba\3\2\2\2\u00c0\u00bc\3\2\2\2\u00c0"+
+		"\u00be\3\2\2\2\u00c1\31\3\2\2\2\13;p\u008c\u008e\u009d\u009f\u00ab\u00b4"+
+		"\u00c0";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -48,6 +48,14 @@ String literals \nonterminal{String}\ have the form
 \terminal{"}$x$\terminal{"}, where $x$ is any sequence of any characters
 except \terminal{"}\ unless preceded by \verb6\6.
 
+
+
+BoolValue literals are recognized by the regular expression
+\(\{\mbox{``true''}\} \mid \{\mbox{``false''}\}\)
+
+UnitValue literals are recognized by the regular expression
+\(\{\mbox{``unit''}\}\)
+
 \subsection*{Reserved words and symbols}
 The set of reserved words is the set of terminals appearing in the grammar. Those reserved words that consist of non-letter characters are called symbols, and they are treated in a different way from those that are similar to identifiers. The lexer follows rules familiar from languages like Haskell, C, and Java, including longest match and spacing conventions.
 
