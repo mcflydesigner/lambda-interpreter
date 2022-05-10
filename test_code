@@ -1,1 +1,4 @@
-let n: Integer = 5*(2+3);
+let concat = /\ x: String. y: String. {
+    x + y;
+};
+let id = /\ x: String. { x };

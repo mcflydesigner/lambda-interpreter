@@ -110,6 +110,21 @@ public class PrettyPrinter
     buf_.delete(0,buf_.length());
     return temp;
   }
+  public static String print(hardtyped.Absyn.FuncArg foo)
+  {
+    pp(foo, 0);
+    trim();
+    String temp = buf_.toString();
+    buf_.delete(0,buf_.length());
+    return temp;
+  }
+  public static String show(hardtyped.Absyn.FuncArg foo)
+  {
+    sh(foo);
+    String temp = buf_.toString();
+    buf_.delete(0,buf_.length());
+    return temp;
+  }
   public static String print(hardtyped.Absyn.VarDec foo)
   {
     pp(foo, 0);
@@ -171,7 +186,7 @@ public class PrettyPrinter
        hardtyped.Absyn.Function _function = (hardtyped.Absyn.Function) foo;
        if (_i_ > 0) render(_L_PAREN);
        render("/\\");
-       pp(_function.vardec_, 0);
+       pp(_function.funcarg_, 0);
        render("{");
        pp(_function.inexpr_, 0);
        render("}");
@@ -326,26 +341,31 @@ public class PrettyPrinter
 
   }
 
+  private static void pp(hardtyped.Absyn.FuncArg foo, int _i_)
+  {
+    if (foo instanceof hardtyped.Absyn.MultipleArgs)
+    {
+       hardtyped.Absyn.MultipleArgs _multipleargs = (hardtyped.Absyn.MultipleArgs) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_multipleargs.vardec_, 0);
+       render(".");
+       pp(_multipleargs.funcarg_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.FinalArg)
+    {
+       hardtyped.Absyn.FinalArg _finalarg = (hardtyped.Absyn.FinalArg) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_finalarg.vardec_, 0);
+       render(".");
+       if (_i_ > 0) render(_R_PAREN);
+    }
+
+  }
+
   private static void pp(hardtyped.Absyn.VarDec foo, int _i_)
   {
-    if (foo instanceof hardtyped.Absyn.MultipleVars)
-    {
-       hardtyped.Absyn.MultipleVars _multiplevars = (hardtyped.Absyn.MultipleVars) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_multiplevars.vardec_1, 0);
-       render(".");
-       pp(_multiplevars.vardec_2, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.MultipleVarsFinal)
-    {
-       hardtyped.Absyn.MultipleVarsFinal _multiplevarsfinal = (hardtyped.Absyn.MultipleVarsFinal) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_multiplevarsfinal.vardec_, 0);
-       render(".");
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.TypedVar)
+    if (foo instanceof hardtyped.Absyn.TypedVar)
     {
        hardtyped.Absyn.TypedVar _typedvar = (hardtyped.Absyn.TypedVar) foo;
        if (_i_ > 0) render(_L_PAREN);
@@ -422,7 +442,7 @@ public class PrettyPrinter
        hardtyped.Absyn.Function _function = (hardtyped.Absyn.Function) foo;
        render("(");
        render("Function");
-       sh(_function.vardec_);
+       sh(_function.funcarg_);
        sh(_function.inexpr_);
        render(")");
     }
@@ -571,25 +591,29 @@ public class PrettyPrinter
     }
   }
 
+  private static void sh(hardtyped.Absyn.FuncArg foo)
+  {
+    if (foo instanceof hardtyped.Absyn.MultipleArgs)
+    {
+       hardtyped.Absyn.MultipleArgs _multipleargs = (hardtyped.Absyn.MultipleArgs) foo;
+       render("(");
+       render("MultipleArgs");
+       sh(_multipleargs.vardec_);
+       sh(_multipleargs.funcarg_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.FinalArg)
+    {
+       hardtyped.Absyn.FinalArg _finalarg = (hardtyped.Absyn.FinalArg) foo;
+       render("(");
+       render("FinalArg");
+       sh(_finalarg.vardec_);
+       render(")");
+    }
+  }
+
   private static void sh(hardtyped.Absyn.VarDec foo)
   {
-    if (foo instanceof hardtyped.Absyn.MultipleVars)
-    {
-       hardtyped.Absyn.MultipleVars _multiplevars = (hardtyped.Absyn.MultipleVars) foo;
-       render("(");
-       render("MultipleVars");
-       sh(_multiplevars.vardec_1);
-       sh(_multiplevars.vardec_2);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.MultipleVarsFinal)
-    {
-       hardtyped.Absyn.MultipleVarsFinal _multiplevarsfinal = (hardtyped.Absyn.MultipleVarsFinal) foo;
-       render("(");
-       render("MultipleVarsFinal");
-       sh(_multiplevarsfinal.vardec_);
-       render(")");
-    }
     if (foo instanceof hardtyped.Absyn.TypedVar)
     {
        hardtyped.Absyn.TypedVar _typedvar = (hardtyped.Absyn.TypedVar) foo;

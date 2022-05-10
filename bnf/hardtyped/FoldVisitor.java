@@ -10,7 +10,7 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
 /* Expr */
     public R visit(hardtyped.Absyn.Function p, A arg) {
       R r = leaf(arg);
-      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.funcarg_.accept(this, arg), r, arg);
       r = combine(p.inexpr_.accept(this, arg), r, arg);
       return r;
     }
@@ -104,18 +104,20 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       return r;
     }
 
-/* VarDec */
-    public R visit(hardtyped.Absyn.MultipleVars p, A arg) {
+/* FuncArg */
+    public R visit(hardtyped.Absyn.MultipleArgs p, A arg) {
       R r = leaf(arg);
-      r = combine(p.vardec_1.accept(this, arg), r, arg);
-      r = combine(p.vardec_2.accept(this, arg), r, arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.funcarg_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.MultipleVarsFinal p, A arg) {
+    public R visit(hardtyped.Absyn.FinalArg p, A arg) {
       R r = leaf(arg);
       r = combine(p.vardec_.accept(this, arg), r, arg);
       return r;
     }
+
+/* VarDec */
     public R visit(hardtyped.Absyn.TypedVar p, A arg) {
       R r = leaf(arg);
       r = combine(p.type_.accept(this, arg), r, arg);

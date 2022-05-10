@@ -7,15 +7,16 @@ package hardtyped;
 public class ComposVisitor<A> implements
   hardtyped.Absyn.Expr.Visitor<hardtyped.Absyn.Expr,A>,
   hardtyped.Absyn.InExpr.Visitor<hardtyped.Absyn.InExpr,A>,
+  hardtyped.Absyn.FuncArg.Visitor<hardtyped.Absyn.FuncArg,A>,
   hardtyped.Absyn.VarDec.Visitor<hardtyped.Absyn.VarDec,A>,
   hardtyped.Absyn.Type.Visitor<hardtyped.Absyn.Type,A>
 {
     /* Expr */
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Function p, A arg)
     {
-      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
+      hardtyped.Absyn.FuncArg funcarg_ = p.funcarg_.accept(this, arg);
       hardtyped.Absyn.InExpr inexpr_ = p.inexpr_.accept(this, arg);
-      return new hardtyped.Absyn.Function(vardec_, inexpr_);
+      return new hardtyped.Absyn.Function(funcarg_, inexpr_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.ApplyFunction p, A arg)
     {
@@ -111,18 +112,20 @@ public class ComposVisitor<A> implements
       return new hardtyped.Absyn.InnerExpression(expr_);
     }
 
-    /* VarDec */
-    public hardtyped.Absyn.VarDec visit(hardtyped.Absyn.MultipleVars p, A arg)
-    {
-      hardtyped.Absyn.VarDec vardec_1 = p.vardec_1.accept(this, arg);
-      hardtyped.Absyn.VarDec vardec_2 = p.vardec_2.accept(this, arg);
-      return new hardtyped.Absyn.MultipleVars(vardec_1, vardec_2);
-    }
-    public hardtyped.Absyn.VarDec visit(hardtyped.Absyn.MultipleVarsFinal p, A arg)
+    /* FuncArg */
+    public hardtyped.Absyn.FuncArg visit(hardtyped.Absyn.MultipleArgs p, A arg)
     {
       hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
-      return new hardtyped.Absyn.MultipleVarsFinal(vardec_);
+      hardtyped.Absyn.FuncArg funcarg_ = p.funcarg_.accept(this, arg);
+      return new hardtyped.Absyn.MultipleArgs(vardec_, funcarg_);
     }
+    public hardtyped.Absyn.FuncArg visit(hardtyped.Absyn.FinalArg p, A arg)
+    {
+      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
+      return new hardtyped.Absyn.FinalArg(vardec_);
+    }
+
+    /* VarDec */
     public hardtyped.Absyn.VarDec visit(hardtyped.Absyn.TypedVar p, A arg)
     {
       String ident_ = p.ident_;

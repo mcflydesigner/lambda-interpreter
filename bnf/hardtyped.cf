@@ -4,7 +4,7 @@ comment "/*" "*/" ;
 separator Expr ";";
 
 -- Functions
-Function. Expr ::= "/\\" VarDec "{" InExpr "}";
+Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
 ApplyFunction. Expr ::= Expr "(" Expr ")";
 
 
@@ -33,10 +33,12 @@ InnerExpression. InExpr ::= Expr;
 AtomicExpression. Expr ::= Ident;
 ParenthesesExpression. Expr ::= "(" Expr ")";
 
+-- Function arguments
+MultipleArgs. FuncArg ::= VarDec "." FuncArg ;
+FinalArg. FuncArg ::= VarDec ".";
+
 
 -- Variable declarations
-MultipleVars. VarDec ::= VarDec "." VarDec ;
-MultipleVarsFinal. VarDec ::= VarDec ".";
 TypedVar. VarDec ::= Ident ":" Type;
 UntypedVar. VarDec ::= Ident;
 

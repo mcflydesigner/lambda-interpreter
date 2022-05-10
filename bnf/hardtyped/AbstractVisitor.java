@@ -30,9 +30,13 @@ public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     public R visitDefault(hardtyped.Absyn.InExpr p, A arg) {
       throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
     }
+    /* FuncArg */
+    public R visit(hardtyped.Absyn.MultipleArgs p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.FinalArg p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.FuncArg p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
     /* VarDec */
-    public R visit(hardtyped.Absyn.MultipleVars p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.MultipleVarsFinal p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.TypedVar p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.UntypedVar p, A arg) { return visitDefault(p, arg); }
     public R visitDefault(hardtyped.Absyn.VarDec p, A arg) {

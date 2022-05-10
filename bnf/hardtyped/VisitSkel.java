@@ -16,7 +16,7 @@ public class VisitSkel
   {
     public R visit(hardtyped.Absyn.Function p, A arg)
     { /* Code for Function goes here */
-      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.funcarg_.accept(new FuncArgVisitor<R,A>(), arg);
       p.inexpr_.accept(new InExprVisitor<R,A>(), arg);
       return null;
     }
@@ -115,19 +115,22 @@ public class VisitSkel
       return null;
     }
   }
-  public class VarDecVisitor<R,A> implements hardtyped.Absyn.VarDec.Visitor<R,A>
+  public class FuncArgVisitor<R,A> implements hardtyped.Absyn.FuncArg.Visitor<R,A>
   {
-    public R visit(hardtyped.Absyn.MultipleVars p, A arg)
-    { /* Code for MultipleVars goes here */
-      p.vardec_1.accept(new VarDecVisitor<R,A>(), arg);
-      p.vardec_2.accept(new VarDecVisitor<R,A>(), arg);
+    public R visit(hardtyped.Absyn.MultipleArgs p, A arg)
+    { /* Code for MultipleArgs goes here */
+      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.funcarg_.accept(new FuncArgVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.MultipleVarsFinal p, A arg)
-    { /* Code for MultipleVarsFinal goes here */
+    public R visit(hardtyped.Absyn.FinalArg p, A arg)
+    { /* Code for FinalArg goes here */
       p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
       return null;
     }
+  }
+  public class VarDecVisitor<R,A> implements hardtyped.Absyn.VarDec.Visitor<R,A>
+  {
     public R visit(hardtyped.Absyn.TypedVar p, A arg)
     { /* Code for TypedVar goes here */
       //p.ident_;

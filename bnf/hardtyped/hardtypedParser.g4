@@ -20,6 +20,10 @@ start_InExpr returns [ hardtyped.Absyn.InExpr result ]
   : x=inExpr EOF
     { $result = $x.result; }
   ;
+start_FuncArg returns [ hardtyped.Absyn.FuncArg result ]
+  : x=funcArg EOF
+    { $result = $x.result; }
+  ;
 start_VarDec returns [ hardtyped.Absyn.VarDec result ]
   : x=varDec EOF
     { $result = $x.result; }
@@ -38,7 +42,7 @@ listExpr returns [ hardtyped.Absyn.ListExpr result ]
     { $result = $p_3_3.result; $result.addFirst($p_3_1.result); }
   ;
 expr returns [ hardtyped.Absyn.Expr result ]
-  : Surrogate_id_SYMB_1 p_1_2=varDec Surrogate_id_SYMB_2 p_1_4=inExpr Surrogate_id_SYMB_3
+  : Surrogate_id_SYMB_1 p_1_2=funcArg Surrogate_id_SYMB_2 p_1_4=inExpr Surrogate_id_SYMB_3
     { $result = new hardtyped.Absyn.Function($p_1_2.result,$p_1_4.result); }
   | p_2_1=expr Surrogate_id_SYMB_4 p_2_3=expr Surrogate_id_SYMB_5
     { $result = new hardtyped.Absyn.ApplyFunction($p_2_1.result,$p_2_3.result); }
@@ -75,15 +79,17 @@ inExpr returns [ hardtyped.Absyn.InExpr result ]
   | p_3_1=expr
     { $result = new hardtyped.Absyn.InnerExpression($p_3_1.result); }
   ;
-varDec returns [ hardtyped.Absyn.VarDec result ]
-  : p_1_1=varDec Surrogate_id_SYMB_11 p_1_3=varDec
-    { $result = new hardtyped.Absyn.MultipleVars($p_1_1.result,$p_1_3.result); }
+funcArg returns [ hardtyped.Absyn.FuncArg result ]
+  : p_1_1=varDec Surrogate_id_SYMB_11 p_1_3=funcArg
+    { $result = new hardtyped.Absyn.MultipleArgs($p_1_1.result,$p_1_3.result); }
   | p_2_1=varDec Surrogate_id_SYMB_11
-    { $result = new hardtyped.Absyn.MultipleVarsFinal($p_2_1.result); }
-  | p_3_1=IDENT Surrogate_id_SYMB_12 p_3_3=type
-    { $result = new hardtyped.Absyn.TypedVar($p_3_1.getText(),$p_3_3.result); }
-  | p_4_1=IDENT
-    { $result = new hardtyped.Absyn.UntypedVar($p_4_1.getText()); }
+    { $result = new hardtyped.Absyn.FinalArg($p_2_1.result); }
+  ;
+varDec returns [ hardtyped.Absyn.VarDec result ]
+  : p_1_1=IDENT Surrogate_id_SYMB_12 p_1_3=type
+    { $result = new hardtyped.Absyn.TypedVar($p_1_1.getText(),$p_1_3.result); }
+  | p_2_1=IDENT
+    { $result = new hardtyped.Absyn.UntypedVar($p_2_1.getText()); }
   ;
 type returns [ hardtyped.Absyn.Type result ]
   : Surrogate_id_SYMB_14
