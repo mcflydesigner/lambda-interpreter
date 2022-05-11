@@ -1,5 +1,7 @@
 package com.interpreter;
 
+import com.interpreter.runtime.Interpreter;
+import com.interpreter.runtime.InterpreterImpl;
 import hardtyped.Absyn.ListExpr;
 import hardtyped.Test;
 
@@ -7,19 +9,14 @@ import hardtyped.Test;
 public class Main {
 
     public static void main(String args[]) throws Exception {
-
-        for (String str: args) {
-            System.out.println(str);
-        }
-
-        Test t = new Test(args);
-        try
-        {
+        try {
+            Test t = new Test(args);
             ListExpr ast = t.parse();
-            System.out.println("Printing tree");
+
+            Interpreter interpreter = new InterpreterImpl();
+            interpreter.run(ast);
         }
-        catch(Exception e)
-        {
+        catch(Exception e) {
             System.out.println("Exception occurred:");
             e.printStackTrace();
             System.exit(1);

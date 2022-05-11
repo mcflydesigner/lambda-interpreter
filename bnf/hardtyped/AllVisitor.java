@@ -7,6 +7,7 @@ package hardtyped;
 public interface AllVisitor<R,A> extends
   hardtyped.Absyn.Expr.Visitor<R,A>,
   hardtyped.Absyn.InExpr.Visitor<R,A>,
+  hardtyped.Absyn.FuncArg.Visitor<R,A>,
   hardtyped.Absyn.VarDec.Visitor<R,A>,
   hardtyped.Absyn.Type.Visitor<R,A>
 {}

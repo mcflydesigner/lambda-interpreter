@@ -1,1 +1,8 @@
-let n: String = "test" as Integer;
+let concat = /\ a: Integer. {
+    (a + 2) * a
+};
+
+print ("");
+let a: Integer = 4;
+
+print (concat (a));

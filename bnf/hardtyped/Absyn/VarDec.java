@@ -5,8 +5,6 @@ package hardtyped.Absyn;
 public abstract class VarDec implements java.io.Serializable {
   public abstract <R,A> R accept(VarDec.Visitor<R,A> v, A arg);
   public interface Visitor <R,A> {
-    public R visit(hardtyped.Absyn.MultipleVars p, A arg);
-    public R visit(hardtyped.Absyn.MultipleVarsFinal p, A arg);
     public R visit(hardtyped.Absyn.TypedVar p, A arg);
     public R visit(hardtyped.Absyn.UntypedVar p, A arg);
 
