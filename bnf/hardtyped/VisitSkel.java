@@ -32,6 +32,12 @@ public class VisitSkel
       p.expr_.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
+    public R visit(hardtyped.Absyn.MultipleArgFunction p, A arg)
+    { /* Code for MultipleArgFunction goes here */
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.Sum p, A arg)
     { /* Code for Sum goes here */
       p.expr_1.accept(new ExprVisitor<R,A>(), arg);
@@ -54,6 +60,23 @@ public class VisitSkel
     { /* Code for Divide goes here */
       p.expr_1.accept(new ExprVisitor<R,A>(), arg);
       p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.And p, A arg)
+    { /* Code for And goes here */
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.Or p, A arg)
+    { /* Code for Or goes here */
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.Not p, A arg)
+    { /* Code for Not goes here */
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.UnaryPlus p, A arg)
@@ -99,6 +122,16 @@ public class VisitSkel
     public R visit(hardtyped.Absyn.StringValue p, A arg)
     { /* Code for StringValue goes here */
       //p.string_;
+      return null;
+    }
+    public R visit(hardtyped.Absyn.BoolValue p, A arg)
+    { /* Code for BoolValue goes here */
+      //p.bool_;
+      return null;
+    }
+    public R visit(hardtyped.Absyn.UnitValue p, A arg)
+    { /* Code for UnitValue goes here */
+      //p.unit_;
       return null;
     }
     public R visit(hardtyped.Absyn.AtomicExpression p, A arg)

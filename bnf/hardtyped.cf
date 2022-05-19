@@ -7,12 +7,18 @@ separator Expr ";";
 Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
 ApplyFunction. Expr ::= Expr "(" Expr ")";
 PrintFunction. Expr ::= Print "(" Expr ")";
+MultipleArgFunction. Expr ::= Expr "," Expr;
 
 -- Basic operations
 Sum. Expr ::= Expr "+" Expr;
 Substract. Expr::= Expr "-" Expr;
 Multiply. Expr ::= Expr "*" Expr;
 Divide. Expr ::= Expr "/" Expr;
+
+-- Logical operations
+And. Expr ::= Expr "and" Expr;
+Or. Expr ::= Expr "or" Expr;
+Not. Expr ::= "not" Expr;
 
 UnaryPlus. Expr ::= "+" Expr;
 UnaryMinus. Expr ::= "-" Expr;
@@ -26,6 +32,8 @@ LetAscription. Expr ::= "let" VarDec "=" Expr "as" Type;
 IntValue. Expr ::= Integer;
 RealValue. Expr ::= Double;
 StringValue. Expr ::= String;
+BoolValue. Expr ::= Bool;
+UnitValue. Expr ::= Unit;
 
 -- In-function expressions - todo: remove it
 MultipleExpressions. InExpr ::= InExpr ";" InExpr;
@@ -52,6 +60,6 @@ BoolType. Type ::= "Boolean";
 StringType. Type ::= "String";
 UnitType. Type ::= "Unit";
 
-token BoolValue {"true"} | {"false"};
-token UnitValue {"unit"};
+token Bool {"true"} | {"false"};
+token Unit {"unit"};
 token Print {"print"};

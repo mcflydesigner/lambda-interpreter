@@ -49,33 +49,45 @@ expr returns [ hardtyped.Absyn.Expr result ]
   | p_3_1=Print Surrogate_id_SYMB_4 p_3_3=expr Surrogate_id_SYMB_5
     { $result = new hardtyped.Absyn.PrintFunction($p_3_1.getText(),$p_3_3.result); }
   | p_4_1=expr Surrogate_id_SYMB_6 p_4_3=expr
-    { $result = new hardtyped.Absyn.Sum($p_4_1.result,$p_4_3.result); }
+    { $result = new hardtyped.Absyn.MultipleArgFunction($p_4_1.result,$p_4_3.result); }
   | p_5_1=expr Surrogate_id_SYMB_7 p_5_3=expr
-    { $result = new hardtyped.Absyn.Substract($p_5_1.result,$p_5_3.result); }
+    { $result = new hardtyped.Absyn.Sum($p_5_1.result,$p_5_3.result); }
   | p_6_1=expr Surrogate_id_SYMB_8 p_6_3=expr
-    { $result = new hardtyped.Absyn.Multiply($p_6_1.result,$p_6_3.result); }
+    { $result = new hardtyped.Absyn.Substract($p_6_1.result,$p_6_3.result); }
   | p_7_1=expr Surrogate_id_SYMB_9 p_7_3=expr
-    { $result = new hardtyped.Absyn.Divide($p_7_1.result,$p_7_3.result); }
-  | Surrogate_id_SYMB_6 p_8_2=expr
-    { $result = new hardtyped.Absyn.UnaryPlus($p_8_2.result); }
-  | Surrogate_id_SYMB_7 p_9_2=expr
-    { $result = new hardtyped.Absyn.UnaryMinus($p_9_2.result); }
-  | Surrogate_id_SYMB_20 p_10_2=varDec Surrogate_id_SYMB_10 p_10_4=expr
-    { $result = new hardtyped.Absyn.Let($p_10_2.result,$p_10_4.result); }
-  | Surrogate_id_SYMB_20 p_11_2=varDec Surrogate_id_SYMB_10 p_11_4=expr Surrogate_id_SYMB_19 p_11_6=expr
-    { $result = new hardtyped.Absyn.LetInference($p_11_2.result,$p_11_4.result,$p_11_6.result); }
-  | Surrogate_id_SYMB_20 p_12_2=varDec Surrogate_id_SYMB_10 p_12_4=expr Surrogate_id_SYMB_18 p_12_6=type
-    { $result = new hardtyped.Absyn.LetAscription($p_12_2.result,$p_12_4.result,$p_12_6.result); }
-  | p_13_1=INTEGER
-    { $result = new hardtyped.Absyn.IntValue(Integer.parseInt($p_13_1.getText())); }
-  | p_14_1=DOUBLE
-    { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_14_1.getText())); }
-  | p_15_1=STRING
-    { $result = new hardtyped.Absyn.StringValue($p_15_1.getText().substring(1, $p_15_1.getText().length()-1)); }
-  | p_16_1=IDENT
-    { $result = new hardtyped.Absyn.AtomicExpression($p_16_1.getText()); }
-  | Surrogate_id_SYMB_4 p_17_2=expr Surrogate_id_SYMB_5
-    { $result = new hardtyped.Absyn.ParenthesesExpression($p_17_2.result); }
+    { $result = new hardtyped.Absyn.Multiply($p_7_1.result,$p_7_3.result); }
+  | p_8_1=expr Surrogate_id_SYMB_10 p_8_3=expr
+    { $result = new hardtyped.Absyn.Divide($p_8_1.result,$p_8_3.result); }
+  | p_9_1=expr Surrogate_id_SYMB_19 p_9_3=expr
+    { $result = new hardtyped.Absyn.And($p_9_1.result,$p_9_3.result); }
+  | p_10_1=expr Surrogate_id_SYMB_24 p_10_3=expr
+    { $result = new hardtyped.Absyn.Or($p_10_1.result,$p_10_3.result); }
+  | Surrogate_id_SYMB_23 p_11_2=expr
+    { $result = new hardtyped.Absyn.Not($p_11_2.result); }
+  | Surrogate_id_SYMB_7 p_12_2=expr
+    { $result = new hardtyped.Absyn.UnaryPlus($p_12_2.result); }
+  | Surrogate_id_SYMB_8 p_13_2=expr
+    { $result = new hardtyped.Absyn.UnaryMinus($p_13_2.result); }
+  | Surrogate_id_SYMB_22 p_14_2=varDec Surrogate_id_SYMB_11 p_14_4=expr
+    { $result = new hardtyped.Absyn.Let($p_14_2.result,$p_14_4.result); }
+  | Surrogate_id_SYMB_22 p_15_2=varDec Surrogate_id_SYMB_11 p_15_4=expr Surrogate_id_SYMB_21 p_15_6=expr
+    { $result = new hardtyped.Absyn.LetInference($p_15_2.result,$p_15_4.result,$p_15_6.result); }
+  | Surrogate_id_SYMB_22 p_16_2=varDec Surrogate_id_SYMB_11 p_16_4=expr Surrogate_id_SYMB_20 p_16_6=type
+    { $result = new hardtyped.Absyn.LetAscription($p_16_2.result,$p_16_4.result,$p_16_6.result); }
+  | p_17_1=INTEGER
+    { $result = new hardtyped.Absyn.IntValue(Integer.parseInt($p_17_1.getText())); }
+  | p_18_1=DOUBLE
+    { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_18_1.getText())); }
+  | p_19_1=STRING
+    { $result = new hardtyped.Absyn.StringValue($p_19_1.getText().substring(1, $p_19_1.getText().length()-1)); }
+  | p_20_1=Bool
+    { $result = new hardtyped.Absyn.BoolValue($p_20_1.getText()); }
+  | p_21_1=Unit
+    { $result = new hardtyped.Absyn.UnitValue($p_21_1.getText()); }
+  | p_22_1=IDENT
+    { $result = new hardtyped.Absyn.AtomicExpression($p_22_1.getText()); }
+  | Surrogate_id_SYMB_4 p_23_2=expr Surrogate_id_SYMB_5
+    { $result = new hardtyped.Absyn.ParenthesesExpression($p_23_2.result); }
   ;
 inExpr returns [ hardtyped.Absyn.InExpr result ]
   : p_1_1=inExpr Surrogate_id_SYMB_0 p_1_3=inExpr
@@ -86,27 +98,27 @@ inExpr returns [ hardtyped.Absyn.InExpr result ]
     { $result = new hardtyped.Absyn.InnerExpression($p_3_1.result); }
   ;
 funcArg returns [ hardtyped.Absyn.FuncArg result ]
-  : p_1_1=varDec Surrogate_id_SYMB_11 p_1_3=funcArg
+  : p_1_1=varDec Surrogate_id_SYMB_12 p_1_3=funcArg
     { $result = new hardtyped.Absyn.MultipleArgs($p_1_1.result,$p_1_3.result); }
-  | p_2_1=varDec Surrogate_id_SYMB_11
+  | p_2_1=varDec Surrogate_id_SYMB_12
     { $result = new hardtyped.Absyn.FinalArg($p_2_1.result); }
   ;
 varDec returns [ hardtyped.Absyn.VarDec result ]
-  : p_1_1=IDENT Surrogate_id_SYMB_12 p_1_3=type
+  : p_1_1=IDENT Surrogate_id_SYMB_13 p_1_3=type
     { $result = new hardtyped.Absyn.TypedVar($p_1_1.getText(),$p_1_3.result); }
   | p_2_1=IDENT
     { $result = new hardtyped.Absyn.UntypedVar($p_2_1.getText()); }
   ;
 type returns [ hardtyped.Absyn.Type result ]
-  : Surrogate_id_SYMB_14
+  : Surrogate_id_SYMB_15
     { $result = new hardtyped.Absyn.IntType(); }
-  | Surrogate_id_SYMB_15
-    { $result = new hardtyped.Absyn.RealType(); }
-  | Surrogate_id_SYMB_13
-    { $result = new hardtyped.Absyn.BoolType(); }
   | Surrogate_id_SYMB_16
-    { $result = new hardtyped.Absyn.StringType(); }
+    { $result = new hardtyped.Absyn.RealType(); }
+  | Surrogate_id_SYMB_14
+    { $result = new hardtyped.Absyn.BoolType(); }
   | Surrogate_id_SYMB_17
+    { $result = new hardtyped.Absyn.StringType(); }
+  | Surrogate_id_SYMB_18
     { $result = new hardtyped.Absyn.UnitType(); }
   ;
 

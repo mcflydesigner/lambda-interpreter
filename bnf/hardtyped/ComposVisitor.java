@@ -30,6 +30,12 @@ public class ComposVisitor<A> implements
       hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
       return new hardtyped.Absyn.PrintFunction(print_, expr_);
     }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.MultipleArgFunction p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
+      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
+      return new hardtyped.Absyn.MultipleArgFunction(expr_1, expr_2);
+    }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Sum p, A arg)
     {
       hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
@@ -53,6 +59,23 @@ public class ComposVisitor<A> implements
       hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
       hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
       return new hardtyped.Absyn.Divide(expr_1, expr_2);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.And p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
+      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
+      return new hardtyped.Absyn.And(expr_1, expr_2);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Or p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
+      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
+      return new hardtyped.Absyn.Or(expr_1, expr_2);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Not p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.Not(expr_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.UnaryPlus p, A arg)
     {
@@ -98,6 +121,16 @@ public class ComposVisitor<A> implements
     {
       String string_ = p.string_;
       return new hardtyped.Absyn.StringValue(string_);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.BoolValue p, A arg)
+    {
+      String bool_ = p.bool_;
+      return new hardtyped.Absyn.BoolValue(bool_);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.UnitValue p, A arg)
+    {
+      String unit_ = p.unit_;
+      return new hardtyped.Absyn.UnitValue(unit_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.AtomicExpression p, A arg)
     {

@@ -13,21 +13,25 @@ Surrogate_id_SYMB_2 : '{' ;
 Surrogate_id_SYMB_3 : '}' ;
 Surrogate_id_SYMB_4 : '(' ;
 Surrogate_id_SYMB_5 : ')' ;
-Surrogate_id_SYMB_6 : '+' ;
-Surrogate_id_SYMB_7 : '-' ;
-Surrogate_id_SYMB_8 : '*' ;
-Surrogate_id_SYMB_9 : '/' ;
-Surrogate_id_SYMB_10 : '=' ;
-Surrogate_id_SYMB_11 : '.' ;
-Surrogate_id_SYMB_12 : ':' ;
-Surrogate_id_SYMB_13 : 'Boolean' ;
-Surrogate_id_SYMB_14 : 'Integer' ;
-Surrogate_id_SYMB_15 : 'Real' ;
-Surrogate_id_SYMB_16 : 'String' ;
-Surrogate_id_SYMB_17 : 'Unit' ;
-Surrogate_id_SYMB_18 : 'as' ;
-Surrogate_id_SYMB_19 : 'in' ;
-Surrogate_id_SYMB_20 : 'let' ;
+Surrogate_id_SYMB_6 : ',' ;
+Surrogate_id_SYMB_7 : '+' ;
+Surrogate_id_SYMB_8 : '-' ;
+Surrogate_id_SYMB_9 : '*' ;
+Surrogate_id_SYMB_10 : '/' ;
+Surrogate_id_SYMB_11 : '=' ;
+Surrogate_id_SYMB_12 : '.' ;
+Surrogate_id_SYMB_13 : ':' ;
+Surrogate_id_SYMB_14 : 'Boolean' ;
+Surrogate_id_SYMB_15 : 'Integer' ;
+Surrogate_id_SYMB_16 : 'Real' ;
+Surrogate_id_SYMB_17 : 'String' ;
+Surrogate_id_SYMB_18 : 'Unit' ;
+Surrogate_id_SYMB_19 : 'and' ;
+Surrogate_id_SYMB_20 : 'as' ;
+Surrogate_id_SYMB_21 : 'in' ;
+Surrogate_id_SYMB_22 : 'let' ;
+Surrogate_id_SYMB_23 : 'not' ;
+Surrogate_id_SYMB_24 : 'or' ;
 COMMENT_antlr_builtin
 : (
 '//' ~[\r\n]* (('\r'? '\n')|EOF)
@@ -37,8 +41,8 @@ MULTICOMMENT_antlr_builtin
 '/*' (.)*? '*/'
 ) -> skip;
 
-BoolValue : 't''r''u''e'|'f''a''l''s''e';
-UnitValue : 'u''n''i''t';
+Bool : 't''r''u''e'|'f''a''l''s''e';
+Unit : 'u''n''i''t';
 Print : 'p''r''i''n''t';
 // String token type
 STRING : '"' -> more, mode(STRINGMODE);

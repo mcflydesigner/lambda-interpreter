@@ -25,6 +25,12 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       r = combine(p.expr_.accept(this, arg), r, arg);
       return r;
     }
+    public R visit(hardtyped.Absyn.MultipleArgFunction p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
     public R visit(hardtyped.Absyn.Sum p, A arg) {
       R r = leaf(arg);
       r = combine(p.expr_1.accept(this, arg), r, arg);
@@ -47,6 +53,23 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       R r = leaf(arg);
       r = combine(p.expr_1.accept(this, arg), r, arg);
       r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.And p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.Or p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.Not p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
       return r;
     }
     public R visit(hardtyped.Absyn.UnaryPlus p, A arg) {
@@ -88,6 +111,14 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       return r;
     }
     public R visit(hardtyped.Absyn.StringValue p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.BoolValue p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.UnitValue p, A arg) {
       R r = leaf(arg);
       return r;
     }
