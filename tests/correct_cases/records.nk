@@ -1,0 +1,3 @@
+// Correct record
+
+let Vector3d = {x1: Real, x2: Real, x3: Real};

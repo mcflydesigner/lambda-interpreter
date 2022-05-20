@@ -1,0 +1,19 @@
+// Incorrect condition
+letrec factorial =
+/\ n: Nat. {
+    if  (n == 1): n
+    else  n * factorial (n-1)
+};
+
+letrec factorial =
+/\ n: Nat. {
+    if  (n == 1): n
+    elif (n != 1):  n * factorial (n-1)
+};
+
+letrec factorial =
+/\ n: Nat. {
+    |  (n == 1): n
+    || (n == 2): n
+    |:  n * factorial (n-1)
+};

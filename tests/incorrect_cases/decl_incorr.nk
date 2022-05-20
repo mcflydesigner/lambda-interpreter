@@ -1,0 +1,11 @@
+n: Integer = 5;
+n -> Integer = 5;
+let n: Integer = ;
+let Integer:n = 5;
+n = 5;
+r: Real = 10.5;
+b: Bool = True;
+let b: Boolean = False;
+let b: Bool = true;
+s: String = "Simple string";
+u: Unit = print (s);
