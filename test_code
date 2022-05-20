@@ -1,0 +1,4 @@
+let concat = /\ x: String. y: String. {
+    x + y;
+};
+let id = /\ x: String. { print(x) };

@@ -7,64 +7,161 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
     public abstract R leaf(A arg);
     public abstract R combine(R x, R y, A arg);
 
-/* Program */
-    public R visit(hardtyped.Absyn.ProgramExprs p, A arg) {
+/* Expr */
+    public R visit(hardtyped.Absyn.Function p, A arg) {
       R r = leaf(arg);
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
+      r = combine(p.funcarg_.accept(this, arg), r, arg);
+      r = combine(p.inexpr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.ApplyFunction p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.PrintFunction p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.Sum p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.Substract p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.Multiply p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.Divide p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.UnaryPlus p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.UnaryMinus p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.Let p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.LetInference p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.LetAscription p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      r = combine(p.type_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.IntValue p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.RealValue p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.StringValue p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.AtomicExpression p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.ParenthesesExpression p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
       return r;
     }
 
-/* Expr */
-    public R visit(hardtyped.Absyn.ConstTrue p, A arg) {
+/* InExpr */
+    public R visit(hardtyped.Absyn.MultipleExpressions p, A arg) {
       R r = leaf(arg);
+      r = combine(p.inexpr_1.accept(this, arg), r, arg);
+      r = combine(p.inexpr_2.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.ConstFalse p, A arg) {
+    public R visit(hardtyped.Absyn.FinalExpression p, A arg) {
       R r = leaf(arg);
+      r = combine(p.inexpr_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.If p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.expr_1.accept(this, arg), r, arg);
-      r = combine(p.expr_2.accept(this, arg), r, arg);
-      r = combine(p.expr_3.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.ConstZero p, A arg) {
-      R r = leaf(arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.Succ p, A arg) {
+    public R visit(hardtyped.Absyn.InnerExpression p, A arg) {
       R r = leaf(arg);
       r = combine(p.expr_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.Pred p, A arg) {
+
+/* FuncArg */
+    public R visit(hardtyped.Absyn.MultipleArgs p, A arg) {
       R r = leaf(arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.funcarg_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.IsZero p, A arg) {
+    public R visit(hardtyped.Absyn.FinalArg p, A arg) {
       R r = leaf(arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.Var p, A arg) {
+
+/* VarDec */
+    public R visit(hardtyped.Absyn.TypedVar p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.type_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.UntypedVar p, A arg) {
       R r = leaf(arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.Abstraction p, A arg) {
+
+/* Type */
+    public R visit(hardtyped.Absyn.IntType p, A arg) {
       R r = leaf(arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.Application p, A arg) {
+    public R visit(hardtyped.Absyn.RealType p, A arg) {
       R r = leaf(arg);
-      r = combine(p.expr_1.accept(this, arg), r, arg);
-      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.BoolType p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.StringType p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.UnitType p, A arg) {
+      R r = leaf(arg);
       return r;
     }
 

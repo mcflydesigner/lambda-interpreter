@@ -1,22 +1,57 @@
 comment "//" ;
 comment "/*" "*/" ;
 
+separator Expr ";";
 
-ProgramExprs.  Program ::= [Expr] ;
+-- Functions
+Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
+ApplyFunction. Expr ::= Expr "(" Expr ")";
+PrintFunction. Expr ::= Print "(" Expr ")";
 
-separator Expr ";" ;
+-- Basic operations
+Sum. Expr ::= Expr "+" Expr;
+Substract. Expr::= Expr "-" Expr;
+Multiply. Expr ::= Expr "*" Expr;
+Divide. Expr ::= Expr "/" Expr;
 
-ConstTrue.  Expr  ::= "true" ;
-ConstFalse. Expr  ::= "false" ;
-If.         Expr  ::= "if" Expr "then" Expr "else" Expr ;
+UnaryPlus. Expr ::= "+" Expr;
+UnaryMinus. Expr ::= "-" Expr;
 
-ConstZero.  Expr  ::= "0" ;
-Succ.       Expr  ::= "succ" Expr ;
-Pred.       Expr  ::= "pred" Expr ;
-IsZero.     Expr  ::= "iszero" Expr ;
+-- Variable initializers
+Let. Expr ::= "let" VarDec "=" Expr;
+LetInference. Expr ::= "let" VarDec "=" Expr "in" Expr;
+LetAscription. Expr ::= "let" VarDec "=" Expr "as" Type;
 
-Var.          Expr ::= Ident ;
-Abstraction.  Expr ::= "fun" "(" Ident ")" "{" "return" Expr "}" ;
-Application.  Expr ::= Expr Expr ;
+-- Values
+IntValue. Expr ::= Integer;
+RealValue. Expr ::= Double;
+StringValue. Expr ::= String;
 
-_. Expr ::= "(" Expr ")" ;
+-- In-function expressions - todo: remove it
+MultipleExpressions. InExpr ::= InExpr ";" InExpr;
+FinalExpression. InExpr ::= InExpr ";";
+InnerExpression. InExpr ::= Expr;
+
+-- Utility expressions
+AtomicExpression. Expr ::= Ident;
+ParenthesesExpression. Expr ::= "(" Expr ")";
+
+-- Function arguments
+MultipleArgs. FuncArg ::= VarDec "." FuncArg ;
+FinalArg. FuncArg ::= VarDec ".";
+
+
+-- Variable declarations
+TypedVar. VarDec ::= Ident ":" Type;
+UntypedVar. VarDec ::= Ident;
+
+-- Types
+IntType. Type ::= "Integer";
+RealType. Type ::= "Real";
+BoolType. Type ::= "Boolean";
+StringType. Type ::= "String";
+UnitType. Type ::= "Unit";
+
+token BoolValue {"true"} | {"false"};
+token UnitValue {"unit"};
+token Print {"print"};
