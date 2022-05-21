@@ -1,0 +1,3 @@
+// Incorrect type ascription
+let n = 5: Integer;
+let n = 5.Integer;

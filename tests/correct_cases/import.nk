@@ -1,0 +1,7 @@
+// Correct import
+
+-| math.nk as math
+-| std.nk
+
+let n: Integer = 5;
+let r: Real = 10.5;

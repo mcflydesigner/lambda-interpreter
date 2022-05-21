@@ -1,0 +1,2 @@
+// Correct type ascription
+let n = 5 as Integer;

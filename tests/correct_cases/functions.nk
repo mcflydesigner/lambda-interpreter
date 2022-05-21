@@ -1,0 +1,17 @@
+// Correct function defining
+
+let identity = /\ x: Nat. {
+    x
+};
+
+identity (10);
+
+let concat = /\ x: String. y: String. {
+    x + y
+};
+
+concat ("Hello,", "World!");
+
+let mult3 = /\ x: Nat. y: Real. z: Real. {
+    x * y * z
+};
