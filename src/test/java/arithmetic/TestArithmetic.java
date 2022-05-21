@@ -10,9 +10,11 @@ import static utils.TestUtils.getInputStream;
 
 public class TestArithmetic {
 
+    private static String pathToTests = "tests/arithmetic/";
+
     @Test
     public void testSimpleSummation() throws Exception {
-        InputStream inputStream = getInputStream("tests/arithmetic/test_simple_summation.nk");
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 
@@ -27,7 +29,7 @@ public class TestArithmetic {
 
     @Test
     public void testSimpleSubtraction() throws Exception {
-        InputStream inputStream = getInputStream("tests/arithmetic/test_simple_subtraction.nk");
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 
@@ -42,7 +44,7 @@ public class TestArithmetic {
 
     @Test
     public void testSimpleSummationWrongTypes() throws Exception {
-        InputStream inputStream = getInputStream("tests/arithmetic/test_simple_summation_wrong_types.nk");
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 
