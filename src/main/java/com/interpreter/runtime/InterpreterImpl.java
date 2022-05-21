@@ -7,6 +7,8 @@ import com.interpreter.runtime.operation.IoOperationHandler;
 import com.interpreter.runtime.operation.OperationHandler;
 import hardtyped.Absyn.*;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,6 +16,11 @@ import java.util.stream.Collectors;
 public class InterpreterImpl implements Interpreter {
 
     private final Environment environment = new Environment();
+    private final IoOperationHandler ioOperationHandler;
+
+    public InterpreterImpl(PrintStream printStream) {
+        this.ioOperationHandler = new IoOperationHandler(printStream);
+    }
 
     @Override
     // TODO: rename
@@ -50,7 +57,7 @@ public class InterpreterImpl implements Interpreter {
     private void executePrintFunction(PrintFunction printFunction) {
 
         Value calculatedExpr = evaluateExpr(printFunction.expr_);
-        IoOperationHandler.handlePrint(calculatedExpr);
+        ioOperationHandler.handlePrint(calculatedExpr);
     }
 
     private Value evaluateExpr(Expr expr) {
