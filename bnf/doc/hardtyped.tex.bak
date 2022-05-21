@@ -51,6 +51,7 @@ except \terminal{"}\ unless preceded by \verb6\6.
 
 
 
+
 Bool literals are recognized by the regular expression
 \(\{\mbox{``true''}\} \mid \{\mbox{``false''}\}\)
 
@@ -60,6 +61,9 @@ Unit literals are recognized by the regular expression
 Print literals are recognized by the regular expression
 \(\{\mbox{``print''}\}\)
 
+Read literals are recognized by the regular expression
+\(\{\mbox{``read''}\}\)
+
 \subsection*{Reserved words and symbols}
 The set of reserved words is the set of terminals appearing in the grammar. Those reserved words that consist of non-letter characters are called symbols, and they are treated in a different way from those that are similar to identifiers. The lexer follows rules familiar from languages like Haskell, C, and Java, including longest match and spacing conventions.
 
@@ -67,8 +71,9 @@ The reserved words used in hardtyped are the following: \\
 
 \begin{tabular}{lll}
 {\reserved{Boolean}} &{\reserved{Integer}} &{\reserved{Real}} \\
-{\reserved{String}} &{\reserved{Unit}} &{\reserved{as}} \\
-{\reserved{in}} &{\reserved{let}} & \\
+{\reserved{String}} &{\reserved{Unit}} &{\reserved{and}} \\
+{\reserved{as}} &{\reserved{in}} &{\reserved{let}} \\
+{\reserved{letrec}} &{\reserved{not}} &{\reserved{or}} \\
 \end{tabular}\\
 
 The symbols used in hardtyped are the following: \\
@@ -76,9 +81,11 @@ The symbols used in hardtyped are the following: \\
 \begin{tabular}{lll}
 {\symb{;}} &{\symb{/$\backslash$}} &{\symb{\{}} \\
 {\symb{\}}} &{\symb{(}} &{\symb{)}} \\
-{\symb{,}} &{\symb{{$+$}}} &{\symb{{$-$}}} \\
-{\symb{*}} &{\symb{/}} &{\symb{{$=$}}} \\
-{\symb{.}} &{\symb{:}} & \\
+{\symb{,}} &{\symb{{$|$}}} &{\symb{:}} \\
+{\symb{{$|$}:}} &{\symb{{$+$}}} &{\symb{{$-$}}} \\
+{\symb{*}} &{\symb{/}} &{\symb{{$>$}}} \\
+{\symb{{$>$}{$=$}}} &{\symb{{$=$}{$=$}}} &{\symb{{$<$}{$=$}}} \\
+{\symb{{$<$}}} &{\symb{{$=$}}} &{\symb{.}} \\
 \end{tabular}\\
 
 \subsection*{Comments}
@@ -102,15 +109,26 @@ All other symbols are terminals.\\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{,}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\terminal{{$|$}}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}} {\terminal{:}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\terminal{{$|$}:}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$+$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$-$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{*}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{/}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{and}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{or}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\terminal{not}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$>$}}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$>$}{$=$}}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$=$}{$=$}}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$<$}{$=$}}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$<$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{{$+$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{{$-$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}} {\terminal{in}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}} {\terminal{as}} {\nonterminal{Type}}  \\
+ & {\delimit}  &{\terminal{letrec}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Integer}}  \\
  & {\delimit}  &{\nonterminal{Double}}  \\
  & {\delimit}  &{\nonterminal{String}}  \\
@@ -118,6 +136,7 @@ All other symbols are terminals.\\
  & {\delimit}  &{\nonterminal{Unit}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
  & {\delimit}  &{\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
+ & {\delimit}  &{\nonterminal{Ident}} {\terminal{.}} {\nonterminal{Ident}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}

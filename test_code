@@ -1,1 +1,2 @@
-let n: Boolean = true or false
+// inside in multiple expressions
+let n = 5 in (read());
