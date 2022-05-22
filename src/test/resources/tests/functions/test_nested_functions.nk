@@ -3,4 +3,4 @@
     /\ y: String. {
        print (y)
     } (x);
-}
+} (2);

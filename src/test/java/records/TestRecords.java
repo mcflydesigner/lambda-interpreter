@@ -1,4 +1,4 @@
-package imports;
+package records;
 
 import com.interpreter.MainTest;
 import org.junit.Assert;
@@ -8,18 +8,18 @@ import java.io.*;
 
 import static utils.TestUtils.getInputStream;
 
-public class TestImports {
+public class TestRecords {
 
     @Test
-    public void testImports() throws Exception {
+    public void testRecords() throws Exception {
         // String expected = "10\n25".trim();
-        InputStream inputStream = getInputStream("tests/conditions/test_imports.nk");
+        InputStream inputStream = getInputStream("tests/records/test_simple_records.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "10\n25".trim();
+        String expected = "11.18".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);

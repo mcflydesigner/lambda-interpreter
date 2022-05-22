@@ -1,7 +1,7 @@
 let cond1 =
 /\ n: Nat. {
     | (n > 1 and n < 5): (n + 5) * 10
-    | (n >= 10 or )
+    | (n >= 10 or n < 0): n * 3 + 5
     |:  n * (n+1)
 };
 
@@ -9,5 +9,5 @@ let cond1 =
 print (cond1 (3))
 // output: 42
 print (cond1 (6))
-// output: 0
-print (cond1 (0))
+// output: 35
+print (cond1 (10))

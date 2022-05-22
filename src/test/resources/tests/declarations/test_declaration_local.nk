@@ -1,0 +1,4 @@
+// local variable declaration
+let x: Integer = 5 in print (x);
+
+print (x);

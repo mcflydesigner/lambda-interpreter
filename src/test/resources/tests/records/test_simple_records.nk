@@ -1,0 +1,7 @@
+-| math.nk as math
+
+let Vector3d = {x1: Integer, x2: Integer, x3: Integer};
+
+let length3d = /\ v: Vector3d. {
+    print (math.sqrt (math.sqr (v.x1) + math.sqr (v.x2) + math.sqr (v.x3)))
+} ({x1 = 4, x2 = 10, x3 = 3});

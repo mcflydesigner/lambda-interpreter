@@ -44,7 +44,7 @@ public class TestArithmetic {
 
     @Test
     public void testSimpleSummationWrongTypes() throws Exception {
-        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation_wrong_types.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 

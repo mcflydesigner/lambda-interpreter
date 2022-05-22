@@ -1,3 +1,0 @@
-// Incorrect lists
-let l1 = [1] * 5;
-let l1 = [1; 2; 3];

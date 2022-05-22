@@ -1,13 +1,8 @@
 / Incorrect comments with one line
 
-// Correct comment with one line
-
 -- Incorrect comments with one line
 
 */ Incorrect comment with
-multiple lines */
-
-/* Correct comment with
 multiple lines */
 
 */ Incorrect comment with

@@ -10,29 +10,37 @@ import static utils.TestUtils.getInputStream;
 
 public class TestConditions {
 
-    @Test
-    public void testConditions() throws IOException {
-        OutputStream outputStream = new java.io.ByteArrayOutputStream();
-        InputStream inputStream = getInputStream("tests/conditions/test_conditions.nk");
+    private static String pathToTests = "tests/conditions/";
 
-        MainTest.test(inputStream, outputStream);
+    @Test
+    public void testConditions() throws Exception {
+        // "1\n7\n2"
+        InputStream inputStream = getInputStream(pathToTests + "test_conditions.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
 
         String expected = "1\n7\n2".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
+        Assert.assertTrue(errorStream.toString().isEmpty());
     }
 
     @Test
-    public void testCompConditions() throws IOException {
-        OutputStream outputStream = new java.io.ByteArrayOutputStream();
-        InputStream inputStream = getInputStream("tests/conditions/test_comp_conditions.nk");
+    public void testCompConditions() throws Exception {
+        //"80\n42\n0"
+        InputStream inputStream = getInputStream(pathToTests + "test_comp_conditions.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
 
-        MainTest.test(inputStream, outputStream);
+        MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "80\n42\n0".trim();
+        String expected = "80\n42\n35".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
+        Assert.assertTrue(errorStream.toString().isEmpty());
     }
 }
