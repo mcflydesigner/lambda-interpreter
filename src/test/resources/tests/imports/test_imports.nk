@@ -1,0 +1,11 @@
+-| package.nk
+-| package1.nk as pack
+
+let n = twice (5);
+// output: 10
+print (n);
+
+let n1 = pack.square (5);
+// output: 25
+print (n1);
+

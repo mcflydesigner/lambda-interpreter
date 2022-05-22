@@ -1,0 +1,4 @@
+// Bug with functions
+let a = 5 + 2 + 4;
+
+print(a);

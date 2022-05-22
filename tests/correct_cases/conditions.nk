@@ -23,9 +23,9 @@ let cond_function =
 
 let cond_function1 =
 /\ n: Nat. {
-    |  (n > 1 and n < 5): {
+    |  (n > 1 and n < 5): (
         let b = (n + 5) * 10;
         print(b);
-        }
+        )
     |:  n * (n+1)
 };

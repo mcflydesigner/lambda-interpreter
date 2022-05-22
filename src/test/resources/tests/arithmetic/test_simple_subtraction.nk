@@ -1,0 +1,3 @@
+let a = 5 - 4 - 2;
+// Expect 11
+print(a);
