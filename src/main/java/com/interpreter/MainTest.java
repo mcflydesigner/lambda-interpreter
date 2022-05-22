@@ -8,17 +8,18 @@ import hardtyped.Test;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 /*
     * For tests only.
 */
 public class MainTest {
 
-    public static void test(InputStream inputStream, OutputStream outputStream) {
+    public static void test(InputStream inputStream, OutputStream errorStream, OutputStream outputStream) throws Exception {
 
-        PrintStream printOutputStream = new PrintStream(outputStream);
         System.setIn(inputStream);
+        PrintStream printErrorStream = new PrintStream(errorStream);
+        System.setErr(printErrorStream);
+        PrintStream printOutputStream = new PrintStream(outputStream);
 
         try {
             Test t = new Test(new String[0]);
@@ -29,9 +30,9 @@ public class MainTest {
         } catch (Exception e) {
             System.out.println("Exception occurred:");
             e.printStackTrace();
-            System.exit(1);
         } finally {
             printOutputStream.close();
+            printErrorStream.close();
         }
     }
 }

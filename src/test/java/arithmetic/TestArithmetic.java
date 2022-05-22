@@ -10,42 +10,46 @@ import static utils.TestUtils.getInputStream;
 
 public class TestArithmetic {
 
-    @Test
-    public void testSimpleSummation() throws IOException {
-        OutputStream outputStream = new java.io.ByteArrayOutputStream();
-        InputStream inputStream = getInputStream("tests/arithmetic/test_simple_summation.nk");
+    private static String pathToTests = "tests/arithmetic/";
 
-        MainTest.test(inputStream, outputStream);
+    @Test
+    public void testSimpleSummation() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
 
         String expected = "11".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
+        Assert.assertTrue(errorStream.toString().isEmpty());
     }
 
     @Test
-    public void testSimpleSubtraction() throws IOException {
-        OutputStream outputStream = new java.io.ByteArrayOutputStream();
-        InputStream inputStream = getInputStream("tests/arithmetic/test_simple_subtraction.nk");
+    public void testSimpleSubtraction() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
 
-        MainTest.test(inputStream, outputStream);
+        MainTest.test(inputStream, errorStream, outputStream);
 
         String expected = "-1".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
+        Assert.assertTrue(errorStream.toString().isEmpty());
     }
 
     @Test
-    public void testArithmeticOrder()  throws IOException {
-        OutputStream outputStream = new java.io.ByteArrayOutputStream();
-        InputStream inputStream = getInputStream("tests/arithmetic/test_arithmetic_order.nk");
+    public void testSimpleSummationWrongTypes() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
 
-        MainTest.test(inputStream, outputStream);
+        MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "50\n38".trim();
-        String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
-
-        Assert.assertEquals(expected, output);
+        Assert.assertFalse(errorStream.toString().isEmpty());
     }
 }
