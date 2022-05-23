@@ -1,0 +1,9 @@
+// Correct declarations
+
+let n: Integer = 5;
+let r: Real = 10.5;
+let b: Bool = True;
+let b1: Bool = True and False;
+let s: String = "Simple string";
+let u: Unit = print (s);
+let u: Unit = unit;

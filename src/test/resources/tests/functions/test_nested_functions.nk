@@ -1,0 +1,6 @@
+/\ x: String. {
+    print (x);
+    /\ y: String. {
+       print (y)
+    } (x);
+} (2);

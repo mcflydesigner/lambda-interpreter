@@ -1,4 +1,4 @@
-package arithmetic;
+package conditions;
 
 import com.interpreter.MainTest;
 import org.junit.Assert;
@@ -8,19 +8,20 @@ import java.io.*;
 
 import static utils.TestUtils.getInputStream;
 
-public class TestArithmetic {
+public class TestConditions {
 
-    private static String pathToTests = "tests/arithmetic/";
+    private static String pathToTests = "tests/conditions/";
 
     @Test
-    public void testSimpleSummation() throws Exception {
-        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
+    public void testConditions() throws Exception {
+        // "1\n7\n2"
+        InputStream inputStream = getInputStream(pathToTests + "test_conditions.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "11".trim();
+        String expected = "1\n7\n2".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
@@ -28,28 +29,18 @@ public class TestArithmetic {
     }
 
     @Test
-    public void testSimpleSubtraction() throws Exception {
-        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
+    public void testCompConditions() throws Exception {
+        //"80\n42\n0"
+        InputStream inputStream = getInputStream(pathToTests + "test_comp_conditions.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "-1".trim();
+        String expected = "80\n42\n35".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
         Assert.assertTrue(errorStream.toString().isEmpty());
-    }
-
-    @Test
-    public void testSimpleSummationWrongTypes() throws Exception {
-        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation_wrong_types.nk");
-        OutputStream errorStream = new ByteArrayOutputStream();
-        OutputStream outputStream = new ByteArrayOutputStream();
-
-        MainTest.test(inputStream, errorStream, outputStream);
-
-        Assert.assertFalse(errorStream.toString().isEmpty());
     }
 }

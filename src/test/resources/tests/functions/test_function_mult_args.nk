@@ -1,0 +1,3 @@
+let concat = /\ x: String. y: String. {
+    print (x + y)
+} ("Hello,", "World!");

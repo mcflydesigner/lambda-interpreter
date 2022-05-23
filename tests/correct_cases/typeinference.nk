@@ -1,0 +1,5 @@
+-| math.nk as math
+
+// Correct way
+let n = 5 in // type inference
+math.sqrt (n);

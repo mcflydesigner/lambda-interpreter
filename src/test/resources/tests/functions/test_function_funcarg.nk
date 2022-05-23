@@ -1,0 +1,7 @@
+let string_twice = /\ s:String. {
+    print (s + " " + s)
+};
+
+/\ f:(String -> String). {
+    let s = "sample" in f (s)
+} (string_twice);
