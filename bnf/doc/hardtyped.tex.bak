@@ -70,22 +70,24 @@ The set of reserved words is the set of terminals appearing in the grammar. Thos
 The reserved words used in hardtyped are the following: \\
 
 \begin{tabular}{lll}
-{\reserved{Boolean}} &{\reserved{Integer}} &{\reserved{Real}} \\
-{\reserved{String}} &{\reserved{Unit}} &{\reserved{and}} \\
-{\reserved{as}} &{\reserved{in}} &{\reserved{let}} \\
-{\reserved{letrec}} &{\reserved{not}} &{\reserved{or}} \\
+{\reserved{Any}} &{\reserved{Boolean}} &{\reserved{Integer}} \\
+{\reserved{Real}} &{\reserved{String}} &{\reserved{Unit}} \\
+{\reserved{and}} &{\reserved{as}} &{\reserved{in}} \\
+{\reserved{let}} &{\reserved{letrec}} &{\reserved{lettype}} \\
+{\reserved{not}} &{\reserved{or}} & \\
 \end{tabular}\\
 
 The symbols used in hardtyped are the following: \\
 
 \begin{tabular}{lll}
-{\symb{;}} &{\symb{/$\backslash$}} &{\symb{\{}} \\
-{\symb{\}}} &{\symb{(}} &{\symb{)}} \\
-{\symb{,}} &{\symb{{$|$}}} &{\symb{:}} \\
-{\symb{{$|$}:}} &{\symb{{$+$}}} &{\symb{{$-$}}} \\
-{\symb{*}} &{\symb{/}} &{\symb{{$>$}}} \\
-{\symb{{$>$}{$=$}}} &{\symb{{$=$}{$=$}}} &{\symb{{$<$}{$=$}}} \\
-{\symb{{$<$}}} &{\symb{{$=$}}} &{\symb{.}} \\
+{\symb{;}} &{\symb{{$-$}{$|$}}} &{\symb{/$\backslash$}} \\
+{\symb{\{}} &{\symb{\}}} &{\symb{(}} \\
+{\symb{)}} &{\symb{,}} &{\symb{{$|$}}} \\
+{\symb{:}} &{\symb{{$|$}:}} &{\symb{{$+$}}} \\
+{\symb{{$-$}}} &{\symb{*}} &{\symb{/}} \\
+{\symb{{$>$}}} &{\symb{{$>$}{$=$}}} &{\symb{{$=$}{$=$}}} \\
+{\symb{{$<$}{$=$}}} &{\symb{{$<$}}} &{\symb{{$=$}}} \\
+{\symb{.}} &{\symb{{$-$}{$>$}}} & \\
 \end{tabular}\\
 
 \subsection*{Comments}
@@ -105,9 +107,13 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Expr}} & {\arrow}  &{\terminal{/$\backslash$}} {\nonterminal{FuncArg}} {\terminal{\{}} {\nonterminal{InExpr}} {\terminal{\}}}  \\
+{\nonterminal{Expr}} & {\arrow}  &{\terminal{{$-$}{$|$}}} {\nonterminal{VarDec}}  \\
+ & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{FuncArg}} {\terminal{\{}} {\nonterminal{InExpr}} {\terminal{\}}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
+ & {\delimit}  &{\nonterminal{Read}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
+ & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\terminal{)}}  \\
+ & {\delimit}  &{\nonterminal{Read}} {\terminal{(}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{,}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{{$|$}}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}} {\terminal{:}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{{$|$}:}} {\nonterminal{Expr}}  \\
@@ -125,24 +131,45 @@ All other symbols are terminals.\\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$<$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{{$+$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{{$-$}}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{Let}}  \\
+ & {\delimit}  &{\nonterminal{Value}}  \\
+ & {\delimit}  &{\nonterminal{Ident}}  \\
+ & {\delimit}  &{\terminal{(}} {\nonterminal{InnerExpr}} {\terminal{)}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Let}} & {\arrow}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}} {\terminal{in}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}} {\terminal{as}} {\nonterminal{Type}}  \\
  & {\delimit}  &{\terminal{letrec}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\nonterminal{Integer}}  \\
+ & {\delimit}  &{\terminal{lettype}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Type}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Value}} & {\arrow}  &{\nonterminal{Integer}}  \\
  & {\delimit}  &{\nonterminal{Double}}  \\
  & {\delimit}  &{\nonterminal{String}}  \\
  & {\delimit}  &{\nonterminal{Bool}}  \\
  & {\delimit}  &{\nonterminal{Unit}}  \\
- & {\delimit}  &{\nonterminal{Ident}}  \\
- & {\delimit}  &{\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
- & {\delimit}  &{\nonterminal{Ident}} {\terminal{.}} {\nonterminal{Ident}}  \\
+ & {\delimit}  &{\terminal{\{}} {\nonterminal{Record}} {\terminal{\}}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Record}} & {\arrow}  &{\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Value}}  \\
+ & {\delimit}  &{\nonterminal{VarDec}}  \\
+ & {\delimit}  &{\nonterminal{Record}} {\terminal{,}} {\nonterminal{Record}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{InExpr}} & {\arrow}  &{\nonterminal{InExpr}} {\terminal{;}} {\nonterminal{InExpr}}  \\
  & {\delimit}  &{\nonterminal{InExpr}} {\terminal{;}}  \\
  & {\delimit}  &{\nonterminal{Expr}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{InnerExpr}} & {\arrow}  &{\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{InnerExpr}} {\terminal{;}} {\nonterminal{InnerExpr}}  \\
+ & {\delimit}  &{\nonterminal{InnerExpr}} {\terminal{;}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -153,6 +180,7 @@ All other symbols are terminals.\\
 \begin{tabular}{lll}
 {\nonterminal{VarDec}} & {\arrow}  &{\nonterminal{Ident}} {\terminal{:}} {\nonterminal{Type}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
+ & {\delimit}  &{\nonterminal{Ident}} {\terminal{.}} {\nonterminal{Ident}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -161,6 +189,15 @@ All other symbols are terminals.\\
  & {\delimit}  &{\terminal{Boolean}}  \\
  & {\delimit}  &{\terminal{String}}  \\
  & {\delimit}  &{\terminal{Unit}}  \\
+ & {\delimit}  &{\terminal{Any}}  \\
+ & {\delimit}  &{\nonterminal{Type}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}}  \\
+ & {\delimit}  &{\terminal{\{}} {\nonterminal{RecordType}} {\terminal{\}}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{RecordType}} & {\arrow}  &{\nonterminal{VarDec}}  \\
+ & {\delimit}  &{\nonterminal{RecordType}} {\terminal{,}} {\nonterminal{RecordType}}  \\
+ & {\delimit}  &{\nonterminal{RecordType}}  \\
 \end{tabular}\\
 
 

@@ -2,11 +2,11 @@
 
 package hardtyped.Absyn;
 
-public class UnitValue  extends Expr {
+public class UnitValue  extends Value {
   public final String unit_;
   public UnitValue(String p1) { unit_ = p1; }
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Value.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;

@@ -2,13 +2,13 @@
 
 package hardtyped.Absyn;
 
-public class LetAscription  extends Expr {
+public class LetAscription  extends Let {
   public final VarDec vardec_;
   public final Expr expr_;
   public final Type type_;
   public LetAscription(VarDec p1, Expr p2, Type p3) { vardec_ = p1; expr_ = p2; type_ = p3; }
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Let.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;

@@ -2,25 +2,15 @@
 
 package hardtyped.Absyn;
 
-public class Let  extends Expr {
-  public final VarDec vardec_;
-  public final Expr expr_;
-  public Let(VarDec p1, Expr p2) { vardec_ = p1; expr_ = p2; }
+public abstract class Let implements java.io.Serializable {
+  public abstract <R,A> R accept(Let.Visitor<R,A> v, A arg);
+  public interface Visitor <R,A> {
+    public R visit(hardtyped.Absyn.LetVariable p, A arg);
+    public R visit(hardtyped.Absyn.LetInference p, A arg);
+    public R visit(hardtyped.Absyn.LetAscription p, A arg);
+    public R visit(hardtyped.Absyn.LetRec p, A arg);
+    public R visit(hardtyped.Absyn.LetType p, A arg);
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
-
-  public boolean equals(java.lang.Object o) {
-    if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.Let) {
-      hardtyped.Absyn.Let x = (hardtyped.Absyn.Let)o;
-      return this.vardec_.equals(x.vardec_) && this.expr_.equals(x.expr_);
-    }
-    return false;
   }
-
-  public int hashCode() {
-    return 37*(this.vardec_.hashCode())+this.expr_.hashCode();
-  }
-
 
 }

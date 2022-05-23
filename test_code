@@ -1,2 +1,5 @@
-// inside in multiple expressions
-let n = 5 in (read());
+-| std.nk;
+
+let Vector3d: Any = {x1: Real = 0.0, x2: Real, x3: Real};
+
+lettype func1 = Integer -> {x1:Integer, x2:Integer};
