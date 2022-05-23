@@ -7,12 +7,33 @@ separator Expr ";";
 Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
 ApplyFunction. Expr ::= Expr "(" Expr ")";
 PrintFunction. Expr ::= Print "(" Expr ")";
+ReadFunction. Expr ::= Read "(" Expr ")";
+EmptyPrintFunction. Expr ::= Print "(" ")";
+EmptyReadFunction. Expr ::= Read "(" ")";
+MultipleArgFunction. Expr ::= Expr "," Expr;
+
+
+-- If
+If. Expr ::= "|" "(" Expr ")" ":" Expr;
+Else. Expr ::= "|:" Expr;
 
 -- Basic operations
 Sum. Expr ::= Expr "+" Expr;
 Substract. Expr::= Expr "-" Expr;
 Multiply. Expr ::= Expr "*" Expr;
 Divide. Expr ::= Expr "/" Expr;
+
+-- Logical operations
+And. Expr ::= Expr "and" Expr;
+Or. Expr ::= Expr "or" Expr;
+Not. Expr ::= "not" Expr;
+
+-- Comparison operations
+More. Expr ::= Expr ">" Expr;
+MoreEql. Expr ::= Expr ">=" Expr;
+Eql. Expr ::= Expr "==" Expr;
+LessEql. Expr ::= Expr "<=" Expr;
+Less. Expr ::= Expr "<" Expr;
 
 UnaryPlus. Expr ::= "+" Expr;
 UnaryMinus. Expr ::= "-" Expr;
@@ -21,11 +42,14 @@ UnaryMinus. Expr ::= "-" Expr;
 Let. Expr ::= "let" VarDec "=" Expr;
 LetInference. Expr ::= "let" VarDec "=" Expr "in" Expr;
 LetAscription. Expr ::= "let" VarDec "=" Expr "as" Type;
+LetRec. Expr ::= "letrec" VarDec "=" Expr;
 
 -- Values
 IntValue. Expr ::= Integer;
 RealValue. Expr ::= Double;
 StringValue. Expr ::= String;
+BoolValue. Expr ::= Bool;
+UnitValue. Expr ::= Unit;
 
 -- In-function expressions - todo: remove it
 MultipleExpressions. InExpr ::= InExpr ";" InExpr;
@@ -35,6 +59,7 @@ InnerExpression. InExpr ::= Expr;
 -- Utility expressions
 AtomicExpression. Expr ::= Ident;
 ParenthesesExpression. Expr ::= "(" Expr ")";
+DotExpression. Expr ::= Ident "." Ident;
 
 -- Function arguments
 MultipleArgs. FuncArg ::= VarDec "." FuncArg ;
@@ -52,6 +77,7 @@ BoolType. Type ::= "Boolean";
 StringType. Type ::= "String";
 UnitType. Type ::= "Unit";
 
-token BoolValue {"true"} | {"false"};
-token UnitValue {"unit"};
+token Bool {"true"} | {"false"};
+token Unit {"unit"};
 token Print {"print"};
+token Read {"read"};

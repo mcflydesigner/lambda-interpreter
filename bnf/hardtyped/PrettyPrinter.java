@@ -212,6 +212,63 @@ public class PrettyPrinter
        render(")");
        if (_i_ > 0) render(_R_PAREN);
     }
+    else     if (foo instanceof hardtyped.Absyn.ReadFunction)
+    {
+       hardtyped.Absyn.ReadFunction _readfunction = (hardtyped.Absyn.ReadFunction) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_readfunction.read_, 0);
+       render("(");
+       pp(_readfunction.expr_, 0);
+       render(")");
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.EmptyPrintFunction)
+    {
+       hardtyped.Absyn.EmptyPrintFunction _emptyprintfunction = (hardtyped.Absyn.EmptyPrintFunction) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_emptyprintfunction.print_, 0);
+       render("(");
+       render(")");
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.EmptyReadFunction)
+    {
+       hardtyped.Absyn.EmptyReadFunction _emptyreadfunction = (hardtyped.Absyn.EmptyReadFunction) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_emptyreadfunction.read_, 0);
+       render("(");
+       render(")");
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.MultipleArgFunction)
+    {
+       hardtyped.Absyn.MultipleArgFunction _multipleargfunction = (hardtyped.Absyn.MultipleArgFunction) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_multipleargfunction.expr_1, 0);
+       render(",");
+       pp(_multipleargfunction.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.If)
+    {
+       hardtyped.Absyn.If _if = (hardtyped.Absyn.If) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       render("|");
+       render("(");
+       pp(_if.expr_1, 0);
+       render(")");
+       render(":");
+       pp(_if.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.Else)
+    {
+       hardtyped.Absyn.Else _else = (hardtyped.Absyn.Else) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       render("|:");
+       pp(_else.expr_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
     else     if (foo instanceof hardtyped.Absyn.Sum)
     {
        hardtyped.Absyn.Sum _sum = (hardtyped.Absyn.Sum) foo;
@@ -246,6 +303,77 @@ public class PrettyPrinter
        pp(_divide.expr_1, 0);
        render("/");
        pp(_divide.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.And)
+    {
+       hardtyped.Absyn.And _and = (hardtyped.Absyn.And) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_and.expr_1, 0);
+       render("and");
+       pp(_and.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.Or)
+    {
+       hardtyped.Absyn.Or _or = (hardtyped.Absyn.Or) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_or.expr_1, 0);
+       render("or");
+       pp(_or.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.Not)
+    {
+       hardtyped.Absyn.Not _not = (hardtyped.Absyn.Not) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       render("not");
+       pp(_not.expr_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.More)
+    {
+       hardtyped.Absyn.More _more = (hardtyped.Absyn.More) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_more.expr_1, 0);
+       render(">");
+       pp(_more.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.MoreEql)
+    {
+       hardtyped.Absyn.MoreEql _moreeql = (hardtyped.Absyn.MoreEql) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_moreeql.expr_1, 0);
+       render(">=");
+       pp(_moreeql.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.Eql)
+    {
+       hardtyped.Absyn.Eql _eql = (hardtyped.Absyn.Eql) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_eql.expr_1, 0);
+       render("==");
+       pp(_eql.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.LessEql)
+    {
+       hardtyped.Absyn.LessEql _lesseql = (hardtyped.Absyn.LessEql) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_lesseql.expr_1, 0);
+       render("<=");
+       pp(_lesseql.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.Less)
+    {
+       hardtyped.Absyn.Less _less = (hardtyped.Absyn.Less) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_less.expr_1, 0);
+       render("<");
+       pp(_less.expr_2, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.UnaryPlus)
@@ -298,6 +426,16 @@ public class PrettyPrinter
        pp(_letascription.type_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
+    else     if (foo instanceof hardtyped.Absyn.LetRec)
+    {
+       hardtyped.Absyn.LetRec _letrec = (hardtyped.Absyn.LetRec) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       render("letrec");
+       pp(_letrec.vardec_, 0);
+       render("=");
+       pp(_letrec.expr_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
     else     if (foo instanceof hardtyped.Absyn.IntValue)
     {
        hardtyped.Absyn.IntValue _intvalue = (hardtyped.Absyn.IntValue) foo;
@@ -319,6 +457,20 @@ public class PrettyPrinter
        printQuoted(_stringvalue.string_);
        if (_i_ > 0) render(_R_PAREN);
     }
+    else     if (foo instanceof hardtyped.Absyn.BoolValue)
+    {
+       hardtyped.Absyn.BoolValue _boolvalue = (hardtyped.Absyn.BoolValue) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_boolvalue.bool_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.UnitValue)
+    {
+       hardtyped.Absyn.UnitValue _unitvalue = (hardtyped.Absyn.UnitValue) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_unitvalue.unit_, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
     else     if (foo instanceof hardtyped.Absyn.AtomicExpression)
     {
        hardtyped.Absyn.AtomicExpression _atomicexpression = (hardtyped.Absyn.AtomicExpression) foo;
@@ -333,6 +485,15 @@ public class PrettyPrinter
        render("(");
        pp(_parenthesesexpression.expr_, 0);
        render(")");
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.DotExpression)
+    {
+       hardtyped.Absyn.DotExpression _dotexpression = (hardtyped.Absyn.DotExpression) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       pp(_dotexpression.ident_1, 0);
+       render(".");
+       pp(_dotexpression.ident_2, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
 
@@ -490,6 +651,57 @@ public class PrettyPrinter
        sh(_printfunction.expr_);
        render(")");
     }
+    if (foo instanceof hardtyped.Absyn.ReadFunction)
+    {
+       hardtyped.Absyn.ReadFunction _readfunction = (hardtyped.Absyn.ReadFunction) foo;
+       render("(");
+       render("ReadFunction");
+       sh(_readfunction.read_);
+       sh(_readfunction.expr_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.EmptyPrintFunction)
+    {
+       hardtyped.Absyn.EmptyPrintFunction _emptyprintfunction = (hardtyped.Absyn.EmptyPrintFunction) foo;
+       render("(");
+       render("EmptyPrintFunction");
+       sh(_emptyprintfunction.print_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.EmptyReadFunction)
+    {
+       hardtyped.Absyn.EmptyReadFunction _emptyreadfunction = (hardtyped.Absyn.EmptyReadFunction) foo;
+       render("(");
+       render("EmptyReadFunction");
+       sh(_emptyreadfunction.read_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.MultipleArgFunction)
+    {
+       hardtyped.Absyn.MultipleArgFunction _multipleargfunction = (hardtyped.Absyn.MultipleArgFunction) foo;
+       render("(");
+       render("MultipleArgFunction");
+       sh(_multipleargfunction.expr_1);
+       sh(_multipleargfunction.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.If)
+    {
+       hardtyped.Absyn.If _if = (hardtyped.Absyn.If) foo;
+       render("(");
+       render("If");
+       sh(_if.expr_1);
+       sh(_if.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.Else)
+    {
+       hardtyped.Absyn.Else _else = (hardtyped.Absyn.Else) foo;
+       render("(");
+       render("Else");
+       sh(_else.expr_);
+       render(")");
+    }
     if (foo instanceof hardtyped.Absyn.Sum)
     {
        hardtyped.Absyn.Sum _sum = (hardtyped.Absyn.Sum) foo;
@@ -524,6 +736,77 @@ public class PrettyPrinter
        render("Divide");
        sh(_divide.expr_1);
        sh(_divide.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.And)
+    {
+       hardtyped.Absyn.And _and = (hardtyped.Absyn.And) foo;
+       render("(");
+       render("And");
+       sh(_and.expr_1);
+       sh(_and.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.Or)
+    {
+       hardtyped.Absyn.Or _or = (hardtyped.Absyn.Or) foo;
+       render("(");
+       render("Or");
+       sh(_or.expr_1);
+       sh(_or.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.Not)
+    {
+       hardtyped.Absyn.Not _not = (hardtyped.Absyn.Not) foo;
+       render("(");
+       render("Not");
+       sh(_not.expr_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.More)
+    {
+       hardtyped.Absyn.More _more = (hardtyped.Absyn.More) foo;
+       render("(");
+       render("More");
+       sh(_more.expr_1);
+       sh(_more.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.MoreEql)
+    {
+       hardtyped.Absyn.MoreEql _moreeql = (hardtyped.Absyn.MoreEql) foo;
+       render("(");
+       render("MoreEql");
+       sh(_moreeql.expr_1);
+       sh(_moreeql.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.Eql)
+    {
+       hardtyped.Absyn.Eql _eql = (hardtyped.Absyn.Eql) foo;
+       render("(");
+       render("Eql");
+       sh(_eql.expr_1);
+       sh(_eql.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.LessEql)
+    {
+       hardtyped.Absyn.LessEql _lesseql = (hardtyped.Absyn.LessEql) foo;
+       render("(");
+       render("LessEql");
+       sh(_lesseql.expr_1);
+       sh(_lesseql.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.Less)
+    {
+       hardtyped.Absyn.Less _less = (hardtyped.Absyn.Less) foo;
+       render("(");
+       render("Less");
+       sh(_less.expr_1);
+       sh(_less.expr_2);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.UnaryPlus)
@@ -571,6 +854,15 @@ public class PrettyPrinter
        sh(_letascription.type_);
        render(")");
     }
+    if (foo instanceof hardtyped.Absyn.LetRec)
+    {
+       hardtyped.Absyn.LetRec _letrec = (hardtyped.Absyn.LetRec) foo;
+       render("(");
+       render("LetRec");
+       sh(_letrec.vardec_);
+       sh(_letrec.expr_);
+       render(")");
+    }
     if (foo instanceof hardtyped.Absyn.IntValue)
     {
        hardtyped.Absyn.IntValue _intvalue = (hardtyped.Absyn.IntValue) foo;
@@ -595,6 +887,22 @@ public class PrettyPrinter
        sh(_stringvalue.string_);
        render(")");
     }
+    if (foo instanceof hardtyped.Absyn.BoolValue)
+    {
+       hardtyped.Absyn.BoolValue _boolvalue = (hardtyped.Absyn.BoolValue) foo;
+       render("(");
+       render("BoolValue");
+       sh(_boolvalue.bool_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.UnitValue)
+    {
+       hardtyped.Absyn.UnitValue _unitvalue = (hardtyped.Absyn.UnitValue) foo;
+       render("(");
+       render("UnitValue");
+       sh(_unitvalue.unit_);
+       render(")");
+    }
     if (foo instanceof hardtyped.Absyn.AtomicExpression)
     {
        hardtyped.Absyn.AtomicExpression _atomicexpression = (hardtyped.Absyn.AtomicExpression) foo;
@@ -609,6 +917,15 @@ public class PrettyPrinter
        render("(");
        render("ParenthesesExpression");
        sh(_parenthesesexpression.expr_);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.DotExpression)
+    {
+       hardtyped.Absyn.DotExpression _dotexpression = (hardtyped.Absyn.DotExpression) foo;
+       render("(");
+       render("DotExpression");
+       sh(_dotexpression.ident_1);
+       sh(_dotexpression.ident_2);
        render(")");
     }
   }
