@@ -1,4 +1,7 @@
 // local variable declaration
-let x: Integer = 5 in print (x);
+let x: Integer = 5 in (
+    print (x);
+);
 
+// Error
 print (x);

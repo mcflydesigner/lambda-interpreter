@@ -86,4 +86,20 @@ public class TestFunctions {
         Assert.assertEquals(expected, output);
         Assert.assertTrue(errorStream.toString().isEmpty());
     }
+
+    @Test
+    public void testAnonymousFunctions() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "test_anonymous_functions.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
+
+        String expected = "first second".trim();
+        String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
+
+        Assert.assertEquals(expected, output);
+        Assert.assertTrue(errorStream.toString().isEmpty());
+    }
+    
 }
