@@ -2,4 +2,4 @@ let f = /\ x: Integer. y: Integer. {
     x + y
 };
 
-print(f(5, 7));
+print(f(5, 7, 3));

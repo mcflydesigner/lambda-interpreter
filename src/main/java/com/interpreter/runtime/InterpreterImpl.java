@@ -104,7 +104,6 @@ public class InterpreterImpl implements Interpreter {
 
     private Value executeFunction(ApplyFunction applyFunction) {
         Value fun = evaluateExpr(applyFunction.expr_1);
-        // TODO: from one arg to multiple ones
         Value args = evaluateExpr(applyFunction.expr_2);
 
         if (!fun.getType().equals(ValueType.FUNCTION)) {
