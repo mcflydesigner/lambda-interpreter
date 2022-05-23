@@ -43,4 +43,20 @@ public class TestConditions {
         Assert.assertEquals(expected, output);
         Assert.assertTrue(errorStream.toString().isEmpty());
     }
+
+    @Test
+    public void testConditionsMultExpr() throws Exception {
+        //"80\n42\n0"
+        InputStream inputStream = getInputStream(pathToTests + "test_conditions_mult_expr.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
+
+        String expected = "12\n4".trim();
+        String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
+
+        Assert.assertEquals(expected, output);
+        Assert.assertTrue(errorStream.toString().isEmpty());
+    }
 }

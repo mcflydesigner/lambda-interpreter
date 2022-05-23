@@ -1,0 +1,9 @@
+lettype function_alias = (Integer -> Integer);
+
+let square = /\ n:Integer. {
+    n*n;
+}
+
+/\ x:Integer. f:function_alias. {
+    print (f (x));
+} (5, square)

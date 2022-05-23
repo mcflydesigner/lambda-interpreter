@@ -1,0 +1,7 @@
+let func = /\ x: String. {
+        /\ y: String. {
+           print (x + y);
+        }
+    };
+
+func ("first ") ("second");

@@ -1,0 +1,30 @@
+
+
+lettype func1 = Int->{x1:Int, x2:Int};
+
+let func1 = /\ n: Int. {
+    {x1=n, x2=n, x3=n}
+};
+
+
+let func2 =  /\ f: Int->{x1:Int, x2:Int}. {
+    f (0)
+};
+
+// type checker
+let num = /\ x:Integer {
+    x+x;
+} (5);
+
+func2 (func1);
+
+
+/\ f:Integer. {
+    f+f;
+    unit;
+} -> Unit (5);
+
+
+/\ a:Any {
+    a
+};

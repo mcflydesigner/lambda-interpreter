@@ -1,0 +1,3 @@
+-| package1.nk as pack
+
+print(pack.method_not_found (5));
