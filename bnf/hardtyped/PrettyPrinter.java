@@ -747,7 +747,7 @@ public class PrettyPrinter
     {
        hardtyped.Absyn.IntType _inttype = (hardtyped.Absyn.IntType) foo;
        if (_i_ > 0) render(_L_PAREN);
-       render("Integer");
+       render("Int");
        if (_i_ > 0) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.RealType)
@@ -761,7 +761,7 @@ public class PrettyPrinter
     {
        hardtyped.Absyn.BoolType _booltype = (hardtyped.Absyn.BoolType) foo;
        if (_i_ > 0) render(_L_PAREN);
-       render("Boolean");
+       render("Bool");
        if (_i_ > 0) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.StringType)

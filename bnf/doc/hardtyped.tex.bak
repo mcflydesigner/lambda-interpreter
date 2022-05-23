@@ -191,13 +191,7 @@ All other symbols are terminals.\\
  & {\delimit}  &{\terminal{Unit}}  \\
  & {\delimit}  &{\terminal{Any}}  \\
  & {\delimit}  &{\nonterminal{Type}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}}  \\
- & {\delimit}  &{\terminal{\{}} {\nonterminal{RecordType}} {\terminal{\}}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{RecordType}} & {\arrow}  &{\nonterminal{VarDec}}  \\
- & {\delimit}  &{\nonterminal{RecordType}} {\terminal{,}} {\nonterminal{RecordType}}  \\
- & {\delimit}  &{\nonterminal{RecordType}}  \\
+ & {\delimit}  &{\terminal{\{}} {\nonterminal{Record}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 

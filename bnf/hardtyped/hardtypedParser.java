@@ -47,10 +47,10 @@ public class hardtypedParser extends Parser {
 	private static final String[] _LITERAL_NAMES = {
 		null, "';'", "'-|'", "'/\\'", "'{'", "'}'", "'('", "')'", "','", "'|'", 
 		"':'", "'|:'", "'+'", "'-'", "'*'", "'/'", "'>'", "'>='", "'=='", "'<='", 
-		"'<'", "'='", "'.'", "'->'", "'Any'", "'Boolean'", "'Integer'", "'Real'", 
-		"'String'", "'Unit'", "'and'", "'as'", "'in'", "'let'", "'letrec'", "'lettype'", 
-		"'not'", "'or'", null, null, null, null, null, null, null, null, null, 
-		null, null, "'\"'", "'\\'"
+		"'<'", "'='", "'.'", "'->'", "'Any'", "'Bool'", "'Int'", "'Real'", "'String'", 
+		"'Unit'", "'and'", "'as'", "'in'", "'let'", "'letrec'", "'lettype'", "'not'", 
+		"'or'", null, null, null, null, null, null, null, null, null, null, null, 
+		"'\"'", "'\\'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "Surrogate_id_SYMB_0", "Surrogate_id_SYMB_1", "Surrogate_id_SYMB_2", 

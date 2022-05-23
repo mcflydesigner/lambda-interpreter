@@ -84,9 +84,9 @@ UntypedVar. VarDec ::= Ident;
 DotVar. VarDec ::= Ident "." Ident;
 
 -- Types
-IntType. Type ::= "Integer";
+IntType. Type ::= "Int";
 RealType. Type ::= "Real";
-BoolType. Type ::= "Boolean";
+BoolType. Type ::= "Bool";
 StringType. Type ::= "String";
 UnitType. Type ::= "Unit";
 AnyType. Type ::= "Any";
