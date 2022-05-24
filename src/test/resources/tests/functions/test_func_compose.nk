@@ -1,0 +1,15 @@
+let compose = /\ f1: (Integer -> Integer). f2: (Integer -> Integer). {
+    let return_func = /\ x:Integer. {
+        f1 (f2 (x));
+    }
+} -> (Integer -> Integer);
+
+let twice = /\ x:Integer. {
+    x*2;
+};
+
+let square = /\ x:Integer. {
+    x*x;
+};
+
+print ((compose (twice , square)) (3));

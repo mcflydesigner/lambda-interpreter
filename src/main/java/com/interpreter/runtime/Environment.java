@@ -42,7 +42,7 @@ public class Environment {
     }
 
     public void declareVariablesAndAssignValues(Map<String, Value> variables) {
-
+        variables.entrySet().forEach(e -> declareVariableAndAssignValue(e.getKey(), e.getValue()));
     }
 
     public void declareVariableAndAssignValue(String identifier, Value value) {

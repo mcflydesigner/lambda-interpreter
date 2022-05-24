@@ -1,0 +1,4 @@
+let b:Bool = readBool();
+
+| (b): print (10);
+|:     print (20);

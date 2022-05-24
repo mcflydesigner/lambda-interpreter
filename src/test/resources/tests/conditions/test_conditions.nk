@@ -1,4 +1,4 @@
-let cond = /\ n: Nat. {
+let cond = /\ n: Integer. {
     |  (n == 1): n
     |  (n > 5): n+1
     |: n-1

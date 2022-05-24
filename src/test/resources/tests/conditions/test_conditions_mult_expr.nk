@@ -1,4 +1,4 @@
-let cond = /\ n: Nat. {
+let cond = /\ n: Integer. {
     |  (n > 1): (
         print (n+10);
         n*n;

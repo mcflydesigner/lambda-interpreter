@@ -1,4 +1,4 @@
 let square = /\ n: Integer. {
-    n*n;
+    n*n
 };
 print (square (5));

@@ -2,11 +2,11 @@
 
 package hardtyped.Absyn;
 
-public class Else  extends IfExpr {
+public class Else  extends Expr {
   public final Expr expr_;
   public Else(Expr p1) { expr_ = p1; }
 
-  public <R,A> R accept(hardtyped.Absyn.IfExpr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;

@@ -1,7 +1,9 @@
-let func = /\ x: String. {
-        /\ y: String. {
-           print (x + y);
-        }
+let first_class_function = /\ x: String. {
+    /\ y: String. {
+       print (x + y);
     };
-
-func ("first ") ("second");
+}
+let result_function = first_class_function ("Hello, ");
+print (result_function ("World!"));
+// Output:
+// "Hello, World!"

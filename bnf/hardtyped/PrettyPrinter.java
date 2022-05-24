@@ -95,66 +95,6 @@ public class PrettyPrinter
     buf_.delete(0,buf_.length());
     return temp;
   }
-  public static String print(hardtyped.Absyn.IfExpr foo)
-  {
-    pp(foo, 0);
-    trim();
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String show(hardtyped.Absyn.IfExpr foo)
-  {
-    sh(foo);
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String print(hardtyped.Absyn.Let foo)
-  {
-    pp(foo, 0);
-    trim();
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String show(hardtyped.Absyn.Let foo)
-  {
-    sh(foo);
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String print(hardtyped.Absyn.Value foo)
-  {
-    pp(foo, 0);
-    trim();
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String show(hardtyped.Absyn.Value foo)
-  {
-    sh(foo);
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String print(hardtyped.Absyn.Record foo)
-  {
-    pp(foo, 0);
-    trim();
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String show(hardtyped.Absyn.Record foo)
-  {
-    sh(foo);
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
   public static String print(hardtyped.Absyn.InExpr foo)
   {
     pp(foo, 0);
@@ -164,21 +104,6 @@ public class PrettyPrinter
     return temp;
   }
   public static String show(hardtyped.Absyn.InExpr foo)
-  {
-    sh(foo);
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String print(hardtyped.Absyn.InnerExpr foo)
-  {
-    pp(foo, 0);
-    trim();
-    String temp = buf_.toString();
-    buf_.delete(0,buf_.length());
-    return temp;
-  }
-  public static String show(hardtyped.Absyn.InnerExpr foo)
   {
     sh(foo);
     String temp = buf_.toString();
@@ -256,15 +181,7 @@ public class PrettyPrinter
 
   private static void pp(hardtyped.Absyn.Expr foo, int _i_)
   {
-    if (foo instanceof hardtyped.Absyn.Import)
-    {
-       hardtyped.Absyn.Import _import = (hardtyped.Absyn.Import) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       render("-|");
-       pp(_import.vardec_, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.Function)
+    if (foo instanceof hardtyped.Absyn.Function)
     {
        hardtyped.Absyn.Function _function = (hardtyped.Absyn.Function) foo;
        if (_i_ > 0) render(_L_PAREN);
@@ -279,9 +196,9 @@ public class PrettyPrinter
     {
        hardtyped.Absyn.ApplyFunction _applyfunction = (hardtyped.Absyn.ApplyFunction) foo;
        if (_i_ > 0) render(_L_PAREN);
-       pp(_applyfunction.vardec_, 0);
+       pp(_applyfunction.expr_1, 0);
        render("(");
-       pp(_applyfunction.expr_, 0);
+       pp(_applyfunction.expr_2, 0);
        render(")");
        if (_i_ > 0) render(_R_PAREN);
     }
@@ -332,11 +249,24 @@ public class PrettyPrinter
        pp(_multipleargfunction.expr_2, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.IfStmt)
+    else     if (foo instanceof hardtyped.Absyn.If)
     {
-       hardtyped.Absyn.IfStmt _ifstmt = (hardtyped.Absyn.IfStmt) foo;
+       hardtyped.Absyn.If _if = (hardtyped.Absyn.If) foo;
        if (_i_ > 0) render(_L_PAREN);
-       pp(_ifstmt.ifexpr_, 0);
+       render("|");
+       render("(");
+       pp(_if.expr_1, 0);
+       render(")");
+       render(":");
+       pp(_if.expr_2, 0);
+       if (_i_ > 0) render(_R_PAREN);
+    }
+    else     if (foo instanceof hardtyped.Absyn.Else)
+    {
+       hardtyped.Absyn.Else _else = (hardtyped.Absyn.Else) foo;
+       if (_i_ > 0) render(_L_PAREN);
+       render("|:");
+       pp(_else.expr_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.Sum)
@@ -462,86 +392,14 @@ public class PrettyPrinter
        pp(_unaryminus.expr_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.BaseLet)
+    else     if (foo instanceof hardtyped.Absyn.Let)
     {
-       hardtyped.Absyn.BaseLet _baselet = (hardtyped.Absyn.BaseLet) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_baselet.let_, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.BaseValue)
-    {
-       hardtyped.Absyn.BaseValue _basevalue = (hardtyped.Absyn.BaseValue) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_basevalue.value_, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.AtomicExpression)
-    {
-       hardtyped.Absyn.AtomicExpression _atomicexpression = (hardtyped.Absyn.AtomicExpression) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_atomicexpression.ident_, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.ParenthesesExpression)
-    {
-       hardtyped.Absyn.ParenthesesExpression _parenthesesexpression = (hardtyped.Absyn.ParenthesesExpression) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       render("(");
-       pp(_parenthesesexpression.innerexpr_, 0);
-       render(")");
-       if (_i_ > 0) render(_R_PAREN);
-    }
-
-  }
-
-  private static void pp(hardtyped.Absyn.IfExpr foo, int _i_)
-  {
-    if (foo instanceof hardtyped.Absyn.IfElseConst)
-    {
-       hardtyped.Absyn.IfElseConst _ifelseconst = (hardtyped.Absyn.IfElseConst) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_ifelseconst.ifexpr_1, 0);
-       pp(_ifelseconst.ifexpr_2, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.If)
-    {
-       hardtyped.Absyn.If _if = (hardtyped.Absyn.If) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       render("|");
-       render("(");
-       pp(_if.expr_1, 0);
-       render(")");
-       render(":");
-       render("{");
-       pp(_if.expr_2, 0);
-       render("}");
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.Else)
-    {
-       hardtyped.Absyn.Else _else = (hardtyped.Absyn.Else) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       render("|:");
-       render("{");
-       pp(_else.expr_, 0);
-       render("}");
-       if (_i_ > 0) render(_R_PAREN);
-    }
-
-  }
-
-  private static void pp(hardtyped.Absyn.Let foo, int _i_)
-  {
-    if (foo instanceof hardtyped.Absyn.LetVariable)
-    {
-       hardtyped.Absyn.LetVariable _letvariable = (hardtyped.Absyn.LetVariable) foo;
+       hardtyped.Absyn.Let _let = (hardtyped.Absyn.Let) foo;
        if (_i_ > 0) render(_L_PAREN);
        render("let");
-       pp(_letvariable.vardec_, 0);
+       pp(_let.vardec_, 0);
        render("=");
-       pp(_letvariable.expr_, 0);
+       pp(_let.expr_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.LetInference)
@@ -578,22 +436,7 @@ public class PrettyPrinter
        pp(_letrec.expr_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.LetType)
-    {
-       hardtyped.Absyn.LetType _lettype = (hardtyped.Absyn.LetType) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       render("lettype");
-       pp(_lettype.vardec_, 0);
-       render("=");
-       pp(_lettype.type_, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-
-  }
-
-  private static void pp(hardtyped.Absyn.Value foo, int _i_)
-  {
-    if (foo instanceof hardtyped.Absyn.IntValue)
+    else     if (foo instanceof hardtyped.Absyn.IntValue)
     {
        hardtyped.Absyn.IntValue _intvalue = (hardtyped.Absyn.IntValue) foo;
        if (_i_ > 0) render(_L_PAREN);
@@ -628,43 +471,29 @@ public class PrettyPrinter
        pp(_unitvalue.unit_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.RecordConstr)
+    else     if (foo instanceof hardtyped.Absyn.AtomicExpression)
     {
-       hardtyped.Absyn.RecordConstr _recordconstr = (hardtyped.Absyn.RecordConstr) foo;
+       hardtyped.Absyn.AtomicExpression _atomicexpression = (hardtyped.Absyn.AtomicExpression) foo;
        if (_i_ > 0) render(_L_PAREN);
-       render("{");
-       pp(_recordconstr.record_, 0);
-       render("}");
+       pp(_atomicexpression.ident_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
-
-  }
-
-  private static void pp(hardtyped.Absyn.Record foo, int _i_)
-  {
-    if (foo instanceof hardtyped.Absyn.BaseRecordNameValue)
+    else     if (foo instanceof hardtyped.Absyn.ParenthesesExpression)
     {
-       hardtyped.Absyn.BaseRecordNameValue _baserecordnamevalue = (hardtyped.Absyn.BaseRecordNameValue) foo;
+       hardtyped.Absyn.ParenthesesExpression _parenthesesexpression = (hardtyped.Absyn.ParenthesesExpression) foo;
        if (_i_ > 0) render(_L_PAREN);
-       pp(_baserecordnamevalue.vardec_, 0);
-       render("=");
-       pp(_baserecordnamevalue.value_, 0);
+       render("(");
+       pp(_parenthesesexpression.expr_, 0);
+       render(")");
        if (_i_ > 0) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.BaseRecordName)
+    else     if (foo instanceof hardtyped.Absyn.DotExpression)
     {
-       hardtyped.Absyn.BaseRecordName _baserecordname = (hardtyped.Absyn.BaseRecordName) foo;
+       hardtyped.Absyn.DotExpression _dotexpression = (hardtyped.Absyn.DotExpression) foo;
        if (_i_ > 0) render(_L_PAREN);
-       pp(_baserecordname.vardec_, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.MultipleRecordValue)
-    {
-       hardtyped.Absyn.MultipleRecordValue _multiplerecordvalue = (hardtyped.Absyn.MultipleRecordValue) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_multiplerecordvalue.record_1, 0);
-       render(",");
-       pp(_multiplerecordvalue.record_2, 0);
+       pp(_dotexpression.ident_1, 0);
+       render(".");
+       pp(_dotexpression.ident_2, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
 
@@ -694,35 +523,6 @@ public class PrettyPrinter
        hardtyped.Absyn.InnerExpression _innerexpression = (hardtyped.Absyn.InnerExpression) foo;
        if (_i_ > 0) render(_L_PAREN);
        pp(_innerexpression.expr_, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-
-  }
-
-  private static void pp(hardtyped.Absyn.InnerExpr foo, int _i_)
-  {
-    if (foo instanceof hardtyped.Absyn.BaseInnerExpression)
-    {
-       hardtyped.Absyn.BaseInnerExpression _baseinnerexpression = (hardtyped.Absyn.BaseInnerExpression) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_baseinnerexpression.expr_, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.MultipleInnerExpression)
-    {
-       hardtyped.Absyn.MultipleInnerExpression _multipleinnerexpression = (hardtyped.Absyn.MultipleInnerExpression) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_multipleinnerexpression.innerexpr_1, 0);
-       render(";");
-       pp(_multipleinnerexpression.innerexpr_2, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.FinalInnerExpression)
-    {
-       hardtyped.Absyn.FinalInnerExpression _finalinnerexpression = (hardtyped.Absyn.FinalInnerExpression) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_finalinnerexpression.innerexpr_, 0);
-       render(";");
        if (_i_ > 0) render(_R_PAREN);
     }
 
@@ -768,15 +568,6 @@ public class PrettyPrinter
        pp(_untypedvar.ident_, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.DotVar)
-    {
-       hardtyped.Absyn.DotVar _dotvar = (hardtyped.Absyn.DotVar) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_dotvar.ident_1, 0);
-       render(".");
-       pp(_dotvar.ident_2, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
 
   }
 
@@ -786,7 +577,7 @@ public class PrettyPrinter
     {
        hardtyped.Absyn.IntType _inttype = (hardtyped.Absyn.IntType) foo;
        if (_i_ > 0) render(_L_PAREN);
-       render("Int");
+       render("Integer");
        if (_i_ > 0) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.RealType)
@@ -800,7 +591,7 @@ public class PrettyPrinter
     {
        hardtyped.Absyn.BoolType _booltype = (hardtyped.Absyn.BoolType) foo;
        if (_i_ > 0) render(_L_PAREN);
-       render("Bool");
+       render("Boolean");
        if (_i_ > 0) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.StringType)
@@ -815,31 +606,6 @@ public class PrettyPrinter
        hardtyped.Absyn.UnitType _unittype = (hardtyped.Absyn.UnitType) foo;
        if (_i_ > 0) render(_L_PAREN);
        render("Unit");
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.AnyType)
-    {
-       hardtyped.Absyn.AnyType _anytype = (hardtyped.Absyn.AnyType) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       render("Any");
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.FunctionType)
-    {
-       hardtyped.Absyn.FunctionType _functiontype = (hardtyped.Absyn.FunctionType) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       pp(_functiontype.type_1, 0);
-       render("->");
-       pp(_functiontype.type_2, 0);
-       if (_i_ > 0) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.RecordType)
-    {
-       hardtyped.Absyn.RecordType _recordtype = (hardtyped.Absyn.RecordType) foo;
-       if (_i_ > 0) render(_L_PAREN);
-       render("{");
-       pp(_recordtype.record_, 0);
-       render("}");
        if (_i_ > 0) render(_R_PAREN);
     }
 
@@ -858,14 +624,6 @@ public class PrettyPrinter
 
   private static void sh(hardtyped.Absyn.Expr foo)
   {
-    if (foo instanceof hardtyped.Absyn.Import)
-    {
-       hardtyped.Absyn.Import _import = (hardtyped.Absyn.Import) foo;
-       render("(");
-       render("Import");
-       sh(_import.vardec_);
-       render(")");
-    }
     if (foo instanceof hardtyped.Absyn.Function)
     {
        hardtyped.Absyn.Function _function = (hardtyped.Absyn.Function) foo;
@@ -880,8 +638,8 @@ public class PrettyPrinter
        hardtyped.Absyn.ApplyFunction _applyfunction = (hardtyped.Absyn.ApplyFunction) foo;
        render("(");
        render("ApplyFunction");
-       sh(_applyfunction.vardec_);
-       sh(_applyfunction.expr_);
+       sh(_applyfunction.expr_1);
+       sh(_applyfunction.expr_2);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.PrintFunction)
@@ -927,12 +685,21 @@ public class PrettyPrinter
        sh(_multipleargfunction.expr_2);
        render(")");
     }
-    if (foo instanceof hardtyped.Absyn.IfStmt)
+    if (foo instanceof hardtyped.Absyn.If)
     {
-       hardtyped.Absyn.IfStmt _ifstmt = (hardtyped.Absyn.IfStmt) foo;
+       hardtyped.Absyn.If _if = (hardtyped.Absyn.If) foo;
        render("(");
-       render("IfStmt");
-       sh(_ifstmt.ifexpr_);
+       render("If");
+       sh(_if.expr_1);
+       sh(_if.expr_2);
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.Else)
+    {
+       hardtyped.Absyn.Else _else = (hardtyped.Absyn.Else) foo;
+       render("(");
+       render("Else");
+       sh(_else.expr_);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.Sum)
@@ -1058,79 +825,13 @@ public class PrettyPrinter
        sh(_unaryminus.expr_);
        render(")");
     }
-    if (foo instanceof hardtyped.Absyn.BaseLet)
+    if (foo instanceof hardtyped.Absyn.Let)
     {
-       hardtyped.Absyn.BaseLet _baselet = (hardtyped.Absyn.BaseLet) foo;
+       hardtyped.Absyn.Let _let = (hardtyped.Absyn.Let) foo;
        render("(");
-       render("BaseLet");
-       sh(_baselet.let_);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.BaseValue)
-    {
-       hardtyped.Absyn.BaseValue _basevalue = (hardtyped.Absyn.BaseValue) foo;
-       render("(");
-       render("BaseValue");
-       sh(_basevalue.value_);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.AtomicExpression)
-    {
-       hardtyped.Absyn.AtomicExpression _atomicexpression = (hardtyped.Absyn.AtomicExpression) foo;
-       render("(");
-       render("AtomicExpression");
-       sh(_atomicexpression.ident_);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.ParenthesesExpression)
-    {
-       hardtyped.Absyn.ParenthesesExpression _parenthesesexpression = (hardtyped.Absyn.ParenthesesExpression) foo;
-       render("(");
-       render("ParenthesesExpression");
-       sh(_parenthesesexpression.innerexpr_);
-       render(")");
-    }
-  }
-
-  private static void sh(hardtyped.Absyn.IfExpr foo)
-  {
-    if (foo instanceof hardtyped.Absyn.IfElseConst)
-    {
-       hardtyped.Absyn.IfElseConst _ifelseconst = (hardtyped.Absyn.IfElseConst) foo;
-       render("(");
-       render("IfElseConst");
-       sh(_ifelseconst.ifexpr_1);
-       sh(_ifelseconst.ifexpr_2);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.If)
-    {
-       hardtyped.Absyn.If _if = (hardtyped.Absyn.If) foo;
-       render("(");
-       render("If");
-       sh(_if.expr_1);
-       sh(_if.expr_2);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.Else)
-    {
-       hardtyped.Absyn.Else _else = (hardtyped.Absyn.Else) foo;
-       render("(");
-       render("Else");
-       sh(_else.expr_);
-       render(")");
-    }
-  }
-
-  private static void sh(hardtyped.Absyn.Let foo)
-  {
-    if (foo instanceof hardtyped.Absyn.LetVariable)
-    {
-       hardtyped.Absyn.LetVariable _letvariable = (hardtyped.Absyn.LetVariable) foo;
-       render("(");
-       render("LetVariable");
-       sh(_letvariable.vardec_);
-       sh(_letvariable.expr_);
+       render("Let");
+       sh(_let.vardec_);
+       sh(_let.expr_);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.LetInference)
@@ -1162,19 +863,6 @@ public class PrettyPrinter
        sh(_letrec.expr_);
        render(")");
     }
-    if (foo instanceof hardtyped.Absyn.LetType)
-    {
-       hardtyped.Absyn.LetType _lettype = (hardtyped.Absyn.LetType) foo;
-       render("(");
-       render("LetType");
-       sh(_lettype.vardec_);
-       sh(_lettype.type_);
-       render(")");
-    }
-  }
-
-  private static void sh(hardtyped.Absyn.Value foo)
-  {
     if (foo instanceof hardtyped.Absyn.IntValue)
     {
        hardtyped.Absyn.IntValue _intvalue = (hardtyped.Absyn.IntValue) foo;
@@ -1215,42 +903,29 @@ public class PrettyPrinter
        sh(_unitvalue.unit_);
        render(")");
     }
-    if (foo instanceof hardtyped.Absyn.RecordConstr)
+    if (foo instanceof hardtyped.Absyn.AtomicExpression)
     {
-       hardtyped.Absyn.RecordConstr _recordconstr = (hardtyped.Absyn.RecordConstr) foo;
+       hardtyped.Absyn.AtomicExpression _atomicexpression = (hardtyped.Absyn.AtomicExpression) foo;
        render("(");
-       render("RecordConstr");
-       sh(_recordconstr.record_);
+       render("AtomicExpression");
+       sh(_atomicexpression.ident_);
        render(")");
     }
-  }
-
-  private static void sh(hardtyped.Absyn.Record foo)
-  {
-    if (foo instanceof hardtyped.Absyn.BaseRecordNameValue)
+    if (foo instanceof hardtyped.Absyn.ParenthesesExpression)
     {
-       hardtyped.Absyn.BaseRecordNameValue _baserecordnamevalue = (hardtyped.Absyn.BaseRecordNameValue) foo;
+       hardtyped.Absyn.ParenthesesExpression _parenthesesexpression = (hardtyped.Absyn.ParenthesesExpression) foo;
        render("(");
-       render("BaseRecordNameValue");
-       sh(_baserecordnamevalue.vardec_);
-       sh(_baserecordnamevalue.value_);
+       render("ParenthesesExpression");
+       sh(_parenthesesexpression.expr_);
        render(")");
     }
-    if (foo instanceof hardtyped.Absyn.BaseRecordName)
+    if (foo instanceof hardtyped.Absyn.DotExpression)
     {
-       hardtyped.Absyn.BaseRecordName _baserecordname = (hardtyped.Absyn.BaseRecordName) foo;
+       hardtyped.Absyn.DotExpression _dotexpression = (hardtyped.Absyn.DotExpression) foo;
        render("(");
-       render("BaseRecordName");
-       sh(_baserecordname.vardec_);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.MultipleRecordValue)
-    {
-       hardtyped.Absyn.MultipleRecordValue _multiplerecordvalue = (hardtyped.Absyn.MultipleRecordValue) foo;
-       render("(");
-       render("MultipleRecordValue");
-       sh(_multiplerecordvalue.record_1);
-       sh(_multiplerecordvalue.record_2);
+       render("DotExpression");
+       sh(_dotexpression.ident_1);
+       sh(_dotexpression.ident_2);
        render(")");
     }
   }
@@ -1280,35 +955,6 @@ public class PrettyPrinter
        render("(");
        render("InnerExpression");
        sh(_innerexpression.expr_);
-       render(")");
-    }
-  }
-
-  private static void sh(hardtyped.Absyn.InnerExpr foo)
-  {
-    if (foo instanceof hardtyped.Absyn.BaseInnerExpression)
-    {
-       hardtyped.Absyn.BaseInnerExpression _baseinnerexpression = (hardtyped.Absyn.BaseInnerExpression) foo;
-       render("(");
-       render("BaseInnerExpression");
-       sh(_baseinnerexpression.expr_);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.MultipleInnerExpression)
-    {
-       hardtyped.Absyn.MultipleInnerExpression _multipleinnerexpression = (hardtyped.Absyn.MultipleInnerExpression) foo;
-       render("(");
-       render("MultipleInnerExpression");
-       sh(_multipleinnerexpression.innerexpr_1);
-       sh(_multipleinnerexpression.innerexpr_2);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.FinalInnerExpression)
-    {
-       hardtyped.Absyn.FinalInnerExpression _finalinnerexpression = (hardtyped.Absyn.FinalInnerExpression) foo;
-       render("(");
-       render("FinalInnerExpression");
-       sh(_finalinnerexpression.innerexpr_);
        render(")");
     }
   }
@@ -1353,15 +999,6 @@ public class PrettyPrinter
        sh(_untypedvar.ident_);
        render(")");
     }
-    if (foo instanceof hardtyped.Absyn.DotVar)
-    {
-       hardtyped.Absyn.DotVar _dotvar = (hardtyped.Absyn.DotVar) foo;
-       render("(");
-       render("DotVar");
-       sh(_dotvar.ident_1);
-       sh(_dotvar.ident_2);
-       render(")");
-    }
   }
 
   private static void sh(hardtyped.Absyn.Type foo)
@@ -1390,28 +1027,6 @@ public class PrettyPrinter
     {
        hardtyped.Absyn.UnitType _unittype = (hardtyped.Absyn.UnitType) foo;
        render("UnitType");
-    }
-    if (foo instanceof hardtyped.Absyn.AnyType)
-    {
-       hardtyped.Absyn.AnyType _anytype = (hardtyped.Absyn.AnyType) foo;
-       render("AnyType");
-    }
-    if (foo instanceof hardtyped.Absyn.FunctionType)
-    {
-       hardtyped.Absyn.FunctionType _functiontype = (hardtyped.Absyn.FunctionType) foo;
-       render("(");
-       render("FunctionType");
-       sh(_functiontype.type_1);
-       sh(_functiontype.type_2);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.RecordType)
-    {
-       hardtyped.Absyn.RecordType _recordtype = (hardtyped.Absyn.RecordType) foo;
-       render("(");
-       render("RecordType");
-       sh(_recordtype.record_);
-       render(")");
     }
   }
 

@@ -100,4 +100,15 @@ public class TestSyntax {
         Assert.assertFalse(errorStream.toString().isEmpty());
     };
 
+    @Test
+    public void functionsArgtypesIncorr() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "functions_argtypes_incorr.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
+
+        Assert.assertFalse(errorStream.toString().isEmpty());
+    };
+
 }

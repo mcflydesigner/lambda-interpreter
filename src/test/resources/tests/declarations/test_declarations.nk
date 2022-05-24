@@ -1,14 +1,11 @@
-
 let n: Integer = 5;
 print (n);
 let r: Real = 10.5;
 print (r);
-let b: Bool = True;
-let b1: Bool = True and False;
+let b: Boolean = true;
+let b1: Boolean = true and false;
 print (b1);
 let s: String = "Simple string";
 print (s);
 let n1 = 4;
 print (n1);
-let u: Unit = print (s);
-let u: Unit = unit;
