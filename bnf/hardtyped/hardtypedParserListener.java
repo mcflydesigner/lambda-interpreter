@@ -28,6 +28,46 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_Expr(hardtypedParser.Start_ExprContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_IfExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_IfExpr(hardtypedParser.Start_IfExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_IfExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_IfExpr(hardtypedParser.Start_IfExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Let}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Let(hardtypedParser.Start_LetContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Let}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Let(hardtypedParser.Start_LetContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Value}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Value(hardtypedParser.Start_ValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Value}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Value(hardtypedParser.Start_ValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Record}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Record(hardtypedParser.Start_RecordContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Record}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Record(hardtypedParser.Start_RecordContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_InExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -37,6 +77,16 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStart_InExpr(hardtypedParser.Start_InExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_InnerExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_InnerExpr(hardtypedParser.Start_InnerExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_InnerExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_InnerExpr(hardtypedParser.Start_InnerExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_FuncArg}.
 	 * @param ctx the parse tree
@@ -88,6 +138,46 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitExpr(hardtypedParser.ExprContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#ifExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfExpr(hardtypedParser.IfExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#ifExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfExpr(hardtypedParser.IfExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#let}.
+	 * @param ctx the parse tree
+	 */
+	void enterLet(hardtypedParser.LetContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#let}.
+	 * @param ctx the parse tree
+	 */
+	void exitLet(hardtypedParser.LetContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void enterValue(hardtypedParser.ValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void exitValue(hardtypedParser.ValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#record}.
+	 * @param ctx the parse tree
+	 */
+	void enterRecord(hardtypedParser.RecordContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#record}.
+	 * @param ctx the parse tree
+	 */
+	void exitRecord(hardtypedParser.RecordContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#inExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -97,6 +187,16 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInExpr(hardtypedParser.InExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#innerExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterInnerExpr(hardtypedParser.InnerExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#innerExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitInnerExpr(hardtypedParser.InnerExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#funcArg}.
 	 * @param ctx the parse tree

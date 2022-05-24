@@ -8,26 +8,42 @@ fragment CAPITAL : [A-Z\u00C0-\u00D6\u00D8-\u00DE] ;
 fragment SMALL   : [a-z\u00DF-\u00F6\u00F8-\u00FF] ;
 fragment DIGIT   : [0-9] ;
 Surrogate_id_SYMB_0 : ';' ;
-Surrogate_id_SYMB_1 : '/\\' ;
-Surrogate_id_SYMB_2 : '{' ;
-Surrogate_id_SYMB_3 : '}' ;
-Surrogate_id_SYMB_4 : '(' ;
-Surrogate_id_SYMB_5 : ')' ;
-Surrogate_id_SYMB_6 : '+' ;
-Surrogate_id_SYMB_7 : '-' ;
-Surrogate_id_SYMB_8 : '*' ;
-Surrogate_id_SYMB_9 : '/' ;
-Surrogate_id_SYMB_10 : '=' ;
-Surrogate_id_SYMB_11 : '.' ;
-Surrogate_id_SYMB_12 : ':' ;
-Surrogate_id_SYMB_13 : 'Boolean' ;
-Surrogate_id_SYMB_14 : 'Integer' ;
-Surrogate_id_SYMB_15 : 'Real' ;
-Surrogate_id_SYMB_16 : 'String' ;
-Surrogate_id_SYMB_17 : 'Unit' ;
-Surrogate_id_SYMB_18 : 'as' ;
-Surrogate_id_SYMB_19 : 'in' ;
-Surrogate_id_SYMB_20 : 'let' ;
+Surrogate_id_SYMB_1 : '-|' ;
+Surrogate_id_SYMB_2 : '/\\' ;
+Surrogate_id_SYMB_3 : '{' ;
+Surrogate_id_SYMB_4 : '}' ;
+Surrogate_id_SYMB_5 : '(' ;
+Surrogate_id_SYMB_6 : ')' ;
+Surrogate_id_SYMB_7 : ',' ;
+Surrogate_id_SYMB_8 : '|' ;
+Surrogate_id_SYMB_9 : ':' ;
+Surrogate_id_SYMB_10 : '|:' ;
+Surrogate_id_SYMB_11 : '+' ;
+Surrogate_id_SYMB_12 : '-' ;
+Surrogate_id_SYMB_13 : '*' ;
+Surrogate_id_SYMB_14 : '/' ;
+Surrogate_id_SYMB_15 : '>' ;
+Surrogate_id_SYMB_16 : '>=' ;
+Surrogate_id_SYMB_17 : '==' ;
+Surrogate_id_SYMB_18 : '<=' ;
+Surrogate_id_SYMB_19 : '<' ;
+Surrogate_id_SYMB_20 : '=' ;
+Surrogate_id_SYMB_21 : '.' ;
+Surrogate_id_SYMB_22 : '->' ;
+Surrogate_id_SYMB_23 : 'Any' ;
+Surrogate_id_SYMB_24 : 'Bool' ;
+Surrogate_id_SYMB_25 : 'Int' ;
+Surrogate_id_SYMB_26 : 'Real' ;
+Surrogate_id_SYMB_27 : 'String' ;
+Surrogate_id_SYMB_28 : 'Unit' ;
+Surrogate_id_SYMB_29 : 'and' ;
+Surrogate_id_SYMB_30 : 'as' ;
+Surrogate_id_SYMB_31 : 'in' ;
+Surrogate_id_SYMB_32 : 'let' ;
+Surrogate_id_SYMB_33 : 'letrec' ;
+Surrogate_id_SYMB_34 : 'lettype' ;
+Surrogate_id_SYMB_35 : 'not' ;
+Surrogate_id_SYMB_36 : 'or' ;
 COMMENT_antlr_builtin
 : (
 '//' ~[\r\n]* (('\r'? '\n')|EOF)
@@ -37,9 +53,10 @@ MULTICOMMENT_antlr_builtin
 '/*' (.)*? '*/'
 ) -> skip;
 
-BoolValue : 't''r''u''e'|'f''a''l''s''e';
-UnitValue : 'u''n''i''t';
+Bool : 't''r''u''e'|'f''a''l''s''e';
+Unit : 'u''n''i''t';
 Print : 'p''r''i''n''t';
+Read : 'r''e''a''d';
 // String token type
 STRING : '"' -> more, mode(STRINGMODE);
 

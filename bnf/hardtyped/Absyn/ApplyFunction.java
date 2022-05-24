@@ -3,8 +3,9 @@
 package hardtyped.Absyn;
 
 public class ApplyFunction  extends Expr {
-  public final Expr expr_1, expr_2;
-  public ApplyFunction(Expr p1, Expr p2) { expr_1 = p1; expr_2 = p2; }
+  public final VarDec vardec_;
+  public final Expr expr_;
+  public ApplyFunction(VarDec p1, Expr p2) { vardec_ = p1; expr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -12,13 +13,13 @@ public class ApplyFunction  extends Expr {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.ApplyFunction) {
       hardtyped.Absyn.ApplyFunction x = (hardtyped.Absyn.ApplyFunction)o;
-      return this.expr_1.equals(x.expr_1) && this.expr_2.equals(x.expr_2);
+      return this.vardec_.equals(x.vardec_) && this.expr_.equals(x.expr_);
     }
     return false;
   }
 
   public int hashCode() {
-    return 37*(this.expr_1.hashCode())+this.expr_2.hashCode();
+    return 37*(this.vardec_.hashCode())+this.expr_.hashCode();
   }
 
 

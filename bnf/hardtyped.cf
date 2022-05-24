@@ -3,10 +3,24 @@ comment "/*" "*/" ;
 
 separator Expr ";";
 
+-- Import
+Import. Expr ::= "-|" VarDec;
+
 -- Functions
 Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
-ApplyFunction. Expr ::= Expr "(" Expr ")";
+ApplyFunction. Expr ::= VarDec "(" Expr ")";
 PrintFunction. Expr ::= Print "(" Expr ")";
+ReadFunction. Expr ::= Read "(" Expr ")";
+EmptyPrintFunction. Expr ::= Print "(" ")";
+EmptyReadFunction. Expr ::= Read "(" ")";
+MultipleArgFunction. Expr ::= Expr "," Expr;
+
+-- If
+IfStmt. Expr ::= IfExpr;
+IfElseConst. IfExpr ::= IfExpr IfExpr;
+If. IfExpr ::= "|" "(" Expr ")" ":" "{" Expr "}";
+Else. IfExpr ::= "|:" "{" Expr "}";
+
 
 -- Basic operations
 Sum. Expr ::= Expr "+" Expr;
@@ -14,44 +28,75 @@ Substract. Expr::= Expr "-" Expr;
 Multiply. Expr ::= Expr "*" Expr;
 Divide. Expr ::= Expr "/" Expr;
 
+-- Logical operations
+And. Expr ::= Expr "and" Expr;
+Or. Expr ::= Expr "or" Expr;
+Not. Expr ::= "not" Expr;
+
+-- Comparison operations
+More. Expr ::= Expr ">" Expr;
+MoreEql. Expr ::= Expr ">=" Expr;
+Eql. Expr ::= Expr "==" Expr;
+LessEql. Expr ::= Expr "<=" Expr;
+Less. Expr ::= Expr "<" Expr;
 UnaryPlus. Expr ::= "+" Expr;
 UnaryMinus. Expr ::= "-" Expr;
 
 -- Variable initializers
-Let. Expr ::= "let" VarDec "=" Expr;
-LetInference. Expr ::= "let" VarDec "=" Expr "in" Expr;
-LetAscription. Expr ::= "let" VarDec "=" Expr "as" Type;
+BaseLet. Expr ::= Let;
+LetVariable. Let ::= "let" VarDec "=" Expr;
+LetInference. Let ::= "let" VarDec "=" Expr "in" Expr;
+LetAscription. Let ::= "let" VarDec "=" Expr "as" Type;
+LetRec. Let ::= "letrec" VarDec "=" Expr;
+LetType. Let ::= "lettype" VarDec "=" Type;
 
 -- Values
-IntValue. Expr ::= Integer;
-RealValue. Expr ::= Double;
-StringValue. Expr ::= String;
+BaseValue. Expr ::= Value;
+IntValue. Value ::= Integer;
+RealValue. Value ::= Double;
+StringValue. Value ::= String;
+BoolValue. Value ::= Bool;
+UnitValue. Value ::= Unit;
 
--- In-function expressions - todo: remove it
+-- RecordValue
+RecordConstr. Value ::= "{" Record "}";
+BaseRecordNameValue. Record ::= VarDec "=" Value;
+BaseRecordName. Record ::= VarDec;
+MultipleRecordValue. Record ::= Record "," Record;
+
+-- In-function expressions
 MultipleExpressions. InExpr ::= InExpr ";" InExpr;
 FinalExpression. InExpr ::= InExpr ";";
 InnerExpression. InExpr ::= Expr;
 
 -- Utility expressions
 AtomicExpression. Expr ::= Ident;
-ParenthesesExpression. Expr ::= "(" Expr ")";
+
+ParenthesesExpression. Expr ::= "(" InnerExpr ")";
+BaseInnerExpression. InnerExpr ::= Expr;
+MultipleInnerExpression. InnerExpr ::= InnerExpr ";" InnerExpr ;
+FinalInnerExpression. InnerExpr ::= InnerExpr ";";
 
 -- Function arguments
 MultipleArgs. FuncArg ::= VarDec "." FuncArg ;
 FinalArg. FuncArg ::= VarDec ".";
 
-
 -- Variable declarations
 TypedVar. VarDec ::= Ident ":" Type;
 UntypedVar. VarDec ::= Ident;
+DotVar. VarDec ::= Ident "." Ident;
 
 -- Types
-IntType. Type ::= "Integer";
+IntType. Type ::= "Int";
 RealType. Type ::= "Real";
-BoolType. Type ::= "Boolean";
+BoolType. Type ::= "Bool";
 StringType. Type ::= "String";
 UnitType. Type ::= "Unit";
+AnyType. Type ::= "Any";
+FunctionType. Type ::= Type "->" Type;
+RecordType. Type ::= "{" Record "}";
 
-token BoolValue {"true"} | {"false"};
-token UnitValue {"unit"};
+token Bool {"true"} | {"false"};
+token Unit {"unit"};
 token Print {"print"};
+token Read {"read"};

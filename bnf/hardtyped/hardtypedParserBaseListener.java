@@ -40,6 +40,54 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStart_IfExpr(hardtypedParser.Start_IfExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_IfExpr(hardtypedParser.Start_IfExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_Let(hardtypedParser.Start_LetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Let(hardtypedParser.Start_LetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_Value(hardtypedParser.Start_ValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Value(hardtypedParser.Start_ValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_Record(hardtypedParser.Start_RecordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Record(hardtypedParser.Start_RecordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStart_InExpr(hardtypedParser.Start_InExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -47,6 +95,18 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStart_InExpr(hardtypedParser.Start_InExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_InnerExpr(hardtypedParser.Start_InnerExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_InnerExpr(hardtypedParser.Start_InnerExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -112,6 +172,54 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIfExpr(hardtypedParser.IfExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfExpr(hardtypedParser.IfExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLet(hardtypedParser.LetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLet(hardtypedParser.LetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValue(hardtypedParser.ValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValue(hardtypedParser.ValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRecord(hardtypedParser.RecordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRecord(hardtypedParser.RecordContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterInExpr(hardtypedParser.InExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -119,6 +227,18 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInExpr(hardtypedParser.InExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInnerExpr(hardtypedParser.InnerExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInnerExpr(hardtypedParser.InnerExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
