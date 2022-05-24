@@ -1,0 +1,7 @@
+-| std.nk
+
+print ("Input your name");
+
+let name: String = readString();
+
+print ("Hello, " + name);

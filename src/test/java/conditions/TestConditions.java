@@ -31,7 +31,7 @@ public class TestConditions {
     @Test
     public void testCompConditions() throws Exception {
         //"80\n42\n0"
-        InputStream inputStream = getInputStream(pathToTests + "test_comp_conditions.nk");
+        InputStream inputStream = getInputStream(pathToTests + "test_comp_cond.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 

@@ -1,3 +1,5 @@
+-| math.nk as math
+
 lettype Vector3d = {x1: Real, x2: Real, x3: Real};
 
 /\ v: Vector3d. {

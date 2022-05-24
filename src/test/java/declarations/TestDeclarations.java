@@ -27,7 +27,7 @@ public class TestDeclarations {
 
         String expected = "5\n10.5\nfalse\nSimple string\n4".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
-
+        System.out.println(errorStream.toString());
         Assert.assertEquals(expected, output);
         Assert.assertTrue(errorStream.toString().isEmpty());
     }
@@ -41,7 +41,7 @@ public class TestDeclarations {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "10.5".trim();
+        String expected = "10.2".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);

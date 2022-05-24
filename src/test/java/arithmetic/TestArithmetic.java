@@ -29,7 +29,7 @@ public class TestArithmetic {
 
     @Test
     public void testSimpleSubtraction() throws Exception {
-        InputStream inputStream = getInputStream(pathToTests + "test_simple_summation.nk");
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_subtraction.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 
@@ -51,5 +51,20 @@ public class TestArithmetic {
         MainTest.test(inputStream, errorStream, outputStream);
 
         Assert.assertFalse(errorStream.toString().isEmpty());
+    }
+
+    @Test
+    public void testArithmeticOrder() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "test_arithmetic_order.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
+
+        String expected = "50\n44".trim();
+        String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
+
+        Assert.assertEquals(expected, output);
+        Assert.assertTrue(errorStream.toString().isEmpty());
     }
 }
