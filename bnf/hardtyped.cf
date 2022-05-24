@@ -26,6 +26,7 @@ UntypedVar. VarDec ::= Ident;
 
 -- Functions
 Function. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}";
+FunctionWithReturnType. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}" "->" Type;
 Application. Expr1 ::= VarName "(" [ExprSequence] ")";
 PrintFunction. Expr1 ::= Print "(" Expr ")";
 ReadRealFunction. Expr1 ::= ReadReal "(" [ExprSequence] ")";
