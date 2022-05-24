@@ -179,7 +179,8 @@ All other symbols are terminals.\\
 
 \begin{tabular}{lll}
 {\nonterminal{Let}} & {\arrow}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}}  \\
- & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}} {\terminal{in}} {\nonterminal{ListExpr}}  \\
+ & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}} {\terminal{in}} {\nonterminal{Expr1}}  \\
+ & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}} {\terminal{in}} {\terminal{(}} {\nonterminal{ListExpr}} {\terminal{)}}  \\
  & {\delimit}  &{\terminal{letrec}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}}  \\
  & {\delimit}  &{\terminal{lettype}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Type}}  \\
 \end{tabular}\\
@@ -275,7 +276,7 @@ All other symbols are terminals.\\
  & {\delimit}  &{\terminal{String}}  \\
  & {\delimit}  &{\terminal{Unit}}  \\
  & {\delimit}  &{\terminal{Any}}  \\
- & {\delimit}  &{\nonterminal{Type1}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type2}}  \\
+ & {\delimit}  &{\terminal{(}} {\nonterminal{Type}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}} {\terminal{)}}  \\
  & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecord}} {\terminal{\}}}  \\
 \end{tabular}\\
 

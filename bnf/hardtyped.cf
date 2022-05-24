@@ -95,7 +95,7 @@ BoolType. Type ::= "Bool";
 StringType. Type ::= "String";
 UnitType. Type ::= "Unit";
 AnyType. Type ::= "Any";
-FunctionType. Type ::= Type1 "->" Type2;
+FunctionType. Type ::= Type "->" Type;
 RecordType. Type ::= "{" [Record] "}";
 
 BaseRecordNameValue. Record ::= VarDec "=" Expr3;

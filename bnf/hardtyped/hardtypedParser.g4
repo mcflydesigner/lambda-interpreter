@@ -348,7 +348,7 @@ type returns [ hardtyped.Absyn.Type result ]
     { $result = new hardtyped.Absyn.UnitType(); }
   | Surrogate_id_SYMB_24
     { $result = new hardtyped.Absyn.AnyType(); }
-  | p_8_1=type1 Surrogate_id_SYMB_23 p_8_3=type2
+  | p_8_1=type Surrogate_id_SYMB_23 p_8_3=type
     { $result = new hardtyped.Absyn.FunctionType($p_8_1.result,$p_8_3.result); }
   | Surrogate_id_SYMB_9 p_9_2=listRecord Surrogate_id_SYMB_10
     { $result = new hardtyped.Absyn.RecordType($p_9_2.result); }

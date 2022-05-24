@@ -1069,9 +1069,9 @@ public class PrettyPrinter
     {
        hardtyped.Absyn.FunctionType _functiontype = (hardtyped.Absyn.FunctionType) foo;
        if (_i_ > 0) render(_L_PAREN);
-       pp(_functiontype.type_1, 1);
+       pp(_functiontype.type_1, 0);
        render("->");
-       pp(_functiontype.type_2, 2);
+       pp(_functiontype.type_2, 0);
        if (_i_ > 0) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.RecordType)
