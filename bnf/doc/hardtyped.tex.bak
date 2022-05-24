@@ -99,11 +99,11 @@ The symbols used in hardtyped are the following: \\
 {\symb{;}} &{\symb{(}} &{\symb{)}} \\
 {\symb{{$-$}{$|$}}} &{\symb{.}} &{\symb{/}} \\
 {\symb{{$=$}}} &{\symb{:}} &{\symb{/$\backslash$}} \\
-{\symb{\{}} &{\symb{\}}} &{\symb{,}} \\
-{\symb{{$|$}}} &{\symb{{$|$}:}} &{\symb{{$+$}}} \\
-{\symb{{$-$}}} &{\symb{*}} &{\symb{{$>$}}} \\
-{\symb{{$>$}{$=$}}} &{\symb{{$=$}{$=$}}} &{\symb{!{$=$}}} \\
-{\symb{{$<$}{$=$}}} &{\symb{{$<$}}} &{\symb{{$-$}{$>$}}} \\
+{\symb{\{}} &{\symb{\}}} &{\symb{{$-$}{$>$}}} \\
+{\symb{,}} &{\symb{{$|$}}} &{\symb{{$|$}:}} \\
+{\symb{{$+$}}} &{\symb{{$-$}}} &{\symb{*}} \\
+{\symb{{$>$}}} &{\symb{{$>$}{$=$}}} &{\symb{{$=$}{$=$}}} \\
+{\symb{!{$=$}}} &{\symb{{$<$}{$=$}}} &{\symb{{$<$}}} \\
 \end{tabular}\\
 
 \subsection*{Comments}
@@ -132,6 +132,7 @@ All other symbols are terminals.\\
 \begin{tabular}{lll}
 {\nonterminal{Expr1}} & {\arrow}  &{\nonterminal{Expr2}}  \\
  & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}}  \\
+ & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}}  \\
  & {\delimit}  &{\nonterminal{VarName}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{ReadReal}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\

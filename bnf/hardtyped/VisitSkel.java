@@ -42,6 +42,19 @@ public class VisitSkel
       }
       return null;
     }
+    public R visit(hardtyped.Absyn.FunctionApplication p, A arg)
+    { /* Code for FunctionApplication goes here */
+      for (hardtyped.Absyn.FuncArg x: p.listfuncarg_) {
+        x.accept(new FuncArgVisitor<R,A>(), arg);
+      }
+      for (hardtyped.Absyn.Expr x: p.listexpr_) {
+        x.accept(new ExprVisitor<R,A>(), arg);
+      }
+      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
+        x.accept(new ExprSequenceVisitor<R,A>(), arg);
+      }
+      return null;
+    }
     public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg)
     { /* Code for FunctionWithReturnType goes here */
       for (hardtyped.Absyn.FuncArg x: p.listfuncarg_) {

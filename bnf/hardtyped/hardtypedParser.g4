@@ -156,20 +156,22 @@ expr1 returns [ hardtyped.Absyn.Expr result ]
     { $result = $p_1_1.result; }
   | Surrogate_id_SYMB_8 p_2_2=listFuncArg Surrogate_id_SYMB_9 p_2_4=listExpr Surrogate_id_SYMB_10
     { $result = new hardtyped.Absyn.Function($p_2_2.result,$p_2_4.result); }
-  | Surrogate_id_SYMB_8 p_3_2=listFuncArg Surrogate_id_SYMB_9 p_3_4=listExpr Surrogate_id_SYMB_10 Surrogate_id_SYMB_11 p_3_7=type
-    { $result = new hardtyped.Absyn.FunctionWithReturnType($p_3_2.result,$p_3_4.result,$p_3_7.result); }
-  | p_4_1=varName Surrogate_id_SYMB_1 p_4_3=listExprSequence Surrogate_id_SYMB_2
-    { $result = new hardtyped.Absyn.Application($p_4_1.result,$p_4_3.result); }
-  | p_5_1=Print Surrogate_id_SYMB_1 p_5_3=expr Surrogate_id_SYMB_2
-    { $result = new hardtyped.Absyn.PrintFunction($p_5_1.getText(),$p_5_3.result); }
-  | p_6_1=ReadReal Surrogate_id_SYMB_1 p_6_3=listExprSequence Surrogate_id_SYMB_2
-    { $result = new hardtyped.Absyn.ReadRealFunction($p_6_1.getText(),$p_6_3.result); }
-  | p_7_1=ReadInt Surrogate_id_SYMB_1 p_7_3=listExprSequence Surrogate_id_SYMB_2
-    { $result = new hardtyped.Absyn.ReadIntFunction($p_7_1.getText(),$p_7_3.result); }
-  | p_8_1=ReadString Surrogate_id_SYMB_1 p_8_3=listExprSequence Surrogate_id_SYMB_2
-    { $result = new hardtyped.Absyn.ReadStringFunction($p_8_1.getText(),$p_8_3.result); }
-  | p_9_1=ReadBool Surrogate_id_SYMB_1 p_9_3=listExprSequence Surrogate_id_SYMB_2
-    { $result = new hardtyped.Absyn.ReadBoolFunction($p_9_1.getText(),$p_9_3.result); }
+  | Surrogate_id_SYMB_8 p_3_2=listFuncArg Surrogate_id_SYMB_9 p_3_4=listExpr Surrogate_id_SYMB_10 Surrogate_id_SYMB_1 p_3_7=listExprSequence Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.FunctionApplication($p_3_2.result,$p_3_4.result,$p_3_7.result); }
+  | Surrogate_id_SYMB_8 p_4_2=listFuncArg Surrogate_id_SYMB_9 p_4_4=listExpr Surrogate_id_SYMB_10 Surrogate_id_SYMB_11 p_4_7=type
+    { $result = new hardtyped.Absyn.FunctionWithReturnType($p_4_2.result,$p_4_4.result,$p_4_7.result); }
+  | p_5_1=varName Surrogate_id_SYMB_1 p_5_3=listExprSequence Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.Application($p_5_1.result,$p_5_3.result); }
+  | p_6_1=Print Surrogate_id_SYMB_1 p_6_3=expr Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.PrintFunction($p_6_1.getText(),$p_6_3.result); }
+  | p_7_1=ReadReal Surrogate_id_SYMB_1 p_7_3=listExprSequence Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.ReadRealFunction($p_7_1.getText(),$p_7_3.result); }
+  | p_8_1=ReadInt Surrogate_id_SYMB_1 p_8_3=listExprSequence Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.ReadIntFunction($p_8_1.getText(),$p_8_3.result); }
+  | p_9_1=ReadString Surrogate_id_SYMB_1 p_9_3=listExprSequence Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.ReadStringFunction($p_9_1.getText(),$p_9_3.result); }
+  | p_10_1=ReadBool Surrogate_id_SYMB_1 p_10_3=listExprSequence Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.ReadBoolFunction($p_10_1.getText(),$p_10_3.result); }
   ;
 expr2 returns [ hardtyped.Absyn.Expr result ]
   : p_1_1=expr3

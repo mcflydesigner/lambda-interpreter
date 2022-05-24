@@ -56,6 +56,25 @@ public class ComposVisitor<A> implements
       }
       return new hardtyped.Absyn.Function(listfuncarg_, listexpr_);
     }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.FunctionApplication p, A arg)
+    {
+      hardtyped.Absyn.ListFuncArg listfuncarg_ = new hardtyped.Absyn.ListFuncArg();
+      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
+      {
+        listfuncarg_.add(x.accept(this,arg));
+      }
+      hardtyped.Absyn.ListExpr listexpr_ = new hardtyped.Absyn.ListExpr();
+      for (hardtyped.Absyn.Expr x : p.listexpr_)
+      {
+        listexpr_.add(x.accept(this,arg));
+      }
+      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
+      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
+      {
+        listexprsequence_.add(x.accept(this,arg));
+      }
+      return new hardtyped.Absyn.FunctionApplication(listfuncarg_, listexpr_, listexprsequence_);
+    }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.FunctionWithReturnType p, A arg)
     {
       hardtyped.Absyn.ListFuncArg listfuncarg_ = new hardtyped.Absyn.ListFuncArg();
