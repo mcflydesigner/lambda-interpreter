@@ -13,8 +13,7 @@ public abstract class Expr implements java.io.Serializable {
     public R visit(hardtyped.Absyn.EmptyPrintFunction p, A arg);
     public R visit(hardtyped.Absyn.EmptyReadFunction p, A arg);
     public R visit(hardtyped.Absyn.MultipleArgFunction p, A arg);
-    public R visit(hardtyped.Absyn.If p, A arg);
-    public R visit(hardtyped.Absyn.Else p, A arg);
+    public R visit(hardtyped.Absyn.IfStmt p, A arg);
     public R visit(hardtyped.Absyn.Sum p, A arg);
     public R visit(hardtyped.Absyn.Substract p, A arg);
     public R visit(hardtyped.Absyn.Multiply p, A arg);

@@ -70,7 +70,7 @@ The set of reserved words is the set of terminals appearing in the grammar. Thos
 The reserved words used in hardtyped are the following: \\
 
 \begin{tabular}{lll}
-{\reserved{Any}} &{\reserved{Boolean}} &{\reserved{Integer}} \\
+{\reserved{Any}} &{\reserved{Bool}} &{\reserved{Int}} \\
 {\reserved{Real}} &{\reserved{String}} &{\reserved{Unit}} \\
 {\reserved{and}} &{\reserved{as}} &{\reserved{in}} \\
 {\reserved{let}} &{\reserved{letrec}} &{\reserved{lettype}} \\
@@ -115,8 +115,7 @@ All other symbols are terminals.\\
  & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Read}} {\terminal{(}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{,}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\terminal{{$|$}}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}} {\terminal{:}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\terminal{{$|$}:}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{IfExpr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$+$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$-$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{*}} {\nonterminal{Expr}}  \\
@@ -134,7 +133,12 @@ All other symbols are terminals.\\
  & {\delimit}  &{\nonterminal{Let}}  \\
  & {\delimit}  &{\nonterminal{Value}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
- & {\delimit}  &{\terminal{(}} {\nonterminal{InnerExpr}} {\terminal{)}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{IfExpr}} & {\arrow}  &{\nonterminal{IfExpr}} {\nonterminal{IfExpr}}  \\
+ & {\delimit}  &{\terminal{{$|$}}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}} {\terminal{:}} {\terminal{\{}} {\nonterminal{Expr}} {\terminal{\}}}  \\
+ & {\delimit}  &{\terminal{{$|$}:}} {\terminal{\{}} {\nonterminal{Expr}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -184,9 +188,9 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Type}} & {\arrow}  &{\terminal{Integer}}  \\
+{\nonterminal{Type}} & {\arrow}  &{\terminal{Int}}  \\
  & {\delimit}  &{\terminal{Real}}  \\
- & {\delimit}  &{\terminal{Boolean}}  \\
+ & {\delimit}  &{\terminal{Bool}}  \\
  & {\delimit}  &{\terminal{String}}  \\
  & {\delimit}  &{\terminal{Unit}}  \\
  & {\delimit}  &{\terminal{Any}}  \\

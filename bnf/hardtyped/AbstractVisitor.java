@@ -14,8 +14,7 @@ public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     public R visit(hardtyped.Absyn.EmptyPrintFunction p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.EmptyReadFunction p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.MultipleArgFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.If p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Else p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.IfStmt p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Sum p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Substract p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Multiply p, A arg) { return visitDefault(p, arg); }
@@ -35,6 +34,13 @@ public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     public R visit(hardtyped.Absyn.AtomicExpression p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.ParenthesesExpression p, A arg) { return visitDefault(p, arg); }
     public R visitDefault(hardtyped.Absyn.Expr p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
+    /* IfExpr */
+    public R visit(hardtyped.Absyn.IfElseConst p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.If p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Else p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.IfExpr p, A arg) {
       throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
     }
     /* Let */

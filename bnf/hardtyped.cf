@@ -8,7 +8,7 @@ Import. Expr ::= "-|" VarDec;
 
 -- Functions
 Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
-ApplyFunction. Expr ::= Expr "(" Expr ")";
+ApplyFunction. Expr ::= VarDec "(" Expr ")";
 PrintFunction. Expr ::= Print "(" Expr ")";
 ReadFunction. Expr ::= Read "(" Expr ")";
 EmptyPrintFunction. Expr ::= Print "(" ")";
@@ -16,8 +16,11 @@ EmptyReadFunction. Expr ::= Read "(" ")";
 MultipleArgFunction. Expr ::= Expr "," Expr;
 
 -- If
-If. Expr ::= "|" "(" Expr ")" ":" Expr;
-Else. Expr ::= "|:" Expr;
+IfStmt. Expr ::= IfExpr;
+IfElseConst. IfExpr ::= IfExpr IfExpr;
+If. IfExpr ::= "|" "(" Expr ")" ":" "{" Expr "}";
+Else. IfExpr ::= "|:" "{" Expr "}";
+
 
 -- Basic operations
 Sum. Expr ::= Expr "+" Expr;

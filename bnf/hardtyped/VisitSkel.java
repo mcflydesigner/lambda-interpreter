@@ -27,8 +27,8 @@ public class VisitSkel
     }
     public R visit(hardtyped.Absyn.ApplyFunction p, A arg)
     { /* Code for ApplyFunction goes here */
-      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
-      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.PrintFunction p, A arg)
@@ -59,15 +59,9 @@ public class VisitSkel
       p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.If p, A arg)
-    { /* Code for If goes here */
-      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
-      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.Else p, A arg)
-    { /* Code for Else goes here */
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+    public R visit(hardtyped.Absyn.IfStmt p, A arg)
+    { /* Code for IfStmt goes here */
+      p.ifexpr_.accept(new IfExprVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.Sum p, A arg)
@@ -169,6 +163,26 @@ public class VisitSkel
     public R visit(hardtyped.Absyn.ParenthesesExpression p, A arg)
     { /* Code for ParenthesesExpression goes here */
       p.innerexpr_.accept(new InnerExprVisitor<R,A>(), arg);
+      return null;
+    }
+  }
+  public class IfExprVisitor<R,A> implements hardtyped.Absyn.IfExpr.Visitor<R,A>
+  {
+    public R visit(hardtyped.Absyn.IfElseConst p, A arg)
+    { /* Code for IfElseConst goes here */
+      p.ifexpr_1.accept(new IfExprVisitor<R,A>(), arg);
+      p.ifexpr_2.accept(new IfExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.If p, A arg)
+    { /* Code for If goes here */
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.Else p, A arg)
+    { /* Code for Else goes here */
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
   }

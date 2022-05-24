@@ -1,5 +1,5 @@
--| std.nk;
-
-let Vector3d: Any = {x1: Real = 0.0, x2: Real, x3: Real};
-
-lettype func1 = Integer -> {x1:Integer, x2:Integer};
+letrec factorial =
+/\ n: Int. {
+    |  (n == 1): { n }
+    |: { n * factorial(n) }
+};

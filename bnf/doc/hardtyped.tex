@@ -109,14 +109,13 @@ All other symbols are terminals.\\
 \begin{tabular}{lll}
 {\nonterminal{Expr}} & {\arrow}  &{\terminal{{$-$}{$|$}}} {\nonterminal{VarDec}}  \\
  & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{FuncArg}} {\terminal{\{}} {\nonterminal{InExpr}} {\terminal{\}}}  \\
- & {\delimit}  &{\nonterminal{Expr}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
+ & {\delimit}  &{\nonterminal{VarDec}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Read}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Read}} {\terminal{(}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{,}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\terminal{{$|$}}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}} {\terminal{:}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\terminal{{$|$}:}} {\nonterminal{Expr}}  \\
+ & {\delimit}  &{\nonterminal{IfExpr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$+$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{{$-$}}} {\nonterminal{Expr}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{*}} {\nonterminal{Expr}}  \\
@@ -135,6 +134,12 @@ All other symbols are terminals.\\
  & {\delimit}  &{\nonterminal{Value}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
  & {\delimit}  &{\terminal{(}} {\nonterminal{InnerExpr}} {\terminal{)}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{IfExpr}} & {\arrow}  &{\nonterminal{IfExpr}} {\nonterminal{IfExpr}}  \\
+ & {\delimit}  &{\terminal{{$|$}}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}} {\terminal{:}} {\terminal{\{}} {\nonterminal{Expr}} {\terminal{\}}}  \\
+ & {\delimit}  &{\terminal{{$|$}:}} {\terminal{\{}} {\nonterminal{Expr}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
