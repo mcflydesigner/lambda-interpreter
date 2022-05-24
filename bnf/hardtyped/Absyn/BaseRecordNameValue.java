@@ -2,17 +2,17 @@
 
 package hardtyped.Absyn;
 
-public class Let  extends Expr {
+public class BaseRecordNameValue  extends Record {
   public final VarDec vardec_;
   public final Expr expr_;
-  public Let(VarDec p1, Expr p2) { vardec_ = p1; expr_ = p2; }
+  public BaseRecordNameValue(VarDec p1, Expr p2) { vardec_ = p1; expr_ = p2; }
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Record.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.Let) {
-      hardtyped.Absyn.Let x = (hardtyped.Absyn.Let)o;
+    if (o instanceof hardtyped.Absyn.BaseRecordNameValue) {
+      hardtyped.Absyn.BaseRecordNameValue x = (hardtyped.Absyn.BaseRecordNameValue)o;
       return this.vardec_.equals(x.vardec_) && this.expr_.equals(x.expr_);
     }
     return false;

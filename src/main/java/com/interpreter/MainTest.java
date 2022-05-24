@@ -20,6 +20,7 @@ public class MainTest {
         PrintStream printErrorStream = new PrintStream(errorStream);
         System.setErr(printErrorStream);
         PrintStream printOutputStream = new PrintStream(outputStream);
+        System.setOut(printOutputStream);
 
         try {
             Test t = new Test(new String[0]);

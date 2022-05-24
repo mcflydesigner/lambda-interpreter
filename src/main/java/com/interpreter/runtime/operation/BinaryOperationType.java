@@ -4,5 +4,6 @@ public enum BinaryOperationType {
     ADDITION,
     SUBTRACTION,
     MULTIPLICATION,
-    DIVISION
+    DIVISION,
+    GREATER,
 }

@@ -3,9 +3,9 @@
 package hardtyped.Absyn;
 
 public class Function  extends Expr {
-  public final FuncArg funcarg_;
-  public final InExpr inexpr_;
-  public Function(FuncArg p1, InExpr p2) { funcarg_ = p1; inexpr_ = p2; }
+  public final ListFuncArg listfuncarg_;
+  public final ListExpr listexpr_;
+  public Function(ListFuncArg p1, ListExpr p2) { listfuncarg_ = p1; listexpr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -13,13 +13,13 @@ public class Function  extends Expr {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.Function) {
       hardtyped.Absyn.Function x = (hardtyped.Absyn.Function)o;
-      return this.funcarg_.equals(x.funcarg_) && this.inexpr_.equals(x.inexpr_);
+      return this.listfuncarg_.equals(x.listfuncarg_) && this.listexpr_.equals(x.listexpr_);
     }
     return false;
   }
 
   public int hashCode() {
-    return 37*(this.funcarg_.hashCode())+this.inexpr_.hashCode();
+    return 37*(this.listfuncarg_.hashCode())+this.listexpr_.hashCode();
   }
 
 

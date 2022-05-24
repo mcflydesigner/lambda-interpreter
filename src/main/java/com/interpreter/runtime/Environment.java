@@ -22,7 +22,7 @@ public class Environment {
 
     public void flushScope() {
         if (scopes.size() == 1) {
-            throw new IllegalStateException("Global environment cannot be flushed.");
+            throw new IllegalStateException("Global scope cannot be flushed.");
         }
 
         scopes.removeLast();
@@ -42,7 +42,7 @@ public class Environment {
     }
 
     public void declareVariablesAndAssignValues(Map<String, Value> variables) {
-        variables.entrySet().forEach(e -> declareVariableAndAssignValue(e.getKey(), e.getValue()));
+        variables.forEach(this::declareVariableAndAssignValue);
     }
 
     public void declareVariableAndAssignValue(String identifier, Value value) {

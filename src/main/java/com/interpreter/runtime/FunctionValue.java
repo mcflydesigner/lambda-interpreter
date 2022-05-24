@@ -1,16 +1,18 @@
 package com.interpreter.runtime;
 
-import hardtyped.Absyn.InExpr;
+import hardtyped.Absyn.Expr;
+import hardtyped.Absyn.ListExpr;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FunctionValue {
 
     private final LinkedHashMap<String, FunctionParameter> parameters;
-    private final InExpr body;
+    private final ListExpr body;
 
-    public FunctionValue(LinkedHashMap<String, FunctionParameter> parameters, InExpr body) {
+    public FunctionValue(LinkedHashMap<String, FunctionParameter> parameters, ListExpr body) {
         this.parameters = parameters;
         this.body = body;
     }
@@ -58,7 +60,7 @@ public class FunctionValue {
         return parameters;
     }
 
-    public InExpr getBody() {
+    public ListExpr getBody() {
         return body;
     }
 }

@@ -10,13 +10,68 @@ import java.util.stream.Collectors;
 
 public class OperationHandler {
 
+    public static Value handleUnaryOperation(UnaryOperationType operationType, Value operand) {
+        return switch (operationType) {
+            case PLUS -> handleUnaryPlus(operand);
+            case MINUS -> handleUnaryMinus(operand);
+            case NOT -> handleUnaryNot(operand);
+        };
+    }
+
+    private static Value handleUnaryNot(Value operand) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.BOOL);
+        assertOperandsType("not", allowedValueTypes, operand);
+
+        return Value.ofBool(!(Boolean) operand.getValue());
+    }
+
+    private static Value handleUnaryMinus(Value operand) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
+        assertOperandsType("unary -", allowedValueTypes, operand);
+
+        if (operand.getType().equals(ValueType.INT)) {
+            return Value.ofInt(-(Integer) operand.getValue());
+        }
+
+        return Value.ofReal(-(Double) operand.getValue());
+    }
+
+    private static Value handleUnaryPlus(Value operand) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
+        assertOperandsType("unary +", allowedValueTypes, operand);
+
+        if (operand.getType().equals(ValueType.INT)) {
+            return Value.ofInt(+(Integer) operand.getValue());
+        }
+
+        return Value.ofReal(+(Double) operand.getValue());
+    }
+
     public static Value handleBinaryOperation(BinaryOperationType operationType, Value firstOp, Value secondOp) {
         return switch (operationType) {
             case ADDITION -> handleBinaryAddition(firstOp, secondOp);
             case SUBTRACTION -> handleBinarySubtraction(firstOp, secondOp);
             case MULTIPLICATION -> handleBinaryMultiplication(firstOp, secondOp);
             case DIVISION -> handleBinaryDivision(firstOp, secondOp);
+            case GREATER -> handleBinaryGreater(firstOp, secondOp);
         };
+    }
+
+    private static Value handleBinaryGreater(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL, ValueType.STRING);
+        assertOperandsType(">", allowedValueTypes, firstOp, secondOp);
+
+        if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
+            return Value.ofBool((Integer) firstOp.getValue() > (Integer) secondOp.getValue());
+        }
+
+        if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
+            return Value.ofBool((Double) firstOp.getValue() > (Double) secondOp.getValue());
+        }
+
+        int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
+
+        return Value.ofBool(resStringComparison > 0);
     }
 
     private static Value handleBinaryAddition(Value firstOp, Value secondOp) {
@@ -66,6 +121,10 @@ public class OperationHandler {
 
         return Value.ofReal((Double) firstOp.getValue() / (Double) secondOp.getValue());
     }
+
+
+
+
 
     private static void assertOperandsType(String operation, Set<ValueType> allowedValueTypes, Value... values) {
 

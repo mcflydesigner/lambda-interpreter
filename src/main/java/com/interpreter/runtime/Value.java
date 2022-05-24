@@ -26,6 +26,10 @@ public class Value {
         return new Value(ValueType.FUNCTION, functionValue);
     }
 
+    public static Value ofBool(Boolean value) { return new Value(ValueType.BOOL, value); }
+
+    public static Value ofUnit() { return new Value(ValueType.UNIT, null); }
+
     public ValueType getType() {
         return type;
     }

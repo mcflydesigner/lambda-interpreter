@@ -6,55 +6,32 @@ package hardtyped;
 
 public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     /* Expr */
-    public R visit(hardtyped.Absyn.Function p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.ApplyFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.PrintFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.ReadFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.EmptyPrintFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.EmptyReadFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.MultipleArgFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.If p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Else p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Sum p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Substract p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Multiply p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Divide p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.And p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Or p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Not p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.More p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.MoreEql p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Eql p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.LessEql p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Less p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.UnaryPlus p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.UnaryMinus p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.Let p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Import p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Import1 p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.LetVariable p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.LetInference p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.LetAscription p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.LetRec p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.LetType p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.IfStmt p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Function p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.PrintFunction p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.ReadRealFunction p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.ReadIntFunction p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.ReadStringFunction p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.ReadBoolFunction p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.FunctionApplication p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Operation p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Variable p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Application p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.IntValue p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.RealValue p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.StringValue p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.BoolValue p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.UnitValue p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.AtomicExpression p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.ParenthesesExpression p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.DotExpression p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.RecordConstr p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Exprs p, A arg) { return visitDefault(p, arg); }
     public R visitDefault(hardtyped.Absyn.Expr p, A arg) {
-      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
-    }
-    /* InExpr */
-    public R visit(hardtyped.Absyn.MultipleExpressions p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.FinalExpression p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.InnerExpression p, A arg) { return visitDefault(p, arg); }
-    public R visitDefault(hardtyped.Absyn.InExpr p, A arg) {
-      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
-    }
-    /* FuncArg */
-    public R visit(hardtyped.Absyn.MultipleArgs p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.FinalArg p, A arg) { return visitDefault(p, arg); }
-    public R visitDefault(hardtyped.Absyn.FuncArg p, A arg) {
       throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
     }
     /* VarDec */
@@ -63,13 +40,71 @@ public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     public R visitDefault(hardtyped.Absyn.VarDec p, A arg) {
       throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
     }
+    /* VarName */
+    public R visit(hardtyped.Absyn.Func p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.VarName p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
+    /* VarPath */
+    public R visit(hardtyped.Absyn.Lib p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.VarPath p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
+    /* ExprSequence */
+    public R visit(hardtyped.Absyn.Seq p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.ExprSequence p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
+    /* FuncArg */
+    public R visit(hardtyped.Absyn.Argument p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.FuncArg p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
+    /* IfExpr */
+    public R visit(hardtyped.Absyn.If p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.IfExpr p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
+    /* ElseExpr */
+    public R visit(hardtyped.Absyn.Else p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.ElseExpr p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
+    /* Op */
+    public R visit(hardtyped.Absyn.Or p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.And p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Not p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.More p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.MoreEql p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Eql p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.NotEql p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.LessEql p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Less p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Sum p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Substract p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Multiply p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.Divide p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.UnaryPlus p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.UnaryMinus p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.Op p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
     /* Type */
+    public R visit(hardtyped.Absyn.FunctionType p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.IntType p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.RealType p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.BoolType p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.StringType p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.UnitType p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.AnyType p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.RecordType p, A arg) { return visitDefault(p, arg); }
     public R visitDefault(hardtyped.Absyn.Type p, A arg) {
+      throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
+    }
+    /* Record */
+    public R visit(hardtyped.Absyn.BaseRecordNameValue p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.BaseRecordName p, A arg) { return visitDefault(p, arg); }
+    public R visitDefault(hardtyped.Absyn.Record p, A arg) {
       throw new IllegalArgumentException(this.getClass().getName() + ": " + p);
     }
 

@@ -2,16 +2,16 @@
 
 package hardtyped.Absyn;
 
-public class FinalArg  extends FuncArg {
+public class BaseRecordName  extends Record {
   public final VarDec vardec_;
-  public FinalArg(VarDec p1) { vardec_ = p1; }
+  public BaseRecordName(VarDec p1) { vardec_ = p1; }
 
-  public <R,A> R accept(hardtyped.Absyn.FuncArg.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Record.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.FinalArg) {
-      hardtyped.Absyn.FinalArg x = (hardtyped.Absyn.FinalArg)o;
+    if (o instanceof hardtyped.Absyn.BaseRecordName) {
+      hardtyped.Absyn.BaseRecordName x = (hardtyped.Absyn.BaseRecordName)o;
       return this.vardec_.equals(x.vardec_);
     }
     return false;
