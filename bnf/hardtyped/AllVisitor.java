@@ -6,10 +6,6 @@ package hardtyped;
 
 public interface AllVisitor<R,A> extends
   hardtyped.Absyn.Expr.Visitor<R,A>,
-  hardtyped.Absyn.ModuleIdentifier.Visitor<R,A>,
-  hardtyped.Absyn.ImportFileName.Visitor<R,A>,
-  hardtyped.Absyn.Path.Visitor<R,A>,
-  hardtyped.Absyn.Let.Visitor<R,A>,
   hardtyped.Absyn.VarDec.Visitor<R,A>,
   hardtyped.Absyn.VarName.Visitor<R,A>,
   hardtyped.Absyn.VarPath.Visitor<R,A>,

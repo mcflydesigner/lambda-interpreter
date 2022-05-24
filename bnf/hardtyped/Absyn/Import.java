@@ -3,8 +3,8 @@
 package hardtyped.Absyn;
 
 public class Import  extends Expr {
-  public final ModuleIdentifier moduleidentifier_;
-  public Import(ModuleIdentifier p1) { moduleidentifier_ = p1; }
+  public final String string_, ident_;
+  public Import(String p1, String p2) { string_ = p1; ident_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -12,13 +12,13 @@ public class Import  extends Expr {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.Import) {
       hardtyped.Absyn.Import x = (hardtyped.Absyn.Import)o;
-      return this.moduleidentifier_.equals(x.moduleidentifier_);
+      return this.string_.equals(x.string_) && this.ident_.equals(x.ident_);
     }
     return false;
   }
 
   public int hashCode() {
-    return this.moduleidentifier_.hashCode();
+    return 37*(this.string_.hashCode())+this.ident_.hashCode();
   }
 
 

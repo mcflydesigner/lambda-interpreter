@@ -6,7 +6,6 @@ public abstract class ElseExpr implements java.io.Serializable {
   public abstract <R,A> R accept(ElseExpr.Visitor<R,A> v, A arg);
   public interface Visitor <R,A> {
     public R visit(hardtyped.Absyn.Else p, A arg);
-    public R visit(hardtyped.Absyn.ElseMultiple p, A arg);
 
   }
 

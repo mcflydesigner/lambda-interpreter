@@ -68,56 +68,6 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_Expr4(hardtypedParser.Start_Expr4Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_ModuleIdentifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_ModuleIdentifier(hardtypedParser.Start_ModuleIdentifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_ModuleIdentifier}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_ModuleIdentifier(hardtypedParser.Start_ModuleIdentifierContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_ImportFileName}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_ImportFileName(hardtypedParser.Start_ImportFileNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_ImportFileName}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_ImportFileName(hardtypedParser.Start_ImportFileNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_Path}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_Path(hardtypedParser.Start_PathContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_Path}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_Path(hardtypedParser.Start_PathContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_ListPath}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_ListPath(hardtypedParser.Start_ListPathContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_ListPath}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_ListPath(hardtypedParser.Start_ListPathContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_Let}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_Let(hardtypedParser.Start_LetContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_Let}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_Let(hardtypedParser.Start_LetContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_VarDec}.
 	 * @param ctx the parse tree
 	 */
@@ -268,6 +218,36 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_Op3(hardtypedParser.Start_Op3Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Op4}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Op4(hardtypedParser.Start_Op4Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Op4}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Op4(hardtypedParser.Start_Op4Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Op5}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Op5(hardtypedParser.Start_Op5Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Op5}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Op5(hardtypedParser.Start_Op5Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Op6}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Op6(hardtypedParser.Start_Op6Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Op6}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Op6(hardtypedParser.Start_Op6Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_Type}.
 	 * @param ctx the parse tree
 	 */
@@ -297,6 +277,16 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStart_Type2(hardtypedParser.Start_Type2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Type3}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Type3(hardtypedParser.Start_Type3Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Type3}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Type3(hardtypedParser.Start_Type3Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_Record}.
 	 * @param ctx the parse tree
@@ -377,56 +367,6 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr4(hardtypedParser.Expr4Context ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#moduleIdentifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterModuleIdentifier(hardtypedParser.ModuleIdentifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#moduleIdentifier}.
-	 * @param ctx the parse tree
-	 */
-	void exitModuleIdentifier(hardtypedParser.ModuleIdentifierContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#importFileName}.
-	 * @param ctx the parse tree
-	 */
-	void enterImportFileName(hardtypedParser.ImportFileNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#importFileName}.
-	 * @param ctx the parse tree
-	 */
-	void exitImportFileName(hardtypedParser.ImportFileNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#path}.
-	 * @param ctx the parse tree
-	 */
-	void enterPath(hardtypedParser.PathContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#path}.
-	 * @param ctx the parse tree
-	 */
-	void exitPath(hardtypedParser.PathContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#listPath}.
-	 * @param ctx the parse tree
-	 */
-	void enterListPath(hardtypedParser.ListPathContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#listPath}.
-	 * @param ctx the parse tree
-	 */
-	void exitListPath(hardtypedParser.ListPathContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#let}.
-	 * @param ctx the parse tree
-	 */
-	void enterLet(hardtypedParser.LetContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#let}.
-	 * @param ctx the parse tree
-	 */
-	void exitLet(hardtypedParser.LetContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#varDec}.
 	 * @param ctx the parse tree
@@ -578,6 +518,36 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitOp3(hardtypedParser.Op3Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#op4}.
+	 * @param ctx the parse tree
+	 */
+	void enterOp4(hardtypedParser.Op4Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#op4}.
+	 * @param ctx the parse tree
+	 */
+	void exitOp4(hardtypedParser.Op4Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#op5}.
+	 * @param ctx the parse tree
+	 */
+	void enterOp5(hardtypedParser.Op5Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#op5}.
+	 * @param ctx the parse tree
+	 */
+	void exitOp5(hardtypedParser.Op5Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#op6}.
+	 * @param ctx the parse tree
+	 */
+	void enterOp6(hardtypedParser.Op6Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#op6}.
+	 * @param ctx the parse tree
+	 */
+	void exitOp6(hardtypedParser.Op6Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#type}.
 	 * @param ctx the parse tree
 	 */
@@ -607,6 +577,16 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitType2(hardtypedParser.Type2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#type3}.
+	 * @param ctx the parse tree
+	 */
+	void enterType3(hardtypedParser.Type3Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#type3}.
+	 * @param ctx the parse tree
+	 */
+	void exitType3(hardtypedParser.Type3Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#record}.
 	 * @param ctx the parse tree

@@ -5,9 +5,14 @@ package hardtyped.Absyn;
 public abstract class Expr implements java.io.Serializable {
   public abstract <R,A> R accept(Expr.Visitor<R,A> v, A arg);
   public interface Visitor <R,A> {
-    public R visit(hardtyped.Absyn.AtomicExpr p, A arg);
+    public R visit(hardtyped.Absyn.Exprs p, A arg);
+    public R visit(hardtyped.Absyn.Variable p, A arg);
     public R visit(hardtyped.Absyn.Import p, A arg);
-    public R visit(hardtyped.Absyn.BaseLet p, A arg);
+    public R visit(hardtyped.Absyn.Import1 p, A arg);
+    public R visit(hardtyped.Absyn.LetVariable p, A arg);
+    public R visit(hardtyped.Absyn.LetInference p, A arg);
+    public R visit(hardtyped.Absyn.LetRec p, A arg);
+    public R visit(hardtyped.Absyn.LetType p, A arg);
     public R visit(hardtyped.Absyn.Function p, A arg);
     public R visit(hardtyped.Absyn.FunctionApplication p, A arg);
     public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg);

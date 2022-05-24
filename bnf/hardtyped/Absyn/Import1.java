@@ -2,23 +2,23 @@
 
 package hardtyped.Absyn;
 
-public class AtomicExpr  extends Expr {
-  public final String ident_;
-  public AtomicExpr(String p1) { ident_ = p1; }
+public class Import1  extends Expr {
+  public final String string_;
+  public Import1(String p1) { string_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.AtomicExpr) {
-      hardtyped.Absyn.AtomicExpr x = (hardtyped.Absyn.AtomicExpr)o;
-      return this.ident_.equals(x.ident_);
+    if (o instanceof hardtyped.Absyn.Import1) {
+      hardtyped.Absyn.Import1 x = (hardtyped.Absyn.Import1)o;
+      return this.string_.equals(x.string_);
     }
     return false;
   }
 
   public int hashCode() {
-    return this.ident_.hashCode();
+    return this.string_.hashCode();
   }
 
 

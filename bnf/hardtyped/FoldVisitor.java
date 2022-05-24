@@ -10,12 +10,35 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
 /* Expr */
     public R visit(hardtyped.Absyn.Import p, A arg) {
       R r = leaf(arg);
-      r = combine(p.moduleidentifier_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.BaseLet p, A arg) {
+    public R visit(hardtyped.Absyn.Import1 p, A arg) {
       R r = leaf(arg);
-      r = combine(p.let_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.LetVariable p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.LetInference p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.LetRec p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.LetType p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.vardec_.accept(this, arg), r, arg);
+      r = combine(p.type_.accept(this, arg), r, arg);
       return r;
     }
     public R visit(hardtyped.Absyn.IfStmt p, A arg) {
@@ -34,44 +57,6 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
         r = combine(x.accept(this, arg), r, arg);
       }
       for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
-    public R visit(hardtyped.Absyn.FunctionApplication p, A arg) {
-      R r = leaf(arg);
-      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
-    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg) {
-      R r = leaf(arg);
-      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      r = combine(p.type_.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.Application p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.varname_.accept(this, arg), r, arg);
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
       {
         r = combine(x.accept(this, arg), r, arg);
       }
@@ -114,13 +99,51 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       }
       return r;
     }
+    public R visit(hardtyped.Absyn.FunctionApplication p, A arg) {
+      R r = leaf(arg);
+      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
+      {
+        r = combine(x.accept(this, arg), r, arg);
+      }
+      for (hardtyped.Absyn.Expr x : p.listexpr_)
+      {
+        r = combine(x.accept(this, arg), r, arg);
+      }
+      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
+      {
+        r = combine(x.accept(this, arg), r, arg);
+      }
+      return r;
+    }
+    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg) {
+      R r = leaf(arg);
+      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
+      {
+        r = combine(x.accept(this, arg), r, arg);
+      }
+      for (hardtyped.Absyn.Expr x : p.listexpr_)
+      {
+        r = combine(x.accept(this, arg), r, arg);
+      }
+      r = combine(p.type_.accept(this, arg), r, arg);
+      return r;
+    }
     public R visit(hardtyped.Absyn.Operation p, A arg) {
       R r = leaf(arg);
       r = combine(p.op_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.AtomicExpr p, A arg) {
+    public R visit(hardtyped.Absyn.Variable p, A arg) {
       R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.Application p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.varname_.accept(this, arg), r, arg);
+      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
+      {
+        r = combine(x.accept(this, arg), r, arg);
+      }
       return r;
     }
     public R visit(hardtyped.Absyn.IntValue p, A arg) {
@@ -151,64 +174,12 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       }
       return r;
     }
-
-/* ModuleIdentifier */
-    public R visit(hardtyped.Absyn.ImportPath p, A arg) {
+    public R visit(hardtyped.Absyn.Exprs p, A arg) {
       R r = leaf(arg);
-      for (hardtyped.Absyn.Path x : p.listpath_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      r = combine(p.importfilename_.accept(this, arg), r, arg);
-      return r;
-    }
-
-/* ImportFileName */
-    public R visit(hardtyped.Absyn.ImportFile p, A arg) {
-      R r = leaf(arg);
-      return r;
-    }
-
-/* Path */
-    public R visit(hardtyped.Absyn.BasePath p, A arg) {
-      R r = leaf(arg);
-      return r;
-    }
-
-/* Let */
-    public R visit(hardtyped.Absyn.LetVariable p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.vardec_.accept(this, arg), r, arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.LetInference p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.vardec_.accept(this, arg), r, arg);
-      r = combine(p.expr_1.accept(this, arg), r, arg);
-      r = combine(p.expr_2.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.LetInferenceMany p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.vardec_.accept(this, arg), r, arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
       for (hardtyped.Absyn.Expr x : p.listexpr_)
       {
         r = combine(x.accept(this, arg), r, arg);
       }
-      return r;
-    }
-    public R visit(hardtyped.Absyn.LetRec p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.vardec_.accept(this, arg), r, arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.LetType p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.vardec_.accept(this, arg), r, arg);
-      r = combine(p.type_.accept(this, arg), r, arg);
       return r;
     }
 
@@ -260,15 +231,6 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       r = combine(p.expr_2.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.IfMultiple p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
 
 /* ElseExpr */
     public R visit(hardtyped.Absyn.Else p, A arg) {
@@ -276,41 +238,23 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       r = combine(p.expr_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.ElseMultiple p, A arg) {
-      R r = leaf(arg);
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
 
 /* Op */
+    public R visit(hardtyped.Absyn.Or p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.And p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
     public R visit(hardtyped.Absyn.Not p, A arg) {
       R r = leaf(arg);
       r = combine(p.expr_.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.UnaryPlus p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.UnaryMinus p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.Multiply p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.expr_1.accept(this, arg), r, arg);
-      r = combine(p.expr_2.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.Divide p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.expr_1.accept(this, arg), r, arg);
-      r = combine(p.expr_2.accept(this, arg), r, arg);
       return r;
     }
     public R visit(hardtyped.Absyn.More p, A arg) {
@@ -361,20 +305,36 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       r = combine(p.expr_2.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.And p, A arg) {
+    public R visit(hardtyped.Absyn.Multiply p, A arg) {
       R r = leaf(arg);
       r = combine(p.expr_1.accept(this, arg), r, arg);
       r = combine(p.expr_2.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.Or p, A arg) {
+    public R visit(hardtyped.Absyn.Divide p, A arg) {
       R r = leaf(arg);
       r = combine(p.expr_1.accept(this, arg), r, arg);
       r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.UnaryPlus p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.UnaryMinus p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
       return r;
     }
 
 /* Type */
+    public R visit(hardtyped.Absyn.FunctionType p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.type_1.accept(this, arg), r, arg);
+      r = combine(p.type_2.accept(this, arg), r, arg);
+      return r;
+    }
     public R visit(hardtyped.Absyn.IntType p, A arg) {
       R r = leaf(arg);
       return r;
@@ -397,12 +357,6 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
     }
     public R visit(hardtyped.Absyn.AnyType p, A arg) {
       R r = leaf(arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.FunctionType p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.type_1.accept(this, arg), r, arg);
-      r = combine(p.type_2.accept(this, arg), r, arg);
       return r;
     }
     public R visit(hardtyped.Absyn.RecordType p, A arg) {

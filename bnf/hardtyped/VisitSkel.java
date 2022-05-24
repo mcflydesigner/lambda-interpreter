@@ -16,12 +16,38 @@ public class VisitSkel
   {
     public R visit(hardtyped.Absyn.Import p, A arg)
     { /* Code for Import goes here */
-      p.moduleidentifier_.accept(new ModuleIdentifierVisitor<R,A>(), arg);
+      //p.string_;
+      //p.ident_;
       return null;
     }
-    public R visit(hardtyped.Absyn.BaseLet p, A arg)
-    { /* Code for BaseLet goes here */
-      p.let_.accept(new LetVisitor<R,A>(), arg);
+    public R visit(hardtyped.Absyn.Import1 p, A arg)
+    { /* Code for Import1 goes here */
+      //p.string_;
+      return null;
+    }
+    public R visit(hardtyped.Absyn.LetVariable p, A arg)
+    { /* Code for LetVariable goes here */
+      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.LetInference p, A arg)
+    { /* Code for LetInference goes here */
+      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.LetRec p, A arg)
+    { /* Code for LetRec goes here */
+      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.LetType p, A arg)
+    { /* Code for LetType goes here */
+      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.type_.accept(new TypeVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.IfStmt p, A arg)
@@ -39,38 +65,6 @@ public class VisitSkel
       }
       for (hardtyped.Absyn.Expr x: p.listexpr_) {
         x.accept(new ExprVisitor<R,A>(), arg);
-      }
-      return null;
-    }
-    public R visit(hardtyped.Absyn.FunctionApplication p, A arg)
-    { /* Code for FunctionApplication goes here */
-      for (hardtyped.Absyn.FuncArg x: p.listfuncarg_) {
-        x.accept(new FuncArgVisitor<R,A>(), arg);
-      }
-      for (hardtyped.Absyn.Expr x: p.listexpr_) {
-        x.accept(new ExprVisitor<R,A>(), arg);
-      }
-      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
-        x.accept(new ExprSequenceVisitor<R,A>(), arg);
-      }
-      return null;
-    }
-    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg)
-    { /* Code for FunctionWithReturnType goes here */
-      for (hardtyped.Absyn.FuncArg x: p.listfuncarg_) {
-        x.accept(new FuncArgVisitor<R,A>(), arg);
-      }
-      for (hardtyped.Absyn.Expr x: p.listexpr_) {
-        x.accept(new ExprVisitor<R,A>(), arg);
-      }
-      p.type_.accept(new TypeVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.Application p, A arg)
-    { /* Code for Application goes here */
-      p.varname_.accept(new VarNameVisitor<R,A>(), arg);
-      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
-        x.accept(new ExprSequenceVisitor<R,A>(), arg);
       }
       return null;
     }
@@ -112,14 +106,46 @@ public class VisitSkel
       }
       return null;
     }
+    public R visit(hardtyped.Absyn.FunctionApplication p, A arg)
+    { /* Code for FunctionApplication goes here */
+      for (hardtyped.Absyn.FuncArg x: p.listfuncarg_) {
+        x.accept(new FuncArgVisitor<R,A>(), arg);
+      }
+      for (hardtyped.Absyn.Expr x: p.listexpr_) {
+        x.accept(new ExprVisitor<R,A>(), arg);
+      }
+      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
+        x.accept(new ExprSequenceVisitor<R,A>(), arg);
+      }
+      return null;
+    }
+    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg)
+    { /* Code for FunctionWithReturnType goes here */
+      for (hardtyped.Absyn.FuncArg x: p.listfuncarg_) {
+        x.accept(new FuncArgVisitor<R,A>(), arg);
+      }
+      for (hardtyped.Absyn.Expr x: p.listexpr_) {
+        x.accept(new ExprVisitor<R,A>(), arg);
+      }
+      p.type_.accept(new TypeVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.Operation p, A arg)
     { /* Code for Operation goes here */
       p.op_.accept(new OpVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.AtomicExpr p, A arg)
-    { /* Code for AtomicExpr goes here */
+    public R visit(hardtyped.Absyn.Variable p, A arg)
+    { /* Code for Variable goes here */
       //p.ident_;
+      return null;
+    }
+    public R visit(hardtyped.Absyn.Application p, A arg)
+    { /* Code for Application goes here */
+      p.varname_.accept(new VarNameVisitor<R,A>(), arg);
+      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
+        x.accept(new ExprSequenceVisitor<R,A>(), arg);
+      }
       return null;
     }
     public R visit(hardtyped.Absyn.IntValue p, A arg)
@@ -154,69 +180,11 @@ public class VisitSkel
       }
       return null;
     }
-  }
-  public class ModuleIdentifierVisitor<R,A> implements hardtyped.Absyn.ModuleIdentifier.Visitor<R,A>
-  {
-    public R visit(hardtyped.Absyn.ImportPath p, A arg)
-    { /* Code for ImportPath goes here */
-      for (hardtyped.Absyn.Path x: p.listpath_) {
-        x.accept(new PathVisitor<R,A>(), arg);
-      }
-      p.importfilename_.accept(new ImportFileNameVisitor<R,A>(), arg);
-      return null;
-    }
-  }
-  public class ImportFileNameVisitor<R,A> implements hardtyped.Absyn.ImportFileName.Visitor<R,A>
-  {
-    public R visit(hardtyped.Absyn.ImportFile p, A arg)
-    { /* Code for ImportFile goes here */
-      //p.ident_;
-      //p.packageextension_;
-      return null;
-    }
-  }
-  public class PathVisitor<R,A> implements hardtyped.Absyn.Path.Visitor<R,A>
-  {
-    public R visit(hardtyped.Absyn.BasePath p, A arg)
-    { /* Code for BasePath goes here */
-      //p.ident_;
-      return null;
-    }
-  }
-  public class LetVisitor<R,A> implements hardtyped.Absyn.Let.Visitor<R,A>
-  {
-    public R visit(hardtyped.Absyn.LetVariable p, A arg)
-    { /* Code for LetVariable goes here */
-      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.LetInference p, A arg)
-    { /* Code for LetInference goes here */
-      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
-      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
-      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.LetInferenceMany p, A arg)
-    { /* Code for LetInferenceMany goes here */
-      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+    public R visit(hardtyped.Absyn.Exprs p, A arg)
+    { /* Code for Exprs goes here */
       for (hardtyped.Absyn.Expr x: p.listexpr_) {
         x.accept(new ExprVisitor<R,A>(), arg);
       }
-      return null;
-    }
-    public R visit(hardtyped.Absyn.LetRec p, A arg)
-    { /* Code for LetRec goes here */
-      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.LetType p, A arg)
-    { /* Code for LetType goes here */
-      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
-      p.type_.accept(new TypeVisitor<R,A>(), arg);
       return null;
     }
   }
@@ -278,14 +246,6 @@ public class VisitSkel
       p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.IfMultiple p, A arg)
-    { /* Code for IfMultiple goes here */
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
-      for (hardtyped.Absyn.Expr x: p.listexpr_) {
-        x.accept(new ExprVisitor<R,A>(), arg);
-      }
-      return null;
-    }
   }
   public class ElseExprVisitor<R,A> implements hardtyped.Absyn.ElseExpr.Visitor<R,A>
   {
@@ -294,41 +254,24 @@ public class VisitSkel
       p.expr_.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.ElseMultiple p, A arg)
-    { /* Code for ElseMultiple goes here */
-      for (hardtyped.Absyn.Expr x: p.listexpr_) {
-        x.accept(new ExprVisitor<R,A>(), arg);
-      }
-      return null;
-    }
   }
   public class OpVisitor<R,A> implements hardtyped.Absyn.Op.Visitor<R,A>
   {
+    public R visit(hardtyped.Absyn.Or p, A arg)
+    { /* Code for Or goes here */
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.And p, A arg)
+    { /* Code for And goes here */
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.Not p, A arg)
     { /* Code for Not goes here */
       p.expr_.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.UnaryPlus p, A arg)
-    { /* Code for UnaryPlus goes here */
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.UnaryMinus p, A arg)
-    { /* Code for UnaryMinus goes here */
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.Multiply p, A arg)
-    { /* Code for Multiply goes here */
-      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
-      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.Divide p, A arg)
-    { /* Code for Divide goes here */
-      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
-      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.More p, A arg)
@@ -379,21 +322,37 @@ public class VisitSkel
       p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.And p, A arg)
-    { /* Code for And goes here */
+    public R visit(hardtyped.Absyn.Multiply p, A arg)
+    { /* Code for Multiply goes here */
       p.expr_1.accept(new ExprVisitor<R,A>(), arg);
       p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.Or p, A arg)
-    { /* Code for Or goes here */
+    public R visit(hardtyped.Absyn.Divide p, A arg)
+    { /* Code for Divide goes here */
       p.expr_1.accept(new ExprVisitor<R,A>(), arg);
       p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.UnaryPlus p, A arg)
+    { /* Code for UnaryPlus goes here */
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.UnaryMinus p, A arg)
+    { /* Code for UnaryMinus goes here */
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
   }
   public class TypeVisitor<R,A> implements hardtyped.Absyn.Type.Visitor<R,A>
   {
+    public R visit(hardtyped.Absyn.FunctionType p, A arg)
+    { /* Code for FunctionType goes here */
+      p.type_1.accept(new TypeVisitor<R,A>(), arg);
+      p.type_2.accept(new TypeVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.IntType p, A arg)
     { /* Code for IntType goes here */
       return null;
@@ -416,12 +375,6 @@ public class VisitSkel
     }
     public R visit(hardtyped.Absyn.AnyType p, A arg)
     { /* Code for AnyType goes here */
-      return null;
-    }
-    public R visit(hardtyped.Absyn.FunctionType p, A arg)
-    { /* Code for FunctionType goes here */
-      p.type_1.accept(new TypeVisitor<R,A>(), arg);
-      p.type_2.accept(new TypeVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.RecordType p, A arg)

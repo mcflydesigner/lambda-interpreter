@@ -1,24 +1,21 @@
 comment "//" ;
 comment "/*" "*/" ;
 
-separator Expr ";";
+terminator nonempty Expr ";"; -- todo: should ; be put after last expression?
 coercions Expr 4;
-AtomicExpr. Expr3 ::= Ident;
+Exprs. Expr4 ::= "(" [Expr] ")";
+
+Variable. Expr3 ::= Ident;
 
 -- Import
-Import. Expr ::= "-|" ModuleIdentifier;
-ImportPath. ModuleIdentifier ::= [Path] ImportFileName;
-ImportFile. ImportFileName ::= Ident "." PackageExtension;
-BasePath. Path ::= Ident;
-terminator Path "/";
+Import. Expr ::= "-|" String "as" Ident;
+Import1. Expr ::= "-|" String;
 
 -- Variable initializers
-BaseLet. Expr ::= Let;
-LetVariable. Let ::= "let" VarDec "=" Expr1;
-LetInference. Let ::= "let" VarDec "=" Expr1 "in" Expr1;
-LetInferenceMany. Let ::= "let" VarDec "=" Expr1 "in" "(" [Expr] ")";
-LetRec. Let ::= "letrec" VarDec "=" Expr1;
-LetType. Let ::= "lettype" VarDec "=" Type;
+LetVariable. Expr ::= "let" VarDec "=" Expr1;
+LetInference. Expr ::= "let" VarDec "=" Expr1 "in" Expr1;
+LetRec. Expr ::= "letrec" VarDec "=" Expr1;
+LetType. Expr ::= "lettype" VarDec "=" Type;
 
 -- Variable declarations
 TypedVar. VarDec ::= Ident ":" Type;
@@ -26,9 +23,9 @@ UntypedVar. VarDec ::= Ident;
 
 -- Functions
 Function. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}";
-FunctionApplication. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}" "(" [ExprSequence] ")";
-FunctionWithReturnType. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}" "->" Type;
-Application. Expr1 ::= VarName "(" [ExprSequence] ")";
+FunctionApplication. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "(" [ExprSequence] ")";
+FunctionWithReturnType. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "->" Type;
+Application. Expr3 ::= VarName "(" [ExprSequence] ")";
 PrintFunction. Expr1 ::= Print "(" Expr ")";
 ReadRealFunction. Expr1 ::= ReadReal "(" [ExprSequence] ")";
 ReadIntFunction. Expr1 ::= ReadInt "(" [ExprSequence] ")";
@@ -43,41 +40,39 @@ Seq. ExprSequence ::= Expr;
 separator ExprSequence ",";
 
 Argument. FuncArg ::= Ident ":" Type;
-terminator FuncArg ".";
+terminator nonempty FuncArg ".";
 
 -- If
 IfStmt. Expr ::= [IfExpr] ElseExpr;
 If. IfExpr ::= "|" "(" Expr2 ")" ":" Expr ;
-IfMultiple. IfExpr ::= "|" "(" Expr2 ")" ":" "{" [Expr] "}" ;
 separator IfExpr "";
 
 Else. ElseExpr ::= "|:"  Expr ;
-ElseMultiple. ElseExpr ::= "|:" "{" [Expr] "}" ;
 
 -- Basic operations
 Operation. Expr2 ::= Op;
-coercions Op 3;
+coercions Op 6;
 
-Sum. Op2 ::= Expr3 "+" Expr3;
-Substract. Op2 ::= Expr3 "-" Expr3;
-Multiply. Op1 ::= Expr3 "*" Expr3;
-Divide. Op1 ::= Expr3 "/" Expr3;
+Sum. Op4 ::= Expr3 "+" Expr3;
+Substract. Op4 ::= Expr3 "-" Expr3;
+Multiply. Op5 ::= Expr3 "*" Expr3;
+Divide. Op5 ::= Expr3 "/" Expr3;
 
 -- Logical operations
-And. Op2 ::= Expr3 "and" Expr3;
-Or. Op2 ::= Expr3 "or" Expr3;
-Not. Op ::= "not" Expr3;
+And. Op1 ::= Expr3 "and" Expr3;
+Or. Op ::= Expr3 "or" Expr3;
+Not. Op2 ::= "not" Expr3;
 
 -- Comparison operations
-More. Op1 ::= Expr3 ">" Expr3;
-MoreEql. Op1 ::= Expr3 ">=" Expr3;
-Eql. Op1 ::= Expr3 "==" Expr3;
-NotEql. Op1 ::= Expr3 "!=" Expr3;
-LessEql. Op1 ::= Expr3 "<=" Expr3;
-Less. Op1 ::= Expr3 "<" Expr3;
+More. Op3 ::= Expr3 ">" Expr3;
+MoreEql. Op3 ::= Expr3 ">=" Expr3;
+Eql. Op3 ::= Expr3 "==" Expr3;
+NotEql. Op3 ::= Expr3 "!=" Expr3;
+LessEql. Op3 ::= Expr3 "<=" Expr3;
+Less. Op3 ::= Expr3 "<" Expr3;
 
-UnaryPlus. Op ::= "+" Expr3;
-UnaryMinus. Op ::= "-" Expr3;
+UnaryPlus. Op6 ::= "+" Expr3;
+UnaryMinus. Op6 ::= "-" Expr3;
 
 -- Values
 IntValue. Expr3 ::= Integer;
@@ -89,16 +84,16 @@ RecordConstr. Expr3 ::= "{" [Record] "}";
 
 
 -- Types
-coercions Type 2;
+coercions Type 3;
 
-IntType. Type ::= "Int";
-RealType. Type ::= "Real";
-BoolType. Type ::= "Bool";
-StringType. Type ::= "String";
-UnitType. Type ::= "Unit";
-AnyType. Type ::= "Any";
-FunctionType. Type ::= Type "->" Type;
-RecordType. Type ::= "{" [Record] "}";
+IntType. Type2 ::= "Int";
+RealType. Type2 ::= "Real";
+BoolType. Type2 ::= "Bool";
+StringType. Type2 ::= "String";
+UnitType. Type2 ::= "Unit";
+AnyType. Type2 ::= "Any";
+FunctionType. Type1 ::= Type1 "->" Type2;
+RecordType. Type2 ::= "{" [Record] "}";
 
 BaseRecordNameValue. Record ::= VarDec "=" Expr3;
 BaseRecordName. Record ::= VarDec;
@@ -111,4 +106,3 @@ token ReadReal {"readReal"};
 token ReadInt {"readInt"};
 token ReadString {"readString"};
 token ReadBool {"readBool"};
-token PackageExtension {"nk"};

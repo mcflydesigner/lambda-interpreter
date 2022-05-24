@@ -6,10 +6,6 @@ package hardtyped;
 
 public class ComposVisitor<A> implements
   hardtyped.Absyn.Expr.Visitor<hardtyped.Absyn.Expr,A>,
-  hardtyped.Absyn.ModuleIdentifier.Visitor<hardtyped.Absyn.ModuleIdentifier,A>,
-  hardtyped.Absyn.ImportFileName.Visitor<hardtyped.Absyn.ImportFileName,A>,
-  hardtyped.Absyn.Path.Visitor<hardtyped.Absyn.Path,A>,
-  hardtyped.Absyn.Let.Visitor<hardtyped.Absyn.Let,A>,
   hardtyped.Absyn.VarDec.Visitor<hardtyped.Absyn.VarDec,A>,
   hardtyped.Absyn.VarName.Visitor<hardtyped.Absyn.VarName,A>,
   hardtyped.Absyn.VarPath.Visitor<hardtyped.Absyn.VarPath,A>,
@@ -24,13 +20,39 @@ public class ComposVisitor<A> implements
     /* Expr */
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Import p, A arg)
     {
-      hardtyped.Absyn.ModuleIdentifier moduleidentifier_ = p.moduleidentifier_.accept(this, arg);
-      return new hardtyped.Absyn.Import(moduleidentifier_);
+      String string_ = p.string_;
+      String ident_ = p.ident_;
+      return new hardtyped.Absyn.Import(string_, ident_);
     }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.BaseLet p, A arg)
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Import1 p, A arg)
     {
-      hardtyped.Absyn.Let let_ = p.let_.accept(this, arg);
-      return new hardtyped.Absyn.BaseLet(let_);
+      String string_ = p.string_;
+      return new hardtyped.Absyn.Import1(string_);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.LetVariable p, A arg)
+    {
+      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.LetVariable(vardec_, expr_);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.LetInference p, A arg)
+    {
+      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
+      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
+      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
+      return new hardtyped.Absyn.LetInference(vardec_, expr_1, expr_2);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.LetRec p, A arg)
+    {
+      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.LetRec(vardec_, expr_);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.LetType p, A arg)
+    {
+      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
+      hardtyped.Absyn.Type type_ = p.type_.accept(this, arg);
+      return new hardtyped.Absyn.LetType(vardec_, type_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.IfStmt p, A arg)
     {
@@ -55,50 +77,6 @@ public class ComposVisitor<A> implements
         listexpr_.add(x.accept(this,arg));
       }
       return new hardtyped.Absyn.Function(listfuncarg_, listexpr_);
-    }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.FunctionApplication p, A arg)
-    {
-      hardtyped.Absyn.ListFuncArg listfuncarg_ = new hardtyped.Absyn.ListFuncArg();
-      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
-      {
-        listfuncarg_.add(x.accept(this,arg));
-      }
-      hardtyped.Absyn.ListExpr listexpr_ = new hardtyped.Absyn.ListExpr();
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        listexpr_.add(x.accept(this,arg));
-      }
-      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        listexprsequence_.add(x.accept(this,arg));
-      }
-      return new hardtyped.Absyn.FunctionApplication(listfuncarg_, listexpr_, listexprsequence_);
-    }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.FunctionWithReturnType p, A arg)
-    {
-      hardtyped.Absyn.ListFuncArg listfuncarg_ = new hardtyped.Absyn.ListFuncArg();
-      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
-      {
-        listfuncarg_.add(x.accept(this,arg));
-      }
-      hardtyped.Absyn.ListExpr listexpr_ = new hardtyped.Absyn.ListExpr();
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        listexpr_.add(x.accept(this,arg));
-      }
-      hardtyped.Absyn.Type type_ = p.type_.accept(this, arg);
-      return new hardtyped.Absyn.FunctionWithReturnType(listfuncarg_, listexpr_, type_);
-    }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Application p, A arg)
-    {
-      hardtyped.Absyn.VarName varname_ = p.varname_.accept(this, arg);
-      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        listexprsequence_.add(x.accept(this,arg));
-      }
-      return new hardtyped.Absyn.Application(varname_, listexprsequence_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.PrintFunction p, A arg)
     {
@@ -146,15 +124,59 @@ public class ComposVisitor<A> implements
       }
       return new hardtyped.Absyn.ReadBoolFunction(readbool_, listexprsequence_);
     }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.FunctionApplication p, A arg)
+    {
+      hardtyped.Absyn.ListFuncArg listfuncarg_ = new hardtyped.Absyn.ListFuncArg();
+      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
+      {
+        listfuncarg_.add(x.accept(this,arg));
+      }
+      hardtyped.Absyn.ListExpr listexpr_ = new hardtyped.Absyn.ListExpr();
+      for (hardtyped.Absyn.Expr x : p.listexpr_)
+      {
+        listexpr_.add(x.accept(this,arg));
+      }
+      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
+      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
+      {
+        listexprsequence_.add(x.accept(this,arg));
+      }
+      return new hardtyped.Absyn.FunctionApplication(listfuncarg_, listexpr_, listexprsequence_);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.FunctionWithReturnType p, A arg)
+    {
+      hardtyped.Absyn.ListFuncArg listfuncarg_ = new hardtyped.Absyn.ListFuncArg();
+      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
+      {
+        listfuncarg_.add(x.accept(this,arg));
+      }
+      hardtyped.Absyn.ListExpr listexpr_ = new hardtyped.Absyn.ListExpr();
+      for (hardtyped.Absyn.Expr x : p.listexpr_)
+      {
+        listexpr_.add(x.accept(this,arg));
+      }
+      hardtyped.Absyn.Type type_ = p.type_.accept(this, arg);
+      return new hardtyped.Absyn.FunctionWithReturnType(listfuncarg_, listexpr_, type_);
+    }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Operation p, A arg)
     {
       hardtyped.Absyn.Op op_ = p.op_.accept(this, arg);
       return new hardtyped.Absyn.Operation(op_);
     }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.AtomicExpr p, A arg)
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Variable p, A arg)
     {
       String ident_ = p.ident_;
-      return new hardtyped.Absyn.AtomicExpr(ident_);
+      return new hardtyped.Absyn.Variable(ident_);
+    }
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Application p, A arg)
+    {
+      hardtyped.Absyn.VarName varname_ = p.varname_.accept(this, arg);
+      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
+      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
+      {
+        listexprsequence_.add(x.accept(this,arg));
+      }
+      return new hardtyped.Absyn.Application(varname_, listexprsequence_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.IntValue p, A arg)
     {
@@ -190,70 +212,14 @@ public class ComposVisitor<A> implements
       }
       return new hardtyped.Absyn.RecordConstr(listrecord_);
     }
-
-    /* ModuleIdentifier */
-    public hardtyped.Absyn.ModuleIdentifier visit(hardtyped.Absyn.ImportPath p, A arg)
+    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Exprs p, A arg)
     {
-      hardtyped.Absyn.ListPath listpath_ = new hardtyped.Absyn.ListPath();
-      for (hardtyped.Absyn.Path x : p.listpath_)
-      {
-        listpath_.add(x.accept(this,arg));
-      }
-      hardtyped.Absyn.ImportFileName importfilename_ = p.importfilename_.accept(this, arg);
-      return new hardtyped.Absyn.ImportPath(listpath_, importfilename_);
-    }
-
-    /* ImportFileName */
-    public hardtyped.Absyn.ImportFileName visit(hardtyped.Absyn.ImportFile p, A arg)
-    {
-      String ident_ = p.ident_;
-      String packageextension_ = p.packageextension_;
-      return new hardtyped.Absyn.ImportFile(ident_, packageextension_);
-    }
-
-    /* Path */
-    public hardtyped.Absyn.Path visit(hardtyped.Absyn.BasePath p, A arg)
-    {
-      String ident_ = p.ident_;
-      return new hardtyped.Absyn.BasePath(ident_);
-    }
-
-    /* Let */
-    public hardtyped.Absyn.Let visit(hardtyped.Absyn.LetVariable p, A arg)
-    {
-      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
-      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
-      return new hardtyped.Absyn.LetVariable(vardec_, expr_);
-    }
-    public hardtyped.Absyn.Let visit(hardtyped.Absyn.LetInference p, A arg)
-    {
-      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
-      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
-      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
-      return new hardtyped.Absyn.LetInference(vardec_, expr_1, expr_2);
-    }
-    public hardtyped.Absyn.Let visit(hardtyped.Absyn.LetInferenceMany p, A arg)
-    {
-      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
-      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
       hardtyped.Absyn.ListExpr listexpr_ = new hardtyped.Absyn.ListExpr();
       for (hardtyped.Absyn.Expr x : p.listexpr_)
       {
         listexpr_.add(x.accept(this,arg));
       }
-      return new hardtyped.Absyn.LetInferenceMany(vardec_, expr_, listexpr_);
-    }
-    public hardtyped.Absyn.Let visit(hardtyped.Absyn.LetRec p, A arg)
-    {
-      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
-      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
-      return new hardtyped.Absyn.LetRec(vardec_, expr_);
-    }
-    public hardtyped.Absyn.Let visit(hardtyped.Absyn.LetType p, A arg)
-    {
-      hardtyped.Absyn.VarDec vardec_ = p.vardec_.accept(this, arg);
-      hardtyped.Absyn.Type type_ = p.type_.accept(this, arg);
-      return new hardtyped.Absyn.LetType(vardec_, type_);
+      return new hardtyped.Absyn.Exprs(listexpr_);
     }
 
     /* VarDec */
@@ -310,16 +276,6 @@ public class ComposVisitor<A> implements
       hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
       return new hardtyped.Absyn.If(expr_1, expr_2);
     }
-    public hardtyped.Absyn.IfExpr visit(hardtyped.Absyn.IfMultiple p, A arg)
-    {
-      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
-      hardtyped.Absyn.ListExpr listexpr_ = new hardtyped.Absyn.ListExpr();
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        listexpr_.add(x.accept(this,arg));
-      }
-      return new hardtyped.Absyn.IfMultiple(expr_, listexpr_);
-    }
 
     /* ElseExpr */
     public hardtyped.Absyn.ElseExpr visit(hardtyped.Absyn.Else p, A arg)
@@ -327,43 +283,24 @@ public class ComposVisitor<A> implements
       hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
       return new hardtyped.Absyn.Else(expr_);
     }
-    public hardtyped.Absyn.ElseExpr visit(hardtyped.Absyn.ElseMultiple p, A arg)
-    {
-      hardtyped.Absyn.ListExpr listexpr_ = new hardtyped.Absyn.ListExpr();
-      for (hardtyped.Absyn.Expr x : p.listexpr_)
-      {
-        listexpr_.add(x.accept(this,arg));
-      }
-      return new hardtyped.Absyn.ElseMultiple(listexpr_);
-    }
 
     /* Op */
+    public hardtyped.Absyn.Op visit(hardtyped.Absyn.Or p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
+      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
+      return new hardtyped.Absyn.Or(expr_1, expr_2);
+    }
+    public hardtyped.Absyn.Op visit(hardtyped.Absyn.And p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
+      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
+      return new hardtyped.Absyn.And(expr_1, expr_2);
+    }
     public hardtyped.Absyn.Op visit(hardtyped.Absyn.Not p, A arg)
     {
       hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
       return new hardtyped.Absyn.Not(expr_);
-    }
-    public hardtyped.Absyn.Op visit(hardtyped.Absyn.UnaryPlus p, A arg)
-    {
-      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
-      return new hardtyped.Absyn.UnaryPlus(expr_);
-    }
-    public hardtyped.Absyn.Op visit(hardtyped.Absyn.UnaryMinus p, A arg)
-    {
-      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
-      return new hardtyped.Absyn.UnaryMinus(expr_);
-    }
-    public hardtyped.Absyn.Op visit(hardtyped.Absyn.Multiply p, A arg)
-    {
-      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
-      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
-      return new hardtyped.Absyn.Multiply(expr_1, expr_2);
-    }
-    public hardtyped.Absyn.Op visit(hardtyped.Absyn.Divide p, A arg)
-    {
-      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
-      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
-      return new hardtyped.Absyn.Divide(expr_1, expr_2);
     }
     public hardtyped.Absyn.Op visit(hardtyped.Absyn.More p, A arg)
     {
@@ -413,20 +350,36 @@ public class ComposVisitor<A> implements
       hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
       return new hardtyped.Absyn.Substract(expr_1, expr_2);
     }
-    public hardtyped.Absyn.Op visit(hardtyped.Absyn.And p, A arg)
+    public hardtyped.Absyn.Op visit(hardtyped.Absyn.Multiply p, A arg)
     {
       hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
       hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
-      return new hardtyped.Absyn.And(expr_1, expr_2);
+      return new hardtyped.Absyn.Multiply(expr_1, expr_2);
     }
-    public hardtyped.Absyn.Op visit(hardtyped.Absyn.Or p, A arg)
+    public hardtyped.Absyn.Op visit(hardtyped.Absyn.Divide p, A arg)
     {
       hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
       hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
-      return new hardtyped.Absyn.Or(expr_1, expr_2);
+      return new hardtyped.Absyn.Divide(expr_1, expr_2);
+    }
+    public hardtyped.Absyn.Op visit(hardtyped.Absyn.UnaryPlus p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.UnaryPlus(expr_);
+    }
+    public hardtyped.Absyn.Op visit(hardtyped.Absyn.UnaryMinus p, A arg)
+    {
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      return new hardtyped.Absyn.UnaryMinus(expr_);
     }
 
     /* Type */
+    public hardtyped.Absyn.Type visit(hardtyped.Absyn.FunctionType p, A arg)
+    {
+      hardtyped.Absyn.Type type_1 = p.type_1.accept(this, arg);
+      hardtyped.Absyn.Type type_2 = p.type_2.accept(this, arg);
+      return new hardtyped.Absyn.FunctionType(type_1, type_2);
+    }
     public hardtyped.Absyn.Type visit(hardtyped.Absyn.IntType p, A arg)
     {
       return new hardtyped.Absyn.IntType();
@@ -450,12 +403,6 @@ public class ComposVisitor<A> implements
     public hardtyped.Absyn.Type visit(hardtyped.Absyn.AnyType p, A arg)
     {
       return new hardtyped.Absyn.AnyType();
-    }
-    public hardtyped.Absyn.Type visit(hardtyped.Absyn.FunctionType p, A arg)
-    {
-      hardtyped.Absyn.Type type_1 = p.type_1.accept(this, arg);
-      hardtyped.Absyn.Type type_2 = p.type_2.accept(this, arg);
-      return new hardtyped.Absyn.FunctionType(type_1, type_2);
     }
     public hardtyped.Absyn.Type visit(hardtyped.Absyn.RecordType p, A arg)
     {

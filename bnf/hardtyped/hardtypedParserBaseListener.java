@@ -88,66 +88,6 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStart_ModuleIdentifier(hardtypedParser.Start_ModuleIdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStart_ModuleIdentifier(hardtypedParser.Start_ModuleIdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStart_ImportFileName(hardtypedParser.Start_ImportFileNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStart_ImportFileName(hardtypedParser.Start_ImportFileNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStart_Path(hardtypedParser.Start_PathContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStart_Path(hardtypedParser.Start_PathContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStart_ListPath(hardtypedParser.Start_ListPathContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStart_ListPath(hardtypedParser.Start_ListPathContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStart_Let(hardtypedParser.Start_LetContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStart_Let(hardtypedParser.Start_LetContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterStart_VarDec(hardtypedParser.Start_VarDecContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -328,6 +268,42 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStart_Op4(hardtypedParser.Start_Op4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Op4(hardtypedParser.Start_Op4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_Op5(hardtypedParser.Start_Op5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Op5(hardtypedParser.Start_Op5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_Op6(hardtypedParser.Start_Op6Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Op6(hardtypedParser.Start_Op6Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStart_Type(hardtypedParser.Start_TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -359,6 +335,18 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStart_Type2(hardtypedParser.Start_Type2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_Type3(hardtypedParser.Start_Type3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Type3(hardtypedParser.Start_Type3Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -455,66 +443,6 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr4(hardtypedParser.Expr4Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterModuleIdentifier(hardtypedParser.ModuleIdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitModuleIdentifier(hardtypedParser.ModuleIdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterImportFileName(hardtypedParser.ImportFileNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitImportFileName(hardtypedParser.ImportFileNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPath(hardtypedParser.PathContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPath(hardtypedParser.PathContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterListPath(hardtypedParser.ListPathContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitListPath(hardtypedParser.ListPathContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLet(hardtypedParser.LetContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLet(hardtypedParser.LetContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -700,6 +628,42 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOp4(hardtypedParser.Op4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOp4(hardtypedParser.Op4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOp5(hardtypedParser.Op5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOp5(hardtypedParser.Op5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOp6(hardtypedParser.Op6Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOp6(hardtypedParser.Op6Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterType(hardtypedParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -731,6 +695,18 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitType2(hardtypedParser.Type2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterType3(hardtypedParser.Type3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitType3(hardtypedParser.Type3Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

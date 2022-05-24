@@ -2,16 +2,16 @@
 
 package hardtyped.Absyn;
 
-public class BasePath  extends Path {
+public class Variable  extends Expr {
   public final String ident_;
-  public BasePath(String p1) { ident_ = p1; }
+  public Variable(String p1) { ident_ = p1; }
 
-  public <R,A> R accept(hardtyped.Absyn.Path.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.BasePath) {
-      hardtyped.Absyn.BasePath x = (hardtyped.Absyn.BasePath)o;
+    if (o instanceof hardtyped.Absyn.Variable) {
+      hardtyped.Absyn.Variable x = (hardtyped.Absyn.Variable)o;
       return this.ident_.equals(x.ident_);
     }
     return false;
