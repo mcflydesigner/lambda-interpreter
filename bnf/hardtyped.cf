@@ -80,12 +80,16 @@ RealValue. Expr3 ::= Double;
 StringValue. Expr3 ::= String;
 BoolValue. Expr3 ::= Bool;
 UnitValue. Expr3 ::= Unit;
-RecordConstr. Expr3 ::= "{" [Record] "}";
+RecordConst. Expr3 ::= "{" [RecordElem] "}";
+
+Elem. RecordElem ::= Ident "=" Expr3;
+separator RecordElem ",";
 
 
 -- Types
 coercions Type 3;
 
+UserType. Type2 ::= Ident;
 IntType. Type2 ::= "Int";
 RealType. Type2 ::= "Real";
 BoolType. Type2 ::= "Bool";
@@ -93,11 +97,11 @@ StringType. Type2 ::= "String";
 UnitType. Type2 ::= "Unit";
 AnyType. Type2 ::= "Any";
 FunctionType. Type1 ::= Type1 "->" Type2;
-RecordType. Type2 ::= "{" [Record] "}";
+RecordType. Type2 ::= "{" [RecordElemType] "}";
 
-BaseRecordNameValue. Record ::= VarDec "=" Expr3;
-BaseRecordName. Record ::= VarDec;
-separator Record ",";
+ElemType. RecordElemType ::= Ident ":" Type;
+separator RecordElemType ",";
+
 
 token Bool {"true"} | {"false"};
 token Unit {"unit"};
