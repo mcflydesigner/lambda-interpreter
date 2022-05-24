@@ -276,7 +276,7 @@ All other symbols are terminals.\\
  & {\delimit}  &{\terminal{String}}  \\
  & {\delimit}  &{\terminal{Unit}}  \\
  & {\delimit}  &{\terminal{Any}}  \\
- & {\delimit}  &{\terminal{(}} {\nonterminal{Type}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}} {\terminal{)}}  \\
+ & {\delimit}  &{\nonterminal{Type}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}}  \\
  & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecord}} {\terminal{\}}}  \\
 \end{tabular}\\
 

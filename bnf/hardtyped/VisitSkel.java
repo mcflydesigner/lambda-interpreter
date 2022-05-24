@@ -42,6 +42,17 @@ public class VisitSkel
       }
       return null;
     }
+    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg)
+    { /* Code for FunctionWithReturnType goes here */
+      for (hardtyped.Absyn.FuncArg x: p.listfuncarg_) {
+        x.accept(new FuncArgVisitor<R,A>(), arg);
+      }
+      for (hardtyped.Absyn.Expr x: p.listexpr_) {
+        x.accept(new ExprVisitor<R,A>(), arg);
+      }
+      p.type_.accept(new TypeVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.Application p, A arg)
     { /* Code for Application goes here */
       p.varname_.accept(new VarNameVisitor<R,A>(), arg);

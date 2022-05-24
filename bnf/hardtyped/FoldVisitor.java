@@ -39,6 +39,19 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       }
       return r;
     }
+    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg) {
+      R r = leaf(arg);
+      for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)
+      {
+        r = combine(x.accept(this, arg), r, arg);
+      }
+      for (hardtyped.Absyn.Expr x : p.listexpr_)
+      {
+        r = combine(x.accept(this, arg), r, arg);
+      }
+      r = combine(p.type_.accept(this, arg), r, arg);
+      return r;
+    }
     public R visit(hardtyped.Absyn.Application p, A arg) {
       R r = leaf(arg);
       r = combine(p.varname_.accept(this, arg), r, arg);

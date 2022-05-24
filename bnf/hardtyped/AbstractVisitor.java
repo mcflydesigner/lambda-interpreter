@@ -10,6 +10,7 @@ public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     public R visit(hardtyped.Absyn.BaseLet p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.IfStmt p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Function p, A arg) { return visitDefault(p, arg); }
+    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Application p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.PrintFunction p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.ReadRealFunction p, A arg) { return visitDefault(p, arg); }

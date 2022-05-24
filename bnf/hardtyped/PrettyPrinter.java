@@ -455,6 +455,19 @@ public class PrettyPrinter
        render("}");
        if (_i_ > 1) render(_R_PAREN);
     }
+    else     if (foo instanceof hardtyped.Absyn.FunctionWithReturnType)
+    {
+       hardtyped.Absyn.FunctionWithReturnType _functionwithreturntype = (hardtyped.Absyn.FunctionWithReturnType) foo;
+       if (_i_ > 1) render(_L_PAREN);
+       render("/\\");
+       pp(_functionwithreturntype.listfuncarg_, 0);
+       render("{");
+       pp(_functionwithreturntype.listexpr_, 0);
+       render("}");
+       render("->");
+       pp(_functionwithreturntype.type_, 0);
+       if (_i_ > 1) render(_R_PAREN);
+    }
     else     if (foo instanceof hardtyped.Absyn.Application)
     {
        hardtyped.Absyn.Application _application = (hardtyped.Absyn.Application) foo;
@@ -1180,6 +1193,20 @@ public class PrettyPrinter
        render("[");
        sh(_function.listexpr_);
        render("]");
+       render(")");
+    }
+    if (foo instanceof hardtyped.Absyn.FunctionWithReturnType)
+    {
+       hardtyped.Absyn.FunctionWithReturnType _functionwithreturntype = (hardtyped.Absyn.FunctionWithReturnType) foo;
+       render("(");
+       render("FunctionWithReturnType");
+       render("[");
+       sh(_functionwithreturntype.listfuncarg_);
+       render("]");
+       render("[");
+       sh(_functionwithreturntype.listexpr_);
+       render("]");
+       sh(_functionwithreturntype.type_);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.Application)
