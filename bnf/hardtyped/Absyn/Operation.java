@@ -2,23 +2,23 @@
 
 package hardtyped.Absyn;
 
-public class BaseValue  extends Expr {
-  public final Value value_;
-  public BaseValue(Value p1) { value_ = p1; }
+public class Operation  extends Expr {
+  public final Op op_;
+  public Operation(Op p1) { op_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.BaseValue) {
-      hardtyped.Absyn.BaseValue x = (hardtyped.Absyn.BaseValue)o;
-      return this.value_.equals(x.value_);
+    if (o instanceof hardtyped.Absyn.Operation) {
+      hardtyped.Absyn.Operation x = (hardtyped.Absyn.Operation)o;
+      return this.op_.equals(x.op_);
     }
     return false;
   }
 
   public int hashCode() {
-    return this.value_.hashCode();
+    return this.op_.hashCode();
   }
 
 

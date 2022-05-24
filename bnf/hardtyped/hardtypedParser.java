@@ -29,29 +29,49 @@ public class hardtypedParser extends Parser {
 		Surrogate_id_SYMB_29=30, Surrogate_id_SYMB_30=31, Surrogate_id_SYMB_31=32, 
 		Surrogate_id_SYMB_32=33, Surrogate_id_SYMB_33=34, Surrogate_id_SYMB_34=35, 
 		Surrogate_id_SYMB_35=36, Surrogate_id_SYMB_36=37, COMMENT_antlr_builtin=38, 
-		MULTICOMMENT_antlr_builtin=39, Bool=40, Unit=41, Print=42, Read=43, DOUBLE=44, 
-		INTEGER=45, IDENT=46, WS=47, ErrorToken=48, STRING=49, STRINGESC=50;
+		MULTICOMMENT_antlr_builtin=39, Bool=40, Unit=41, Print=42, ReadReal=43, 
+		ReadInt=44, ReadString=45, ReadBool=46, PackageExtension=47, DOUBLE=48, 
+		INTEGER=49, IDENT=50, WS=51, ErrorToken=52, STRING=53, STRINGESC=54;
 	public static final int
-		RULE_start_ListExpr = 0, RULE_start_Expr = 1, RULE_start_IfExpr = 2, RULE_start_Let = 3, 
-		RULE_start_Value = 4, RULE_start_Record = 5, RULE_start_InExpr = 6, RULE_start_InnerExpr = 7, 
-		RULE_start_FuncArg = 8, RULE_start_VarDec = 9, RULE_start_Type = 10, RULE_listExpr = 11, 
-		RULE_expr = 12, RULE_ifExpr = 13, RULE_let = 14, RULE_value = 15, RULE_record = 16, 
-		RULE_inExpr = 17, RULE_innerExpr = 18, RULE_funcArg = 19, RULE_varDec = 20, 
-		RULE_type = 21;
+		RULE_start_ListExpr = 0, RULE_start_Expr = 1, RULE_start_Expr1 = 2, RULE_start_Expr2 = 3, 
+		RULE_start_Expr3 = 4, RULE_start_Expr4 = 5, RULE_start_ModuleIdentifier = 6, 
+		RULE_start_ImportFileName = 7, RULE_start_Path = 8, RULE_start_ListPath = 9, 
+		RULE_start_Let = 10, RULE_start_VarDec = 11, RULE_start_VarName = 12, 
+		RULE_start_VarPath = 13, RULE_start_ListVarPath = 14, RULE_start_ExprSequence = 15, 
+		RULE_start_ListExprSequence = 16, RULE_start_FuncArg = 17, RULE_start_ListFuncArg = 18, 
+		RULE_start_IfExpr = 19, RULE_start_ListIfExpr = 20, RULE_start_ElseExpr = 21, 
+		RULE_start_Op = 22, RULE_start_Op1 = 23, RULE_start_Op2 = 24, RULE_start_Op3 = 25, 
+		RULE_start_Type = 26, RULE_start_Type1 = 27, RULE_start_Type2 = 28, RULE_start_Record = 29, 
+		RULE_start_ListRecord = 30, RULE_listExpr = 31, RULE_expr = 32, RULE_expr1 = 33, 
+		RULE_expr2 = 34, RULE_expr3 = 35, RULE_expr4 = 36, RULE_moduleIdentifier = 37, 
+		RULE_importFileName = 38, RULE_path = 39, RULE_listPath = 40, RULE_let = 41, 
+		RULE_varDec = 42, RULE_varName = 43, RULE_varPath = 44, RULE_listVarPath = 45, 
+		RULE_exprSequence = 46, RULE_listExprSequence = 47, RULE_funcArg = 48, 
+		RULE_listFuncArg = 49, RULE_ifExpr = 50, RULE_listIfExpr = 51, RULE_elseExpr = 52, 
+		RULE_op = 53, RULE_op1 = 54, RULE_op2 = 55, RULE_op3 = 56, RULE_type = 57, 
+		RULE_type1 = 58, RULE_type2 = 59, RULE_record = 60, RULE_listRecord = 61;
 	public static final String[] ruleNames = {
-		"start_ListExpr", "start_Expr", "start_IfExpr", "start_Let", "start_Value", 
-		"start_Record", "start_InExpr", "start_InnerExpr", "start_FuncArg", "start_VarDec", 
-		"start_Type", "listExpr", "expr", "ifExpr", "let", "value", "record", 
-		"inExpr", "innerExpr", "funcArg", "varDec", "type"
+		"start_ListExpr", "start_Expr", "start_Expr1", "start_Expr2", "start_Expr3", 
+		"start_Expr4", "start_ModuleIdentifier", "start_ImportFileName", "start_Path", 
+		"start_ListPath", "start_Let", "start_VarDec", "start_VarName", "start_VarPath", 
+		"start_ListVarPath", "start_ExprSequence", "start_ListExprSequence", "start_FuncArg", 
+		"start_ListFuncArg", "start_IfExpr", "start_ListIfExpr", "start_ElseExpr", 
+		"start_Op", "start_Op1", "start_Op2", "start_Op3", "start_Type", "start_Type1", 
+		"start_Type2", "start_Record", "start_ListRecord", "listExpr", "expr", 
+		"expr1", "expr2", "expr3", "expr4", "moduleIdentifier", "importFileName", 
+		"path", "listPath", "let", "varDec", "varName", "varPath", "listVarPath", 
+		"exprSequence", "listExprSequence", "funcArg", "listFuncArg", "ifExpr", 
+		"listIfExpr", "elseExpr", "op", "op1", "op2", "op3", "type", "type1", 
+		"type2", "record", "listRecord"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "';'", "'-|'", "'/\\'", "'{'", "'}'", "'('", "')'", "','", "'|'", 
-		"':'", "'|:'", "'+'", "'-'", "'*'", "'/'", "'>'", "'>='", "'=='", "'<='", 
-		"'<'", "'='", "'.'", "'->'", "'Any'", "'Bool'", "'Int'", "'Real'", "'String'", 
-		"'Unit'", "'and'", "'as'", "'in'", "'let'", "'letrec'", "'lettype'", "'not'", 
-		"'or'", null, null, null, null, null, null, null, null, null, null, null, 
-		"'\"'", "'\\'"
+		null, "';'", "'('", "')'", "'-|'", "'.'", "'/'", "'='", "':'", "'/\\'", 
+		"'{'", "'}'", "','", "'|'", "'|:'", "'+'", "'-'", "'*'", "'>'", "'>='", 
+		"'=='", "'!='", "'<='", "'<'", "'->'", "'Any'", "'Bool'", "'Int'", "'Real'", 
+		"'String'", "'Unit'", "'and'", "'in'", "'let'", "'letrec'", "'lettype'", 
+		"'not'", "'or'", null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, "'\"'", "'\\'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "Surrogate_id_SYMB_0", "Surrogate_id_SYMB_1", "Surrogate_id_SYMB_2", 
@@ -66,8 +86,9 @@ public class hardtypedParser extends Parser {
 		"Surrogate_id_SYMB_29", "Surrogate_id_SYMB_30", "Surrogate_id_SYMB_31", 
 		"Surrogate_id_SYMB_32", "Surrogate_id_SYMB_33", "Surrogate_id_SYMB_34", 
 		"Surrogate_id_SYMB_35", "Surrogate_id_SYMB_36", "COMMENT_antlr_builtin", 
-		"MULTICOMMENT_antlr_builtin", "Bool", "Unit", "Print", "Read", "DOUBLE", 
-		"INTEGER", "IDENT", "WS", "ErrorToken", "STRING", "STRINGESC"
+		"MULTICOMMENT_antlr_builtin", "Bool", "Unit", "Print", "ReadReal", "ReadInt", 
+		"ReadString", "ReadBool", "PackageExtension", "DOUBLE", "INTEGER", "IDENT", 
+		"WS", "ErrorToken", "STRING", "STRINGESC"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -145,9 +166,9 @@ public class hardtypedParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
+			setState(124);
 			((Start_ListExprContext)_localctx).x = listExpr();
-			setState(45);
+			setState(125);
 			match(EOF);
 			 ((Start_ListExprContext)_localctx).result =  ((Start_ListExprContext)_localctx).x.result; 
 			}
@@ -190,9 +211,9 @@ public class hardtypedParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(48);
-			((Start_ExprContext)_localctx).x = expr(0);
-			setState(49);
+			setState(128);
+			((Start_ExprContext)_localctx).x = expr();
+			setState(129);
 			match(EOF);
 			 ((Start_ExprContext)_localctx).result =  ((Start_ExprContext)_localctx).x.result; 
 			}
@@ -208,38 +229,353 @@ public class hardtypedParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Start_IfExprContext extends ParserRuleContext {
-		public hardtyped.Absyn.IfExpr result;
-		public IfExprContext x;
+	public static class Start_Expr1Context extends ParserRuleContext {
+		public hardtyped.Absyn.Expr result;
+		public Expr1Context x;
 		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
-		public IfExprContext ifExpr() {
-			return getRuleContext(IfExprContext.class,0);
+		public Expr1Context expr1() {
+			return getRuleContext(Expr1Context.class,0);
 		}
-		public Start_IfExprContext(ParserRuleContext parent, int invokingState) {
+		public Start_Expr1Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_start_IfExpr; }
+		@Override public int getRuleIndex() { return RULE_start_Expr1; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_IfExpr(this);
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Expr1(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_IfExpr(this);
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Expr1(this);
 		}
 	}
 
-	public final Start_IfExprContext start_IfExpr() throws RecognitionException {
-		Start_IfExprContext _localctx = new Start_IfExprContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_start_IfExpr);
+	public final Start_Expr1Context start_Expr1() throws RecognitionException {
+		Start_Expr1Context _localctx = new Start_Expr1Context(_ctx, getState());
+		enterRule(_localctx, 4, RULE_start_Expr1);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(52);
-			((Start_IfExprContext)_localctx).x = ifExpr(0);
-			setState(53);
+			setState(132);
+			((Start_Expr1Context)_localctx).x = expr1();
+			setState(133);
 			match(EOF);
-			 ((Start_IfExprContext)_localctx).result =  ((Start_IfExprContext)_localctx).x.result; 
+			 ((Start_Expr1Context)_localctx).result =  ((Start_Expr1Context)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_Expr2Context extends ParserRuleContext {
+		public hardtyped.Absyn.Expr result;
+		public Expr2Context x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public Expr2Context expr2() {
+			return getRuleContext(Expr2Context.class,0);
+		}
+		public Start_Expr2Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Expr2; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Expr2(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Expr2(this);
+		}
+	}
+
+	public final Start_Expr2Context start_Expr2() throws RecognitionException {
+		Start_Expr2Context _localctx = new Start_Expr2Context(_ctx, getState());
+		enterRule(_localctx, 6, RULE_start_Expr2);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(136);
+			((Start_Expr2Context)_localctx).x = expr2();
+			setState(137);
+			match(EOF);
+			 ((Start_Expr2Context)_localctx).result =  ((Start_Expr2Context)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_Expr3Context extends ParserRuleContext {
+		public hardtyped.Absyn.Expr result;
+		public Expr3Context x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public Expr3Context expr3() {
+			return getRuleContext(Expr3Context.class,0);
+		}
+		public Start_Expr3Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Expr3; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Expr3(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Expr3(this);
+		}
+	}
+
+	public final Start_Expr3Context start_Expr3() throws RecognitionException {
+		Start_Expr3Context _localctx = new Start_Expr3Context(_ctx, getState());
+		enterRule(_localctx, 8, RULE_start_Expr3);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(140);
+			((Start_Expr3Context)_localctx).x = expr3();
+			setState(141);
+			match(EOF);
+			 ((Start_Expr3Context)_localctx).result =  ((Start_Expr3Context)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_Expr4Context extends ParserRuleContext {
+		public hardtyped.Absyn.Expr result;
+		public Expr4Context x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public Expr4Context expr4() {
+			return getRuleContext(Expr4Context.class,0);
+		}
+		public Start_Expr4Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Expr4; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Expr4(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Expr4(this);
+		}
+	}
+
+	public final Start_Expr4Context start_Expr4() throws RecognitionException {
+		Start_Expr4Context _localctx = new Start_Expr4Context(_ctx, getState());
+		enterRule(_localctx, 10, RULE_start_Expr4);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(144);
+			((Start_Expr4Context)_localctx).x = expr4();
+			setState(145);
+			match(EOF);
+			 ((Start_Expr4Context)_localctx).result =  ((Start_Expr4Context)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ModuleIdentifierContext extends ParserRuleContext {
+		public hardtyped.Absyn.ModuleIdentifier result;
+		public ModuleIdentifierContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ModuleIdentifierContext moduleIdentifier() {
+			return getRuleContext(ModuleIdentifierContext.class,0);
+		}
+		public Start_ModuleIdentifierContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ModuleIdentifier; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ModuleIdentifier(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ModuleIdentifier(this);
+		}
+	}
+
+	public final Start_ModuleIdentifierContext start_ModuleIdentifier() throws RecognitionException {
+		Start_ModuleIdentifierContext _localctx = new Start_ModuleIdentifierContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_start_ModuleIdentifier);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(148);
+			((Start_ModuleIdentifierContext)_localctx).x = moduleIdentifier();
+			setState(149);
+			match(EOF);
+			 ((Start_ModuleIdentifierContext)_localctx).result =  ((Start_ModuleIdentifierContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ImportFileNameContext extends ParserRuleContext {
+		public hardtyped.Absyn.ImportFileName result;
+		public ImportFileNameContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ImportFileNameContext importFileName() {
+			return getRuleContext(ImportFileNameContext.class,0);
+		}
+		public Start_ImportFileNameContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ImportFileName; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ImportFileName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ImportFileName(this);
+		}
+	}
+
+	public final Start_ImportFileNameContext start_ImportFileName() throws RecognitionException {
+		Start_ImportFileNameContext _localctx = new Start_ImportFileNameContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_start_ImportFileName);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(152);
+			((Start_ImportFileNameContext)_localctx).x = importFileName();
+			setState(153);
+			match(EOF);
+			 ((Start_ImportFileNameContext)_localctx).result =  ((Start_ImportFileNameContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_PathContext extends ParserRuleContext {
+		public hardtyped.Absyn.Path result;
+		public PathContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public PathContext path() {
+			return getRuleContext(PathContext.class,0);
+		}
+		public Start_PathContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Path; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Path(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Path(this);
+		}
+	}
+
+	public final Start_PathContext start_Path() throws RecognitionException {
+		Start_PathContext _localctx = new Start_PathContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_start_Path);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(156);
+			((Start_PathContext)_localctx).x = path();
+			setState(157);
+			match(EOF);
+			 ((Start_PathContext)_localctx).result =  ((Start_PathContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ListPathContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListPath result;
+		public ListPathContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ListPathContext listPath() {
+			return getRuleContext(ListPathContext.class,0);
+		}
+		public Start_ListPathContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ListPath; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ListPath(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ListPath(this);
+		}
+	}
+
+	public final Start_ListPathContext start_ListPath() throws RecognitionException {
+		Start_ListPathContext _localctx = new Start_ListPathContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_start_ListPath);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(160);
+			((Start_ListPathContext)_localctx).x = listPath(0);
+			setState(161);
+			match(EOF);
+			 ((Start_ListPathContext)_localctx).result =  ((Start_ListPathContext)_localctx).x.result; 
 			}
 		}
 		catch (RecognitionException re) {
@@ -276,240 +612,15 @@ public class hardtypedParser extends Parser {
 
 	public final Start_LetContext start_Let() throws RecognitionException {
 		Start_LetContext _localctx = new Start_LetContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_start_Let);
+		enterRule(_localctx, 20, RULE_start_Let);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
+			setState(164);
 			((Start_LetContext)_localctx).x = let();
-			setState(57);
+			setState(165);
 			match(EOF);
 			 ((Start_LetContext)_localctx).result =  ((Start_LetContext)_localctx).x.result; 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Start_ValueContext extends ParserRuleContext {
-		public hardtyped.Absyn.Value result;
-		public ValueContext x;
-		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
-		}
-		public Start_ValueContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_start_Value; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Value(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Value(this);
-		}
-	}
-
-	public final Start_ValueContext start_Value() throws RecognitionException {
-		Start_ValueContext _localctx = new Start_ValueContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_start_Value);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(60);
-			((Start_ValueContext)_localctx).x = value();
-			setState(61);
-			match(EOF);
-			 ((Start_ValueContext)_localctx).result =  ((Start_ValueContext)_localctx).x.result; 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Start_RecordContext extends ParserRuleContext {
-		public hardtyped.Absyn.Record result;
-		public RecordContext x;
-		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
-		public RecordContext record() {
-			return getRuleContext(RecordContext.class,0);
-		}
-		public Start_RecordContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_start_Record; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Record(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Record(this);
-		}
-	}
-
-	public final Start_RecordContext start_Record() throws RecognitionException {
-		Start_RecordContext _localctx = new Start_RecordContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_start_Record);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(64);
-			((Start_RecordContext)_localctx).x = record(0);
-			setState(65);
-			match(EOF);
-			 ((Start_RecordContext)_localctx).result =  ((Start_RecordContext)_localctx).x.result; 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Start_InExprContext extends ParserRuleContext {
-		public hardtyped.Absyn.InExpr result;
-		public InExprContext x;
-		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
-		public InExprContext inExpr() {
-			return getRuleContext(InExprContext.class,0);
-		}
-		public Start_InExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_start_InExpr; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_InExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_InExpr(this);
-		}
-	}
-
-	public final Start_InExprContext start_InExpr() throws RecognitionException {
-		Start_InExprContext _localctx = new Start_InExprContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_start_InExpr);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(68);
-			((Start_InExprContext)_localctx).x = inExpr(0);
-			setState(69);
-			match(EOF);
-			 ((Start_InExprContext)_localctx).result =  ((Start_InExprContext)_localctx).x.result; 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Start_InnerExprContext extends ParserRuleContext {
-		public hardtyped.Absyn.InnerExpr result;
-		public InnerExprContext x;
-		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
-		public InnerExprContext innerExpr() {
-			return getRuleContext(InnerExprContext.class,0);
-		}
-		public Start_InnerExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_start_InnerExpr; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_InnerExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_InnerExpr(this);
-		}
-	}
-
-	public final Start_InnerExprContext start_InnerExpr() throws RecognitionException {
-		Start_InnerExprContext _localctx = new Start_InnerExprContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_start_InnerExpr);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(72);
-			((Start_InnerExprContext)_localctx).x = innerExpr(0);
-			setState(73);
-			match(EOF);
-			 ((Start_InnerExprContext)_localctx).result =  ((Start_InnerExprContext)_localctx).x.result; 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Start_FuncArgContext extends ParserRuleContext {
-		public hardtyped.Absyn.FuncArg result;
-		public FuncArgContext x;
-		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
-		public FuncArgContext funcArg() {
-			return getRuleContext(FuncArgContext.class,0);
-		}
-		public Start_FuncArgContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_start_FuncArg; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_FuncArg(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_FuncArg(this);
-		}
-	}
-
-	public final Start_FuncArgContext start_FuncArg() throws RecognitionException {
-		Start_FuncArgContext _localctx = new Start_FuncArgContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_start_FuncArg);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(76);
-			((Start_FuncArgContext)_localctx).x = funcArg();
-			setState(77);
-			match(EOF);
-			 ((Start_FuncArgContext)_localctx).result =  ((Start_FuncArgContext)_localctx).x.result; 
 			}
 		}
 		catch (RecognitionException re) {
@@ -546,15 +657,645 @@ public class hardtypedParser extends Parser {
 
 	public final Start_VarDecContext start_VarDec() throws RecognitionException {
 		Start_VarDecContext _localctx = new Start_VarDecContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_start_VarDec);
+		enterRule(_localctx, 22, RULE_start_VarDec);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(80);
+			setState(168);
 			((Start_VarDecContext)_localctx).x = varDec();
-			setState(81);
+			setState(169);
 			match(EOF);
 			 ((Start_VarDecContext)_localctx).result =  ((Start_VarDecContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_VarNameContext extends ParserRuleContext {
+		public hardtyped.Absyn.VarName result;
+		public VarNameContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public VarNameContext varName() {
+			return getRuleContext(VarNameContext.class,0);
+		}
+		public Start_VarNameContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_VarName; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_VarName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_VarName(this);
+		}
+	}
+
+	public final Start_VarNameContext start_VarName() throws RecognitionException {
+		Start_VarNameContext _localctx = new Start_VarNameContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_start_VarName);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(172);
+			((Start_VarNameContext)_localctx).x = varName();
+			setState(173);
+			match(EOF);
+			 ((Start_VarNameContext)_localctx).result =  ((Start_VarNameContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_VarPathContext extends ParserRuleContext {
+		public hardtyped.Absyn.VarPath result;
+		public VarPathContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public VarPathContext varPath() {
+			return getRuleContext(VarPathContext.class,0);
+		}
+		public Start_VarPathContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_VarPath; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_VarPath(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_VarPath(this);
+		}
+	}
+
+	public final Start_VarPathContext start_VarPath() throws RecognitionException {
+		Start_VarPathContext _localctx = new Start_VarPathContext(_ctx, getState());
+		enterRule(_localctx, 26, RULE_start_VarPath);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(176);
+			((Start_VarPathContext)_localctx).x = varPath();
+			setState(177);
+			match(EOF);
+			 ((Start_VarPathContext)_localctx).result =  ((Start_VarPathContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ListVarPathContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListVarPath result;
+		public ListVarPathContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ListVarPathContext listVarPath() {
+			return getRuleContext(ListVarPathContext.class,0);
+		}
+		public Start_ListVarPathContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ListVarPath; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ListVarPath(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ListVarPath(this);
+		}
+	}
+
+	public final Start_ListVarPathContext start_ListVarPath() throws RecognitionException {
+		Start_ListVarPathContext _localctx = new Start_ListVarPathContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_start_ListVarPath);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(180);
+			((Start_ListVarPathContext)_localctx).x = listVarPath(0);
+			setState(181);
+			match(EOF);
+			 ((Start_ListVarPathContext)_localctx).result =  ((Start_ListVarPathContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ExprSequenceContext extends ParserRuleContext {
+		public hardtyped.Absyn.ExprSequence result;
+		public ExprSequenceContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ExprSequenceContext exprSequence() {
+			return getRuleContext(ExprSequenceContext.class,0);
+		}
+		public Start_ExprSequenceContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ExprSequence; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ExprSequence(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ExprSequence(this);
+		}
+	}
+
+	public final Start_ExprSequenceContext start_ExprSequence() throws RecognitionException {
+		Start_ExprSequenceContext _localctx = new Start_ExprSequenceContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_start_ExprSequence);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(184);
+			((Start_ExprSequenceContext)_localctx).x = exprSequence();
+			setState(185);
+			match(EOF);
+			 ((Start_ExprSequenceContext)_localctx).result =  ((Start_ExprSequenceContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ListExprSequenceContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListExprSequence result;
+		public ListExprSequenceContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ListExprSequenceContext listExprSequence() {
+			return getRuleContext(ListExprSequenceContext.class,0);
+		}
+		public Start_ListExprSequenceContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ListExprSequence; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ListExprSequence(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ListExprSequence(this);
+		}
+	}
+
+	public final Start_ListExprSequenceContext start_ListExprSequence() throws RecognitionException {
+		Start_ListExprSequenceContext _localctx = new Start_ListExprSequenceContext(_ctx, getState());
+		enterRule(_localctx, 32, RULE_start_ListExprSequence);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(188);
+			((Start_ListExprSequenceContext)_localctx).x = listExprSequence();
+			setState(189);
+			match(EOF);
+			 ((Start_ListExprSequenceContext)_localctx).result =  ((Start_ListExprSequenceContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_FuncArgContext extends ParserRuleContext {
+		public hardtyped.Absyn.FuncArg result;
+		public FuncArgContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public FuncArgContext funcArg() {
+			return getRuleContext(FuncArgContext.class,0);
+		}
+		public Start_FuncArgContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_FuncArg; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_FuncArg(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_FuncArg(this);
+		}
+	}
+
+	public final Start_FuncArgContext start_FuncArg() throws RecognitionException {
+		Start_FuncArgContext _localctx = new Start_FuncArgContext(_ctx, getState());
+		enterRule(_localctx, 34, RULE_start_FuncArg);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(192);
+			((Start_FuncArgContext)_localctx).x = funcArg();
+			setState(193);
+			match(EOF);
+			 ((Start_FuncArgContext)_localctx).result =  ((Start_FuncArgContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ListFuncArgContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListFuncArg result;
+		public ListFuncArgContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ListFuncArgContext listFuncArg() {
+			return getRuleContext(ListFuncArgContext.class,0);
+		}
+		public Start_ListFuncArgContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ListFuncArg; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ListFuncArg(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ListFuncArg(this);
+		}
+	}
+
+	public final Start_ListFuncArgContext start_ListFuncArg() throws RecognitionException {
+		Start_ListFuncArgContext _localctx = new Start_ListFuncArgContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_start_ListFuncArg);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(196);
+			((Start_ListFuncArgContext)_localctx).x = listFuncArg(0);
+			setState(197);
+			match(EOF);
+			 ((Start_ListFuncArgContext)_localctx).result =  ((Start_ListFuncArgContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_IfExprContext extends ParserRuleContext {
+		public hardtyped.Absyn.IfExpr result;
+		public IfExprContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public IfExprContext ifExpr() {
+			return getRuleContext(IfExprContext.class,0);
+		}
+		public Start_IfExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_IfExpr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_IfExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_IfExpr(this);
+		}
+	}
+
+	public final Start_IfExprContext start_IfExpr() throws RecognitionException {
+		Start_IfExprContext _localctx = new Start_IfExprContext(_ctx, getState());
+		enterRule(_localctx, 38, RULE_start_IfExpr);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(200);
+			((Start_IfExprContext)_localctx).x = ifExpr();
+			setState(201);
+			match(EOF);
+			 ((Start_IfExprContext)_localctx).result =  ((Start_IfExprContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ListIfExprContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListIfExpr result;
+		public ListIfExprContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ListIfExprContext listIfExpr() {
+			return getRuleContext(ListIfExprContext.class,0);
+		}
+		public Start_ListIfExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ListIfExpr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ListIfExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ListIfExpr(this);
+		}
+	}
+
+	public final Start_ListIfExprContext start_ListIfExpr() throws RecognitionException {
+		Start_ListIfExprContext _localctx = new Start_ListIfExprContext(_ctx, getState());
+		enterRule(_localctx, 40, RULE_start_ListIfExpr);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(204);
+			((Start_ListIfExprContext)_localctx).x = listIfExpr(0);
+			setState(205);
+			match(EOF);
+			 ((Start_ListIfExprContext)_localctx).result =  ((Start_ListIfExprContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ElseExprContext extends ParserRuleContext {
+		public hardtyped.Absyn.ElseExpr result;
+		public ElseExprContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ElseExprContext elseExpr() {
+			return getRuleContext(ElseExprContext.class,0);
+		}
+		public Start_ElseExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ElseExpr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ElseExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ElseExpr(this);
+		}
+	}
+
+	public final Start_ElseExprContext start_ElseExpr() throws RecognitionException {
+		Start_ElseExprContext _localctx = new Start_ElseExprContext(_ctx, getState());
+		enterRule(_localctx, 42, RULE_start_ElseExpr);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(208);
+			((Start_ElseExprContext)_localctx).x = elseExpr();
+			setState(209);
+			match(EOF);
+			 ((Start_ElseExprContext)_localctx).result =  ((Start_ElseExprContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_OpContext extends ParserRuleContext {
+		public hardtyped.Absyn.Op result;
+		public OpContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public OpContext op() {
+			return getRuleContext(OpContext.class,0);
+		}
+		public Start_OpContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Op; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Op(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Op(this);
+		}
+	}
+
+	public final Start_OpContext start_Op() throws RecognitionException {
+		Start_OpContext _localctx = new Start_OpContext(_ctx, getState());
+		enterRule(_localctx, 44, RULE_start_Op);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(212);
+			((Start_OpContext)_localctx).x = op();
+			setState(213);
+			match(EOF);
+			 ((Start_OpContext)_localctx).result =  ((Start_OpContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_Op1Context extends ParserRuleContext {
+		public hardtyped.Absyn.Op result;
+		public Op1Context x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public Op1Context op1() {
+			return getRuleContext(Op1Context.class,0);
+		}
+		public Start_Op1Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Op1; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Op1(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Op1(this);
+		}
+	}
+
+	public final Start_Op1Context start_Op1() throws RecognitionException {
+		Start_Op1Context _localctx = new Start_Op1Context(_ctx, getState());
+		enterRule(_localctx, 46, RULE_start_Op1);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(216);
+			((Start_Op1Context)_localctx).x = op1();
+			setState(217);
+			match(EOF);
+			 ((Start_Op1Context)_localctx).result =  ((Start_Op1Context)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_Op2Context extends ParserRuleContext {
+		public hardtyped.Absyn.Op result;
+		public Op2Context x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public Op2Context op2() {
+			return getRuleContext(Op2Context.class,0);
+		}
+		public Start_Op2Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Op2; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Op2(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Op2(this);
+		}
+	}
+
+	public final Start_Op2Context start_Op2() throws RecognitionException {
+		Start_Op2Context _localctx = new Start_Op2Context(_ctx, getState());
+		enterRule(_localctx, 48, RULE_start_Op2);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(220);
+			((Start_Op2Context)_localctx).x = op2();
+			setState(221);
+			match(EOF);
+			 ((Start_Op2Context)_localctx).result =  ((Start_Op2Context)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_Op3Context extends ParserRuleContext {
+		public hardtyped.Absyn.Op result;
+		public Op3Context x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public Op3Context op3() {
+			return getRuleContext(Op3Context.class,0);
+		}
+		public Start_Op3Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Op3; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Op3(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Op3(this);
+		}
+	}
+
+	public final Start_Op3Context start_Op3() throws RecognitionException {
+		Start_Op3Context _localctx = new Start_Op3Context(_ctx, getState());
+		enterRule(_localctx, 50, RULE_start_Op3);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(224);
+			((Start_Op3Context)_localctx).x = op3();
+			setState(225);
+			match(EOF);
+			 ((Start_Op3Context)_localctx).result =  ((Start_Op3Context)_localctx).x.result; 
 			}
 		}
 		catch (RecognitionException re) {
@@ -591,15 +1332,195 @@ public class hardtypedParser extends Parser {
 
 	public final Start_TypeContext start_Type() throws RecognitionException {
 		Start_TypeContext _localctx = new Start_TypeContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_start_Type);
+		enterRule(_localctx, 52, RULE_start_Type);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(84);
-			((Start_TypeContext)_localctx).x = type(0);
-			setState(85);
+			setState(228);
+			((Start_TypeContext)_localctx).x = type();
+			setState(229);
 			match(EOF);
 			 ((Start_TypeContext)_localctx).result =  ((Start_TypeContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_Type1Context extends ParserRuleContext {
+		public hardtyped.Absyn.Type result;
+		public Type1Context x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public Type1Context type1() {
+			return getRuleContext(Type1Context.class,0);
+		}
+		public Start_Type1Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Type1; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Type1(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Type1(this);
+		}
+	}
+
+	public final Start_Type1Context start_Type1() throws RecognitionException {
+		Start_Type1Context _localctx = new Start_Type1Context(_ctx, getState());
+		enterRule(_localctx, 54, RULE_start_Type1);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(232);
+			((Start_Type1Context)_localctx).x = type1();
+			setState(233);
+			match(EOF);
+			 ((Start_Type1Context)_localctx).result =  ((Start_Type1Context)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_Type2Context extends ParserRuleContext {
+		public hardtyped.Absyn.Type result;
+		public Type2Context x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public Type2Context type2() {
+			return getRuleContext(Type2Context.class,0);
+		}
+		public Start_Type2Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Type2; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Type2(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Type2(this);
+		}
+	}
+
+	public final Start_Type2Context start_Type2() throws RecognitionException {
+		Start_Type2Context _localctx = new Start_Type2Context(_ctx, getState());
+		enterRule(_localctx, 56, RULE_start_Type2);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(236);
+			((Start_Type2Context)_localctx).x = type2();
+			setState(237);
+			match(EOF);
+			 ((Start_Type2Context)_localctx).result =  ((Start_Type2Context)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_RecordContext extends ParserRuleContext {
+		public hardtyped.Absyn.Record result;
+		public RecordContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public RecordContext record() {
+			return getRuleContext(RecordContext.class,0);
+		}
+		public Start_RecordContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_Record; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_Record(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_Record(this);
+		}
+	}
+
+	public final Start_RecordContext start_Record() throws RecognitionException {
+		Start_RecordContext _localctx = new Start_RecordContext(_ctx, getState());
+		enterRule(_localctx, 58, RULE_start_Record);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(240);
+			((Start_RecordContext)_localctx).x = record();
+			setState(241);
+			match(EOF);
+			 ((Start_RecordContext)_localctx).result =  ((Start_RecordContext)_localctx).x.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Start_ListRecordContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListRecord result;
+		public ListRecordContext x;
+		public TerminalNode EOF() { return getToken(hardtypedParser.EOF, 0); }
+		public ListRecordContext listRecord() {
+			return getRuleContext(ListRecordContext.class,0);
+		}
+		public Start_ListRecordContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start_ListRecord; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterStart_ListRecord(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitStart_ListRecord(this);
+		}
+	}
+
+	public final Start_ListRecordContext start_ListRecord() throws RecognitionException {
+		Start_ListRecordContext _localctx = new Start_ListRecordContext(_ctx, getState());
+		enterRule(_localctx, 60, RULE_start_ListRecord);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(244);
+			((Start_ListRecordContext)_localctx).x = listRecord();
+			setState(245);
+			match(EOF);
+			 ((Start_ListRecordContext)_localctx).result =  ((Start_ListRecordContext)_localctx).x.result; 
 			}
 		}
 		catch (RecognitionException re) {
@@ -641,9 +1562,9 @@ public class hardtypedParser extends Parser {
 
 	public final ListExprContext listExpr() throws RecognitionException {
 		ListExprContext _localctx = new ListExprContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_listExpr);
+		enterRule(_localctx, 62, RULE_listExpr);
 		try {
-			setState(97);
+			setState(257);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
@@ -655,19 +1576,19 @@ public class hardtypedParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(89);
-				((ListExprContext)_localctx).p_2_1 = expr(0);
+				setState(249);
+				((ListExprContext)_localctx).p_2_1 = expr();
 				 ((ListExprContext)_localctx).result =  new hardtyped.Absyn.ListExpr(); _localctx.result.addLast(((ListExprContext)_localctx).p_2_1.result); 
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(92);
-				((ListExprContext)_localctx).p_3_1 = expr(0);
-				setState(93);
+				setState(252);
+				((ListExprContext)_localctx).p_3_1 = expr();
+				setState(253);
 				match(Surrogate_id_SYMB_0);
-				setState(94);
+				setState(254);
 				((ListExprContext)_localctx).p_3_3 = listExpr();
 				 ((ListExprContext)_localctx).result =  ((ListExprContext)_localctx).p_3_3.result; _localctx.result.addFirst(((ListExprContext)_localctx).p_3_1.result); 
 				}
@@ -687,98 +1608,27 @@ public class hardtypedParser extends Parser {
 
 	public static class ExprContext extends ParserRuleContext {
 		public hardtyped.Absyn.Expr result;
-		public ExprContext p_8_1;
-		public ExprContext p_10_1;
-		public ExprContext p_11_1;
-		public ExprContext p_12_1;
-		public ExprContext p_13_1;
-		public ExprContext p_14_1;
-		public ExprContext p_15_1;
-		public ExprContext p_17_1;
-		public ExprContext p_18_1;
-		public ExprContext p_19_1;
-		public ExprContext p_20_1;
-		public ExprContext p_21_1;
-		public VarDecContext p_1_2;
-		public FuncArgContext p_2_2;
-		public InExprContext p_2_4;
-		public VarDecContext p_3_1;
-		public ExprContext p_3_3;
-		public Token p_4_1;
-		public ExprContext p_4_3;
-		public Token p_5_1;
-		public ExprContext p_5_3;
-		public Token p_6_1;
-		public Token p_7_1;
-		public IfExprContext p_9_1;
-		public ExprContext p_16_2;
-		public ExprContext p_22_2;
-		public ExprContext p_23_2;
-		public LetContext p_24_1;
-		public ValueContext p_25_1;
-		public Token p_26_1;
-		public InnerExprContext p_27_2;
-		public ExprContext p_8_3;
-		public ExprContext p_10_3;
-		public ExprContext p_11_3;
-		public ExprContext p_12_3;
-		public ExprContext p_13_3;
-		public ExprContext p_14_3;
-		public ExprContext p_15_3;
-		public ExprContext p_17_3;
-		public ExprContext p_18_3;
-		public ExprContext p_19_3;
-		public ExprContext p_20_3;
-		public ExprContext p_21_3;
-		public TerminalNode Surrogate_id_SYMB_1() { return getToken(hardtypedParser.Surrogate_id_SYMB_1, 0); }
-		public VarDecContext varDec() {
-			return getRuleContext(VarDecContext.class,0);
+		public Expr1Context p_1_1;
+		public ModuleIdentifierContext p_2_2;
+		public LetContext p_3_1;
+		public ListIfExprContext p_4_1;
+		public ElseExprContext p_4_2;
+		public Expr1Context expr1() {
+			return getRuleContext(Expr1Context.class,0);
 		}
-		public TerminalNode Surrogate_id_SYMB_2() { return getToken(hardtypedParser.Surrogate_id_SYMB_2, 0); }
 		public TerminalNode Surrogate_id_SYMB_3() { return getToken(hardtypedParser.Surrogate_id_SYMB_3, 0); }
-		public TerminalNode Surrogate_id_SYMB_4() { return getToken(hardtypedParser.Surrogate_id_SYMB_4, 0); }
-		public FuncArgContext funcArg() {
-			return getRuleContext(FuncArgContext.class,0);
+		public ModuleIdentifierContext moduleIdentifier() {
+			return getRuleContext(ModuleIdentifierContext.class,0);
 		}
-		public InExprContext inExpr() {
-			return getRuleContext(InExprContext.class,0);
-		}
-		public TerminalNode Surrogate_id_SYMB_5() { return getToken(hardtypedParser.Surrogate_id_SYMB_5, 0); }
-		public TerminalNode Surrogate_id_SYMB_6() { return getToken(hardtypedParser.Surrogate_id_SYMB_6, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public TerminalNode Print() { return getToken(hardtypedParser.Print, 0); }
-		public TerminalNode Read() { return getToken(hardtypedParser.Read, 0); }
-		public IfExprContext ifExpr() {
-			return getRuleContext(IfExprContext.class,0);
-		}
-		public TerminalNode Surrogate_id_SYMB_35() { return getToken(hardtypedParser.Surrogate_id_SYMB_35, 0); }
-		public TerminalNode Surrogate_id_SYMB_11() { return getToken(hardtypedParser.Surrogate_id_SYMB_11, 0); }
-		public TerminalNode Surrogate_id_SYMB_12() { return getToken(hardtypedParser.Surrogate_id_SYMB_12, 0); }
 		public LetContext let() {
 			return getRuleContext(LetContext.class,0);
 		}
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
+		public ListIfExprContext listIfExpr() {
+			return getRuleContext(ListIfExprContext.class,0);
 		}
-		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
-		public InnerExprContext innerExpr() {
-			return getRuleContext(InnerExprContext.class,0);
+		public ElseExprContext elseExpr() {
+			return getRuleContext(ElseExprContext.class,0);
 		}
-		public TerminalNode Surrogate_id_SYMB_7() { return getToken(hardtypedParser.Surrogate_id_SYMB_7, 0); }
-		public TerminalNode Surrogate_id_SYMB_13() { return getToken(hardtypedParser.Surrogate_id_SYMB_13, 0); }
-		public TerminalNode Surrogate_id_SYMB_14() { return getToken(hardtypedParser.Surrogate_id_SYMB_14, 0); }
-		public TerminalNode Surrogate_id_SYMB_29() { return getToken(hardtypedParser.Surrogate_id_SYMB_29, 0); }
-		public TerminalNode Surrogate_id_SYMB_36() { return getToken(hardtypedParser.Surrogate_id_SYMB_36, 0); }
-		public TerminalNode Surrogate_id_SYMB_15() { return getToken(hardtypedParser.Surrogate_id_SYMB_15, 0); }
-		public TerminalNode Surrogate_id_SYMB_16() { return getToken(hardtypedParser.Surrogate_id_SYMB_16, 0); }
-		public TerminalNode Surrogate_id_SYMB_17() { return getToken(hardtypedParser.Surrogate_id_SYMB_17, 0); }
-		public TerminalNode Surrogate_id_SYMB_18() { return getToken(hardtypedParser.Surrogate_id_SYMB_18, 0); }
-		public TerminalNode Surrogate_id_SYMB_19() { return getToken(hardtypedParser.Surrogate_id_SYMB_19, 0); }
 		public ExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -794,374 +1644,48 @@ public class hardtypedParser extends Parser {
 	}
 
 	public final ExprContext expr() throws RecognitionException {
-		return expr(0);
-	}
-
-	private ExprContext expr(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		ExprContext _localctx = new ExprContext(_ctx, _parentState);
-		ExprContext _prevctx = _localctx;
-		int _startState = 24;
-		enterRecursionRule(_localctx, 24, RULE_expr, _p);
+		ExprContext _localctx = new ExprContext(_ctx, getState());
+		enterRule(_localctx, 64, RULE_expr);
 		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(165);
+			setState(273);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
+				enterOuterAlt(_localctx, 1);
 				{
-				setState(100);
-				match(Surrogate_id_SYMB_1);
-				setState(101);
-				((ExprContext)_localctx).p_1_2 = varDec();
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Import(((ExprContext)_localctx).p_1_2.result); 
+				setState(259);
+				((ExprContext)_localctx).p_1_1 = expr1();
+				 ((ExprContext)_localctx).result =  ((ExprContext)_localctx).p_1_1.result; 
 				}
 				break;
 			case 2:
+				enterOuterAlt(_localctx, 2);
 				{
-				setState(104);
-				match(Surrogate_id_SYMB_2);
-				setState(105);
-				((ExprContext)_localctx).p_2_2 = funcArg();
-				setState(106);
+				setState(262);
 				match(Surrogate_id_SYMB_3);
-				setState(107);
-				((ExprContext)_localctx).p_2_4 = inExpr(0);
-				setState(108);
-				match(Surrogate_id_SYMB_4);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Function(((ExprContext)_localctx).p_2_2.result,((ExprContext)_localctx).p_2_4.result); 
+				setState(263);
+				((ExprContext)_localctx).p_2_2 = moduleIdentifier();
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Import(((ExprContext)_localctx).p_2_2.result); 
 				}
 				break;
 			case 3:
+				enterOuterAlt(_localctx, 3);
 				{
-				setState(111);
-				((ExprContext)_localctx).p_3_1 = varDec();
-				setState(112);
-				match(Surrogate_id_SYMB_5);
-				setState(113);
-				((ExprContext)_localctx).p_3_3 = expr(0);
-				setState(114);
-				match(Surrogate_id_SYMB_6);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.ApplyFunction(((ExprContext)_localctx).p_3_1.result,((ExprContext)_localctx).p_3_3.result); 
+				setState(266);
+				((ExprContext)_localctx).p_3_1 = let();
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.BaseLet(((ExprContext)_localctx).p_3_1.result); 
 				}
 				break;
 			case 4:
+				enterOuterAlt(_localctx, 4);
 				{
-				setState(117);
-				((ExprContext)_localctx).p_4_1 = match(Print);
-				setState(118);
-				match(Surrogate_id_SYMB_5);
-				setState(119);
-				((ExprContext)_localctx).p_4_3 = expr(0);
-				setState(120);
-				match(Surrogate_id_SYMB_6);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.PrintFunction(((ExprContext)_localctx).p_4_1.getText(),((ExprContext)_localctx).p_4_3.result); 
+				setState(269);
+				((ExprContext)_localctx).p_4_1 = listIfExpr(0);
+				setState(270);
+				((ExprContext)_localctx).p_4_2 = elseExpr();
+				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.IfStmt(((ExprContext)_localctx).p_4_1.result,((ExprContext)_localctx).p_4_2.result); 
 				}
 				break;
-			case 5:
-				{
-				setState(123);
-				((ExprContext)_localctx).p_5_1 = match(Read);
-				setState(124);
-				match(Surrogate_id_SYMB_5);
-				setState(125);
-				((ExprContext)_localctx).p_5_3 = expr(0);
-				setState(126);
-				match(Surrogate_id_SYMB_6);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.ReadFunction(((ExprContext)_localctx).p_5_1.getText(),((ExprContext)_localctx).p_5_3.result); 
-				}
-				break;
-			case 6:
-				{
-				setState(129);
-				((ExprContext)_localctx).p_6_1 = match(Print);
-				setState(130);
-				match(Surrogate_id_SYMB_5);
-				setState(131);
-				match(Surrogate_id_SYMB_6);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.EmptyPrintFunction(((ExprContext)_localctx).p_6_1.getText()); 
-				}
-				break;
-			case 7:
-				{
-				setState(133);
-				((ExprContext)_localctx).p_7_1 = match(Read);
-				setState(134);
-				match(Surrogate_id_SYMB_5);
-				setState(135);
-				match(Surrogate_id_SYMB_6);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.EmptyReadFunction(((ExprContext)_localctx).p_7_1.getText()); 
-				}
-				break;
-			case 8:
-				{
-				setState(137);
-				((ExprContext)_localctx).p_9_1 = ifExpr(0);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.IfStmt(((ExprContext)_localctx).p_9_1.result); 
-				}
-				break;
-			case 9:
-				{
-				setState(140);
-				match(Surrogate_id_SYMB_35);
-				setState(141);
-				((ExprContext)_localctx).p_16_2 = expr(12);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Not(((ExprContext)_localctx).p_16_2.result); 
-				}
-				break;
-			case 10:
-				{
-				setState(144);
-				match(Surrogate_id_SYMB_11);
-				setState(145);
-				((ExprContext)_localctx).p_22_2 = expr(6);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.UnaryPlus(((ExprContext)_localctx).p_22_2.result); 
-				}
-				break;
-			case 11:
-				{
-				setState(148);
-				match(Surrogate_id_SYMB_12);
-				setState(149);
-				((ExprContext)_localctx).p_23_2 = expr(5);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.UnaryMinus(((ExprContext)_localctx).p_23_2.result); 
-				}
-				break;
-			case 12:
-				{
-				setState(152);
-				((ExprContext)_localctx).p_24_1 = let();
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.BaseLet(((ExprContext)_localctx).p_24_1.result); 
-				}
-				break;
-			case 13:
-				{
-				setState(155);
-				((ExprContext)_localctx).p_25_1 = value();
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.BaseValue(((ExprContext)_localctx).p_25_1.result); 
-				}
-				break;
-			case 14:
-				{
-				setState(158);
-				((ExprContext)_localctx).p_26_1 = match(IDENT);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.AtomicExpression(((ExprContext)_localctx).p_26_1.getText()); 
-				}
-				break;
-			case 15:
-				{
-				setState(160);
-				match(Surrogate_id_SYMB_5);
-				setState(161);
-				((ExprContext)_localctx).p_27_2 = innerExpr(0);
-				setState(162);
-				match(Surrogate_id_SYMB_6);
-				 ((ExprContext)_localctx).result =  new hardtyped.Absyn.ParenthesesExpression(((ExprContext)_localctx).p_27_2.result); 
-				}
-				break;
-			}
-			_ctx.stop = _input.LT(-1);
-			setState(229);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( _parseListeners!=null ) triggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					setState(227);
-					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
-					case 1:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_8_1 = _prevctx;
-						_localctx.p_8_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(167);
-						if (!(precpred(_ctx, 20))) throw new FailedPredicateException(this, "precpred(_ctx, 20)");
-						setState(168);
-						match(Surrogate_id_SYMB_7);
-						setState(169);
-						((ExprContext)_localctx).p_8_3 = expr(21);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.MultipleArgFunction(((ExprContext)_localctx).p_8_1.result,((ExprContext)_localctx).p_8_3.result); 
-						}
-						break;
-					case 2:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_10_1 = _prevctx;
-						_localctx.p_10_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(172);
-						if (!(precpred(_ctx, 18))) throw new FailedPredicateException(this, "precpred(_ctx, 18)");
-						setState(173);
-						match(Surrogate_id_SYMB_11);
-						setState(174);
-						((ExprContext)_localctx).p_10_3 = expr(19);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Sum(((ExprContext)_localctx).p_10_1.result,((ExprContext)_localctx).p_10_3.result); 
-						}
-						break;
-					case 3:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_11_1 = _prevctx;
-						_localctx.p_11_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(177);
-						if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
-						setState(178);
-						match(Surrogate_id_SYMB_12);
-						setState(179);
-						((ExprContext)_localctx).p_11_3 = expr(18);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Substract(((ExprContext)_localctx).p_11_1.result,((ExprContext)_localctx).p_11_3.result); 
-						}
-						break;
-					case 4:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_12_1 = _prevctx;
-						_localctx.p_12_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(182);
-						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
-						setState(183);
-						match(Surrogate_id_SYMB_13);
-						setState(184);
-						((ExprContext)_localctx).p_12_3 = expr(17);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Multiply(((ExprContext)_localctx).p_12_1.result,((ExprContext)_localctx).p_12_3.result); 
-						}
-						break;
-					case 5:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_13_1 = _prevctx;
-						_localctx.p_13_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(187);
-						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
-						setState(188);
-						match(Surrogate_id_SYMB_14);
-						setState(189);
-						((ExprContext)_localctx).p_13_3 = expr(16);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Divide(((ExprContext)_localctx).p_13_1.result,((ExprContext)_localctx).p_13_3.result); 
-						}
-						break;
-					case 6:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_14_1 = _prevctx;
-						_localctx.p_14_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(192);
-						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
-						setState(193);
-						match(Surrogate_id_SYMB_29);
-						setState(194);
-						((ExprContext)_localctx).p_14_3 = expr(15);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.And(((ExprContext)_localctx).p_14_1.result,((ExprContext)_localctx).p_14_3.result); 
-						}
-						break;
-					case 7:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_15_1 = _prevctx;
-						_localctx.p_15_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(197);
-						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
-						setState(198);
-						match(Surrogate_id_SYMB_36);
-						setState(199);
-						((ExprContext)_localctx).p_15_3 = expr(14);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Or(((ExprContext)_localctx).p_15_1.result,((ExprContext)_localctx).p_15_3.result); 
-						}
-						break;
-					case 8:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_17_1 = _prevctx;
-						_localctx.p_17_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(202);
-						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-						setState(203);
-						match(Surrogate_id_SYMB_15);
-						setState(204);
-						((ExprContext)_localctx).p_17_3 = expr(12);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.More(((ExprContext)_localctx).p_17_1.result,((ExprContext)_localctx).p_17_3.result); 
-						}
-						break;
-					case 9:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_18_1 = _prevctx;
-						_localctx.p_18_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(207);
-						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(208);
-						match(Surrogate_id_SYMB_16);
-						setState(209);
-						((ExprContext)_localctx).p_18_3 = expr(11);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.MoreEql(((ExprContext)_localctx).p_18_1.result,((ExprContext)_localctx).p_18_3.result); 
-						}
-						break;
-					case 10:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_19_1 = _prevctx;
-						_localctx.p_19_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(212);
-						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(213);
-						match(Surrogate_id_SYMB_17);
-						setState(214);
-						((ExprContext)_localctx).p_19_3 = expr(10);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Eql(((ExprContext)_localctx).p_19_1.result,((ExprContext)_localctx).p_19_3.result); 
-						}
-						break;
-					case 11:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_20_1 = _prevctx;
-						_localctx.p_20_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(217);
-						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(218);
-						match(Surrogate_id_SYMB_18);
-						setState(219);
-						((ExprContext)_localctx).p_20_3 = expr(9);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.LessEql(((ExprContext)_localctx).p_20_1.result,((ExprContext)_localctx).p_20_3.result); 
-						}
-						break;
-					case 12:
-						{
-						_localctx = new ExprContext(_parentctx, _parentState);
-						_localctx.p_21_1 = _prevctx;
-						_localctx.p_21_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(222);
-						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(223);
-						match(Surrogate_id_SYMB_19);
-						setState(224);
-						((ExprContext)_localctx).p_21_3 = expr(8);
-						 ((ExprContext)_localctx).result =  new hardtyped.Absyn.Less(((ExprContext)_localctx).p_21_1.result,((ExprContext)_localctx).p_21_3.result); 
-						}
-						break;
-					}
-					} 
-				}
-				setState(231);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
-			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1170,108 +1694,614 @@ public class hardtypedParser extends Parser {
 			_errHandler.recover(this, re);
 		}
 		finally {
-			unrollRecursionContexts(_parentctx);
+			exitRule();
 		}
 		return _localctx;
 	}
 
-	public static class IfExprContext extends ParserRuleContext {
-		public hardtyped.Absyn.IfExpr result;
-		public IfExprContext p_1_1;
-		public ExprContext p_2_3;
-		public ExprContext p_2_7;
-		public ExprContext p_3_3;
-		public IfExprContext p_1_2;
+	public static class Expr1Context extends ParserRuleContext {
+		public hardtyped.Absyn.Expr result;
+		public Expr2Context p_1_1;
+		public ListFuncArgContext p_2_2;
+		public ListExprContext p_2_4;
+		public VarNameContext p_3_1;
+		public ListExprSequenceContext p_3_3;
+		public Token p_4_1;
+		public ExprContext p_4_3;
+		public Token p_5_1;
+		public ListExprSequenceContext p_5_3;
+		public Token p_6_1;
+		public ListExprSequenceContext p_6_3;
+		public Token p_7_1;
+		public ListExprSequenceContext p_7_3;
+		public Token p_8_1;
+		public ListExprSequenceContext p_8_3;
+		public Expr2Context expr2() {
+			return getRuleContext(Expr2Context.class,0);
+		}
 		public TerminalNode Surrogate_id_SYMB_8() { return getToken(hardtypedParser.Surrogate_id_SYMB_8, 0); }
-		public TerminalNode Surrogate_id_SYMB_5() { return getToken(hardtypedParser.Surrogate_id_SYMB_5, 0); }
-		public TerminalNode Surrogate_id_SYMB_6() { return getToken(hardtypedParser.Surrogate_id_SYMB_6, 0); }
 		public TerminalNode Surrogate_id_SYMB_9() { return getToken(hardtypedParser.Surrogate_id_SYMB_9, 0); }
-		public TerminalNode Surrogate_id_SYMB_3() { return getToken(hardtypedParser.Surrogate_id_SYMB_3, 0); }
-		public TerminalNode Surrogate_id_SYMB_4() { return getToken(hardtypedParser.Surrogate_id_SYMB_4, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
 		public TerminalNode Surrogate_id_SYMB_10() { return getToken(hardtypedParser.Surrogate_id_SYMB_10, 0); }
-		public List<IfExprContext> ifExpr() {
-			return getRuleContexts(IfExprContext.class);
+		public ListFuncArgContext listFuncArg() {
+			return getRuleContext(ListFuncArgContext.class,0);
 		}
-		public IfExprContext ifExpr(int i) {
-			return getRuleContext(IfExprContext.class,i);
+		public ListExprContext listExpr() {
+			return getRuleContext(ListExprContext.class,0);
 		}
-		public IfExprContext(ParserRuleContext parent, int invokingState) {
+		public TerminalNode Surrogate_id_SYMB_1() { return getToken(hardtypedParser.Surrogate_id_SYMB_1, 0); }
+		public TerminalNode Surrogate_id_SYMB_2() { return getToken(hardtypedParser.Surrogate_id_SYMB_2, 0); }
+		public VarNameContext varName() {
+			return getRuleContext(VarNameContext.class,0);
+		}
+		public ListExprSequenceContext listExprSequence() {
+			return getRuleContext(ListExprSequenceContext.class,0);
+		}
+		public TerminalNode Print() { return getToken(hardtypedParser.Print, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode ReadReal() { return getToken(hardtypedParser.ReadReal, 0); }
+		public TerminalNode ReadInt() { return getToken(hardtypedParser.ReadInt, 0); }
+		public TerminalNode ReadString() { return getToken(hardtypedParser.ReadString, 0); }
+		public TerminalNode ReadBool() { return getToken(hardtypedParser.ReadBool, 0); }
+		public Expr1Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_ifExpr; }
+		@Override public int getRuleIndex() { return RULE_expr1; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterIfExpr(this);
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterExpr1(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitIfExpr(this);
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitExpr1(this);
 		}
 	}
 
-	public final IfExprContext ifExpr() throws RecognitionException {
-		return ifExpr(0);
-	}
-
-	private IfExprContext ifExpr(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		IfExprContext _localctx = new IfExprContext(_ctx, _parentState);
-		IfExprContext _prevctx = _localctx;
-		int _startState = 26;
-		enterRecursionRule(_localctx, 26, RULE_ifExpr, _p);
+	public final Expr1Context expr1() throws RecognitionException {
+		Expr1Context _localctx = new Expr1Context(_ctx, getState());
+		enterRule(_localctx, 66, RULE_expr1);
 		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(249);
+			setState(321);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case Surrogate_id_SYMB_8:
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
 				{
-				setState(233);
-				match(Surrogate_id_SYMB_8);
-				setState(234);
-				match(Surrogate_id_SYMB_5);
-				setState(235);
-				((IfExprContext)_localctx).p_2_3 = expr(0);
-				setState(236);
-				match(Surrogate_id_SYMB_6);
-				setState(237);
-				match(Surrogate_id_SYMB_9);
-				setState(238);
-				match(Surrogate_id_SYMB_3);
-				setState(239);
-				((IfExprContext)_localctx).p_2_7 = expr(0);
-				setState(240);
-				match(Surrogate_id_SYMB_4);
-				 ((IfExprContext)_localctx).result =  new hardtyped.Absyn.If(((IfExprContext)_localctx).p_2_3.result,((IfExprContext)_localctx).p_2_7.result); 
+				setState(275);
+				((Expr1Context)_localctx).p_1_1 = expr2();
+				 ((Expr1Context)_localctx).result =  ((Expr1Context)_localctx).p_1_1.result; 
 				}
 				break;
-			case Surrogate_id_SYMB_10:
+			case 2:
+				enterOuterAlt(_localctx, 2);
 				{
-				setState(243);
+				setState(278);
+				match(Surrogate_id_SYMB_8);
+				setState(279);
+				((Expr1Context)_localctx).p_2_2 = listFuncArg(0);
+				setState(280);
+				match(Surrogate_id_SYMB_9);
+				setState(281);
+				((Expr1Context)_localctx).p_2_4 = listExpr();
+				setState(282);
 				match(Surrogate_id_SYMB_10);
-				setState(244);
-				match(Surrogate_id_SYMB_3);
-				setState(245);
-				((IfExprContext)_localctx).p_3_3 = expr(0);
-				setState(246);
-				match(Surrogate_id_SYMB_4);
-				 ((IfExprContext)_localctx).result =  new hardtyped.Absyn.Else(((IfExprContext)_localctx).p_3_3.result); 
+				 ((Expr1Context)_localctx).result =  new hardtyped.Absyn.Function(((Expr1Context)_localctx).p_2_2.result,((Expr1Context)_localctx).p_2_4.result); 
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(285);
+				((Expr1Context)_localctx).p_3_1 = varName();
+				setState(286);
+				match(Surrogate_id_SYMB_1);
+				setState(287);
+				((Expr1Context)_localctx).p_3_3 = listExprSequence();
+				setState(288);
+				match(Surrogate_id_SYMB_2);
+				 ((Expr1Context)_localctx).result =  new hardtyped.Absyn.Application(((Expr1Context)_localctx).p_3_1.result,((Expr1Context)_localctx).p_3_3.result); 
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(291);
+				((Expr1Context)_localctx).p_4_1 = match(Print);
+				setState(292);
+				match(Surrogate_id_SYMB_1);
+				setState(293);
+				((Expr1Context)_localctx).p_4_3 = expr();
+				setState(294);
+				match(Surrogate_id_SYMB_2);
+				 ((Expr1Context)_localctx).result =  new hardtyped.Absyn.PrintFunction(((Expr1Context)_localctx).p_4_1.getText(),((Expr1Context)_localctx).p_4_3.result); 
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(297);
+				((Expr1Context)_localctx).p_5_1 = match(ReadReal);
+				setState(298);
+				match(Surrogate_id_SYMB_1);
+				setState(299);
+				((Expr1Context)_localctx).p_5_3 = listExprSequence();
+				setState(300);
+				match(Surrogate_id_SYMB_2);
+				 ((Expr1Context)_localctx).result =  new hardtyped.Absyn.ReadRealFunction(((Expr1Context)_localctx).p_5_1.getText(),((Expr1Context)_localctx).p_5_3.result); 
+				}
+				break;
+			case 6:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(303);
+				((Expr1Context)_localctx).p_6_1 = match(ReadInt);
+				setState(304);
+				match(Surrogate_id_SYMB_1);
+				setState(305);
+				((Expr1Context)_localctx).p_6_3 = listExprSequence();
+				setState(306);
+				match(Surrogate_id_SYMB_2);
+				 ((Expr1Context)_localctx).result =  new hardtyped.Absyn.ReadIntFunction(((Expr1Context)_localctx).p_6_1.getText(),((Expr1Context)_localctx).p_6_3.result); 
+				}
+				break;
+			case 7:
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(309);
+				((Expr1Context)_localctx).p_7_1 = match(ReadString);
+				setState(310);
+				match(Surrogate_id_SYMB_1);
+				setState(311);
+				((Expr1Context)_localctx).p_7_3 = listExprSequence();
+				setState(312);
+				match(Surrogate_id_SYMB_2);
+				 ((Expr1Context)_localctx).result =  new hardtyped.Absyn.ReadStringFunction(((Expr1Context)_localctx).p_7_1.getText(),((Expr1Context)_localctx).p_7_3.result); 
+				}
+				break;
+			case 8:
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(315);
+				((Expr1Context)_localctx).p_8_1 = match(ReadBool);
+				setState(316);
+				match(Surrogate_id_SYMB_1);
+				setState(317);
+				((Expr1Context)_localctx).p_8_3 = listExprSequence();
+				setState(318);
+				match(Surrogate_id_SYMB_2);
+				 ((Expr1Context)_localctx).result =  new hardtyped.Absyn.ReadBoolFunction(((Expr1Context)_localctx).p_8_1.getText(),((Expr1Context)_localctx).p_8_3.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Expr2Context extends ParserRuleContext {
+		public hardtyped.Absyn.Expr result;
+		public Expr3Context p_1_1;
+		public OpContext p_2_1;
+		public Expr3Context expr3() {
+			return getRuleContext(Expr3Context.class,0);
+		}
+		public OpContext op() {
+			return getRuleContext(OpContext.class,0);
+		}
+		public Expr2Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expr2; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterExpr2(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitExpr2(this);
+		}
+	}
+
+	public final Expr2Context expr2() throws RecognitionException {
+		Expr2Context _localctx = new Expr2Context(_ctx, getState());
+		enterRule(_localctx, 68, RULE_expr2);
+		try {
+			setState(329);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(323);
+				((Expr2Context)_localctx).p_1_1 = expr3();
+				 ((Expr2Context)_localctx).result =  ((Expr2Context)_localctx).p_1_1.result; 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(326);
+				((Expr2Context)_localctx).p_2_1 = op();
+				 ((Expr2Context)_localctx).result =  new hardtyped.Absyn.Operation(((Expr2Context)_localctx).p_2_1.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Expr3Context extends ParserRuleContext {
+		public hardtyped.Absyn.Expr result;
+		public Expr4Context p_1_1;
+		public Token p_2_1;
+		public Token p_3_1;
+		public Token p_4_1;
+		public Token p_5_1;
+		public Token p_6_1;
+		public Token p_7_1;
+		public ListRecordContext p_8_2;
+		public Expr4Context expr4() {
+			return getRuleContext(Expr4Context.class,0);
+		}
+		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
+		public TerminalNode INTEGER() { return getToken(hardtypedParser.INTEGER, 0); }
+		public TerminalNode DOUBLE() { return getToken(hardtypedParser.DOUBLE, 0); }
+		public TerminalNode STRING() { return getToken(hardtypedParser.STRING, 0); }
+		public TerminalNode Bool() { return getToken(hardtypedParser.Bool, 0); }
+		public TerminalNode Unit() { return getToken(hardtypedParser.Unit, 0); }
+		public TerminalNode Surrogate_id_SYMB_9() { return getToken(hardtypedParser.Surrogate_id_SYMB_9, 0); }
+		public TerminalNode Surrogate_id_SYMB_10() { return getToken(hardtypedParser.Surrogate_id_SYMB_10, 0); }
+		public ListRecordContext listRecord() {
+			return getRuleContext(ListRecordContext.class,0);
+		}
+		public Expr3Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expr3; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterExpr3(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitExpr3(this);
+		}
+	}
+
+	public final Expr3Context expr3() throws RecognitionException {
+		Expr3Context _localctx = new Expr3Context(_ctx, getState());
+		enterRule(_localctx, 70, RULE_expr3);
+		try {
+			setState(351);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case Surrogate_id_SYMB_1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(331);
+				((Expr3Context)_localctx).p_1_1 = expr4();
+				 ((Expr3Context)_localctx).result =  ((Expr3Context)_localctx).p_1_1.result; 
+				}
+				break;
+			case IDENT:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(334);
+				((Expr3Context)_localctx).p_2_1 = match(IDENT);
+				 ((Expr3Context)_localctx).result =  new hardtyped.Absyn.AtomicExpr(((Expr3Context)_localctx).p_2_1.getText()); 
+				}
+				break;
+			case INTEGER:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(336);
+				((Expr3Context)_localctx).p_3_1 = match(INTEGER);
+				 ((Expr3Context)_localctx).result =  new hardtyped.Absyn.IntValue(Integer.parseInt(((Expr3Context)_localctx).p_3_1.getText())); 
+				}
+				break;
+			case DOUBLE:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(338);
+				((Expr3Context)_localctx).p_4_1 = match(DOUBLE);
+				 ((Expr3Context)_localctx).result =  new hardtyped.Absyn.RealValue(Double.parseDouble(((Expr3Context)_localctx).p_4_1.getText())); 
+				}
+				break;
+			case STRING:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(340);
+				((Expr3Context)_localctx).p_5_1 = match(STRING);
+				 ((Expr3Context)_localctx).result =  new hardtyped.Absyn.StringValue(((Expr3Context)_localctx).p_5_1.getText().substring(1, ((Expr3Context)_localctx).p_5_1.getText().length()-1)); 
+				}
+				break;
+			case Bool:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(342);
+				((Expr3Context)_localctx).p_6_1 = match(Bool);
+				 ((Expr3Context)_localctx).result =  new hardtyped.Absyn.BoolValue(((Expr3Context)_localctx).p_6_1.getText()); 
+				}
+				break;
+			case Unit:
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(344);
+				((Expr3Context)_localctx).p_7_1 = match(Unit);
+				 ((Expr3Context)_localctx).result =  new hardtyped.Absyn.UnitValue(((Expr3Context)_localctx).p_7_1.getText()); 
+				}
+				break;
+			case Surrogate_id_SYMB_9:
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(346);
+				match(Surrogate_id_SYMB_9);
+				setState(347);
+				((Expr3Context)_localctx).p_8_2 = listRecord();
+				setState(348);
+				match(Surrogate_id_SYMB_10);
+				 ((Expr3Context)_localctx).result =  new hardtyped.Absyn.RecordConstr(((Expr3Context)_localctx).p_8_2.result); 
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Expr4Context extends ParserRuleContext {
+		public hardtyped.Absyn.Expr result;
+		public ExprContext p_1_2;
+		public TerminalNode Surrogate_id_SYMB_1() { return getToken(hardtypedParser.Surrogate_id_SYMB_1, 0); }
+		public TerminalNode Surrogate_id_SYMB_2() { return getToken(hardtypedParser.Surrogate_id_SYMB_2, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public Expr4Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expr4; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterExpr4(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitExpr4(this);
+		}
+	}
+
+	public final Expr4Context expr4() throws RecognitionException {
+		Expr4Context _localctx = new Expr4Context(_ctx, getState());
+		enterRule(_localctx, 72, RULE_expr4);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(353);
+			match(Surrogate_id_SYMB_1);
+			setState(354);
+			((Expr4Context)_localctx).p_1_2 = expr();
+			setState(355);
+			match(Surrogate_id_SYMB_2);
+			 ((Expr4Context)_localctx).result =  ((Expr4Context)_localctx).p_1_2.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ModuleIdentifierContext extends ParserRuleContext {
+		public hardtyped.Absyn.ModuleIdentifier result;
+		public ListPathContext p_1_1;
+		public ImportFileNameContext p_1_2;
+		public ListPathContext listPath() {
+			return getRuleContext(ListPathContext.class,0);
+		}
+		public ImportFileNameContext importFileName() {
+			return getRuleContext(ImportFileNameContext.class,0);
+		}
+		public ModuleIdentifierContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_moduleIdentifier; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterModuleIdentifier(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitModuleIdentifier(this);
+		}
+	}
+
+	public final ModuleIdentifierContext moduleIdentifier() throws RecognitionException {
+		ModuleIdentifierContext _localctx = new ModuleIdentifierContext(_ctx, getState());
+		enterRule(_localctx, 74, RULE_moduleIdentifier);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(358);
+			((ModuleIdentifierContext)_localctx).p_1_1 = listPath(0);
+			setState(359);
+			((ModuleIdentifierContext)_localctx).p_1_2 = importFileName();
+			 ((ModuleIdentifierContext)_localctx).result =  new hardtyped.Absyn.ImportPath(((ModuleIdentifierContext)_localctx).p_1_1.result,((ModuleIdentifierContext)_localctx).p_1_2.result); 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ImportFileNameContext extends ParserRuleContext {
+		public hardtyped.Absyn.ImportFileName result;
+		public Token p_1_1;
+		public Token p_1_3;
+		public TerminalNode Surrogate_id_SYMB_4() { return getToken(hardtypedParser.Surrogate_id_SYMB_4, 0); }
+		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
+		public TerminalNode PackageExtension() { return getToken(hardtypedParser.PackageExtension, 0); }
+		public ImportFileNameContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_importFileName; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterImportFileName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitImportFileName(this);
+		}
+	}
+
+	public final ImportFileNameContext importFileName() throws RecognitionException {
+		ImportFileNameContext _localctx = new ImportFileNameContext(_ctx, getState());
+		enterRule(_localctx, 76, RULE_importFileName);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(362);
+			((ImportFileNameContext)_localctx).p_1_1 = match(IDENT);
+			setState(363);
+			match(Surrogate_id_SYMB_4);
+			setState(364);
+			((ImportFileNameContext)_localctx).p_1_3 = match(PackageExtension);
+			 ((ImportFileNameContext)_localctx).result =  new hardtyped.Absyn.ImportFile(((ImportFileNameContext)_localctx).p_1_1.getText(),((ImportFileNameContext)_localctx).p_1_3.getText()); 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class PathContext extends ParserRuleContext {
+		public hardtyped.Absyn.Path result;
+		public Token p_1_1;
+		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
+		public PathContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_path; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterPath(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitPath(this);
+		}
+	}
+
+	public final PathContext path() throws RecognitionException {
+		PathContext _localctx = new PathContext(_ctx, getState());
+		enterRule(_localctx, 78, RULE_path);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(367);
+			((PathContext)_localctx).p_1_1 = match(IDENT);
+			 ((PathContext)_localctx).result =  new hardtyped.Absyn.BasePath(((PathContext)_localctx).p_1_1.getText()); 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ListPathContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListPath result;
+		public ListPathContext p_2_1;
+		public PathContext p_2_2;
+		public TerminalNode Surrogate_id_SYMB_5() { return getToken(hardtypedParser.Surrogate_id_SYMB_5, 0); }
+		public ListPathContext listPath() {
+			return getRuleContext(ListPathContext.class,0);
+		}
+		public PathContext path() {
+			return getRuleContext(PathContext.class,0);
+		}
+		public ListPathContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_listPath; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterListPath(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitListPath(this);
+		}
+	}
+
+	public final ListPathContext listPath() throws RecognitionException {
+		return listPath(0);
+	}
+
+	private ListPathContext listPath(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		ListPathContext _localctx = new ListPathContext(_ctx, _parentState);
+		ListPathContext _prevctx = _localctx;
+		int _startState = 80;
+		enterRecursionRule(_localctx, 80, RULE_listPath, _p);
+		try {
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			 ((ListPathContext)_localctx).result =  new hardtyped.Absyn.ListPath(); 
+			}
 			_ctx.stop = _input.LT(-1);
-			setState(257);
+			setState(380);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -1280,19 +2310,21 @@ public class hardtypedParser extends Parser {
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new IfExprContext(_parentctx, _parentState);
-					_localctx.p_1_1 = _prevctx;
-					_localctx.p_1_1 = _prevctx;
-					pushNewRecursionContext(_localctx, _startState, RULE_ifExpr);
-					setState(251);
-					if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-					setState(252);
-					((IfExprContext)_localctx).p_1_2 = ifExpr(4);
-					 ((IfExprContext)_localctx).result =  new hardtyped.Absyn.IfElseConst(((IfExprContext)_localctx).p_1_1.result,((IfExprContext)_localctx).p_1_2.result); 
+					_localctx = new ListPathContext(_parentctx, _parentState);
+					_localctx.p_2_1 = _prevctx;
+					_localctx.p_2_1 = _prevctx;
+					pushNewRecursionContext(_localctx, _startState, RULE_listPath);
+					setState(373);
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+					setState(374);
+					((ListPathContext)_localctx).p_2_2 = path();
+					setState(375);
+					match(Surrogate_id_SYMB_5);
+					 ((ListPathContext)_localctx).result =  ((ListPathContext)_localctx).p_2_1.result; _localctx.result.addLast(((ListPathContext)_localctx).p_2_2.result); 
 					}
 					} 
 				}
-				setState(259);
+				setState(382);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			}
@@ -1312,35 +2344,39 @@ public class hardtypedParser extends Parser {
 	public static class LetContext extends ParserRuleContext {
 		public hardtyped.Absyn.Let result;
 		public VarDecContext p_1_2;
-		public ExprContext p_1_4;
+		public Expr1Context p_1_4;
 		public VarDecContext p_2_2;
-		public ExprContext p_2_4;
-		public ExprContext p_2_6;
+		public Expr1Context p_2_4;
+		public Expr1Context p_2_6;
 		public VarDecContext p_3_2;
-		public ExprContext p_3_4;
-		public TypeContext p_3_6;
+		public Expr1Context p_3_4;
+		public ListExprContext p_3_7;
 		public VarDecContext p_4_2;
-		public ExprContext p_4_4;
+		public Expr1Context p_4_4;
 		public VarDecContext p_5_2;
 		public TypeContext p_5_4;
 		public TerminalNode Surrogate_id_SYMB_32() { return getToken(hardtypedParser.Surrogate_id_SYMB_32, 0); }
-		public TerminalNode Surrogate_id_SYMB_20() { return getToken(hardtypedParser.Surrogate_id_SYMB_20, 0); }
+		public TerminalNode Surrogate_id_SYMB_6() { return getToken(hardtypedParser.Surrogate_id_SYMB_6, 0); }
 		public VarDecContext varDec() {
 			return getRuleContext(VarDecContext.class,0);
 		}
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
+		public List<Expr1Context> expr1() {
+			return getRuleContexts(Expr1Context.class);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
+		public Expr1Context expr1(int i) {
+			return getRuleContext(Expr1Context.class,i);
 		}
 		public TerminalNode Surrogate_id_SYMB_31() { return getToken(hardtypedParser.Surrogate_id_SYMB_31, 0); }
-		public TerminalNode Surrogate_id_SYMB_30() { return getToken(hardtypedParser.Surrogate_id_SYMB_30, 0); }
-		public TypeContext type() {
-			return getRuleContext(TypeContext.class,0);
+		public TerminalNode Surrogate_id_SYMB_1() { return getToken(hardtypedParser.Surrogate_id_SYMB_1, 0); }
+		public TerminalNode Surrogate_id_SYMB_2() { return getToken(hardtypedParser.Surrogate_id_SYMB_2, 0); }
+		public ListExprContext listExpr() {
+			return getRuleContext(ListExprContext.class,0);
 		}
 		public TerminalNode Surrogate_id_SYMB_33() { return getToken(hardtypedParser.Surrogate_id_SYMB_33, 0); }
 		public TerminalNode Surrogate_id_SYMB_34() { return getToken(hardtypedParser.Surrogate_id_SYMB_34, 0); }
+		public TypeContext type() {
+			return getRuleContext(TypeContext.class,0);
+		}
 		public LetContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1357,594 +2393,91 @@ public class hardtypedParser extends Parser {
 
 	public final LetContext let() throws RecognitionException {
 		LetContext _localctx = new LetContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_let);
+		enterRule(_localctx, 82, RULE_let);
 		try {
-			setState(294);
+			setState(419);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(260);
+				setState(383);
 				match(Surrogate_id_SYMB_32);
-				setState(261);
+				setState(384);
 				((LetContext)_localctx).p_1_2 = varDec();
-				setState(262);
-				match(Surrogate_id_SYMB_20);
-				setState(263);
-				((LetContext)_localctx).p_1_4 = expr(0);
+				setState(385);
+				match(Surrogate_id_SYMB_6);
+				setState(386);
+				((LetContext)_localctx).p_1_4 = expr1();
 				 ((LetContext)_localctx).result =  new hardtyped.Absyn.LetVariable(((LetContext)_localctx).p_1_2.result,((LetContext)_localctx).p_1_4.result); 
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(266);
+				setState(389);
 				match(Surrogate_id_SYMB_32);
-				setState(267);
+				setState(390);
 				((LetContext)_localctx).p_2_2 = varDec();
-				setState(268);
-				match(Surrogate_id_SYMB_20);
-				setState(269);
-				((LetContext)_localctx).p_2_4 = expr(0);
-				setState(270);
+				setState(391);
+				match(Surrogate_id_SYMB_6);
+				setState(392);
+				((LetContext)_localctx).p_2_4 = expr1();
+				setState(393);
 				match(Surrogate_id_SYMB_31);
-				setState(271);
-				((LetContext)_localctx).p_2_6 = expr(0);
+				setState(394);
+				((LetContext)_localctx).p_2_6 = expr1();
 				 ((LetContext)_localctx).result =  new hardtyped.Absyn.LetInference(((LetContext)_localctx).p_2_2.result,((LetContext)_localctx).p_2_4.result,((LetContext)_localctx).p_2_6.result); 
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(274);
+				setState(397);
 				match(Surrogate_id_SYMB_32);
-				setState(275);
+				setState(398);
 				((LetContext)_localctx).p_3_2 = varDec();
-				setState(276);
-				match(Surrogate_id_SYMB_20);
-				setState(277);
-				((LetContext)_localctx).p_3_4 = expr(0);
-				setState(278);
-				match(Surrogate_id_SYMB_30);
-				setState(279);
-				((LetContext)_localctx).p_3_6 = type(0);
-				 ((LetContext)_localctx).result =  new hardtyped.Absyn.LetAscription(((LetContext)_localctx).p_3_2.result,((LetContext)_localctx).p_3_4.result,((LetContext)_localctx).p_3_6.result); 
+				setState(399);
+				match(Surrogate_id_SYMB_6);
+				setState(400);
+				((LetContext)_localctx).p_3_4 = expr1();
+				setState(401);
+				match(Surrogate_id_SYMB_31);
+				setState(402);
+				match(Surrogate_id_SYMB_1);
+				setState(403);
+				((LetContext)_localctx).p_3_7 = listExpr();
+				setState(404);
+				match(Surrogate_id_SYMB_2);
+				 ((LetContext)_localctx).result =  new hardtyped.Absyn.LetInferenceMany(((LetContext)_localctx).p_3_2.result,((LetContext)_localctx).p_3_4.result,((LetContext)_localctx).p_3_7.result); 
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(282);
+				setState(407);
 				match(Surrogate_id_SYMB_33);
-				setState(283);
+				setState(408);
 				((LetContext)_localctx).p_4_2 = varDec();
-				setState(284);
-				match(Surrogate_id_SYMB_20);
-				setState(285);
-				((LetContext)_localctx).p_4_4 = expr(0);
+				setState(409);
+				match(Surrogate_id_SYMB_6);
+				setState(410);
+				((LetContext)_localctx).p_4_4 = expr1();
 				 ((LetContext)_localctx).result =  new hardtyped.Absyn.LetRec(((LetContext)_localctx).p_4_2.result,((LetContext)_localctx).p_4_4.result); 
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(288);
+				setState(413);
 				match(Surrogate_id_SYMB_34);
-				setState(289);
+				setState(414);
 				((LetContext)_localctx).p_5_2 = varDec();
-				setState(290);
-				match(Surrogate_id_SYMB_20);
-				setState(291);
-				((LetContext)_localctx).p_5_4 = type(0);
+				setState(415);
+				match(Surrogate_id_SYMB_6);
+				setState(416);
+				((LetContext)_localctx).p_5_4 = type();
 				 ((LetContext)_localctx).result =  new hardtyped.Absyn.LetType(((LetContext)_localctx).p_5_2.result,((LetContext)_localctx).p_5_4.result); 
-				}
-				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ValueContext extends ParserRuleContext {
-		public hardtyped.Absyn.Value result;
-		public Token p_1_1;
-		public Token p_2_1;
-		public Token p_3_1;
-		public Token p_4_1;
-		public Token p_5_1;
-		public RecordContext p_6_2;
-		public TerminalNode INTEGER() { return getToken(hardtypedParser.INTEGER, 0); }
-		public TerminalNode DOUBLE() { return getToken(hardtypedParser.DOUBLE, 0); }
-		public TerminalNode STRING() { return getToken(hardtypedParser.STRING, 0); }
-		public TerminalNode Bool() { return getToken(hardtypedParser.Bool, 0); }
-		public TerminalNode Unit() { return getToken(hardtypedParser.Unit, 0); }
-		public TerminalNode Surrogate_id_SYMB_3() { return getToken(hardtypedParser.Surrogate_id_SYMB_3, 0); }
-		public TerminalNode Surrogate_id_SYMB_4() { return getToken(hardtypedParser.Surrogate_id_SYMB_4, 0); }
-		public RecordContext record() {
-			return getRuleContext(RecordContext.class,0);
-		}
-		public ValueContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_value; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterValue(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitValue(this);
-		}
-	}
-
-	public final ValueContext value() throws RecognitionException {
-		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_value);
-		try {
-			setState(311);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case INTEGER:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(296);
-				((ValueContext)_localctx).p_1_1 = match(INTEGER);
-				 ((ValueContext)_localctx).result =  new hardtyped.Absyn.IntValue(Integer.parseInt(((ValueContext)_localctx).p_1_1.getText())); 
-				}
-				break;
-			case DOUBLE:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(298);
-				((ValueContext)_localctx).p_2_1 = match(DOUBLE);
-				 ((ValueContext)_localctx).result =  new hardtyped.Absyn.RealValue(Double.parseDouble(((ValueContext)_localctx).p_2_1.getText())); 
-				}
-				break;
-			case STRING:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(300);
-				((ValueContext)_localctx).p_3_1 = match(STRING);
-				 ((ValueContext)_localctx).result =  new hardtyped.Absyn.StringValue(((ValueContext)_localctx).p_3_1.getText().substring(1, ((ValueContext)_localctx).p_3_1.getText().length()-1)); 
-				}
-				break;
-			case Bool:
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(302);
-				((ValueContext)_localctx).p_4_1 = match(Bool);
-				 ((ValueContext)_localctx).result =  new hardtyped.Absyn.BoolValue(((ValueContext)_localctx).p_4_1.getText()); 
-				}
-				break;
-			case Unit:
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(304);
-				((ValueContext)_localctx).p_5_1 = match(Unit);
-				 ((ValueContext)_localctx).result =  new hardtyped.Absyn.UnitValue(((ValueContext)_localctx).p_5_1.getText()); 
-				}
-				break;
-			case Surrogate_id_SYMB_3:
-				enterOuterAlt(_localctx, 6);
-				{
-				setState(306);
-				match(Surrogate_id_SYMB_3);
-				setState(307);
-				((ValueContext)_localctx).p_6_2 = record(0);
-				setState(308);
-				match(Surrogate_id_SYMB_4);
-				 ((ValueContext)_localctx).result =  new hardtyped.Absyn.RecordConstr(((ValueContext)_localctx).p_6_2.result); 
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class RecordContext extends ParserRuleContext {
-		public hardtyped.Absyn.Record result;
-		public RecordContext p_3_1;
-		public VarDecContext p_1_1;
-		public ValueContext p_1_3;
-		public VarDecContext p_2_1;
-		public RecordContext p_3_3;
-		public TerminalNode Surrogate_id_SYMB_20() { return getToken(hardtypedParser.Surrogate_id_SYMB_20, 0); }
-		public VarDecContext varDec() {
-			return getRuleContext(VarDecContext.class,0);
-		}
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
-		}
-		public TerminalNode Surrogate_id_SYMB_7() { return getToken(hardtypedParser.Surrogate_id_SYMB_7, 0); }
-		public List<RecordContext> record() {
-			return getRuleContexts(RecordContext.class);
-		}
-		public RecordContext record(int i) {
-			return getRuleContext(RecordContext.class,i);
-		}
-		public RecordContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_record; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterRecord(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitRecord(this);
-		}
-	}
-
-	public final RecordContext record() throws RecognitionException {
-		return record(0);
-	}
-
-	private RecordContext record(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		RecordContext _localctx = new RecordContext(_ctx, _parentState);
-		RecordContext _prevctx = _localctx;
-		int _startState = 32;
-		enterRecursionRule(_localctx, 32, RULE_record, _p);
-		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(322);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
-			case 1:
-				{
-				setState(314);
-				((RecordContext)_localctx).p_1_1 = varDec();
-				setState(315);
-				match(Surrogate_id_SYMB_20);
-				setState(316);
-				((RecordContext)_localctx).p_1_3 = value();
-				 ((RecordContext)_localctx).result =  new hardtyped.Absyn.BaseRecordNameValue(((RecordContext)_localctx).p_1_1.result,((RecordContext)_localctx).p_1_3.result); 
-				}
-				break;
-			case 2:
-				{
-				setState(319);
-				((RecordContext)_localctx).p_2_1 = varDec();
-				 ((RecordContext)_localctx).result =  new hardtyped.Absyn.BaseRecordName(((RecordContext)_localctx).p_2_1.result); 
-				}
-				break;
-			}
-			_ctx.stop = _input.LT(-1);
-			setState(331);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( _parseListeners!=null ) triggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					{
-					_localctx = new RecordContext(_parentctx, _parentState);
-					_localctx.p_3_1 = _prevctx;
-					_localctx.p_3_1 = _prevctx;
-					pushNewRecursionContext(_localctx, _startState, RULE_record);
-					setState(324);
-					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(325);
-					match(Surrogate_id_SYMB_7);
-					setState(326);
-					((RecordContext)_localctx).p_3_3 = record(2);
-					 ((RecordContext)_localctx).result =  new hardtyped.Absyn.MultipleRecordValue(((RecordContext)_localctx).p_3_1.result,((RecordContext)_localctx).p_3_3.result); 
-					}
-					} 
-				}
-				setState(333);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			unrollRecursionContexts(_parentctx);
-		}
-		return _localctx;
-	}
-
-	public static class InExprContext extends ParserRuleContext {
-		public hardtyped.Absyn.InExpr result;
-		public InExprContext p_1_1;
-		public InExprContext p_2_1;
-		public ExprContext p_3_1;
-		public InExprContext p_1_3;
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode Surrogate_id_SYMB_0() { return getToken(hardtypedParser.Surrogate_id_SYMB_0, 0); }
-		public List<InExprContext> inExpr() {
-			return getRuleContexts(InExprContext.class);
-		}
-		public InExprContext inExpr(int i) {
-			return getRuleContext(InExprContext.class,i);
-		}
-		public InExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_inExpr; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterInExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitInExpr(this);
-		}
-	}
-
-	public final InExprContext inExpr() throws RecognitionException {
-		return inExpr(0);
-	}
-
-	private InExprContext inExpr(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		InExprContext _localctx = new InExprContext(_ctx, _parentState);
-		InExprContext _prevctx = _localctx;
-		int _startState = 34;
-		enterRecursionRule(_localctx, 34, RULE_inExpr, _p);
-		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			{
-			setState(335);
-			((InExprContext)_localctx).p_3_1 = expr(0);
-			 ((InExprContext)_localctx).result =  new hardtyped.Absyn.InnerExpression(((InExprContext)_localctx).p_3_1.result); 
-			}
-			_ctx.stop = _input.LT(-1);
-			setState(348);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( _parseListeners!=null ) triggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					setState(346);
-					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
-					case 1:
-						{
-						_localctx = new InExprContext(_parentctx, _parentState);
-						_localctx.p_1_1 = _prevctx;
-						_localctx.p_1_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_inExpr);
-						setState(338);
-						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(339);
-						match(Surrogate_id_SYMB_0);
-						setState(340);
-						((InExprContext)_localctx).p_1_3 = inExpr(4);
-						 ((InExprContext)_localctx).result =  new hardtyped.Absyn.MultipleExpressions(((InExprContext)_localctx).p_1_1.result,((InExprContext)_localctx).p_1_3.result); 
-						}
-						break;
-					case 2:
-						{
-						_localctx = new InExprContext(_parentctx, _parentState);
-						_localctx.p_2_1 = _prevctx;
-						_localctx.p_2_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_inExpr);
-						setState(343);
-						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(344);
-						match(Surrogate_id_SYMB_0);
-						 ((InExprContext)_localctx).result =  new hardtyped.Absyn.FinalExpression(((InExprContext)_localctx).p_2_1.result); 
-						}
-						break;
-					}
-					} 
-				}
-				setState(350);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			unrollRecursionContexts(_parentctx);
-		}
-		return _localctx;
-	}
-
-	public static class InnerExprContext extends ParserRuleContext {
-		public hardtyped.Absyn.InnerExpr result;
-		public InnerExprContext p_2_1;
-		public InnerExprContext p_3_1;
-		public ExprContext p_1_1;
-		public InnerExprContext p_2_3;
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public TerminalNode Surrogate_id_SYMB_0() { return getToken(hardtypedParser.Surrogate_id_SYMB_0, 0); }
-		public List<InnerExprContext> innerExpr() {
-			return getRuleContexts(InnerExprContext.class);
-		}
-		public InnerExprContext innerExpr(int i) {
-			return getRuleContext(InnerExprContext.class,i);
-		}
-		public InnerExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_innerExpr; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterInnerExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitInnerExpr(this);
-		}
-	}
-
-	public final InnerExprContext innerExpr() throws RecognitionException {
-		return innerExpr(0);
-	}
-
-	private InnerExprContext innerExpr(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		InnerExprContext _localctx = new InnerExprContext(_ctx, _parentState);
-		InnerExprContext _prevctx = _localctx;
-		int _startState = 36;
-		enterRecursionRule(_localctx, 36, RULE_innerExpr, _p);
-		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			{
-			setState(352);
-			((InnerExprContext)_localctx).p_1_1 = expr(0);
-			 ((InnerExprContext)_localctx).result =  new hardtyped.Absyn.BaseInnerExpression(((InnerExprContext)_localctx).p_1_1.result); 
-			}
-			_ctx.stop = _input.LT(-1);
-			setState(365);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( _parseListeners!=null ) triggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					setState(363);
-					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
-					case 1:
-						{
-						_localctx = new InnerExprContext(_parentctx, _parentState);
-						_localctx.p_2_1 = _prevctx;
-						_localctx.p_2_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_innerExpr);
-						setState(355);
-						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(356);
-						match(Surrogate_id_SYMB_0);
-						setState(357);
-						((InnerExprContext)_localctx).p_2_3 = innerExpr(3);
-						 ((InnerExprContext)_localctx).result =  new hardtyped.Absyn.MultipleInnerExpression(((InnerExprContext)_localctx).p_2_1.result,((InnerExprContext)_localctx).p_2_3.result); 
-						}
-						break;
-					case 2:
-						{
-						_localctx = new InnerExprContext(_parentctx, _parentState);
-						_localctx.p_3_1 = _prevctx;
-						_localctx.p_3_1 = _prevctx;
-						pushNewRecursionContext(_localctx, _startState, RULE_innerExpr);
-						setState(360);
-						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-						setState(361);
-						match(Surrogate_id_SYMB_0);
-						 ((InnerExprContext)_localctx).result =  new hardtyped.Absyn.FinalInnerExpression(((InnerExprContext)_localctx).p_3_1.result); 
-						}
-						break;
-					}
-					} 
-				}
-				setState(367);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			unrollRecursionContexts(_parentctx);
-		}
-		return _localctx;
-	}
-
-	public static class FuncArgContext extends ParserRuleContext {
-		public hardtyped.Absyn.FuncArg result;
-		public VarDecContext p_1_1;
-		public FuncArgContext p_1_3;
-		public VarDecContext p_2_1;
-		public TerminalNode Surrogate_id_SYMB_21() { return getToken(hardtypedParser.Surrogate_id_SYMB_21, 0); }
-		public VarDecContext varDec() {
-			return getRuleContext(VarDecContext.class,0);
-		}
-		public FuncArgContext funcArg() {
-			return getRuleContext(FuncArgContext.class,0);
-		}
-		public FuncArgContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_funcArg; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterFuncArg(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitFuncArg(this);
-		}
-	}
-
-	public final FuncArgContext funcArg() throws RecognitionException {
-		FuncArgContext _localctx = new FuncArgContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_funcArg);
-		try {
-			setState(377);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(368);
-				((FuncArgContext)_localctx).p_1_1 = varDec();
-				setState(369);
-				match(Surrogate_id_SYMB_21);
-				setState(370);
-				((FuncArgContext)_localctx).p_1_3 = funcArg();
-				 ((FuncArgContext)_localctx).result =  new hardtyped.Absyn.MultipleArgs(((FuncArgContext)_localctx).p_1_1.result,((FuncArgContext)_localctx).p_1_3.result); 
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(373);
-				((FuncArgContext)_localctx).p_2_1 = varDec();
-				setState(374);
-				match(Surrogate_id_SYMB_21);
-				 ((FuncArgContext)_localctx).result =  new hardtyped.Absyn.FinalArg(((FuncArgContext)_localctx).p_2_1.result); 
 				}
 				break;
 			}
@@ -1965,17 +2498,11 @@ public class hardtypedParser extends Parser {
 		public Token p_1_1;
 		public TypeContext p_1_3;
 		public Token p_2_1;
-		public Token p_3_1;
-		public Token p_3_3;
-		public TerminalNode Surrogate_id_SYMB_9() { return getToken(hardtypedParser.Surrogate_id_SYMB_9, 0); }
-		public List<TerminalNode> IDENT() { return getTokens(hardtypedParser.IDENT); }
-		public TerminalNode IDENT(int i) {
-			return getToken(hardtypedParser.IDENT, i);
-		}
+		public TerminalNode Surrogate_id_SYMB_7() { return getToken(hardtypedParser.Surrogate_id_SYMB_7, 0); }
+		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
 		public TypeContext type() {
 			return getRuleContext(TypeContext.class,0);
 		}
-		public TerminalNode Surrogate_id_SYMB_21() { return getToken(hardtypedParser.Surrogate_id_SYMB_21, 0); }
 		public VarDecContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1992,41 +2519,29 @@ public class hardtypedParser extends Parser {
 
 	public final VarDecContext varDec() throws RecognitionException {
 		VarDecContext _localctx = new VarDecContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_varDec);
+		enterRule(_localctx, 84, RULE_varDec);
 		try {
-			setState(390);
+			setState(428);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(379);
+				setState(421);
 				((VarDecContext)_localctx).p_1_1 = match(IDENT);
-				setState(380);
-				match(Surrogate_id_SYMB_9);
-				setState(381);
-				((VarDecContext)_localctx).p_1_3 = type(0);
+				setState(422);
+				match(Surrogate_id_SYMB_7);
+				setState(423);
+				((VarDecContext)_localctx).p_1_3 = type();
 				 ((VarDecContext)_localctx).result =  new hardtyped.Absyn.TypedVar(((VarDecContext)_localctx).p_1_1.getText(),((VarDecContext)_localctx).p_1_3.result); 
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(384);
+				setState(426);
 				((VarDecContext)_localctx).p_2_1 = match(IDENT);
 				 ((VarDecContext)_localctx).result =  new hardtyped.Absyn.UntypedVar(((VarDecContext)_localctx).p_2_1.getText()); 
-				}
-				break;
-			case 3:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(386);
-				((VarDecContext)_localctx).p_3_1 = match(IDENT);
-				setState(387);
-				match(Surrogate_id_SYMB_21);
-				setState(388);
-				((VarDecContext)_localctx).p_3_3 = match(IDENT);
-				 ((VarDecContext)_localctx).result =  new hardtyped.Absyn.DotVar(((VarDecContext)_localctx).p_3_1.getText(),((VarDecContext)_localctx).p_3_3.getText()); 
 				}
 				break;
 			}
@@ -2042,28 +2557,1125 @@ public class hardtypedParser extends Parser {
 		return _localctx;
 	}
 
+	public static class VarNameContext extends ParserRuleContext {
+		public hardtyped.Absyn.VarName result;
+		public ListVarPathContext p_1_1;
+		public Token p_1_2;
+		public ListVarPathContext listVarPath() {
+			return getRuleContext(ListVarPathContext.class,0);
+		}
+		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
+		public VarNameContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_varName; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterVarName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitVarName(this);
+		}
+	}
+
+	public final VarNameContext varName() throws RecognitionException {
+		VarNameContext _localctx = new VarNameContext(_ctx, getState());
+		enterRule(_localctx, 86, RULE_varName);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(430);
+			((VarNameContext)_localctx).p_1_1 = listVarPath(0);
+			setState(431);
+			((VarNameContext)_localctx).p_1_2 = match(IDENT);
+			 ((VarNameContext)_localctx).result =  new hardtyped.Absyn.Func(((VarNameContext)_localctx).p_1_1.result,((VarNameContext)_localctx).p_1_2.getText()); 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class VarPathContext extends ParserRuleContext {
+		public hardtyped.Absyn.VarPath result;
+		public Token p_1_1;
+		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
+		public VarPathContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_varPath; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterVarPath(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitVarPath(this);
+		}
+	}
+
+	public final VarPathContext varPath() throws RecognitionException {
+		VarPathContext _localctx = new VarPathContext(_ctx, getState());
+		enterRule(_localctx, 88, RULE_varPath);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(434);
+			((VarPathContext)_localctx).p_1_1 = match(IDENT);
+			 ((VarPathContext)_localctx).result =  new hardtyped.Absyn.Lib(((VarPathContext)_localctx).p_1_1.getText()); 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ListVarPathContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListVarPath result;
+		public ListVarPathContext p_2_1;
+		public VarPathContext p_2_2;
+		public TerminalNode Surrogate_id_SYMB_4() { return getToken(hardtypedParser.Surrogate_id_SYMB_4, 0); }
+		public ListVarPathContext listVarPath() {
+			return getRuleContext(ListVarPathContext.class,0);
+		}
+		public VarPathContext varPath() {
+			return getRuleContext(VarPathContext.class,0);
+		}
+		public ListVarPathContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_listVarPath; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterListVarPath(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitListVarPath(this);
+		}
+	}
+
+	public final ListVarPathContext listVarPath() throws RecognitionException {
+		return listVarPath(0);
+	}
+
+	private ListVarPathContext listVarPath(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		ListVarPathContext _localctx = new ListVarPathContext(_ctx, _parentState);
+		ListVarPathContext _prevctx = _localctx;
+		int _startState = 90;
+		enterRecursionRule(_localctx, 90, RULE_listVarPath, _p);
+		try {
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			 ((ListVarPathContext)_localctx).result =  new hardtyped.Absyn.ListVarPath(); 
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(447);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( _parseListeners!=null ) triggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new ListVarPathContext(_parentctx, _parentState);
+					_localctx.p_2_1 = _prevctx;
+					_localctx.p_2_1 = _prevctx;
+					pushNewRecursionContext(_localctx, _startState, RULE_listVarPath);
+					setState(440);
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+					setState(441);
+					((ListVarPathContext)_localctx).p_2_2 = varPath();
+					setState(442);
+					match(Surrogate_id_SYMB_4);
+					 ((ListVarPathContext)_localctx).result =  ((ListVarPathContext)_localctx).p_2_1.result; _localctx.result.addLast(((ListVarPathContext)_localctx).p_2_2.result); 
+					}
+					} 
+				}
+				setState(449);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public static class ExprSequenceContext extends ParserRuleContext {
+		public hardtyped.Absyn.ExprSequence result;
+		public ExprContext p_1_1;
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public ExprSequenceContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_exprSequence; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterExprSequence(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitExprSequence(this);
+		}
+	}
+
+	public final ExprSequenceContext exprSequence() throws RecognitionException {
+		ExprSequenceContext _localctx = new ExprSequenceContext(_ctx, getState());
+		enterRule(_localctx, 92, RULE_exprSequence);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(450);
+			((ExprSequenceContext)_localctx).p_1_1 = expr();
+			 ((ExprSequenceContext)_localctx).result =  new hardtyped.Absyn.Seq(((ExprSequenceContext)_localctx).p_1_1.result); 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ListExprSequenceContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListExprSequence result;
+		public ExprSequenceContext p_2_1;
+		public ExprSequenceContext p_3_1;
+		public ListExprSequenceContext p_3_3;
+		public ExprSequenceContext exprSequence() {
+			return getRuleContext(ExprSequenceContext.class,0);
+		}
+		public TerminalNode Surrogate_id_SYMB_11() { return getToken(hardtypedParser.Surrogate_id_SYMB_11, 0); }
+		public ListExprSequenceContext listExprSequence() {
+			return getRuleContext(ListExprSequenceContext.class,0);
+		}
+		public ListExprSequenceContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_listExprSequence; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterListExprSequence(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitListExprSequence(this);
+		}
+	}
+
+	public final ListExprSequenceContext listExprSequence() throws RecognitionException {
+		ListExprSequenceContext _localctx = new ListExprSequenceContext(_ctx, getState());
+		enterRule(_localctx, 94, RULE_listExprSequence);
+		try {
+			setState(462);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				 ((ListExprSequenceContext)_localctx).result =  new hardtyped.Absyn.ListExprSequence(); 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(454);
+				((ListExprSequenceContext)_localctx).p_2_1 = exprSequence();
+				 ((ListExprSequenceContext)_localctx).result =  new hardtyped.Absyn.ListExprSequence(); _localctx.result.addLast(((ListExprSequenceContext)_localctx).p_2_1.result); 
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(457);
+				((ListExprSequenceContext)_localctx).p_3_1 = exprSequence();
+				setState(458);
+				match(Surrogate_id_SYMB_11);
+				setState(459);
+				((ListExprSequenceContext)_localctx).p_3_3 = listExprSequence();
+				 ((ListExprSequenceContext)_localctx).result =  ((ListExprSequenceContext)_localctx).p_3_3.result; _localctx.result.addFirst(((ListExprSequenceContext)_localctx).p_3_1.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FuncArgContext extends ParserRuleContext {
+		public hardtyped.Absyn.FuncArg result;
+		public Token p_1_1;
+		public TypeContext p_1_3;
+		public TerminalNode Surrogate_id_SYMB_7() { return getToken(hardtypedParser.Surrogate_id_SYMB_7, 0); }
+		public TerminalNode IDENT() { return getToken(hardtypedParser.IDENT, 0); }
+		public TypeContext type() {
+			return getRuleContext(TypeContext.class,0);
+		}
+		public FuncArgContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_funcArg; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterFuncArg(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitFuncArg(this);
+		}
+	}
+
+	public final FuncArgContext funcArg() throws RecognitionException {
+		FuncArgContext _localctx = new FuncArgContext(_ctx, getState());
+		enterRule(_localctx, 96, RULE_funcArg);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(464);
+			((FuncArgContext)_localctx).p_1_1 = match(IDENT);
+			setState(465);
+			match(Surrogate_id_SYMB_7);
+			setState(466);
+			((FuncArgContext)_localctx).p_1_3 = type();
+			 ((FuncArgContext)_localctx).result =  new hardtyped.Absyn.Argument(((FuncArgContext)_localctx).p_1_1.getText(),((FuncArgContext)_localctx).p_1_3.result); 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ListFuncArgContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListFuncArg result;
+		public ListFuncArgContext p_2_1;
+		public FuncArgContext p_2_2;
+		public TerminalNode Surrogate_id_SYMB_4() { return getToken(hardtypedParser.Surrogate_id_SYMB_4, 0); }
+		public ListFuncArgContext listFuncArg() {
+			return getRuleContext(ListFuncArgContext.class,0);
+		}
+		public FuncArgContext funcArg() {
+			return getRuleContext(FuncArgContext.class,0);
+		}
+		public ListFuncArgContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_listFuncArg; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterListFuncArg(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitListFuncArg(this);
+		}
+	}
+
+	public final ListFuncArgContext listFuncArg() throws RecognitionException {
+		return listFuncArg(0);
+	}
+
+	private ListFuncArgContext listFuncArg(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		ListFuncArgContext _localctx = new ListFuncArgContext(_ctx, _parentState);
+		ListFuncArgContext _prevctx = _localctx;
+		int _startState = 98;
+		enterRecursionRule(_localctx, 98, RULE_listFuncArg, _p);
+		try {
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			 ((ListFuncArgContext)_localctx).result =  new hardtyped.Absyn.ListFuncArg(); 
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(479);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( _parseListeners!=null ) triggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new ListFuncArgContext(_parentctx, _parentState);
+					_localctx.p_2_1 = _prevctx;
+					_localctx.p_2_1 = _prevctx;
+					pushNewRecursionContext(_localctx, _startState, RULE_listFuncArg);
+					setState(472);
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+					setState(473);
+					((ListFuncArgContext)_localctx).p_2_2 = funcArg();
+					setState(474);
+					match(Surrogate_id_SYMB_4);
+					 ((ListFuncArgContext)_localctx).result =  ((ListFuncArgContext)_localctx).p_2_1.result; _localctx.result.addLast(((ListFuncArgContext)_localctx).p_2_2.result); 
+					}
+					} 
+				}
+				setState(481);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public static class IfExprContext extends ParserRuleContext {
+		public hardtyped.Absyn.IfExpr result;
+		public Expr2Context p_1_3;
+		public ExprContext p_1_6;
+		public Expr2Context p_2_3;
+		public ListExprContext p_2_7;
+		public TerminalNode Surrogate_id_SYMB_12() { return getToken(hardtypedParser.Surrogate_id_SYMB_12, 0); }
+		public TerminalNode Surrogate_id_SYMB_1() { return getToken(hardtypedParser.Surrogate_id_SYMB_1, 0); }
+		public TerminalNode Surrogate_id_SYMB_2() { return getToken(hardtypedParser.Surrogate_id_SYMB_2, 0); }
+		public TerminalNode Surrogate_id_SYMB_7() { return getToken(hardtypedParser.Surrogate_id_SYMB_7, 0); }
+		public Expr2Context expr2() {
+			return getRuleContext(Expr2Context.class,0);
+		}
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode Surrogate_id_SYMB_9() { return getToken(hardtypedParser.Surrogate_id_SYMB_9, 0); }
+		public TerminalNode Surrogate_id_SYMB_10() { return getToken(hardtypedParser.Surrogate_id_SYMB_10, 0); }
+		public ListExprContext listExpr() {
+			return getRuleContext(ListExprContext.class,0);
+		}
+		public IfExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_ifExpr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterIfExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitIfExpr(this);
+		}
+	}
+
+	public final IfExprContext ifExpr() throws RecognitionException {
+		IfExprContext _localctx = new IfExprContext(_ctx, getState());
+		enterRule(_localctx, 100, RULE_ifExpr);
+		try {
+			setState(500);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(482);
+				match(Surrogate_id_SYMB_12);
+				setState(483);
+				match(Surrogate_id_SYMB_1);
+				setState(484);
+				((IfExprContext)_localctx).p_1_3 = expr2();
+				setState(485);
+				match(Surrogate_id_SYMB_2);
+				setState(486);
+				match(Surrogate_id_SYMB_7);
+				setState(487);
+				((IfExprContext)_localctx).p_1_6 = expr();
+				 ((IfExprContext)_localctx).result =  new hardtyped.Absyn.If(((IfExprContext)_localctx).p_1_3.result,((IfExprContext)_localctx).p_1_6.result); 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(490);
+				match(Surrogate_id_SYMB_12);
+				setState(491);
+				match(Surrogate_id_SYMB_1);
+				setState(492);
+				((IfExprContext)_localctx).p_2_3 = expr2();
+				setState(493);
+				match(Surrogate_id_SYMB_2);
+				setState(494);
+				match(Surrogate_id_SYMB_7);
+				setState(495);
+				match(Surrogate_id_SYMB_9);
+				setState(496);
+				((IfExprContext)_localctx).p_2_7 = listExpr();
+				setState(497);
+				match(Surrogate_id_SYMB_10);
+				 ((IfExprContext)_localctx).result =  new hardtyped.Absyn.IfMultiple(((IfExprContext)_localctx).p_2_3.result,((IfExprContext)_localctx).p_2_7.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ListIfExprContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListIfExpr result;
+		public ListIfExprContext p_2_1;
+		public IfExprContext p_2_2;
+		public ListIfExprContext listIfExpr() {
+			return getRuleContext(ListIfExprContext.class,0);
+		}
+		public IfExprContext ifExpr() {
+			return getRuleContext(IfExprContext.class,0);
+		}
+		public ListIfExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_listIfExpr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterListIfExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitListIfExpr(this);
+		}
+	}
+
+	public final ListIfExprContext listIfExpr() throws RecognitionException {
+		return listIfExpr(0);
+	}
+
+	private ListIfExprContext listIfExpr(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		ListIfExprContext _localctx = new ListIfExprContext(_ctx, _parentState);
+		ListIfExprContext _prevctx = _localctx;
+		int _startState = 102;
+		enterRecursionRule(_localctx, 102, RULE_listIfExpr, _p);
+		try {
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			 ((ListIfExprContext)_localctx).result =  new hardtyped.Absyn.ListIfExpr(); 
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(511);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( _parseListeners!=null ) triggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new ListIfExprContext(_parentctx, _parentState);
+					_localctx.p_2_1 = _prevctx;
+					_localctx.p_2_1 = _prevctx;
+					pushNewRecursionContext(_localctx, _startState, RULE_listIfExpr);
+					setState(505);
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+					setState(506);
+					((ListIfExprContext)_localctx).p_2_2 = ifExpr();
+					 ((ListIfExprContext)_localctx).result =  ((ListIfExprContext)_localctx).p_2_1.result; _localctx.result.addLast(((ListIfExprContext)_localctx).p_2_2.result); 
+					}
+					} 
+				}
+				setState(513);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public static class ElseExprContext extends ParserRuleContext {
+		public hardtyped.Absyn.ElseExpr result;
+		public ExprContext p_1_2;
+		public ListExprContext p_2_3;
+		public TerminalNode Surrogate_id_SYMB_13() { return getToken(hardtypedParser.Surrogate_id_SYMB_13, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode Surrogate_id_SYMB_9() { return getToken(hardtypedParser.Surrogate_id_SYMB_9, 0); }
+		public TerminalNode Surrogate_id_SYMB_10() { return getToken(hardtypedParser.Surrogate_id_SYMB_10, 0); }
+		public ListExprContext listExpr() {
+			return getRuleContext(ListExprContext.class,0);
+		}
+		public ElseExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_elseExpr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterElseExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitElseExpr(this);
+		}
+	}
+
+	public final ElseExprContext elseExpr() throws RecognitionException {
+		ElseExprContext _localctx = new ElseExprContext(_ctx, getState());
+		enterRule(_localctx, 104, RULE_elseExpr);
+		try {
+			setState(524);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(514);
+				match(Surrogate_id_SYMB_13);
+				setState(515);
+				((ElseExprContext)_localctx).p_1_2 = expr();
+				 ((ElseExprContext)_localctx).result =  new hardtyped.Absyn.Else(((ElseExprContext)_localctx).p_1_2.result); 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(518);
+				match(Surrogate_id_SYMB_13);
+				setState(519);
+				match(Surrogate_id_SYMB_9);
+				setState(520);
+				((ElseExprContext)_localctx).p_2_3 = listExpr();
+				setState(521);
+				match(Surrogate_id_SYMB_10);
+				 ((ElseExprContext)_localctx).result =  new hardtyped.Absyn.ElseMultiple(((ElseExprContext)_localctx).p_2_3.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class OpContext extends ParserRuleContext {
+		public hardtyped.Absyn.Op result;
+		public Op1Context p_1_1;
+		public Expr3Context p_2_2;
+		public Expr3Context p_3_2;
+		public Expr3Context p_4_2;
+		public Op1Context op1() {
+			return getRuleContext(Op1Context.class,0);
+		}
+		public TerminalNode Surrogate_id_SYMB_35() { return getToken(hardtypedParser.Surrogate_id_SYMB_35, 0); }
+		public Expr3Context expr3() {
+			return getRuleContext(Expr3Context.class,0);
+		}
+		public TerminalNode Surrogate_id_SYMB_14() { return getToken(hardtypedParser.Surrogate_id_SYMB_14, 0); }
+		public TerminalNode Surrogate_id_SYMB_15() { return getToken(hardtypedParser.Surrogate_id_SYMB_15, 0); }
+		public OpContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_op; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterOp(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitOp(this);
+		}
+	}
+
+	public final OpContext op() throws RecognitionException {
+		OpContext _localctx = new OpContext(_ctx, getState());
+		enterRule(_localctx, 106, RULE_op);
+		try {
+			setState(541);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case Surrogate_id_SYMB_1:
+			case Surrogate_id_SYMB_9:
+			case Bool:
+			case Unit:
+			case DOUBLE:
+			case INTEGER:
+			case IDENT:
+			case STRING:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(526);
+				((OpContext)_localctx).p_1_1 = op1();
+				 ((OpContext)_localctx).result =  ((OpContext)_localctx).p_1_1.result; 
+				}
+				break;
+			case Surrogate_id_SYMB_35:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(529);
+				match(Surrogate_id_SYMB_35);
+				setState(530);
+				((OpContext)_localctx).p_2_2 = expr3();
+				 ((OpContext)_localctx).result =  new hardtyped.Absyn.Not(((OpContext)_localctx).p_2_2.result); 
+				}
+				break;
+			case Surrogate_id_SYMB_14:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(533);
+				match(Surrogate_id_SYMB_14);
+				setState(534);
+				((OpContext)_localctx).p_3_2 = expr3();
+				 ((OpContext)_localctx).result =  new hardtyped.Absyn.UnaryPlus(((OpContext)_localctx).p_3_2.result); 
+				}
+				break;
+			case Surrogate_id_SYMB_15:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(537);
+				match(Surrogate_id_SYMB_15);
+				setState(538);
+				((OpContext)_localctx).p_4_2 = expr3();
+				 ((OpContext)_localctx).result =  new hardtyped.Absyn.UnaryMinus(((OpContext)_localctx).p_4_2.result); 
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Op1Context extends ParserRuleContext {
+		public hardtyped.Absyn.Op result;
+		public Op2Context p_1_1;
+		public Expr3Context p_2_1;
+		public Expr3Context p_2_3;
+		public Expr3Context p_3_1;
+		public Expr3Context p_3_3;
+		public Expr3Context p_4_1;
+		public Expr3Context p_4_3;
+		public Expr3Context p_5_1;
+		public Expr3Context p_5_3;
+		public Expr3Context p_6_1;
+		public Expr3Context p_6_3;
+		public Expr3Context p_7_1;
+		public Expr3Context p_7_3;
+		public Expr3Context p_8_1;
+		public Expr3Context p_8_3;
+		public Expr3Context p_9_1;
+		public Expr3Context p_9_3;
+		public Op2Context op2() {
+			return getRuleContext(Op2Context.class,0);
+		}
+		public TerminalNode Surrogate_id_SYMB_16() { return getToken(hardtypedParser.Surrogate_id_SYMB_16, 0); }
+		public List<Expr3Context> expr3() {
+			return getRuleContexts(Expr3Context.class);
+		}
+		public Expr3Context expr3(int i) {
+			return getRuleContext(Expr3Context.class,i);
+		}
+		public TerminalNode Surrogate_id_SYMB_5() { return getToken(hardtypedParser.Surrogate_id_SYMB_5, 0); }
+		public TerminalNode Surrogate_id_SYMB_17() { return getToken(hardtypedParser.Surrogate_id_SYMB_17, 0); }
+		public TerminalNode Surrogate_id_SYMB_18() { return getToken(hardtypedParser.Surrogate_id_SYMB_18, 0); }
+		public TerminalNode Surrogate_id_SYMB_19() { return getToken(hardtypedParser.Surrogate_id_SYMB_19, 0); }
+		public TerminalNode Surrogate_id_SYMB_20() { return getToken(hardtypedParser.Surrogate_id_SYMB_20, 0); }
+		public TerminalNode Surrogate_id_SYMB_21() { return getToken(hardtypedParser.Surrogate_id_SYMB_21, 0); }
+		public TerminalNode Surrogate_id_SYMB_22() { return getToken(hardtypedParser.Surrogate_id_SYMB_22, 0); }
+		public Op1Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_op1; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterOp1(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitOp1(this);
+		}
+	}
+
+	public final Op1Context op1() throws RecognitionException {
+		Op1Context _localctx = new Op1Context(_ctx, getState());
+		enterRule(_localctx, 108, RULE_op1);
+		try {
+			setState(586);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(543);
+				((Op1Context)_localctx).p_1_1 = op2();
+				 ((Op1Context)_localctx).result =  ((Op1Context)_localctx).p_1_1.result; 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(546);
+				((Op1Context)_localctx).p_2_1 = expr3();
+				setState(547);
+				match(Surrogate_id_SYMB_16);
+				setState(548);
+				((Op1Context)_localctx).p_2_3 = expr3();
+				 ((Op1Context)_localctx).result =  new hardtyped.Absyn.Multiply(((Op1Context)_localctx).p_2_1.result,((Op1Context)_localctx).p_2_3.result); 
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(551);
+				((Op1Context)_localctx).p_3_1 = expr3();
+				setState(552);
+				match(Surrogate_id_SYMB_5);
+				setState(553);
+				((Op1Context)_localctx).p_3_3 = expr3();
+				 ((Op1Context)_localctx).result =  new hardtyped.Absyn.Divide(((Op1Context)_localctx).p_3_1.result,((Op1Context)_localctx).p_3_3.result); 
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(556);
+				((Op1Context)_localctx).p_4_1 = expr3();
+				setState(557);
+				match(Surrogate_id_SYMB_17);
+				setState(558);
+				((Op1Context)_localctx).p_4_3 = expr3();
+				 ((Op1Context)_localctx).result =  new hardtyped.Absyn.More(((Op1Context)_localctx).p_4_1.result,((Op1Context)_localctx).p_4_3.result); 
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(561);
+				((Op1Context)_localctx).p_5_1 = expr3();
+				setState(562);
+				match(Surrogate_id_SYMB_18);
+				setState(563);
+				((Op1Context)_localctx).p_5_3 = expr3();
+				 ((Op1Context)_localctx).result =  new hardtyped.Absyn.MoreEql(((Op1Context)_localctx).p_5_1.result,((Op1Context)_localctx).p_5_3.result); 
+				}
+				break;
+			case 6:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(566);
+				((Op1Context)_localctx).p_6_1 = expr3();
+				setState(567);
+				match(Surrogate_id_SYMB_19);
+				setState(568);
+				((Op1Context)_localctx).p_6_3 = expr3();
+				 ((Op1Context)_localctx).result =  new hardtyped.Absyn.Eql(((Op1Context)_localctx).p_6_1.result,((Op1Context)_localctx).p_6_3.result); 
+				}
+				break;
+			case 7:
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(571);
+				((Op1Context)_localctx).p_7_1 = expr3();
+				setState(572);
+				match(Surrogate_id_SYMB_20);
+				setState(573);
+				((Op1Context)_localctx).p_7_3 = expr3();
+				 ((Op1Context)_localctx).result =  new hardtyped.Absyn.NotEql(((Op1Context)_localctx).p_7_1.result,((Op1Context)_localctx).p_7_3.result); 
+				}
+				break;
+			case 8:
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(576);
+				((Op1Context)_localctx).p_8_1 = expr3();
+				setState(577);
+				match(Surrogate_id_SYMB_21);
+				setState(578);
+				((Op1Context)_localctx).p_8_3 = expr3();
+				 ((Op1Context)_localctx).result =  new hardtyped.Absyn.LessEql(((Op1Context)_localctx).p_8_1.result,((Op1Context)_localctx).p_8_3.result); 
+				}
+				break;
+			case 9:
+				enterOuterAlt(_localctx, 9);
+				{
+				setState(581);
+				((Op1Context)_localctx).p_9_1 = expr3();
+				setState(582);
+				match(Surrogate_id_SYMB_22);
+				setState(583);
+				((Op1Context)_localctx).p_9_3 = expr3();
+				 ((Op1Context)_localctx).result =  new hardtyped.Absyn.Less(((Op1Context)_localctx).p_9_1.result,((Op1Context)_localctx).p_9_3.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Op2Context extends ParserRuleContext {
+		public hardtyped.Absyn.Op result;
+		public Op3Context p_1_1;
+		public Expr3Context p_2_1;
+		public Expr3Context p_2_3;
+		public Expr3Context p_3_1;
+		public Expr3Context p_3_3;
+		public Expr3Context p_4_1;
+		public Expr3Context p_4_3;
+		public Expr3Context p_5_1;
+		public Expr3Context p_5_3;
+		public Op3Context op3() {
+			return getRuleContext(Op3Context.class,0);
+		}
+		public TerminalNode Surrogate_id_SYMB_14() { return getToken(hardtypedParser.Surrogate_id_SYMB_14, 0); }
+		public List<Expr3Context> expr3() {
+			return getRuleContexts(Expr3Context.class);
+		}
+		public Expr3Context expr3(int i) {
+			return getRuleContext(Expr3Context.class,i);
+		}
+		public TerminalNode Surrogate_id_SYMB_15() { return getToken(hardtypedParser.Surrogate_id_SYMB_15, 0); }
+		public TerminalNode Surrogate_id_SYMB_30() { return getToken(hardtypedParser.Surrogate_id_SYMB_30, 0); }
+		public TerminalNode Surrogate_id_SYMB_36() { return getToken(hardtypedParser.Surrogate_id_SYMB_36, 0); }
+		public Op2Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_op2; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterOp2(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitOp2(this);
+		}
+	}
+
+	public final Op2Context op2() throws RecognitionException {
+		Op2Context _localctx = new Op2Context(_ctx, getState());
+		enterRule(_localctx, 110, RULE_op2);
+		try {
+			setState(611);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(588);
+				((Op2Context)_localctx).p_1_1 = op3();
+				 ((Op2Context)_localctx).result =  ((Op2Context)_localctx).p_1_1.result; 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(591);
+				((Op2Context)_localctx).p_2_1 = expr3();
+				setState(592);
+				match(Surrogate_id_SYMB_14);
+				setState(593);
+				((Op2Context)_localctx).p_2_3 = expr3();
+				 ((Op2Context)_localctx).result =  new hardtyped.Absyn.Sum(((Op2Context)_localctx).p_2_1.result,((Op2Context)_localctx).p_2_3.result); 
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(596);
+				((Op2Context)_localctx).p_3_1 = expr3();
+				setState(597);
+				match(Surrogate_id_SYMB_15);
+				setState(598);
+				((Op2Context)_localctx).p_3_3 = expr3();
+				 ((Op2Context)_localctx).result =  new hardtyped.Absyn.Substract(((Op2Context)_localctx).p_3_1.result,((Op2Context)_localctx).p_3_3.result); 
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(601);
+				((Op2Context)_localctx).p_4_1 = expr3();
+				setState(602);
+				match(Surrogate_id_SYMB_30);
+				setState(603);
+				((Op2Context)_localctx).p_4_3 = expr3();
+				 ((Op2Context)_localctx).result =  new hardtyped.Absyn.And(((Op2Context)_localctx).p_4_1.result,((Op2Context)_localctx).p_4_3.result); 
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(606);
+				((Op2Context)_localctx).p_5_1 = expr3();
+				setState(607);
+				match(Surrogate_id_SYMB_36);
+				setState(608);
+				((Op2Context)_localctx).p_5_3 = expr3();
+				 ((Op2Context)_localctx).result =  new hardtyped.Absyn.Or(((Op2Context)_localctx).p_5_1.result,((Op2Context)_localctx).p_5_3.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Op3Context extends ParserRuleContext {
+		public hardtyped.Absyn.Op result;
+		public OpContext p_1_2;
+		public TerminalNode Surrogate_id_SYMB_1() { return getToken(hardtypedParser.Surrogate_id_SYMB_1, 0); }
+		public TerminalNode Surrogate_id_SYMB_2() { return getToken(hardtypedParser.Surrogate_id_SYMB_2, 0); }
+		public OpContext op() {
+			return getRuleContext(OpContext.class,0);
+		}
+		public Op3Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_op3; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterOp3(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitOp3(this);
+		}
+	}
+
+	public final Op3Context op3() throws RecognitionException {
+		Op3Context _localctx = new Op3Context(_ctx, getState());
+		enterRule(_localctx, 112, RULE_op3);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(613);
+			match(Surrogate_id_SYMB_1);
+			setState(614);
+			((Op3Context)_localctx).p_1_2 = op();
+			setState(615);
+			match(Surrogate_id_SYMB_2);
+			 ((Op3Context)_localctx).result =  ((Op3Context)_localctx).p_1_2.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static class TypeContext extends ParserRuleContext {
 		public hardtyped.Absyn.Type result;
-		public TypeContext p_7_1;
-		public RecordContext p_8_2;
-		public TypeContext p_7_3;
-		public TerminalNode Surrogate_id_SYMB_25() { return getToken(hardtypedParser.Surrogate_id_SYMB_25, 0); }
+		public Type1Context p_1_1;
+		public Type1Context p_8_1;
+		public Type2Context p_8_3;
+		public ListRecordContext p_9_2;
+		public Type1Context type1() {
+			return getRuleContext(Type1Context.class,0);
+		}
 		public TerminalNode Surrogate_id_SYMB_26() { return getToken(hardtypedParser.Surrogate_id_SYMB_26, 0); }
-		public TerminalNode Surrogate_id_SYMB_24() { return getToken(hardtypedParser.Surrogate_id_SYMB_24, 0); }
 		public TerminalNode Surrogate_id_SYMB_27() { return getToken(hardtypedParser.Surrogate_id_SYMB_27, 0); }
+		public TerminalNode Surrogate_id_SYMB_25() { return getToken(hardtypedParser.Surrogate_id_SYMB_25, 0); }
 		public TerminalNode Surrogate_id_SYMB_28() { return getToken(hardtypedParser.Surrogate_id_SYMB_28, 0); }
+		public TerminalNode Surrogate_id_SYMB_29() { return getToken(hardtypedParser.Surrogate_id_SYMB_29, 0); }
+		public TerminalNode Surrogate_id_SYMB_24() { return getToken(hardtypedParser.Surrogate_id_SYMB_24, 0); }
 		public TerminalNode Surrogate_id_SYMB_23() { return getToken(hardtypedParser.Surrogate_id_SYMB_23, 0); }
-		public TerminalNode Surrogate_id_SYMB_3() { return getToken(hardtypedParser.Surrogate_id_SYMB_3, 0); }
-		public TerminalNode Surrogate_id_SYMB_4() { return getToken(hardtypedParser.Surrogate_id_SYMB_4, 0); }
-		public RecordContext record() {
-			return getRuleContext(RecordContext.class,0);
+		public Type2Context type2() {
+			return getRuleContext(Type2Context.class,0);
 		}
-		public TerminalNode Surrogate_id_SYMB_22() { return getToken(hardtypedParser.Surrogate_id_SYMB_22, 0); }
-		public List<TypeContext> type() {
-			return getRuleContexts(TypeContext.class);
-		}
-		public TypeContext type(int i) {
-			return getRuleContext(TypeContext.class,i);
+		public TerminalNode Surrogate_id_SYMB_9() { return getToken(hardtypedParser.Surrogate_id_SYMB_9, 0); }
+		public TerminalNode Surrogate_id_SYMB_10() { return getToken(hardtypedParser.Surrogate_id_SYMB_10, 0); }
+		public ListRecordContext listRecord() {
+			return getRuleContext(ListRecordContext.class,0);
 		}
 		public TypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2080,107 +3692,92 @@ public class hardtypedParser extends Parser {
 	}
 
 	public final TypeContext type() throws RecognitionException {
-		return type(0);
-	}
-
-	private TypeContext type(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		TypeContext _localctx = new TypeContext(_ctx, _parentState);
-		TypeContext _prevctx = _localctx;
-		int _startState = 42;
-		enterRecursionRule(_localctx, 42, RULE_type, _p);
+		TypeContext _localctx = new TypeContext(_ctx, getState());
+		enterRule(_localctx, 114, RULE_type);
 		try {
-			int _alt;
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(410);
+			setState(643);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case Surrogate_id_SYMB_25:
+			switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
 				{
-				setState(393);
-				match(Surrogate_id_SYMB_25);
+				setState(618);
+				((TypeContext)_localctx).p_1_1 = type1();
+				 ((TypeContext)_localctx).result =  ((TypeContext)_localctx).p_1_1.result; 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(621);
+				match(Surrogate_id_SYMB_26);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.IntType(); 
 				}
 				break;
-			case Surrogate_id_SYMB_26:
+			case 3:
+				enterOuterAlt(_localctx, 3);
 				{
-				setState(395);
-				match(Surrogate_id_SYMB_26);
+				setState(623);
+				match(Surrogate_id_SYMB_27);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.RealType(); 
 				}
 				break;
-			case Surrogate_id_SYMB_24:
+			case 4:
+				enterOuterAlt(_localctx, 4);
 				{
-				setState(397);
-				match(Surrogate_id_SYMB_24);
+				setState(625);
+				match(Surrogate_id_SYMB_25);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.BoolType(); 
 				}
 				break;
-			case Surrogate_id_SYMB_27:
+			case 5:
+				enterOuterAlt(_localctx, 5);
 				{
-				setState(399);
-				match(Surrogate_id_SYMB_27);
+				setState(627);
+				match(Surrogate_id_SYMB_28);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.StringType(); 
 				}
 				break;
-			case Surrogate_id_SYMB_28:
+			case 6:
+				enterOuterAlt(_localctx, 6);
 				{
-				setState(401);
-				match(Surrogate_id_SYMB_28);
+				setState(629);
+				match(Surrogate_id_SYMB_29);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.UnitType(); 
 				}
 				break;
-			case Surrogate_id_SYMB_23:
+			case 7:
+				enterOuterAlt(_localctx, 7);
 				{
-				setState(403);
-				match(Surrogate_id_SYMB_23);
+				setState(631);
+				match(Surrogate_id_SYMB_24);
 				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.AnyType(); 
 				}
 				break;
-			case Surrogate_id_SYMB_3:
+			case 8:
+				enterOuterAlt(_localctx, 8);
 				{
-				setState(405);
-				match(Surrogate_id_SYMB_3);
-				setState(406);
-				((TypeContext)_localctx).p_8_2 = record(0);
-				setState(407);
-				match(Surrogate_id_SYMB_4);
-				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.RecordType(((TypeContext)_localctx).p_8_2.result); 
+				setState(633);
+				((TypeContext)_localctx).p_8_1 = type1();
+				setState(634);
+				match(Surrogate_id_SYMB_23);
+				setState(635);
+				((TypeContext)_localctx).p_8_3 = type2();
+				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.FunctionType(((TypeContext)_localctx).p_8_1.result,((TypeContext)_localctx).p_8_3.result); 
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-			_ctx.stop = _input.LT(-1);
-			setState(419);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,17,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( _parseListeners!=null ) triggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					{
-					_localctx = new TypeContext(_parentctx, _parentState);
-					_localctx.p_7_1 = _prevctx;
-					_localctx.p_7_1 = _prevctx;
-					pushNewRecursionContext(_localctx, _startState, RULE_type);
-					setState(412);
-					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(413);
-					match(Surrogate_id_SYMB_22);
-					setState(414);
-					((TypeContext)_localctx).p_7_3 = type(3);
-					 ((TypeContext)_localctx).result =  new hardtyped.Absyn.FunctionType(((TypeContext)_localctx).p_7_1.result,((TypeContext)_localctx).p_7_3.result); 
-					}
-					} 
+			case 9:
+				enterOuterAlt(_localctx, 9);
+				{
+				setState(638);
+				match(Surrogate_id_SYMB_9);
+				setState(639);
+				((TypeContext)_localctx).p_9_2 = listRecord();
+				setState(640);
+				match(Surrogate_id_SYMB_10);
+				 ((TypeContext)_localctx).result =  new hardtyped.Absyn.RecordType(((TypeContext)_localctx).p_9_2.result); 
 				}
-				setState(421);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,17,_ctx);
-			}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -2189,251 +3786,505 @@ public class hardtypedParser extends Parser {
 			_errHandler.recover(this, re);
 		}
 		finally {
-			unrollRecursionContexts(_parentctx);
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Type1Context extends ParserRuleContext {
+		public hardtyped.Absyn.Type result;
+		public Type2Context p_1_1;
+		public Type2Context type2() {
+			return getRuleContext(Type2Context.class,0);
+		}
+		public Type1Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_type1; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterType1(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitType1(this);
+		}
+	}
+
+	public final Type1Context type1() throws RecognitionException {
+		Type1Context _localctx = new Type1Context(_ctx, getState());
+		enterRule(_localctx, 116, RULE_type1);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(645);
+			((Type1Context)_localctx).p_1_1 = type2();
+			 ((Type1Context)_localctx).result =  ((Type1Context)_localctx).p_1_1.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Type2Context extends ParserRuleContext {
+		public hardtyped.Absyn.Type result;
+		public TypeContext p_1_2;
+		public TerminalNode Surrogate_id_SYMB_1() { return getToken(hardtypedParser.Surrogate_id_SYMB_1, 0); }
+		public TerminalNode Surrogate_id_SYMB_2() { return getToken(hardtypedParser.Surrogate_id_SYMB_2, 0); }
+		public TypeContext type() {
+			return getRuleContext(TypeContext.class,0);
+		}
+		public Type2Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_type2; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterType2(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitType2(this);
+		}
+	}
+
+	public final Type2Context type2() throws RecognitionException {
+		Type2Context _localctx = new Type2Context(_ctx, getState());
+		enterRule(_localctx, 118, RULE_type2);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(648);
+			match(Surrogate_id_SYMB_1);
+			setState(649);
+			((Type2Context)_localctx).p_1_2 = type();
+			setState(650);
+			match(Surrogate_id_SYMB_2);
+			 ((Type2Context)_localctx).result =  ((Type2Context)_localctx).p_1_2.result; 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class RecordContext extends ParserRuleContext {
+		public hardtyped.Absyn.Record result;
+		public VarDecContext p_1_1;
+		public Expr3Context p_1_3;
+		public VarDecContext p_2_1;
+		public TerminalNode Surrogate_id_SYMB_6() { return getToken(hardtypedParser.Surrogate_id_SYMB_6, 0); }
+		public VarDecContext varDec() {
+			return getRuleContext(VarDecContext.class,0);
+		}
+		public Expr3Context expr3() {
+			return getRuleContext(Expr3Context.class,0);
+		}
+		public RecordContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_record; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterRecord(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitRecord(this);
+		}
+	}
+
+	public final RecordContext record() throws RecognitionException {
+		RecordContext _localctx = new RecordContext(_ctx, getState());
+		enterRule(_localctx, 120, RULE_record);
+		try {
+			setState(661);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(653);
+				((RecordContext)_localctx).p_1_1 = varDec();
+				setState(654);
+				match(Surrogate_id_SYMB_6);
+				setState(655);
+				((RecordContext)_localctx).p_1_3 = expr3();
+				 ((RecordContext)_localctx).result =  new hardtyped.Absyn.BaseRecordNameValue(((RecordContext)_localctx).p_1_1.result,((RecordContext)_localctx).p_1_3.result); 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(658);
+				((RecordContext)_localctx).p_2_1 = varDec();
+				 ((RecordContext)_localctx).result =  new hardtyped.Absyn.BaseRecordName(((RecordContext)_localctx).p_2_1.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ListRecordContext extends ParserRuleContext {
+		public hardtyped.Absyn.ListRecord result;
+		public RecordContext p_2_1;
+		public RecordContext p_3_1;
+		public ListRecordContext p_3_3;
+		public RecordContext record() {
+			return getRuleContext(RecordContext.class,0);
+		}
+		public TerminalNode Surrogate_id_SYMB_11() { return getToken(hardtypedParser.Surrogate_id_SYMB_11, 0); }
+		public ListRecordContext listRecord() {
+			return getRuleContext(ListRecordContext.class,0);
+		}
+		public ListRecordContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_listRecord; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).enterListRecord(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof hardtypedParserListener ) ((hardtypedParserListener)listener).exitListRecord(this);
+		}
+	}
+
+	public final ListRecordContext listRecord() throws RecognitionException {
+		ListRecordContext _localctx = new ListRecordContext(_ctx, getState());
+		enterRule(_localctx, 122, RULE_listRecord);
+		try {
+			setState(672);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				 ((ListRecordContext)_localctx).result =  new hardtyped.Absyn.ListRecord(); 
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(664);
+				((ListRecordContext)_localctx).p_2_1 = record();
+				 ((ListRecordContext)_localctx).result =  new hardtyped.Absyn.ListRecord(); _localctx.result.addLast(((ListRecordContext)_localctx).p_2_1.result); 
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(667);
+				((ListRecordContext)_localctx).p_3_1 = record();
+				setState(668);
+				match(Surrogate_id_SYMB_11);
+				setState(669);
+				((ListRecordContext)_localctx).p_3_3 = listRecord();
+				 ((ListRecordContext)_localctx).result =  ((ListRecordContext)_localctx).p_3_3.result; _localctx.result.addFirst(((ListRecordContext)_localctx).p_3_1.result); 
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
 		}
 		return _localctx;
 	}
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 12:
-			return expr_sempred((ExprContext)_localctx, predIndex);
-		case 13:
-			return ifExpr_sempred((IfExprContext)_localctx, predIndex);
-		case 16:
-			return record_sempred((RecordContext)_localctx, predIndex);
-		case 17:
-			return inExpr_sempred((InExprContext)_localctx, predIndex);
-		case 18:
-			return innerExpr_sempred((InnerExprContext)_localctx, predIndex);
-		case 21:
-			return type_sempred((TypeContext)_localctx, predIndex);
+		case 40:
+			return listPath_sempred((ListPathContext)_localctx, predIndex);
+		case 45:
+			return listVarPath_sempred((ListVarPathContext)_localctx, predIndex);
+		case 49:
+			return listFuncArg_sempred((ListFuncArgContext)_localctx, predIndex);
+		case 51:
+			return listIfExpr_sempred((ListIfExprContext)_localctx, predIndex);
 		}
 		return true;
 	}
-	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
+	private boolean listPath_sempred(ListPathContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 20);
+			return precpred(_ctx, 1);
+		}
+		return true;
+	}
+	private boolean listVarPath_sempred(ListVarPathContext _localctx, int predIndex) {
+		switch (predIndex) {
 		case 1:
-			return precpred(_ctx, 18);
+			return precpred(_ctx, 1);
+		}
+		return true;
+	}
+	private boolean listFuncArg_sempred(ListFuncArgContext _localctx, int predIndex) {
+		switch (predIndex) {
 		case 2:
-			return precpred(_ctx, 17);
+			return precpred(_ctx, 1);
+		}
+		return true;
+	}
+	private boolean listIfExpr_sempred(ListIfExprContext _localctx, int predIndex) {
+		switch (predIndex) {
 		case 3:
-			return precpred(_ctx, 16);
-		case 4:
-			return precpred(_ctx, 15);
-		case 5:
-			return precpred(_ctx, 14);
-		case 6:
-			return precpred(_ctx, 13);
-		case 7:
-			return precpred(_ctx, 11);
-		case 8:
-			return precpred(_ctx, 10);
-		case 9:
-			return precpred(_ctx, 9);
-		case 10:
-			return precpred(_ctx, 8);
-		case 11:
-			return precpred(_ctx, 7);
-		}
-		return true;
-	}
-	private boolean ifExpr_sempred(IfExprContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 12:
-			return precpred(_ctx, 3);
-		}
-		return true;
-	}
-	private boolean record_sempred(RecordContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 13:
 			return precpred(_ctx, 1);
-		}
-		return true;
-	}
-	private boolean inExpr_sempred(InExprContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 14:
-			return precpred(_ctx, 3);
-		case 15:
-			return precpred(_ctx, 2);
-		}
-		return true;
-	}
-	private boolean innerExpr_sempred(InnerExprContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 16:
-			return precpred(_ctx, 2);
-		case 17:
-			return precpred(_ctx, 1);
-		}
-		return true;
-	}
-	private boolean type_sempred(TypeContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 18:
-			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\64\u01a9\4\2\t\2"+
-		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
-		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\3\2\3\2\3\2\3\2\3\3"+
-		"\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7\3"+
-		"\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\13\3\13\3\13"+
-		"\3\13\3\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\5\rd\n\r\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u00a8\n\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\7\16\u00e6\n\16\f\16\16\16\u00e9\13\16\3\17\3\17\3\17\3\17"+
-		"\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\5\17"+
-		"\u00fc\n\17\3\17\3\17\3\17\3\17\7\17\u0102\n\17\f\17\16\17\u0105\13\17"+
-		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\3\20\3\20\3\20\3\20\5\20\u0129\n\20\3\21\3\21\3\21\3\21\3\21"+
-		"\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21\5\21\u013a\n\21\3\22"+
-		"\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u0145\n\22\3\22\3\22\3\22"+
-		"\3\22\3\22\7\22\u014c\n\22\f\22\16\22\u014f\13\22\3\23\3\23\3\23\3\23"+
-		"\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\7\23\u015d\n\23\f\23\16\23\u0160"+
-		"\13\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\7\24"+
-		"\u016e\n\24\f\24\16\24\u0171\13\24\3\25\3\25\3\25\3\25\3\25\3\25\3\25"+
-		"\3\25\3\25\5\25\u017c\n\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\5\26\u0189\n\26\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27"+
-		"\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\5\27\u019d\n\27\3\27\3\27"+
-		"\3\27\3\27\3\27\7\27\u01a4\n\27\f\27\16\27\u01a7\13\27\3\27\2\b\32\34"+
-		"\"$&,\30\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,\2\2\2\u01c9\2"+
-		".\3\2\2\2\4\62\3\2\2\2\6\66\3\2\2\2\b:\3\2\2\2\n>\3\2\2\2\fB\3\2\2\2\16"+
-		"F\3\2\2\2\20J\3\2\2\2\22N\3\2\2\2\24R\3\2\2\2\26V\3\2\2\2\30c\3\2\2\2"+
-		"\32\u00a7\3\2\2\2\34\u00fb\3\2\2\2\36\u0128\3\2\2\2 \u0139\3\2\2\2\"\u0144"+
-		"\3\2\2\2$\u0150\3\2\2\2&\u0161\3\2\2\2(\u017b\3\2\2\2*\u0188\3\2\2\2,"+
-		"\u019c\3\2\2\2./\5\30\r\2/\60\7\2\2\3\60\61\b\2\1\2\61\3\3\2\2\2\62\63"+
-		"\5\32\16\2\63\64\7\2\2\3\64\65\b\3\1\2\65\5\3\2\2\2\66\67\5\34\17\2\67"+
-		"8\7\2\2\389\b\4\1\29\7\3\2\2\2:;\5\36\20\2;<\7\2\2\3<=\b\5\1\2=\t\3\2"+
-		"\2\2>?\5 \21\2?@\7\2\2\3@A\b\6\1\2A\13\3\2\2\2BC\5\"\22\2CD\7\2\2\3DE"+
-		"\b\7\1\2E\r\3\2\2\2FG\5$\23\2GH\7\2\2\3HI\b\b\1\2I\17\3\2\2\2JK\5&\24"+
-		"\2KL\7\2\2\3LM\b\t\1\2M\21\3\2\2\2NO\5(\25\2OP\7\2\2\3PQ\b\n\1\2Q\23\3"+
-		"\2\2\2RS\5*\26\2ST\7\2\2\3TU\b\13\1\2U\25\3\2\2\2VW\5,\27\2WX\7\2\2\3"+
-		"XY\b\f\1\2Y\27\3\2\2\2Zd\b\r\1\2[\\\5\32\16\2\\]\b\r\1\2]d\3\2\2\2^_\5"+
-		"\32\16\2_`\7\3\2\2`a\5\30\r\2ab\b\r\1\2bd\3\2\2\2cZ\3\2\2\2c[\3\2\2\2"+
-		"c^\3\2\2\2d\31\3\2\2\2ef\b\16\1\2fg\7\4\2\2gh\5*\26\2hi\b\16\1\2i\u00a8"+
-		"\3\2\2\2jk\7\5\2\2kl\5(\25\2lm\7\6\2\2mn\5$\23\2no\7\7\2\2op\b\16\1\2"+
-		"p\u00a8\3\2\2\2qr\5*\26\2rs\7\b\2\2st\5\32\16\2tu\7\t\2\2uv\b\16\1\2v"+
-		"\u00a8\3\2\2\2wx\7,\2\2xy\7\b\2\2yz\5\32\16\2z{\7\t\2\2{|\b\16\1\2|\u00a8"+
-		"\3\2\2\2}~\7-\2\2~\177\7\b\2\2\177\u0080\5\32\16\2\u0080\u0081\7\t\2\2"+
-		"\u0081\u0082\b\16\1\2\u0082\u00a8\3\2\2\2\u0083\u0084\7,\2\2\u0084\u0085"+
-		"\7\b\2\2\u0085\u0086\7\t\2\2\u0086\u00a8\b\16\1\2\u0087\u0088\7-\2\2\u0088"+
-		"\u0089\7\b\2\2\u0089\u008a\7\t\2\2\u008a\u00a8\b\16\1\2\u008b\u008c\5"+
-		"\34\17\2\u008c\u008d\b\16\1\2\u008d\u00a8\3\2\2\2\u008e\u008f\7&\2\2\u008f"+
-		"\u0090\5\32\16\16\u0090\u0091\b\16\1\2\u0091\u00a8\3\2\2\2\u0092\u0093"+
-		"\7\16\2\2\u0093\u0094\5\32\16\b\u0094\u0095\b\16\1\2\u0095\u00a8\3\2\2"+
-		"\2\u0096\u0097\7\17\2\2\u0097\u0098\5\32\16\7\u0098\u0099\b\16\1\2\u0099"+
-		"\u00a8\3\2\2\2\u009a\u009b\5\36\20\2\u009b\u009c\b\16\1\2\u009c\u00a8"+
-		"\3\2\2\2\u009d\u009e\5 \21\2\u009e\u009f\b\16\1\2\u009f\u00a8\3\2\2\2"+
-		"\u00a0\u00a1\7\60\2\2\u00a1\u00a8\b\16\1\2\u00a2\u00a3\7\b\2\2\u00a3\u00a4"+
-		"\5&\24\2\u00a4\u00a5\7\t\2\2\u00a5\u00a6\b\16\1\2\u00a6\u00a8\3\2\2\2"+
-		"\u00a7e\3\2\2\2\u00a7j\3\2\2\2\u00a7q\3\2\2\2\u00a7w\3\2\2\2\u00a7}\3"+
-		"\2\2\2\u00a7\u0083\3\2\2\2\u00a7\u0087\3\2\2\2\u00a7\u008b\3\2\2\2\u00a7"+
-		"\u008e\3\2\2\2\u00a7\u0092\3\2\2\2\u00a7\u0096\3\2\2\2\u00a7\u009a\3\2"+
-		"\2\2\u00a7\u009d\3\2\2\2\u00a7\u00a0\3\2\2\2\u00a7\u00a2\3\2\2\2\u00a8"+
-		"\u00e7\3\2\2\2\u00a9\u00aa\f\26\2\2\u00aa\u00ab\7\n\2\2\u00ab\u00ac\5"+
-		"\32\16\27\u00ac\u00ad\b\16\1\2\u00ad\u00e6\3\2\2\2\u00ae\u00af\f\24\2"+
-		"\2\u00af\u00b0\7\16\2\2\u00b0\u00b1\5\32\16\25\u00b1\u00b2\b\16\1\2\u00b2"+
-		"\u00e6\3\2\2\2\u00b3\u00b4\f\23\2\2\u00b4\u00b5\7\17\2\2\u00b5\u00b6\5"+
-		"\32\16\24\u00b6\u00b7\b\16\1\2\u00b7\u00e6\3\2\2\2\u00b8\u00b9\f\22\2"+
-		"\2\u00b9\u00ba\7\20\2\2\u00ba\u00bb\5\32\16\23\u00bb\u00bc\b\16\1\2\u00bc"+
-		"\u00e6\3\2\2\2\u00bd\u00be\f\21\2\2\u00be\u00bf\7\21\2\2\u00bf\u00c0\5"+
-		"\32\16\22\u00c0\u00c1\b\16\1\2\u00c1\u00e6\3\2\2\2\u00c2\u00c3\f\20\2"+
-		"\2\u00c3\u00c4\7 \2\2\u00c4\u00c5\5\32\16\21\u00c5\u00c6\b\16\1\2\u00c6"+
-		"\u00e6\3\2\2\2\u00c7\u00c8\f\17\2\2\u00c8\u00c9\7\'\2\2\u00c9\u00ca\5"+
-		"\32\16\20\u00ca\u00cb\b\16\1\2\u00cb\u00e6\3\2\2\2\u00cc\u00cd\f\r\2\2"+
-		"\u00cd\u00ce\7\22\2\2\u00ce\u00cf\5\32\16\16\u00cf\u00d0\b\16\1\2\u00d0"+
-		"\u00e6\3\2\2\2\u00d1\u00d2\f\f\2\2\u00d2\u00d3\7\23\2\2\u00d3\u00d4\5"+
-		"\32\16\r\u00d4\u00d5\b\16\1\2\u00d5\u00e6\3\2\2\2\u00d6\u00d7\f\13\2\2"+
-		"\u00d7\u00d8\7\24\2\2\u00d8\u00d9\5\32\16\f\u00d9\u00da\b\16\1\2\u00da"+
-		"\u00e6\3\2\2\2\u00db\u00dc\f\n\2\2\u00dc\u00dd\7\25\2\2\u00dd\u00de\5"+
-		"\32\16\13\u00de\u00df\b\16\1\2\u00df\u00e6\3\2\2\2\u00e0\u00e1\f\t\2\2"+
-		"\u00e1\u00e2\7\26\2\2\u00e2\u00e3\5\32\16\n\u00e3\u00e4\b\16\1\2\u00e4"+
-		"\u00e6\3\2\2\2\u00e5\u00a9\3\2\2\2\u00e5\u00ae\3\2\2\2\u00e5\u00b3\3\2"+
-		"\2\2\u00e5\u00b8\3\2\2\2\u00e5\u00bd\3\2\2\2\u00e5\u00c2\3\2\2\2\u00e5"+
-		"\u00c7\3\2\2\2\u00e5\u00cc\3\2\2\2\u00e5\u00d1\3\2\2\2\u00e5\u00d6\3\2"+
-		"\2\2\u00e5\u00db\3\2\2\2\u00e5\u00e0\3\2\2\2\u00e6\u00e9\3\2\2\2\u00e7"+
-		"\u00e5\3\2\2\2\u00e7\u00e8\3\2\2\2\u00e8\33\3\2\2\2\u00e9\u00e7\3\2\2"+
-		"\2\u00ea\u00eb\b\17\1\2\u00eb\u00ec\7\13\2\2\u00ec\u00ed\7\b\2\2\u00ed"+
-		"\u00ee\5\32\16\2\u00ee\u00ef\7\t\2\2\u00ef\u00f0\7\f\2\2\u00f0\u00f1\7"+
-		"\6\2\2\u00f1\u00f2\5\32\16\2\u00f2\u00f3\7\7\2\2\u00f3\u00f4\b\17\1\2"+
-		"\u00f4\u00fc\3\2\2\2\u00f5\u00f6\7\r\2\2\u00f6\u00f7\7\6\2\2\u00f7\u00f8"+
-		"\5\32\16\2\u00f8\u00f9\7\7\2\2\u00f9\u00fa\b\17\1\2\u00fa\u00fc\3\2\2"+
-		"\2\u00fb\u00ea\3\2\2\2\u00fb\u00f5\3\2\2\2\u00fc\u0103\3\2\2\2\u00fd\u00fe"+
-		"\f\5\2\2\u00fe\u00ff\5\34\17\6\u00ff\u0100\b\17\1\2\u0100\u0102\3\2\2"+
-		"\2\u0101\u00fd\3\2\2\2\u0102\u0105\3\2\2\2\u0103\u0101\3\2\2\2\u0103\u0104"+
-		"\3\2\2\2\u0104\35\3\2\2\2\u0105\u0103\3\2\2\2\u0106\u0107\7#\2\2\u0107"+
-		"\u0108\5*\26\2\u0108\u0109\7\27\2\2\u0109\u010a\5\32\16\2\u010a\u010b"+
-		"\b\20\1\2\u010b\u0129\3\2\2\2\u010c\u010d\7#\2\2\u010d\u010e\5*\26\2\u010e"+
-		"\u010f\7\27\2\2\u010f\u0110\5\32\16\2\u0110\u0111\7\"\2\2\u0111\u0112"+
-		"\5\32\16\2\u0112\u0113\b\20\1\2\u0113\u0129\3\2\2\2\u0114\u0115\7#\2\2"+
-		"\u0115\u0116\5*\26\2\u0116\u0117\7\27\2\2\u0117\u0118\5\32\16\2\u0118"+
-		"\u0119\7!\2\2\u0119\u011a\5,\27\2\u011a\u011b\b\20\1\2\u011b\u0129\3\2"+
-		"\2\2\u011c\u011d\7$\2\2\u011d\u011e\5*\26\2\u011e\u011f\7\27\2\2\u011f"+
-		"\u0120\5\32\16\2\u0120\u0121\b\20\1\2\u0121\u0129\3\2\2\2\u0122\u0123"+
-		"\7%\2\2\u0123\u0124\5*\26\2\u0124\u0125\7\27\2\2\u0125\u0126\5,\27\2\u0126"+
-		"\u0127\b\20\1\2\u0127\u0129\3\2\2\2\u0128\u0106\3\2\2\2\u0128\u010c\3"+
-		"\2\2\2\u0128\u0114\3\2\2\2\u0128\u011c\3\2\2\2\u0128\u0122\3\2\2\2\u0129"+
-		"\37\3\2\2\2\u012a\u012b\7/\2\2\u012b\u013a\b\21\1\2\u012c\u012d\7.\2\2"+
-		"\u012d\u013a\b\21\1\2\u012e\u012f\7\63\2\2\u012f\u013a\b\21\1\2\u0130"+
-		"\u0131\7*\2\2\u0131\u013a\b\21\1\2\u0132\u0133\7+\2\2\u0133\u013a\b\21"+
-		"\1\2\u0134\u0135\7\6\2\2\u0135\u0136\5\"\22\2\u0136\u0137\7\7\2\2\u0137"+
-		"\u0138\b\21\1\2\u0138\u013a\3\2\2\2\u0139\u012a\3\2\2\2\u0139\u012c\3"+
-		"\2\2\2\u0139\u012e\3\2\2\2\u0139\u0130\3\2\2\2\u0139\u0132\3\2\2\2\u0139"+
-		"\u0134\3\2\2\2\u013a!\3\2\2\2\u013b\u013c\b\22\1\2\u013c\u013d\5*\26\2"+
-		"\u013d\u013e\7\27\2\2\u013e\u013f\5 \21\2\u013f\u0140\b\22\1\2\u0140\u0145"+
-		"\3\2\2\2\u0141\u0142\5*\26\2\u0142\u0143\b\22\1\2\u0143\u0145\3\2\2\2"+
-		"\u0144\u013b\3\2\2\2\u0144\u0141\3\2\2\2\u0145\u014d\3\2\2\2\u0146\u0147"+
-		"\f\3\2\2\u0147\u0148\7\n\2\2\u0148\u0149\5\"\22\4\u0149\u014a\b\22\1\2"+
-		"\u014a\u014c\3\2\2\2\u014b\u0146\3\2\2\2\u014c\u014f\3\2\2\2\u014d\u014b"+
-		"\3\2\2\2\u014d\u014e\3\2\2\2\u014e#\3\2\2\2\u014f\u014d\3\2\2\2\u0150"+
-		"\u0151\b\23\1\2\u0151\u0152\5\32\16\2\u0152\u0153\b\23\1\2\u0153\u015e"+
-		"\3\2\2\2\u0154\u0155\f\5\2\2\u0155\u0156\7\3\2\2\u0156\u0157\5$\23\6\u0157"+
-		"\u0158\b\23\1\2\u0158\u015d\3\2\2\2\u0159\u015a\f\4\2\2\u015a\u015b\7"+
-		"\3\2\2\u015b\u015d\b\23\1\2\u015c\u0154\3\2\2\2\u015c\u0159\3\2\2\2\u015d"+
-		"\u0160\3\2\2\2\u015e\u015c\3\2\2\2\u015e\u015f\3\2\2\2\u015f%\3\2\2\2"+
-		"\u0160\u015e\3\2\2\2\u0161\u0162\b\24\1\2\u0162\u0163\5\32\16\2\u0163"+
-		"\u0164\b\24\1\2\u0164\u016f\3\2\2\2\u0165\u0166\f\4\2\2\u0166\u0167\7"+
-		"\3\2\2\u0167\u0168\5&\24\5\u0168\u0169\b\24\1\2\u0169\u016e\3\2\2\2\u016a"+
-		"\u016b\f\3\2\2\u016b\u016c\7\3\2\2\u016c\u016e\b\24\1\2\u016d\u0165\3"+
-		"\2\2\2\u016d\u016a\3\2\2\2\u016e\u0171\3\2\2\2\u016f\u016d\3\2\2\2\u016f"+
-		"\u0170\3\2\2\2\u0170\'\3\2\2\2\u0171\u016f\3\2\2\2\u0172\u0173\5*\26\2"+
-		"\u0173\u0174\7\30\2\2\u0174\u0175\5(\25\2\u0175\u0176\b\25\1\2\u0176\u017c"+
-		"\3\2\2\2\u0177\u0178\5*\26\2\u0178\u0179\7\30\2\2\u0179\u017a\b\25\1\2"+
-		"\u017a\u017c\3\2\2\2\u017b\u0172\3\2\2\2\u017b\u0177\3\2\2\2\u017c)\3"+
-		"\2\2\2\u017d\u017e\7\60\2\2\u017e\u017f\7\f\2\2\u017f\u0180\5,\27\2\u0180"+
-		"\u0181\b\26\1\2\u0181\u0189\3\2\2\2\u0182\u0183\7\60\2\2\u0183\u0189\b"+
-		"\26\1\2\u0184\u0185\7\60\2\2\u0185\u0186\7\30\2\2\u0186\u0187\7\60\2\2"+
-		"\u0187\u0189\b\26\1\2\u0188\u017d\3\2\2\2\u0188\u0182\3\2\2\2\u0188\u0184"+
-		"\3\2\2\2\u0189+\3\2\2\2\u018a\u018b\b\27\1\2\u018b\u018c\7\34\2\2\u018c"+
-		"\u019d\b\27\1\2\u018d\u018e\7\35\2\2\u018e\u019d\b\27\1\2\u018f\u0190"+
-		"\7\33\2\2\u0190\u019d\b\27\1\2\u0191\u0192\7\36\2\2\u0192\u019d\b\27\1"+
-		"\2\u0193\u0194\7\37\2\2\u0194\u019d\b\27\1\2\u0195\u0196\7\32\2\2\u0196"+
-		"\u019d\b\27\1\2\u0197\u0198\7\6\2\2\u0198\u0199\5\"\22\2\u0199\u019a\7"+
-		"\7\2\2\u019a\u019b\b\27\1\2\u019b\u019d\3\2\2\2\u019c\u018a\3\2\2\2\u019c"+
-		"\u018d\3\2\2\2\u019c\u018f\3\2\2\2\u019c\u0191\3\2\2\2\u019c\u0193\3\2"+
-		"\2\2\u019c\u0195\3\2\2\2\u019c\u0197\3\2\2\2\u019d\u01a5\3\2\2\2\u019e"+
-		"\u019f\f\4\2\2\u019f\u01a0\7\31\2\2\u01a0\u01a1\5,\27\5\u01a1\u01a2\b"+
-		"\27\1\2\u01a2\u01a4\3\2\2\2\u01a3\u019e\3\2\2\2\u01a4\u01a7\3\2\2\2\u01a5"+
-		"\u01a3\3\2\2\2\u01a5\u01a6\3\2\2\2\u01a6-\3\2\2\2\u01a7\u01a5\3\2\2\2"+
-		"\24c\u00a7\u00e5\u00e7\u00fb\u0103\u0128\u0139\u0144\u014d\u015c\u015e"+
-		"\u016d\u016f\u017b\u0188\u019c\u01a5";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\38\u02a5\4\2\t\2\4"+
+		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
+		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
+		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\4\37\t\37\4 \t \4!"+
+		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t&\4\'\t\'\4(\t(\4)\t)\4*\t*\4+\t+\4"+
+		",\t,\4-\t-\4.\t.\4/\t/\4\60\t\60\4\61\t\61\4\62\t\62\4\63\t\63\4\64\t"+
+		"\64\4\65\t\65\4\66\t\66\4\67\t\67\48\t8\49\t9\4:\t:\4;\t;\4<\t<\4=\t="+
+		"\4>\t>\4?\t?\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5\3"+
+		"\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t"+
+		"\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3"+
+		"\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\21\3\21\3"+
+		"\21\3\21\3\22\3\22\3\22\3\22\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3"+
+		"\25\3\25\3\25\3\25\3\26\3\26\3\26\3\26\3\27\3\27\3\27\3\27\3\30\3\30\3"+
+		"\30\3\30\3\31\3\31\3\31\3\31\3\32\3\32\3\32\3\32\3\33\3\33\3\33\3\33\3"+
+		"\34\3\34\3\34\3\34\3\35\3\35\3\35\3\35\3\36\3\36\3\36\3\36\3\37\3\37\3"+
+		"\37\3\37\3 \3 \3 \3 \3!\3!\3!\3!\3!\3!\3!\3!\3!\5!\u0104\n!\3\"\3\"\3"+
+		"\"\3\"\3\"\3\"\3\"\3\"\3\"\3\"\3\"\3\"\3\"\3\"\5\"\u0114\n\"\3#\3#\3#"+
+		"\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#"+
+		"\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\3#\5#\u0144"+
+		"\n#\3$\3$\3$\3$\3$\3$\5$\u014c\n$\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%\3%"+
+		"\3%\3%\3%\3%\3%\3%\3%\3%\5%\u0162\n%\3&\3&\3&\3&\3&\3\'\3\'\3\'\3\'\3"+
+		"(\3(\3(\3(\3(\3)\3)\3)\3*\3*\3*\3*\3*\3*\3*\3*\7*\u017d\n*\f*\16*\u0180"+
+		"\13*\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3"+
+		"+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\3+\5+\u01a6\n+\3,\3,\3,\3,\3"+
+		",\3,\3,\5,\u01af\n,\3-\3-\3-\3-\3.\3.\3.\3/\3/\3/\3/\3/\3/\3/\3/\7/\u01c0"+
+		"\n/\f/\16/\u01c3\13/\3\60\3\60\3\60\3\61\3\61\3\61\3\61\3\61\3\61\3\61"+
+		"\3\61\3\61\5\61\u01d1\n\61\3\62\3\62\3\62\3\62\3\62\3\63\3\63\3\63\3\63"+
+		"\3\63\3\63\3\63\3\63\7\63\u01e0\n\63\f\63\16\63\u01e3\13\63\3\64\3\64"+
+		"\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64\3\64"+
+		"\3\64\3\64\5\64\u01f7\n\64\3\65\3\65\3\65\3\65\3\65\3\65\3\65\7\65\u0200"+
+		"\n\65\f\65\16\65\u0203\13\65\3\66\3\66\3\66\3\66\3\66\3\66\3\66\3\66\3"+
+		"\66\3\66\5\66\u020f\n\66\3\67\3\67\3\67\3\67\3\67\3\67\3\67\3\67\3\67"+
+		"\3\67\3\67\3\67\3\67\3\67\3\67\5\67\u0220\n\67\38\38\38\38\38\38\38\3"+
+		"8\38\38\38\38\38\38\38\38\38\38\38\38\38\38\38\38\38\38\38\38\38\38\3"+
+		"8\38\38\38\38\38\38\38\38\38\38\38\38\58\u024d\n8\39\39\39\39\39\39\3"+
+		"9\39\39\39\39\39\39\39\39\39\39\39\39\39\39\39\39\59\u0266\n9\3:\3:\3"+
+		":\3:\3:\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3;\3"+
+		";\3;\3;\3;\3;\5;\u0286\n;\3<\3<\3<\3=\3=\3=\3=\3=\3>\3>\3>\3>\3>\3>\3"+
+		">\3>\5>\u0298\n>\3?\3?\3?\3?\3?\3?\3?\3?\3?\5?\u02a3\n?\3?\2\6R\\dh@\2"+
+		"\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJL"+
+		"NPRTVXZ\\^`bdfhjlnprtvxz|\2\2\2\u02a1\2~\3\2\2\2\4\u0082\3\2\2\2\6\u0086"+
+		"\3\2\2\2\b\u008a\3\2\2\2\n\u008e\3\2\2\2\f\u0092\3\2\2\2\16\u0096\3\2"+
+		"\2\2\20\u009a\3\2\2\2\22\u009e\3\2\2\2\24\u00a2\3\2\2\2\26\u00a6\3\2\2"+
+		"\2\30\u00aa\3\2\2\2\32\u00ae\3\2\2\2\34\u00b2\3\2\2\2\36\u00b6\3\2\2\2"+
+		" \u00ba\3\2\2\2\"\u00be\3\2\2\2$\u00c2\3\2\2\2&\u00c6\3\2\2\2(\u00ca\3"+
+		"\2\2\2*\u00ce\3\2\2\2,\u00d2\3\2\2\2.\u00d6\3\2\2\2\60\u00da\3\2\2\2\62"+
+		"\u00de\3\2\2\2\64\u00e2\3\2\2\2\66\u00e6\3\2\2\28\u00ea\3\2\2\2:\u00ee"+
+		"\3\2\2\2<\u00f2\3\2\2\2>\u00f6\3\2\2\2@\u0103\3\2\2\2B\u0113\3\2\2\2D"+
+		"\u0143\3\2\2\2F\u014b\3\2\2\2H\u0161\3\2\2\2J\u0163\3\2\2\2L\u0168\3\2"+
+		"\2\2N\u016c\3\2\2\2P\u0171\3\2\2\2R\u0174\3\2\2\2T\u01a5\3\2\2\2V\u01ae"+
+		"\3\2\2\2X\u01b0\3\2\2\2Z\u01b4\3\2\2\2\\\u01b7\3\2\2\2^\u01c4\3\2\2\2"+
+		"`\u01d0\3\2\2\2b\u01d2\3\2\2\2d\u01d7\3\2\2\2f\u01f6\3\2\2\2h\u01f8\3"+
+		"\2\2\2j\u020e\3\2\2\2l\u021f\3\2\2\2n\u024c\3\2\2\2p\u0265\3\2\2\2r\u0267"+
+		"\3\2\2\2t\u0285\3\2\2\2v\u0287\3\2\2\2x\u028a\3\2\2\2z\u0297\3\2\2\2|"+
+		"\u02a2\3\2\2\2~\177\5@!\2\177\u0080\7\2\2\3\u0080\u0081\b\2\1\2\u0081"+
+		"\3\3\2\2\2\u0082\u0083\5B\"\2\u0083\u0084\7\2\2\3\u0084\u0085\b\3\1\2"+
+		"\u0085\5\3\2\2\2\u0086\u0087\5D#\2\u0087\u0088\7\2\2\3\u0088\u0089\b\4"+
+		"\1\2\u0089\7\3\2\2\2\u008a\u008b\5F$\2\u008b\u008c\7\2\2\3\u008c\u008d"+
+		"\b\5\1\2\u008d\t\3\2\2\2\u008e\u008f\5H%\2\u008f\u0090\7\2\2\3\u0090\u0091"+
+		"\b\6\1\2\u0091\13\3\2\2\2\u0092\u0093\5J&\2\u0093\u0094\7\2\2\3\u0094"+
+		"\u0095\b\7\1\2\u0095\r\3\2\2\2\u0096\u0097\5L\'\2\u0097\u0098\7\2\2\3"+
+		"\u0098\u0099\b\b\1\2\u0099\17\3\2\2\2\u009a\u009b\5N(\2\u009b\u009c\7"+
+		"\2\2\3\u009c\u009d\b\t\1\2\u009d\21\3\2\2\2\u009e\u009f\5P)\2\u009f\u00a0"+
+		"\7\2\2\3\u00a0\u00a1\b\n\1\2\u00a1\23\3\2\2\2\u00a2\u00a3\5R*\2\u00a3"+
+		"\u00a4\7\2\2\3\u00a4\u00a5\b\13\1\2\u00a5\25\3\2\2\2\u00a6\u00a7\5T+\2"+
+		"\u00a7\u00a8\7\2\2\3\u00a8\u00a9\b\f\1\2\u00a9\27\3\2\2\2\u00aa\u00ab"+
+		"\5V,\2\u00ab\u00ac\7\2\2\3\u00ac\u00ad\b\r\1\2\u00ad\31\3\2\2\2\u00ae"+
+		"\u00af\5X-\2\u00af\u00b0\7\2\2\3\u00b0\u00b1\b\16\1\2\u00b1\33\3\2\2\2"+
+		"\u00b2\u00b3\5Z.\2\u00b3\u00b4\7\2\2\3\u00b4\u00b5\b\17\1\2\u00b5\35\3"+
+		"\2\2\2\u00b6\u00b7\5\\/\2\u00b7\u00b8\7\2\2\3\u00b8\u00b9\b\20\1\2\u00b9"+
+		"\37\3\2\2\2\u00ba\u00bb\5^\60\2\u00bb\u00bc\7\2\2\3\u00bc\u00bd\b\21\1"+
+		"\2\u00bd!\3\2\2\2\u00be\u00bf\5`\61\2\u00bf\u00c0\7\2\2\3\u00c0\u00c1"+
+		"\b\22\1\2\u00c1#\3\2\2\2\u00c2\u00c3\5b\62\2\u00c3\u00c4\7\2\2\3\u00c4"+
+		"\u00c5\b\23\1\2\u00c5%\3\2\2\2\u00c6\u00c7\5d\63\2\u00c7\u00c8\7\2\2\3"+
+		"\u00c8\u00c9\b\24\1\2\u00c9\'\3\2\2\2\u00ca\u00cb\5f\64\2\u00cb\u00cc"+
+		"\7\2\2\3\u00cc\u00cd\b\25\1\2\u00cd)\3\2\2\2\u00ce\u00cf\5h\65\2\u00cf"+
+		"\u00d0\7\2\2\3\u00d0\u00d1\b\26\1\2\u00d1+\3\2\2\2\u00d2\u00d3\5j\66\2"+
+		"\u00d3\u00d4\7\2\2\3\u00d4\u00d5\b\27\1\2\u00d5-\3\2\2\2\u00d6\u00d7\5"+
+		"l\67\2\u00d7\u00d8\7\2\2\3\u00d8\u00d9\b\30\1\2\u00d9/\3\2\2\2\u00da\u00db"+
+		"\5n8\2\u00db\u00dc\7\2\2\3\u00dc\u00dd\b\31\1\2\u00dd\61\3\2\2\2\u00de"+
+		"\u00df\5p9\2\u00df\u00e0\7\2\2\3\u00e0\u00e1\b\32\1\2\u00e1\63\3\2\2\2"+
+		"\u00e2\u00e3\5r:\2\u00e3\u00e4\7\2\2\3\u00e4\u00e5\b\33\1\2\u00e5\65\3"+
+		"\2\2\2\u00e6\u00e7\5t;\2\u00e7\u00e8\7\2\2\3\u00e8\u00e9\b\34\1\2\u00e9"+
+		"\67\3\2\2\2\u00ea\u00eb\5v<\2\u00eb\u00ec\7\2\2\3\u00ec\u00ed\b\35\1\2"+
+		"\u00ed9\3\2\2\2\u00ee\u00ef\5x=\2\u00ef\u00f0\7\2\2\3\u00f0\u00f1\b\36"+
+		"\1\2\u00f1;\3\2\2\2\u00f2\u00f3\5z>\2\u00f3\u00f4\7\2\2\3\u00f4\u00f5"+
+		"\b\37\1\2\u00f5=\3\2\2\2\u00f6\u00f7\5|?\2\u00f7\u00f8\7\2\2\3\u00f8\u00f9"+
+		"\b \1\2\u00f9?\3\2\2\2\u00fa\u0104\b!\1\2\u00fb\u00fc\5B\"\2\u00fc\u00fd"+
+		"\b!\1\2\u00fd\u0104\3\2\2\2\u00fe\u00ff\5B\"\2\u00ff\u0100\7\3\2\2\u0100"+
+		"\u0101\5@!\2\u0101\u0102\b!\1\2\u0102\u0104\3\2\2\2\u0103\u00fa\3\2\2"+
+		"\2\u0103\u00fb\3\2\2\2\u0103\u00fe\3\2\2\2\u0104A\3\2\2\2\u0105\u0106"+
+		"\5D#\2\u0106\u0107\b\"\1\2\u0107\u0114\3\2\2\2\u0108\u0109\7\6\2\2\u0109"+
+		"\u010a\5L\'\2\u010a\u010b\b\"\1\2\u010b\u0114\3\2\2\2\u010c\u010d\5T+"+
+		"\2\u010d\u010e\b\"\1\2\u010e\u0114\3\2\2\2\u010f\u0110\5h\65\2\u0110\u0111"+
+		"\5j\66\2\u0111\u0112\b\"\1\2\u0112\u0114\3\2\2\2\u0113\u0105\3\2\2\2\u0113"+
+		"\u0108\3\2\2\2\u0113\u010c\3\2\2\2\u0113\u010f\3\2\2\2\u0114C\3\2\2\2"+
+		"\u0115\u0116\5F$\2\u0116\u0117\b#\1\2\u0117\u0144\3\2\2\2\u0118\u0119"+
+		"\7\13\2\2\u0119\u011a\5d\63\2\u011a\u011b\7\f\2\2\u011b\u011c\5@!\2\u011c"+
+		"\u011d\7\r\2\2\u011d\u011e\b#\1\2\u011e\u0144\3\2\2\2\u011f\u0120\5X-"+
+		"\2\u0120\u0121\7\4\2\2\u0121\u0122\5`\61\2\u0122\u0123\7\5\2\2\u0123\u0124"+
+		"\b#\1\2\u0124\u0144\3\2\2\2\u0125\u0126\7,\2\2\u0126\u0127\7\4\2\2\u0127"+
+		"\u0128\5B\"\2\u0128\u0129\7\5\2\2\u0129\u012a\b#\1\2\u012a\u0144\3\2\2"+
+		"\2\u012b\u012c\7-\2\2\u012c\u012d\7\4\2\2\u012d\u012e\5`\61\2\u012e\u012f"+
+		"\7\5\2\2\u012f\u0130\b#\1\2\u0130\u0144\3\2\2\2\u0131\u0132\7.\2\2\u0132"+
+		"\u0133\7\4\2\2\u0133\u0134\5`\61\2\u0134\u0135\7\5\2\2\u0135\u0136\b#"+
+		"\1\2\u0136\u0144\3\2\2\2\u0137\u0138\7/\2\2\u0138\u0139\7\4\2\2\u0139"+
+		"\u013a\5`\61\2\u013a\u013b\7\5\2\2\u013b\u013c\b#\1\2\u013c\u0144\3\2"+
+		"\2\2\u013d\u013e\7\60\2\2\u013e\u013f\7\4\2\2\u013f\u0140\5`\61\2\u0140"+
+		"\u0141\7\5\2\2\u0141\u0142\b#\1\2\u0142\u0144\3\2\2\2\u0143\u0115\3\2"+
+		"\2\2\u0143\u0118\3\2\2\2\u0143\u011f\3\2\2\2\u0143\u0125\3\2\2\2\u0143"+
+		"\u012b\3\2\2\2\u0143\u0131\3\2\2\2\u0143\u0137\3\2\2\2\u0143\u013d\3\2"+
+		"\2\2\u0144E\3\2\2\2\u0145\u0146\5H%\2\u0146\u0147\b$\1\2\u0147\u014c\3"+
+		"\2\2\2\u0148\u0149\5l\67\2\u0149\u014a\b$\1\2\u014a\u014c\3\2\2\2\u014b"+
+		"\u0145\3\2\2\2\u014b\u0148\3\2\2\2\u014cG\3\2\2\2\u014d\u014e\5J&\2\u014e"+
+		"\u014f\b%\1\2\u014f\u0162\3\2\2\2\u0150\u0151\7\64\2\2\u0151\u0162\b%"+
+		"\1\2\u0152\u0153\7\63\2\2\u0153\u0162\b%\1\2\u0154\u0155\7\62\2\2\u0155"+
+		"\u0162\b%\1\2\u0156\u0157\7\67\2\2\u0157\u0162\b%\1\2\u0158\u0159\7*\2"+
+		"\2\u0159\u0162\b%\1\2\u015a\u015b\7+\2\2\u015b\u0162\b%\1\2\u015c\u015d"+
+		"\7\f\2\2\u015d\u015e\5|?\2\u015e\u015f\7\r\2\2\u015f\u0160\b%\1\2\u0160"+
+		"\u0162\3\2\2\2\u0161\u014d\3\2\2\2\u0161\u0150\3\2\2\2\u0161\u0152\3\2"+
+		"\2\2\u0161\u0154\3\2\2\2\u0161\u0156\3\2\2\2\u0161\u0158\3\2\2\2\u0161"+
+		"\u015a\3\2\2\2\u0161\u015c\3\2\2\2\u0162I\3\2\2\2\u0163\u0164\7\4\2\2"+
+		"\u0164\u0165\5B\"\2\u0165\u0166\7\5\2\2\u0166\u0167\b&\1\2\u0167K\3\2"+
+		"\2\2\u0168\u0169\5R*\2\u0169\u016a\5N(\2\u016a\u016b\b\'\1\2\u016bM\3"+
+		"\2\2\2\u016c\u016d\7\64\2\2\u016d\u016e\7\7\2\2\u016e\u016f\7\61\2\2\u016f"+
+		"\u0170\b(\1\2\u0170O\3\2\2\2\u0171\u0172\7\64\2\2\u0172\u0173\b)\1\2\u0173"+
+		"Q\3\2\2\2\u0174\u0175\b*\1\2\u0175\u0176\b*\1\2\u0176\u017e\3\2\2\2\u0177"+
+		"\u0178\f\3\2\2\u0178\u0179\5P)\2\u0179\u017a\7\b\2\2\u017a\u017b\b*\1"+
+		"\2\u017b\u017d\3\2\2\2\u017c\u0177\3\2\2\2\u017d\u0180\3\2\2\2\u017e\u017c"+
+		"\3\2\2\2\u017e\u017f\3\2\2\2\u017fS\3\2\2\2\u0180\u017e\3\2\2\2\u0181"+
+		"\u0182\7#\2\2\u0182\u0183\5V,\2\u0183\u0184\7\t\2\2\u0184\u0185\5D#\2"+
+		"\u0185\u0186\b+\1\2\u0186\u01a6\3\2\2\2\u0187\u0188\7#\2\2\u0188\u0189"+
+		"\5V,\2\u0189\u018a\7\t\2\2\u018a\u018b\5D#\2\u018b\u018c\7\"\2\2\u018c"+
+		"\u018d\5D#\2\u018d\u018e\b+\1\2\u018e\u01a6\3\2\2\2\u018f\u0190\7#\2\2"+
+		"\u0190\u0191\5V,\2\u0191\u0192\7\t\2\2\u0192\u0193\5D#\2\u0193\u0194\7"+
+		"\"\2\2\u0194\u0195\7\4\2\2\u0195\u0196\5@!\2\u0196\u0197\7\5\2\2\u0197"+
+		"\u0198\b+\1\2\u0198\u01a6\3\2\2\2\u0199\u019a\7$\2\2\u019a\u019b\5V,\2"+
+		"\u019b\u019c\7\t\2\2\u019c\u019d\5D#\2\u019d\u019e\b+\1\2\u019e\u01a6"+
+		"\3\2\2\2\u019f\u01a0\7%\2\2\u01a0\u01a1\5V,\2\u01a1\u01a2\7\t\2\2\u01a2"+
+		"\u01a3\5t;\2\u01a3\u01a4\b+\1\2\u01a4\u01a6\3\2\2\2\u01a5\u0181\3\2\2"+
+		"\2\u01a5\u0187\3\2\2\2\u01a5\u018f\3\2\2\2\u01a5\u0199\3\2\2\2\u01a5\u019f"+
+		"\3\2\2\2\u01a6U\3\2\2\2\u01a7\u01a8\7\64\2\2\u01a8\u01a9\7\n\2\2\u01a9"+
+		"\u01aa\5t;\2\u01aa\u01ab\b,\1\2\u01ab\u01af\3\2\2\2\u01ac\u01ad\7\64\2"+
+		"\2\u01ad\u01af\b,\1\2\u01ae\u01a7\3\2\2\2\u01ae\u01ac\3\2\2\2\u01afW\3"+
+		"\2\2\2\u01b0\u01b1\5\\/\2\u01b1\u01b2\7\64\2\2\u01b2\u01b3\b-\1\2\u01b3"+
+		"Y\3\2\2\2\u01b4\u01b5\7\64\2\2\u01b5\u01b6\b.\1\2\u01b6[\3\2\2\2\u01b7"+
+		"\u01b8\b/\1\2\u01b8\u01b9\b/\1\2\u01b9\u01c1\3\2\2\2\u01ba\u01bb\f\3\2"+
+		"\2\u01bb\u01bc\5Z.\2\u01bc\u01bd\7\7\2\2\u01bd\u01be\b/\1\2\u01be\u01c0"+
+		"\3\2\2\2\u01bf\u01ba\3\2\2\2\u01c0\u01c3\3\2\2\2\u01c1\u01bf\3\2\2\2\u01c1"+
+		"\u01c2\3\2\2\2\u01c2]\3\2\2\2\u01c3\u01c1\3\2\2\2\u01c4\u01c5\5B\"\2\u01c5"+
+		"\u01c6\b\60\1\2\u01c6_\3\2\2\2\u01c7\u01d1\b\61\1\2\u01c8\u01c9\5^\60"+
+		"\2\u01c9\u01ca\b\61\1\2\u01ca\u01d1\3\2\2\2\u01cb\u01cc\5^\60\2\u01cc"+
+		"\u01cd\7\16\2\2\u01cd\u01ce\5`\61\2\u01ce\u01cf\b\61\1\2\u01cf\u01d1\3"+
+		"\2\2\2\u01d0\u01c7\3\2\2\2\u01d0\u01c8\3\2\2\2\u01d0\u01cb\3\2\2\2\u01d1"+
+		"a\3\2\2\2\u01d2\u01d3\7\64\2\2\u01d3\u01d4\7\n\2\2\u01d4\u01d5\5t;\2\u01d5"+
+		"\u01d6\b\62\1\2\u01d6c\3\2\2\2\u01d7\u01d8\b\63\1\2\u01d8\u01d9\b\63\1"+
+		"\2\u01d9\u01e1\3\2\2\2\u01da\u01db\f\3\2\2\u01db\u01dc\5b\62\2\u01dc\u01dd"+
+		"\7\7\2\2\u01dd\u01de\b\63\1\2\u01de\u01e0\3\2\2\2\u01df\u01da\3\2\2\2"+
+		"\u01e0\u01e3\3\2\2\2\u01e1\u01df\3\2\2\2\u01e1\u01e2\3\2\2\2\u01e2e\3"+
+		"\2\2\2\u01e3\u01e1\3\2\2\2\u01e4\u01e5\7\17\2\2\u01e5\u01e6\7\4\2\2\u01e6"+
+		"\u01e7\5F$\2\u01e7\u01e8\7\5\2\2\u01e8\u01e9\7\n\2\2\u01e9\u01ea\5B\""+
+		"\2\u01ea\u01eb\b\64\1\2\u01eb\u01f7\3\2\2\2\u01ec\u01ed\7\17\2\2\u01ed"+
+		"\u01ee\7\4\2\2\u01ee\u01ef\5F$\2\u01ef\u01f0\7\5\2\2\u01f0\u01f1\7\n\2"+
+		"\2\u01f1\u01f2\7\f\2\2\u01f2\u01f3\5@!\2\u01f3\u01f4\7\r\2\2\u01f4\u01f5"+
+		"\b\64\1\2\u01f5\u01f7\3\2\2\2\u01f6\u01e4\3\2\2\2\u01f6\u01ec\3\2\2\2"+
+		"\u01f7g\3\2\2\2\u01f8\u01f9\b\65\1\2\u01f9\u01fa\b\65\1\2\u01fa\u0201"+
+		"\3\2\2\2\u01fb\u01fc\f\3\2\2\u01fc\u01fd\5f\64\2\u01fd\u01fe\b\65\1\2"+
+		"\u01fe\u0200\3\2\2\2\u01ff\u01fb\3\2\2\2\u0200\u0203\3\2\2\2\u0201\u01ff"+
+		"\3\2\2\2\u0201\u0202\3\2\2\2\u0202i\3\2\2\2\u0203\u0201\3\2\2\2\u0204"+
+		"\u0205\7\20\2\2\u0205\u0206\5B\"\2\u0206\u0207\b\66\1\2\u0207\u020f\3"+
+		"\2\2\2\u0208\u0209\7\20\2\2\u0209\u020a\7\f\2\2\u020a\u020b\5@!\2\u020b"+
+		"\u020c\7\r\2\2\u020c\u020d\b\66\1\2\u020d\u020f\3\2\2\2\u020e\u0204\3"+
+		"\2\2\2\u020e\u0208\3\2\2\2\u020fk\3\2\2\2\u0210\u0211\5n8\2\u0211\u0212"+
+		"\b\67\1\2\u0212\u0220\3\2\2\2\u0213\u0214\7&\2\2\u0214\u0215\5H%\2\u0215"+
+		"\u0216\b\67\1\2\u0216\u0220\3\2\2\2\u0217\u0218\7\21\2\2\u0218\u0219\5"+
+		"H%\2\u0219\u021a\b\67\1\2\u021a\u0220\3\2\2\2\u021b\u021c\7\22\2\2\u021c"+
+		"\u021d\5H%\2\u021d\u021e\b\67\1\2\u021e\u0220\3\2\2\2\u021f\u0210\3\2"+
+		"\2\2\u021f\u0213\3\2\2\2\u021f\u0217\3\2\2\2\u021f\u021b\3\2\2\2\u0220"+
+		"m\3\2\2\2\u0221\u0222\5p9\2\u0222\u0223\b8\1\2\u0223\u024d\3\2\2\2\u0224"+
+		"\u0225\5H%\2\u0225\u0226\7\23\2\2\u0226\u0227\5H%\2\u0227\u0228\b8\1\2"+
+		"\u0228\u024d\3\2\2\2\u0229\u022a\5H%\2\u022a\u022b\7\b\2\2\u022b\u022c"+
+		"\5H%\2\u022c\u022d\b8\1\2\u022d\u024d\3\2\2\2\u022e\u022f\5H%\2\u022f"+
+		"\u0230\7\24\2\2\u0230\u0231\5H%\2\u0231\u0232\b8\1\2\u0232\u024d\3\2\2"+
+		"\2\u0233\u0234\5H%\2\u0234\u0235\7\25\2\2\u0235\u0236\5H%\2\u0236\u0237"+
+		"\b8\1\2\u0237\u024d\3\2\2\2\u0238\u0239\5H%\2\u0239\u023a\7\26\2\2\u023a"+
+		"\u023b\5H%\2\u023b\u023c\b8\1\2\u023c\u024d\3\2\2\2\u023d\u023e\5H%\2"+
+		"\u023e\u023f\7\27\2\2\u023f\u0240\5H%\2\u0240\u0241\b8\1\2\u0241\u024d"+
+		"\3\2\2\2\u0242\u0243\5H%\2\u0243\u0244\7\30\2\2\u0244\u0245\5H%\2\u0245"+
+		"\u0246\b8\1\2\u0246\u024d\3\2\2\2\u0247\u0248\5H%\2\u0248\u0249\7\31\2"+
+		"\2\u0249\u024a\5H%\2\u024a\u024b\b8\1\2\u024b\u024d\3\2\2\2\u024c\u0221"+
+		"\3\2\2\2\u024c\u0224\3\2\2\2\u024c\u0229\3\2\2\2\u024c\u022e\3\2\2\2\u024c"+
+		"\u0233\3\2\2\2\u024c\u0238\3\2\2\2\u024c\u023d\3\2\2\2\u024c\u0242\3\2"+
+		"\2\2\u024c\u0247\3\2\2\2\u024do\3\2\2\2\u024e\u024f\5r:\2\u024f\u0250"+
+		"\b9\1\2\u0250\u0266\3\2\2\2\u0251\u0252\5H%\2\u0252\u0253\7\21\2\2\u0253"+
+		"\u0254\5H%\2\u0254\u0255\b9\1\2\u0255\u0266\3\2\2\2\u0256\u0257\5H%\2"+
+		"\u0257\u0258\7\22\2\2\u0258\u0259\5H%\2\u0259\u025a\b9\1\2\u025a\u0266"+
+		"\3\2\2\2\u025b\u025c\5H%\2\u025c\u025d\7!\2\2\u025d\u025e\5H%\2\u025e"+
+		"\u025f\b9\1\2\u025f\u0266\3\2\2\2\u0260\u0261\5H%\2\u0261\u0262\7\'\2"+
+		"\2\u0262\u0263\5H%\2\u0263\u0264\b9\1\2\u0264\u0266\3\2\2\2\u0265\u024e"+
+		"\3\2\2\2\u0265\u0251\3\2\2\2\u0265\u0256\3\2\2\2\u0265\u025b\3\2\2\2\u0265"+
+		"\u0260\3\2\2\2\u0266q\3\2\2\2\u0267\u0268\7\4\2\2\u0268\u0269\5l\67\2"+
+		"\u0269\u026a\7\5\2\2\u026a\u026b\b:\1\2\u026bs\3\2\2\2\u026c\u026d\5v"+
+		"<\2\u026d\u026e\b;\1\2\u026e\u0286\3\2\2\2\u026f\u0270\7\35\2\2\u0270"+
+		"\u0286\b;\1\2\u0271\u0272\7\36\2\2\u0272\u0286\b;\1\2\u0273\u0274\7\34"+
+		"\2\2\u0274\u0286\b;\1\2\u0275\u0276\7\37\2\2\u0276\u0286\b;\1\2\u0277"+
+		"\u0278\7 \2\2\u0278\u0286\b;\1\2\u0279\u027a\7\33\2\2\u027a\u0286\b;\1"+
+		"\2\u027b\u027c\5v<\2\u027c\u027d\7\32\2\2\u027d\u027e\5x=\2\u027e\u027f"+
+		"\b;\1\2\u027f\u0286\3\2\2\2\u0280\u0281\7\f\2\2\u0281\u0282\5|?\2\u0282"+
+		"\u0283\7\r\2\2\u0283\u0284\b;\1\2\u0284\u0286\3\2\2\2\u0285\u026c\3\2"+
+		"\2\2\u0285\u026f\3\2\2\2\u0285\u0271\3\2\2\2\u0285\u0273\3\2\2\2\u0285"+
+		"\u0275\3\2\2\2\u0285\u0277\3\2\2\2\u0285\u0279\3\2\2\2\u0285\u027b\3\2"+
+		"\2\2\u0285\u0280\3\2\2\2\u0286u\3\2\2\2\u0287\u0288\5x=\2\u0288\u0289"+
+		"\b<\1\2\u0289w\3\2\2\2\u028a\u028b\7\4\2\2\u028b\u028c\5t;\2\u028c\u028d"+
+		"\7\5\2\2\u028d\u028e\b=\1\2\u028ey\3\2\2\2\u028f\u0290\5V,\2\u0290\u0291"+
+		"\7\t\2\2\u0291\u0292\5H%\2\u0292\u0293\b>\1\2\u0293\u0298\3\2\2\2\u0294"+
+		"\u0295\5V,\2\u0295\u0296\b>\1\2\u0296\u0298\3\2\2\2\u0297\u028f\3\2\2"+
+		"\2\u0297\u0294\3\2\2\2\u0298{\3\2\2\2\u0299\u02a3\b?\1\2\u029a\u029b\5"+
+		"z>\2\u029b\u029c\b?\1\2\u029c\u02a3\3\2\2\2\u029d\u029e\5z>\2\u029e\u029f"+
+		"\7\16\2\2\u029f\u02a0\5|?\2\u02a0\u02a1\b?\1\2\u02a1\u02a3\3\2\2\2\u02a2"+
+		"\u0299\3\2\2\2\u02a2\u029a\3\2\2\2\u02a2\u029d\3\2\2\2\u02a3}\3\2\2\2"+
+		"\26\u0103\u0113\u0143\u014b\u0161\u017e\u01a5\u01ae\u01c1\u01d0\u01e1"+
+		"\u01f6\u0201\u020e\u021f\u024c\u0265\u0285\u0297\u02a2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

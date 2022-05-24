@@ -7,7 +7,6 @@ public abstract class Record implements java.io.Serializable {
   public interface Visitor <R,A> {
     public R visit(hardtyped.Absyn.BaseRecordNameValue p, A arg);
     public R visit(hardtyped.Absyn.BaseRecordName p, A arg);
-    public R visit(hardtyped.Absyn.MultipleRecordValue p, A arg);
 
   }
 

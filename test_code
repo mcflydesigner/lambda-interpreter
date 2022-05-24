@@ -1,5 +1,22 @@
-letrec factorial =
+-| imported/std.nk;
+
+let myvar: Int = 1 * (3 + 2);
+
 /\ n: Int. {
-    |  (n == 1): { n }
-    |: { n * factorial(n) }
+    let n = readInt();
+    |  (n != 1): n * (2 + 3)
+    |  (n > 5): {
+            print(n);
+            n+1;
+        }
+    |: {
+            print(n);
+            n-1;
+        }
 };
+
+let Vector3d: {x1: Real, x2: Real, x3: Real} = {x1 = 0.0, x2 = 1.0, x3 = 3.0};
+let Vector3d = {x1: Real, x2: Real, x3: Real};
+
+let n = 5 in math.sqrt (n);
+let n = 5 in (math.sqrt(n); print(n););

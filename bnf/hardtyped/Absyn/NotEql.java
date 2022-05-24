@@ -2,16 +2,16 @@
 
 package hardtyped.Absyn;
 
-public class MultipleArgFunction  extends Expr {
+public class NotEql  extends Op {
   public final Expr expr_1, expr_2;
-  public MultipleArgFunction(Expr p1, Expr p2) { expr_1 = p1; expr_2 = p2; }
+  public NotEql(Expr p1, Expr p2) { expr_1 = p1; expr_2 = p2; }
 
-  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Op.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.MultipleArgFunction) {
-      hardtyped.Absyn.MultipleArgFunction x = (hardtyped.Absyn.MultipleArgFunction)o;
+    if (o instanceof hardtyped.Absyn.NotEql) {
+      hardtyped.Absyn.NotEql x = (hardtyped.Absyn.NotEql)o;
       return this.expr_1.equals(x.expr_1) && this.expr_2.equals(x.expr_2);
     }
     return false;

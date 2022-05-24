@@ -2,101 +2,111 @@ comment "//" ;
 comment "/*" "*/" ;
 
 separator Expr ";";
+coercions Expr 4;
+AtomicExpr. Expr3 ::= Ident;
 
 -- Import
-Import. Expr ::= "-|" VarDec;
-
--- Functions
-Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
-ApplyFunction. Expr ::= VarDec "(" Expr ")";
-PrintFunction. Expr ::= Print "(" Expr ")";
-ReadFunction. Expr ::= Read "(" Expr ")";
-EmptyPrintFunction. Expr ::= Print "(" ")";
-EmptyReadFunction. Expr ::= Read "(" ")";
-MultipleArgFunction. Expr ::= Expr "," Expr;
-
--- If
-IfStmt. Expr ::= IfExpr;
-IfElseConst. IfExpr ::= IfExpr IfExpr;
-If. IfExpr ::= "|" "(" Expr ")" ":" "{" Expr "}";
-Else. IfExpr ::= "|:" "{" Expr "}";
-
-
--- Basic operations
-Sum. Expr ::= Expr "+" Expr;
-Substract. Expr::= Expr "-" Expr;
-Multiply. Expr ::= Expr "*" Expr;
-Divide. Expr ::= Expr "/" Expr;
-
--- Logical operations
-And. Expr ::= Expr "and" Expr;
-Or. Expr ::= Expr "or" Expr;
-Not. Expr ::= "not" Expr;
-
--- Comparison operations
-More. Expr ::= Expr ">" Expr;
-MoreEql. Expr ::= Expr ">=" Expr;
-Eql. Expr ::= Expr "==" Expr;
-LessEql. Expr ::= Expr "<=" Expr;
-Less. Expr ::= Expr "<" Expr;
-UnaryPlus. Expr ::= "+" Expr;
-UnaryMinus. Expr ::= "-" Expr;
+Import. Expr ::= "-|" ModuleIdentifier;
+ImportPath. ModuleIdentifier ::= [Path] ImportFileName;
+ImportFile. ImportFileName ::= Ident "." PackageExtension;
+BasePath. Path ::= Ident;
+terminator Path "/";
 
 -- Variable initializers
 BaseLet. Expr ::= Let;
-LetVariable. Let ::= "let" VarDec "=" Expr;
-LetInference. Let ::= "let" VarDec "=" Expr "in" Expr;
-LetAscription. Let ::= "let" VarDec "=" Expr "as" Type;
-LetRec. Let ::= "letrec" VarDec "=" Expr;
+LetVariable. Let ::= "let" VarDec "=" Expr1;
+LetInference. Let ::= "let" VarDec "=" Expr1 "in" Expr1;
+LetInferenceMany. Let ::= "let" VarDec "=" Expr1 "in" "(" [Expr] ")";
+LetRec. Let ::= "letrec" VarDec "=" Expr1;
 LetType. Let ::= "lettype" VarDec "=" Type;
-
--- Values
-BaseValue. Expr ::= Value;
-IntValue. Value ::= Integer;
-RealValue. Value ::= Double;
-StringValue. Value ::= String;
-BoolValue. Value ::= Bool;
-UnitValue. Value ::= Unit;
-
--- RecordValue
-RecordConstr. Value ::= "{" Record "}";
-BaseRecordNameValue. Record ::= VarDec "=" Value;
-BaseRecordName. Record ::= VarDec;
-MultipleRecordValue. Record ::= Record "," Record;
-
--- In-function expressions
-MultipleExpressions. InExpr ::= InExpr ";" InExpr;
-FinalExpression. InExpr ::= InExpr ";";
-InnerExpression. InExpr ::= Expr;
-
--- Utility expressions
-AtomicExpression. Expr ::= Ident;
-
-ParenthesesExpression. Expr ::= "(" InnerExpr ")";
-BaseInnerExpression. InnerExpr ::= Expr;
-MultipleInnerExpression. InnerExpr ::= InnerExpr ";" InnerExpr ;
-FinalInnerExpression. InnerExpr ::= InnerExpr ";";
-
--- Function arguments
-MultipleArgs. FuncArg ::= VarDec "." FuncArg ;
-FinalArg. FuncArg ::= VarDec ".";
 
 -- Variable declarations
 TypedVar. VarDec ::= Ident ":" Type;
 UntypedVar. VarDec ::= Ident;
-DotVar. VarDec ::= Ident "." Ident;
+
+-- Functions
+Function. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}";
+Application. Expr1 ::= VarName "(" [ExprSequence] ")";
+PrintFunction. Expr1 ::= Print "(" Expr ")";
+ReadRealFunction. Expr1 ::= ReadReal "(" [ExprSequence] ")";
+ReadIntFunction. Expr1 ::= ReadInt "(" [ExprSequence] ")";
+ReadStringFunction. Expr1 ::= ReadString "(" [ExprSequence] ")";
+ReadBoolFunction. Expr1 ::= ReadBool "(" [ExprSequence] ")";
+
+Func. VarName ::= [VarPath] Ident;
+Lib. VarPath ::= Ident;
+terminator VarPath ".";
+
+Seq. ExprSequence ::= Expr;
+separator ExprSequence ",";
+
+Argument. FuncArg ::= Ident ":" Type;
+terminator FuncArg ".";
+
+-- If
+IfStmt. Expr ::= [IfExpr] ElseExpr;
+If. IfExpr ::= "|" "(" Expr2 ")" ":" Expr ;
+IfMultiple. IfExpr ::= "|" "(" Expr2 ")" ":" "{" [Expr] "}" ;
+separator IfExpr "";
+
+Else. ElseExpr ::= "|:"  Expr ;
+ElseMultiple. ElseExpr ::= "|:" "{" [Expr] "}" ;
+
+-- Basic operations
+Operation. Expr2 ::= Op;
+coercions Op 3;
+
+Sum. Op2 ::= Expr3 "+" Expr3;
+Substract. Op2 ::= Expr3 "-" Expr3;
+Multiply. Op1 ::= Expr3 "*" Expr3;
+Divide. Op1 ::= Expr3 "/" Expr3;
+
+-- Logical operations
+And. Op2 ::= Expr3 "and" Expr3;
+Or. Op2 ::= Expr3 "or" Expr3;
+Not. Op ::= "not" Expr3;
+
+-- Comparison operations
+More. Op1 ::= Expr3 ">" Expr3;
+MoreEql. Op1 ::= Expr3 ">=" Expr3;
+Eql. Op1 ::= Expr3 "==" Expr3;
+NotEql. Op1 ::= Expr3 "!=" Expr3;
+LessEql. Op1 ::= Expr3 "<=" Expr3;
+Less. Op1 ::= Expr3 "<" Expr3;
+
+UnaryPlus. Op ::= "+" Expr3;
+UnaryMinus. Op ::= "-" Expr3;
+
+-- Values
+IntValue. Expr3 ::= Integer;
+RealValue. Expr3 ::= Double;
+StringValue. Expr3 ::= String;
+BoolValue. Expr3 ::= Bool;
+UnitValue. Expr3 ::= Unit;
+RecordConstr. Expr3 ::= "{" [Record] "}";
+
 
 -- Types
+coercions Type 2;
+
 IntType. Type ::= "Int";
 RealType. Type ::= "Real";
 BoolType. Type ::= "Bool";
 StringType. Type ::= "String";
 UnitType. Type ::= "Unit";
 AnyType. Type ::= "Any";
-FunctionType. Type ::= Type "->" Type;
-RecordType. Type ::= "{" Record "}";
+FunctionType. Type ::= Type1 "->" Type2;
+RecordType. Type ::= "{" [Record] "}";
+
+BaseRecordNameValue. Record ::= VarDec "=" Expr3;
+BaseRecordName. Record ::= VarDec;
+separator Record ",";
 
 token Bool {"true"} | {"false"};
 token Unit {"unit"};
 token Print {"print"};
-token Read {"read"};
+token ReadReal {"readReal"};
+token ReadInt {"readInt"};
+token ReadString {"readString"};
+token ReadBool {"readBool"};
+token PackageExtension {"nk"};

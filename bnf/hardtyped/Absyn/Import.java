@@ -3,8 +3,8 @@
 package hardtyped.Absyn;
 
 public class Import  extends Expr {
-  public final VarDec vardec_;
-  public Import(VarDec p1) { vardec_ = p1; }
+  public final ModuleIdentifier moduleidentifier_;
+  public Import(ModuleIdentifier p1) { moduleidentifier_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -12,13 +12,13 @@ public class Import  extends Expr {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.Import) {
       hardtyped.Absyn.Import x = (hardtyped.Absyn.Import)o;
-      return this.vardec_.equals(x.vardec_);
+      return this.moduleidentifier_.equals(x.moduleidentifier_);
     }
     return false;
   }
 
   public int hashCode() {
-    return this.vardec_.hashCode();
+    return this.moduleidentifier_.hashCode();
   }
 
 

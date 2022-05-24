@@ -2,23 +2,23 @@
 
 package hardtyped.Absyn;
 
-public class RecordConstr  extends Value {
-  public final Record record_;
-  public RecordConstr(Record p1) { record_ = p1; }
+public class RecordConstr  extends Expr {
+  public final ListRecord listrecord_;
+  public RecordConstr(ListRecord p1) { listrecord_ = p1; }
 
-  public <R,A> R accept(hardtyped.Absyn.Value.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.RecordConstr) {
       hardtyped.Absyn.RecordConstr x = (hardtyped.Absyn.RecordConstr)o;
-      return this.record_.equals(x.record_);
+      return this.listrecord_.equals(x.listrecord_);
     }
     return false;
   }
 
   public int hashCode() {
-    return this.record_.hashCode();
+    return this.listrecord_.hashCode();
   }
 
 

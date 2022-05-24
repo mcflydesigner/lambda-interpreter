@@ -4,8 +4,8 @@ package hardtyped.Absyn;
 
 public class BaseRecordNameValue  extends Record {
   public final VarDec vardec_;
-  public final Value value_;
-  public BaseRecordNameValue(VarDec p1, Value p2) { vardec_ = p1; value_ = p2; }
+  public final Expr expr_;
+  public BaseRecordNameValue(VarDec p1, Expr p2) { vardec_ = p1; expr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Record.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -13,13 +13,13 @@ public class BaseRecordNameValue  extends Record {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.BaseRecordNameValue) {
       hardtyped.Absyn.BaseRecordNameValue x = (hardtyped.Absyn.BaseRecordNameValue)o;
-      return this.vardec_.equals(x.vardec_) && this.value_.equals(x.value_);
+      return this.vardec_.equals(x.vardec_) && this.expr_.equals(x.expr_);
     }
     return false;
   }
 
   public int hashCode() {
-    return 37*(this.vardec_.hashCode())+this.value_.hashCode();
+    return 37*(this.vardec_.hashCode())+this.expr_.hashCode();
   }
 
 

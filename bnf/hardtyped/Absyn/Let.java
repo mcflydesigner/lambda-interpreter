@@ -7,7 +7,7 @@ public abstract class Let implements java.io.Serializable {
   public interface Visitor <R,A> {
     public R visit(hardtyped.Absyn.LetVariable p, A arg);
     public R visit(hardtyped.Absyn.LetInference p, A arg);
-    public R visit(hardtyped.Absyn.LetAscription p, A arg);
+    public R visit(hardtyped.Absyn.LetInferenceMany p, A arg);
     public R visit(hardtyped.Absyn.LetRec p, A arg);
     public R visit(hardtyped.Absyn.LetType p, A arg);
 

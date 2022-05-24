@@ -5,33 +5,24 @@ package hardtyped.Absyn;
 public abstract class Expr implements java.io.Serializable {
   public abstract <R,A> R accept(Expr.Visitor<R,A> v, A arg);
   public interface Visitor <R,A> {
+    public R visit(hardtyped.Absyn.AtomicExpr p, A arg);
     public R visit(hardtyped.Absyn.Import p, A arg);
-    public R visit(hardtyped.Absyn.Function p, A arg);
-    public R visit(hardtyped.Absyn.ApplyFunction p, A arg);
-    public R visit(hardtyped.Absyn.PrintFunction p, A arg);
-    public R visit(hardtyped.Absyn.ReadFunction p, A arg);
-    public R visit(hardtyped.Absyn.EmptyPrintFunction p, A arg);
-    public R visit(hardtyped.Absyn.EmptyReadFunction p, A arg);
-    public R visit(hardtyped.Absyn.MultipleArgFunction p, A arg);
-    public R visit(hardtyped.Absyn.IfStmt p, A arg);
-    public R visit(hardtyped.Absyn.Sum p, A arg);
-    public R visit(hardtyped.Absyn.Substract p, A arg);
-    public R visit(hardtyped.Absyn.Multiply p, A arg);
-    public R visit(hardtyped.Absyn.Divide p, A arg);
-    public R visit(hardtyped.Absyn.And p, A arg);
-    public R visit(hardtyped.Absyn.Or p, A arg);
-    public R visit(hardtyped.Absyn.Not p, A arg);
-    public R visit(hardtyped.Absyn.More p, A arg);
-    public R visit(hardtyped.Absyn.MoreEql p, A arg);
-    public R visit(hardtyped.Absyn.Eql p, A arg);
-    public R visit(hardtyped.Absyn.LessEql p, A arg);
-    public R visit(hardtyped.Absyn.Less p, A arg);
-    public R visit(hardtyped.Absyn.UnaryPlus p, A arg);
-    public R visit(hardtyped.Absyn.UnaryMinus p, A arg);
     public R visit(hardtyped.Absyn.BaseLet p, A arg);
-    public R visit(hardtyped.Absyn.BaseValue p, A arg);
-    public R visit(hardtyped.Absyn.AtomicExpression p, A arg);
-    public R visit(hardtyped.Absyn.ParenthesesExpression p, A arg);
+    public R visit(hardtyped.Absyn.Function p, A arg);
+    public R visit(hardtyped.Absyn.Application p, A arg);
+    public R visit(hardtyped.Absyn.PrintFunction p, A arg);
+    public R visit(hardtyped.Absyn.ReadRealFunction p, A arg);
+    public R visit(hardtyped.Absyn.ReadIntFunction p, A arg);
+    public R visit(hardtyped.Absyn.ReadStringFunction p, A arg);
+    public R visit(hardtyped.Absyn.ReadBoolFunction p, A arg);
+    public R visit(hardtyped.Absyn.IfStmt p, A arg);
+    public R visit(hardtyped.Absyn.Operation p, A arg);
+    public R visit(hardtyped.Absyn.IntValue p, A arg);
+    public R visit(hardtyped.Absyn.RealValue p, A arg);
+    public R visit(hardtyped.Absyn.StringValue p, A arg);
+    public R visit(hardtyped.Absyn.BoolValue p, A arg);
+    public R visit(hardtyped.Absyn.UnitValue p, A arg);
+    public R visit(hardtyped.Absyn.RecordConstr p, A arg);
 
   }
 
