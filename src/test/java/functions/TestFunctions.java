@@ -173,4 +173,15 @@ public class TestFunctions {
         Assert.assertFalse(errorStream.toString().isEmpty());
     };
 
+    @Test
+    public void testFunctionRecursionIncorr() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "test_function_recursion_incorr.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
+
+        Assert.assertFalse(errorStream.toString().isEmpty());
+    };
+
 }
