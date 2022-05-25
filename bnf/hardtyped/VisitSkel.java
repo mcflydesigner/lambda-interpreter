@@ -149,29 +149,12 @@ public class VisitSkel
       p.op_.accept(new OpVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.Variable p, A arg)
-    { /* Code for Variable goes here */
-      //p.ident_;
-      return null;
-    }
     public R visit(hardtyped.Absyn.Application p, A arg)
     { /* Code for Application goes here */
       p.expr_.accept(new ExprVisitor<R,A>(), arg);
       for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
         x.accept(new ExprSequenceVisitor<R,A>(), arg);
       }
-      return null;
-    }
-    public R visit(hardtyped.Absyn.ArrowExpr p, A arg)
-    { /* Code for ArrowExpr goes here */
-      //p.ident_;
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.DotExpr p, A arg)
-    { /* Code for DotExpr goes here */
-      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
-      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.IntValue p, A arg)
@@ -206,6 +189,23 @@ public class VisitSkel
       }
       return null;
     }
+    public R visit(hardtyped.Absyn.Variable p, A arg)
+    { /* Code for Variable goes here */
+      //p.ident_;
+      return null;
+    }
+    public R visit(hardtyped.Absyn.ArrowExpr p, A arg)
+    { /* Code for ArrowExpr goes here */
+      //p.ident_;
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.DotExpr p, A arg)
+    { /* Code for DotExpr goes here */
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.Exprs p, A arg)
     { /* Code for Exprs goes here */
       for (hardtyped.Absyn.Expr x: p.listexpr_) {
@@ -224,25 +224,6 @@ public class VisitSkel
     }
     public R visit(hardtyped.Absyn.UntypedVar p, A arg)
     { /* Code for UntypedVar goes here */
-      //p.ident_;
-      return null;
-    }
-  }
-  public class VarNameVisitor<R,A> implements hardtyped.Absyn.VarName.Visitor<R,A>
-  {
-    public R visit(hardtyped.Absyn.Func p, A arg)
-    { /* Code for Func goes here */
-      for (hardtyped.Absyn.VarPath x: p.listvarpath_) {
-        x.accept(new VarPathVisitor<R,A>(), arg);
-      }
-      //p.ident_;
-      return null;
-    }
-  }
-  public class VarPathVisitor<R,A> implements hardtyped.Absyn.VarPath.Visitor<R,A>
-  {
-    public R visit(hardtyped.Absyn.Lib p, A arg)
-    { /* Code for Lib goes here */
       //p.ident_;
       return null;
     }

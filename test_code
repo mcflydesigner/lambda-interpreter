@@ -1,4 +1,4 @@
 -| "std";
 -| "module.nk" as math;
 
-math->sqrt(n);
+math->sqrt.real(n);

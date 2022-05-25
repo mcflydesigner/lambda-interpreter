@@ -147,10 +147,6 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       r = combine(p.op_.accept(this, arg), r, arg);
       return r;
     }
-    public R visit(hardtyped.Absyn.Variable p, A arg) {
-      R r = leaf(arg);
-      return r;
-    }
     public R visit(hardtyped.Absyn.Application p, A arg) {
       R r = leaf(arg);
       r = combine(p.expr_.accept(this, arg), r, arg);
@@ -158,17 +154,6 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       {
         r = combine(x.accept(this, arg), r, arg);
       }
-      return r;
-    }
-    public R visit(hardtyped.Absyn.ArrowExpr p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.expr_.accept(this, arg), r, arg);
-      return r;
-    }
-    public R visit(hardtyped.Absyn.DotExpr p, A arg) {
-      R r = leaf(arg);
-      r = combine(p.expr_1.accept(this, arg), r, arg);
-      r = combine(p.expr_2.accept(this, arg), r, arg);
       return r;
     }
     public R visit(hardtyped.Absyn.IntValue p, A arg) {
@@ -199,6 +184,21 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       }
       return r;
     }
+    public R visit(hardtyped.Absyn.Variable p, A arg) {
+      R r = leaf(arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.ArrowExpr p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
+      return r;
+    }
+    public R visit(hardtyped.Absyn.DotExpr p, A arg) {
+      R r = leaf(arg);
+      r = combine(p.expr_1.accept(this, arg), r, arg);
+      r = combine(p.expr_2.accept(this, arg), r, arg);
+      return r;
+    }
     public R visit(hardtyped.Absyn.Exprs p, A arg) {
       R r = leaf(arg);
       for (hardtyped.Absyn.Expr x : p.listexpr_)
@@ -215,22 +215,6 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       return r;
     }
     public R visit(hardtyped.Absyn.UntypedVar p, A arg) {
-      R r = leaf(arg);
-      return r;
-    }
-
-/* VarName */
-    public R visit(hardtyped.Absyn.Func p, A arg) {
-      R r = leaf(arg);
-      for (hardtyped.Absyn.VarPath x : p.listvarpath_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
-
-/* VarPath */
-    public R visit(hardtyped.Absyn.Lib p, A arg) {
       R r = leaf(arg);
       return r;
     }

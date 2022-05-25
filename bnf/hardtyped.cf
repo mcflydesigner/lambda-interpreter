@@ -2,10 +2,10 @@ comment "//" ;
 comment "/*" "*/" ;
 
 terminator nonempty Expr ";"; -- todo: should ; be put after last expression?
-coercions Expr 4;
-Exprs. Expr4 ::= "(" [Expr] ")";
+coercions Expr 5;
+Exprs. Expr5 ::= "(" [Expr] ")";
 
-Variable. Expr3 ::= Ident;
+Variable. Expr4 ::= Ident;
 
 -- Import
 Import. Expr ::= "-|" String "as" Ident;
@@ -28,16 +28,15 @@ UntypedVar. VarDec ::= Ident;
 Function. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}";
 FunctionApplication. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "(" [ExprSequence] ")";
 FunctionWithReturnType. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "->" Type;
-Application. Expr3 ::= VarName "(" [ExprSequence] ")";
+Application. Expr3 ::= Expr4 "(" [ExprSequence] ")";
 PrintFunction. Expr1 ::= Print "(" Expr ")";
 ReadRealFunction. Expr1 ::= ReadReal "(" [ExprSequence] ")";
 ReadIntFunction. Expr1 ::= ReadInt "(" [ExprSequence] ")";
 ReadStringFunction. Expr1 ::= ReadString "(" [ExprSequence] ")";
 ReadBoolFunction. Expr1 ::= ReadBool "(" [ExprSequence] ")";
 
-Func. VarName ::= [VarPath] Ident;
-Lib. VarPath ::= Ident;
-terminator VarPath ".";
+ArrowExpr. Expr4 ::= Ident "->" Expr4;
+DotExpr. Expr4 ::= Expr4 "." Expr4;
 
 Seq. ExprSequence ::= Expr;
 separator ExprSequence ",";

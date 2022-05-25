@@ -40,18 +40,6 @@ start_VarDec returns [ hardtyped.Absyn.VarDec result ]
   : x=varDec EOF
     { $result = $x.result; }
   ;
-start_VarName returns [ hardtyped.Absyn.VarName result ]
-  : x=varName EOF
-    { $result = $x.result; }
-  ;
-start_VarPath returns [ hardtyped.Absyn.VarPath result ]
-  : x=varPath EOF
-    { $result = $x.result; }
-  ;
-start_ListVarPath returns [ hardtyped.Absyn.ListVarPath result ]
-  : x=listVarPath EOF
-    { $result = $x.result; }
-  ;
 start_ExprSequence returns [ hardtyped.Absyn.ExprSequence result ]
   : x=exprSequence EOF
     { $result = $x.result; }
@@ -198,30 +186,30 @@ expr2 returns [ hardtyped.Absyn.Expr result ]
 expr3 returns [ hardtyped.Absyn.Expr result ]
   : p_1_1=expr4
     { $result = $p_1_1.result; }
-  | p_2_1=IDENT
-    { $result = new hardtyped.Absyn.Variable($p_2_1.getText()); }
-  | p_3_1=expr3 Surrogate_id_SYMB_1 p_3_3=listExprSequence Surrogate_id_SYMB_2
-    { $result = new hardtyped.Absyn.Application($p_3_1.result,$p_3_3.result); }
-  | p_4_1=IDENT Surrogate_id_SYMB_9 p_4_3=expr4
-    { $result = new hardtyped.Absyn.ArrowExpr($p_4_1.getText(),$p_4_3.result); }
-  | p_5_1=expr4 Surrogate_id_SYMB_10 p_5_3=expr4
-    { $result = new hardtyped.Absyn.DotExpr($p_5_1.result,$p_5_3.result); }
-  | p_6_1=INTEGER
-    { $result = new hardtyped.Absyn.IntValue(Integer.parseInt($p_6_1.getText())); }
-  | p_7_1=DOUBLE
-    { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_7_1.getText())); }
-  | p_8_1=STRING
-    { $result = new hardtyped.Absyn.StringValue($p_8_1.getText().substring(1, $p_8_1.getText().length()-1)); }
-  | p_9_1=Bool
-    { $result = new hardtyped.Absyn.BoolValue($p_9_1.getText()); }
-  | p_10_1=Unit
-    { $result = new hardtyped.Absyn.UnitValue($p_10_1.getText()); }
-  | Surrogate_id_SYMB_7 p_11_2=listRecordElem Surrogate_id_SYMB_8
-    { $result = new hardtyped.Absyn.RecordConst($p_11_2.result); }
+  | p_2_1=expr4 Surrogate_id_SYMB_1 p_2_3=listExprSequence Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.Application($p_2_1.result,$p_2_3.result); }
+  | p_3_1=INTEGER
+    { $result = new hardtyped.Absyn.IntValue(Integer.parseInt($p_3_1.getText())); }
+  | p_4_1=DOUBLE
+    { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_4_1.getText())); }
+  | p_5_1=STRING
+    { $result = new hardtyped.Absyn.StringValue($p_5_1.getText().substring(1, $p_5_1.getText().length()-1)); }
+  | p_6_1=Bool
+    { $result = new hardtyped.Absyn.BoolValue($p_6_1.getText()); }
+  | p_7_1=Unit
+    { $result = new hardtyped.Absyn.UnitValue($p_7_1.getText()); }
+  | Surrogate_id_SYMB_7 p_8_2=listRecordElem Surrogate_id_SYMB_8
+    { $result = new hardtyped.Absyn.RecordConst($p_8_2.result); }
   ;
 expr4 returns [ hardtyped.Absyn.Expr result ]
   : p_1_1=expr5
     { $result = $p_1_1.result; }
+  | p_2_1=IDENT
+    { $result = new hardtyped.Absyn.Variable($p_2_1.getText()); }
+  | p_3_1=IDENT Surrogate_id_SYMB_9 p_3_3=expr4
+    { $result = new hardtyped.Absyn.ArrowExpr($p_3_1.getText(),$p_3_3.result); }
+  | p_4_1=expr4 Surrogate_id_SYMB_10 p_4_3=expr4
+    { $result = new hardtyped.Absyn.DotExpr($p_4_1.result,$p_4_3.result); }
   ;
 expr5 returns [ hardtyped.Absyn.Expr result ]
   : Surrogate_id_SYMB_1 p_1_2=expr Surrogate_id_SYMB_2
@@ -234,20 +222,6 @@ varDec returns [ hardtyped.Absyn.VarDec result ]
     { $result = new hardtyped.Absyn.TypedVar($p_1_1.getText(),$p_1_3.result); }
   | p_2_1=IDENT
     { $result = new hardtyped.Absyn.UntypedVar($p_2_1.getText()); }
-  ;
-varName returns [ hardtyped.Absyn.VarName result ]
-  : p_1_1=listVarPath p_1_2=IDENT
-    { $result = new hardtyped.Absyn.Func($p_1_1.result,$p_1_2.getText()); }
-  ;
-varPath returns [ hardtyped.Absyn.VarPath result ]
-  : p_1_1=IDENT
-    { $result = new hardtyped.Absyn.Lib($p_1_1.getText()); }
-  ;
-listVarPath returns [ hardtyped.Absyn.ListVarPath result ]
-  :  /* empty */
-    { $result = new hardtyped.Absyn.ListVarPath(); }
-  | p_2_1=listVarPath p_2_2=varPath Surrogate_id_SYMB_10
-    { $result = $p_2_1.result; $result.addLast($p_2_2.result); }
   ;
 exprSequence returns [ hardtyped.Absyn.ExprSequence result ]
   : p_1_1=expr

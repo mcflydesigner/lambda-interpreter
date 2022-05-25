@@ -88,36 +88,6 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_VarDec(hardtypedParser.Start_VarDecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_VarName}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_VarName(hardtypedParser.Start_VarNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_VarName}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_VarName(hardtypedParser.Start_VarNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_VarPath}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_VarPath(hardtypedParser.Start_VarPathContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_VarPath}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_VarPath(hardtypedParser.Start_VarPathContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_ListVarPath}.
-	 * @param ctx the parse tree
-	 */
-	void enterStart_ListVarPath(hardtypedParser.Start_ListVarPathContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_ListVarPath}.
-	 * @param ctx the parse tree
-	 */
-	void exitStart_ListVarPath(hardtypedParser.Start_ListVarPathContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_ExprSequence}.
 	 * @param ctx the parse tree
 	 */
@@ -417,36 +387,6 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVarDec(hardtypedParser.VarDecContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#varName}.
-	 * @param ctx the parse tree
-	 */
-	void enterVarName(hardtypedParser.VarNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#varName}.
-	 * @param ctx the parse tree
-	 */
-	void exitVarName(hardtypedParser.VarNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#varPath}.
-	 * @param ctx the parse tree
-	 */
-	void enterVarPath(hardtypedParser.VarPathContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#varPath}.
-	 * @param ctx the parse tree
-	 */
-	void exitVarPath(hardtypedParser.VarPathContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#listVarPath}.
-	 * @param ctx the parse tree
-	 */
-	void enterListVarPath(hardtypedParser.ListVarPathContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#listVarPath}.
-	 * @param ctx the parse tree
-	 */
-	void exitListVarPath(hardtypedParser.ListVarPathContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#exprSequence}.
 	 * @param ctx the parse tree
