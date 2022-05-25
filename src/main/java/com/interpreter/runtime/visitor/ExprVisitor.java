@@ -16,13 +16,15 @@ import org.antlr.v4.runtime.misc.Pair;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(Exprs p, Environment arg) {
-        return null;
+        List<Value> result = p.listexpr_.stream().map(e -> e.accept(this, arg)).toList();
+        return result.get(result.size() - 1);
     }
 
     @Override
@@ -42,6 +44,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(LetVariable p, Environment arg) {
+
         Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
 
         if (!arg.isCurrentScopeGlobal()) {
@@ -69,6 +72,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         Value result = p.expr_2.accept(this, arg);
 
         arg.flushScope();
+
         return result;
     }
 
@@ -84,28 +88,50 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(LetType p, Environment arg) {
-        Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
 
-        //p.type_
-        return null;
+        Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
+        if (!arg.isCurrentScopeGlobal()) {
+            throw new IncorrectDeclarationException(String.format(
+                    "You cannot declare global alias '%s' being not in global scope",
+                    declInfo.a
+            ));
+        }
+
+        ValueType valueType = p.type_.accept(AllVisitors.typeVisitor, arg);
+        Value value = Value.ofUserTypeAlias(valueType);
+        arg.declareVariableAndAssignValue(declInfo.a, value);
+        return value;
     }
 
     @Override
     public Value visit(LetTypeInference p, Environment arg) {
-        return null;
+
+        // ignore p.type_ as it's only for type checker
+        Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
+
+        arg.pushScope();
+
+        ValueType valueType = p.type_.accept(AllVisitors.typeVisitor, arg);
+        arg.declareVariableAndAssignValue(declInfo.a, Value.ofUserTypeAlias(valueType));
+
+        Value result = p.expr_.accept(this, arg);
+
+        arg.flushScope();
+
+        return result;
     }
 
     @Override
     public Value visit(Function p, Environment arg) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_);
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
         return Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
     }
 
     @Override
     public Value visit(FunctionApplication p, Environment arg) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_);
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
         Value function = Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
         List<Value> evaluatedArgs = p.listexprsequence_.stream()
                 .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
@@ -116,7 +142,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     @Override
     public Value visit(FunctionWithReturnType p, Environment arg) {
         // p.type_ is ignored since it's only for type checker
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_);
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
         return Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
     }
 
@@ -170,7 +196,20 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(IfStmt p, Environment arg) {
-        return null;
+
+        Value result = null;
+        for (IfExpr ifExpr : p.listifexpr_) {
+            result = ifExpr.accept(AllVisitors.ifExprVisitor, arg);
+            if (result != null) {
+                break;
+            }
+        }
+
+        if (result != null) {
+            return result;
+        }
+
+        return p.elseexpr_.accept(AllVisitors.elseExprVisitor, arg);
     }
 
     @Override
@@ -195,6 +234,16 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(BoolValue p, Environment arg) {
+
+        Set<String> allowedValues = Set.of("true", "false");
+        if (!allowedValues.contains(p.bool_)) {
+            throw new IncorrectDeclarationException(String.format(
+                    "Boolean value can take only values: %s, but got %s",
+                    String.join(",", allowedValues),
+                    p.bool_
+            ));
+        }
+
         return Value.ofBool(Boolean.parseBoolean(p.bool_));
     }
 
@@ -272,7 +321,9 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         return resBody.get(resBody.size() - 1);
     }
 
-    private LinkedHashMap<String, FunctionValue.FunctionParameter> parseFunctionArguments(List<FuncArg> listFuncArg) {
+    private LinkedHashMap<String, FunctionValue.FunctionParameter> parseFunctionArguments(
+            List<FuncArg> listFuncArg,
+            Environment environment) {
 
         LinkedHashMap<String, FunctionValue.FunctionParameter> args = new LinkedHashMap<>();
         listFuncArg.stream().map(e -> e.accept(AllVisitors.funcArgVisitor, null)).forEach(pair -> {
@@ -283,7 +334,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
                         ));
                     }
 
-                    args.put(pair.a, new FunctionValue.FunctionParameter(ValueType.fromBnfType(pair.b)));
+                    args.put(pair.a, new FunctionValue.FunctionParameter(pair.b.accept(AllVisitors.typeVisitor, environment)));
                 }
         );
 

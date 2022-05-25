@@ -1,13 +1,8 @@
-lettype x = (String -> Int);
+let x: Bool = false;
 
-let x = 10 in x * x;
+let cond1 = /\ n: Bool. {
+    | (x == true): 1
+    |:  0;
+};
 
-let f1 = /\ a:Int. {
-    /\ b:Int. {
-        a + b;
-    };
-} -> (Int -> Int);
-
-let f2 = f1(1);
-
-print (f2(2));
+print( cond1(x) );

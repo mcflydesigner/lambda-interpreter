@@ -1,5 +1,7 @@
 package com.interpreter.runtime;
 
+import hardtyped.Absyn.Type;
+
 import java.io.Serializable;
 
 public class Value implements Serializable {
@@ -32,6 +34,8 @@ public class Value implements Serializable {
 
     public static Value ofUnit() { return new Value(ValueType.UNIT, null); }
 
+    public static Value ofUserTypeAlias(ValueType valueType) { return new Value(ValueType.USER_ALIAS, valueType); }
+
     public ValueType getType() {
         return type;
     }
@@ -42,6 +46,9 @@ public class Value implements Serializable {
 
     @Override
     public String toString() {
-        return value.toString();
+        return switch (type) {
+            case UNIT -> "unit";
+            default -> value.toString();
+        };
     }
 }

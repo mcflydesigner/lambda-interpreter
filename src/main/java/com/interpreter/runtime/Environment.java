@@ -6,11 +6,12 @@ import com.interpreter.exception.IdentifierNotFoundException;
 import java.io.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Environment implements Serializable {
 
-    private final Deque<Scope> scopes = new ArrayDeque<>();
+    private final ArrayDeque<Scope> scopes = new ArrayDeque<>();
 
     public Environment() {
         // Push global scope to the deque
@@ -30,7 +31,9 @@ public class Environment implements Serializable {
     }
 
     public Value getVariableValue(String identifier) {
-        for (Scope scope : scopes) {
+        Iterator<Scope> reversedScopes = scopes.descendingIterator();
+        while(reversedScopes.hasNext()) {
+            Scope scope = reversedScopes.next();
             if (scope.hasIdentifier(identifier)) {
                 return scope.getValue(identifier);
             }
@@ -47,12 +50,12 @@ public class Environment implements Serializable {
     }
 
     public void declareVariableAndAssignValue(String identifier, Value value) {
-        for (Scope scope : scopes) {
-            if (scope.hasIdentifier(identifier)) {
-                throw new IncorrectDeclarationException(String.format("Identifier '%s' was already declared before",
-                        identifier));
-            }
+        // Allow shadowing
+        if (scopes.getFirst().hasIdentifier(identifier)) {
+            throw new IncorrectDeclarationException(String.format("Identifier '%s' was already declared before",
+                    identifier));
         }
+
         scopes.getLast().addDeclaration(identifier, value);
     }
 

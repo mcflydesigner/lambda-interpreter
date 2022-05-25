@@ -6,4 +6,11 @@ public enum BinaryOperationType {
     MULTIPLICATION,
     DIVISION,
     GREATER,
+    GREATER_OR_EQUAL,
+    LESS,
+    LESS_OR_EQUAL,
+    EQUAL,
+    NOT_EQUAL,
+    AND,
+    OR
 }
