@@ -98,6 +98,8 @@ public class TestFunctions {
         String expected = "Hello, World!".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
+        System.out.println(errorStream.toString());
+
         Assert.assertEquals(expected, output);
         Assert.assertTrue(errorStream.toString().isEmpty());
     }

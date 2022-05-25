@@ -1,14 +1,30 @@
 
-lettype vec2d = {x1:Integer, x2:Integer};
-lettype vec3d = {x1:Integer, x2:Integer, x3:Integer};
+
+lettype func1 = Int->{x1:Int, x2:Int};
+
+let func1 = /\ n: Int. {
+    {x1=n, x2=n, x3=n}
+};
 
 
-lettype func1 = vec3d -> vec2d;
+let func2 =  /\ f: Int->{x1:Int, x2:Int}. {
+    f (0)
+};
 
-lettype func2 = vec2d->vec3d;
+// type checker
+let num = /\ x:Integer {
+    x+x;
+} (5);
 
-let v2:vec2d = {x1=1, x2=2};
+func2 (func1);
 
-print (/\ v:vec2d. {
-    {x1=v.x1, x2=v.x2, x3=0};
-} (v2);)
+
+/\ f:Integer. {
+    f+f;
+    unit;
+} -> Unit (5);
+
+
+/\ a:Any {
+    a
+};
