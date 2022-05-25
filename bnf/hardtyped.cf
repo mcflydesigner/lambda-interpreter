@@ -47,7 +47,7 @@ terminator nonempty FuncArg ".";
 -- If
 IfStmt. Expr ::= [IfExpr] ElseExpr;
 If. IfExpr ::= "|" "(" Expr2 ")" ":" Expr ;
-separator IfExpr "";
+separator nonempty IfExpr "";
 
 Else. ElseExpr ::= "|:"  Expr ;
 
