@@ -1,3 +1,5 @@
+-| "std";
+
 // global variable declaration
 let y: Real = 10.2;
 

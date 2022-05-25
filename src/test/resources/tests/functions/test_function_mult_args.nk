@@ -1,3 +1,5 @@
+-| "std";
+
 let concat = /\ x: String. y: String. {
-    print (x + y)
+    print (x + y);
 } ("Hello,", "World!");

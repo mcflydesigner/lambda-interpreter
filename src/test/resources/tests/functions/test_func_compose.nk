@@ -1,0 +1,17 @@
+-| "std";
+
+let compose = /\ f1: (Int -> Int). f2: (Int -> Int). {
+    /\ x:Integer. {
+        f1 (f2 (x));
+    };
+} -> (Int -> Int);
+
+let twice = /\ x:Int. {
+    x*2;
+};
+
+let square = /\ x:Int. {
+    x*x;
+};
+
+print ((compose (twice , square)) (3));

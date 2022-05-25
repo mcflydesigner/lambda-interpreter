@@ -1,0 +1,7 @@
+-| "std";
+
+let id = /\ a: Any. {
+    a;
+};
+
+print(id (5));

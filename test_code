@@ -1,4 +1,5 @@
-let concat = /\ x: String. y: String. {
-    x + y;
+letrec factorial =
+/\ n: Int. {
+    |  (n == 1): { n }
+    |: { n * factorial(n) }
 };
-let id = /\ x: String. { print(x) };

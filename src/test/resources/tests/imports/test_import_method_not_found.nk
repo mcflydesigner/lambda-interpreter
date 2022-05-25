@@ -1,3 +1,4 @@
--| package1.nk as pack
+-| "package1.nk" as pack;
+-| "std";
 
 print(pack.method_not_found (5));
