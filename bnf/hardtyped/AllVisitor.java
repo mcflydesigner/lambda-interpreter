@@ -14,6 +14,7 @@ public interface AllVisitor<R,A> extends
   hardtyped.Absyn.IfExpr.Visitor<R,A>,
   hardtyped.Absyn.ElseExpr.Visitor<R,A>,
   hardtyped.Absyn.Op.Visitor<R,A>,
+  hardtyped.Absyn.RecordElem.Visitor<R,A>,
   hardtyped.Absyn.Type.Visitor<R,A>,
-  hardtyped.Absyn.Record.Visitor<R,A>
+  hardtyped.Absyn.RecordElemType.Visitor<R,A>
 {}

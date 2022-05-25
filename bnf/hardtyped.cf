@@ -15,7 +15,10 @@ Import1. Expr ::= "-|" String;
 LetVariable. Expr ::= "let" VarDec "=" Expr1;
 LetInference. Expr ::= "let" VarDec "=" Expr1 "in" Expr1;
 LetRec. Expr ::= "letrec" VarDec "=" Expr1;
+LetRecInference. Expr ::= "letrec" VarDec "=" Expr1 "in" Expr1;
 LetType. Expr ::= "lettype" VarDec "=" Type;
+LetTypeInference. Expr ::= "lettype" VarDec "=" Type "in" Expr1;
+
 
 -- Variable declarations
 TypedVar. VarDec ::= Ident ":" Type;

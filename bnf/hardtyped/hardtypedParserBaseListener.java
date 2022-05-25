@@ -88,6 +88,18 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStart_Expr5(hardtypedParser.Start_Expr5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_Expr5(hardtypedParser.Start_Expr5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStart_VarDec(hardtypedParser.Start_VarDecContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -304,6 +316,30 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStart_RecordElem(hardtypedParser.Start_RecordElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_RecordElem(hardtypedParser.Start_RecordElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStart_ListRecordElem(hardtypedParser.Start_ListRecordElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStart_ListRecordElem(hardtypedParser.Start_ListRecordElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStart_Type(hardtypedParser.Start_TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -352,25 +388,25 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStart_Record(hardtypedParser.Start_RecordContext ctx) { }
+	@Override public void enterStart_RecordElemType(hardtypedParser.Start_RecordElemTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStart_Record(hardtypedParser.Start_RecordContext ctx) { }
+	@Override public void exitStart_RecordElemType(hardtypedParser.Start_RecordElemTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStart_ListRecord(hardtypedParser.Start_ListRecordContext ctx) { }
+	@Override public void enterStart_ListRecordElemType(hardtypedParser.Start_ListRecordElemTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStart_ListRecord(hardtypedParser.Start_ListRecordContext ctx) { }
+	@Override public void exitStart_ListRecordElemType(hardtypedParser.Start_ListRecordElemTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -443,6 +479,18 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr4(hardtypedParser.Expr4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpr5(hardtypedParser.Expr5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpr5(hardtypedParser.Expr5Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -664,6 +712,30 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRecordElem(hardtypedParser.RecordElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRecordElem(hardtypedParser.RecordElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterListRecordElem(hardtypedParser.ListRecordElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitListRecordElem(hardtypedParser.ListRecordElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterType(hardtypedParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -712,25 +784,25 @@ public class hardtypedParserBaseListener implements hardtypedParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRecord(hardtypedParser.RecordContext ctx) { }
+	@Override public void enterRecordElemType(hardtypedParser.RecordElemTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRecord(hardtypedParser.RecordContext ctx) { }
+	@Override public void exitRecordElemType(hardtypedParser.RecordElemTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterListRecord(hardtypedParser.ListRecordContext ctx) { }
+	@Override public void enterListRecordElemType(hardtypedParser.ListRecordElemTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitListRecord(hardtypedParser.ListRecordContext ctx) { }
+	@Override public void exitListRecordElemType(hardtypedParser.ListRecordElemTypeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

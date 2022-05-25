@@ -68,6 +68,16 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_Expr4(hardtypedParser.Start_Expr4Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_Expr5}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_Expr5(hardtypedParser.Start_Expr5Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_Expr5}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_Expr5(hardtypedParser.Start_Expr5Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_VarDec}.
 	 * @param ctx the parse tree
 	 */
@@ -248,6 +258,26 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_Op6(hardtypedParser.Start_Op6Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_RecordElem}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_RecordElem(hardtypedParser.Start_RecordElemContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_RecordElem}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_RecordElem(hardtypedParser.Start_RecordElemContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#start_ListRecordElem}.
+	 * @param ctx the parse tree
+	 */
+	void enterStart_ListRecordElem(hardtypedParser.Start_ListRecordElemContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#start_ListRecordElem}.
+	 * @param ctx the parse tree
+	 */
+	void exitStart_ListRecordElem(hardtypedParser.Start_ListRecordElemContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#start_Type}.
 	 * @param ctx the parse tree
 	 */
@@ -288,25 +318,25 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitStart_Type3(hardtypedParser.Start_Type3Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_Record}.
+	 * Enter a parse tree produced by {@link hardtypedParser#start_RecordElemType}.
 	 * @param ctx the parse tree
 	 */
-	void enterStart_Record(hardtypedParser.Start_RecordContext ctx);
+	void enterStart_RecordElemType(hardtypedParser.Start_RecordElemTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_Record}.
+	 * Exit a parse tree produced by {@link hardtypedParser#start_RecordElemType}.
 	 * @param ctx the parse tree
 	 */
-	void exitStart_Record(hardtypedParser.Start_RecordContext ctx);
+	void exitStart_RecordElemType(hardtypedParser.Start_RecordElemTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#start_ListRecord}.
+	 * Enter a parse tree produced by {@link hardtypedParser#start_ListRecordElemType}.
 	 * @param ctx the parse tree
 	 */
-	void enterStart_ListRecord(hardtypedParser.Start_ListRecordContext ctx);
+	void enterStart_ListRecordElemType(hardtypedParser.Start_ListRecordElemTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#start_ListRecord}.
+	 * Exit a parse tree produced by {@link hardtypedParser#start_ListRecordElemType}.
 	 * @param ctx the parse tree
 	 */
-	void exitStart_ListRecord(hardtypedParser.Start_ListRecordContext ctx);
+	void exitStart_ListRecordElemType(hardtypedParser.Start_ListRecordElemTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#listExpr}.
 	 * @param ctx the parse tree
@@ -367,6 +397,16 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr4(hardtypedParser.Expr4Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#expr5}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr5(hardtypedParser.Expr5Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#expr5}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr5(hardtypedParser.Expr5Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#varDec}.
 	 * @param ctx the parse tree
@@ -548,6 +588,26 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitOp6(hardtypedParser.Op6Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#recordElem}.
+	 * @param ctx the parse tree
+	 */
+	void enterRecordElem(hardtypedParser.RecordElemContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#recordElem}.
+	 * @param ctx the parse tree
+	 */
+	void exitRecordElem(hardtypedParser.RecordElemContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link hardtypedParser#listRecordElem}.
+	 * @param ctx the parse tree
+	 */
+	void enterListRecordElem(hardtypedParser.ListRecordElemContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link hardtypedParser#listRecordElem}.
+	 * @param ctx the parse tree
+	 */
+	void exitListRecordElem(hardtypedParser.ListRecordElemContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link hardtypedParser#type}.
 	 * @param ctx the parse tree
 	 */
@@ -588,23 +648,23 @@ public interface hardtypedParserListener extends ParseTreeListener {
 	 */
 	void exitType3(hardtypedParser.Type3Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#record}.
+	 * Enter a parse tree produced by {@link hardtypedParser#recordElemType}.
 	 * @param ctx the parse tree
 	 */
-	void enterRecord(hardtypedParser.RecordContext ctx);
+	void enterRecordElemType(hardtypedParser.RecordElemTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#record}.
+	 * Exit a parse tree produced by {@link hardtypedParser#recordElemType}.
 	 * @param ctx the parse tree
 	 */
-	void exitRecord(hardtypedParser.RecordContext ctx);
+	void exitRecordElemType(hardtypedParser.RecordElemTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link hardtypedParser#listRecord}.
+	 * Enter a parse tree produced by {@link hardtypedParser#listRecordElemType}.
 	 * @param ctx the parse tree
 	 */
-	void enterListRecord(hardtypedParser.ListRecordContext ctx);
+	void enterListRecordElemType(hardtypedParser.ListRecordElemTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link hardtypedParser#listRecord}.
+	 * Exit a parse tree produced by {@link hardtypedParser#listRecordElemType}.
 	 * @param ctx the parse tree
 	 */
-	void exitListRecord(hardtypedParser.ListRecordContext ctx);
+	void exitListRecordElemType(hardtypedParser.ListRecordElemTypeContext ctx);
 }
