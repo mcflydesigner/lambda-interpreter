@@ -1,28 +1,11 @@
 package com.interpreter.runtime;
 
-import com.interpreter.exception.IllegalFunctionCallException;
-import com.interpreter.exception.IncorrectFunctionArgumentException;
-import com.interpreter.runtime.operation.BinaryOperationType;
-import com.interpreter.runtime.operation.IoOperationHandler;
-import com.interpreter.runtime.operation.OperationHandler;
 import com.interpreter.runtime.visitor.AllVisitors;
-import com.interpreter.runtime.visitor.ExprVisitor;
-import com.interpreter.runtime.visitor.FuncArgVisitor;
 import hardtyped.Absyn.*;
-
-import java.io.PrintStream;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class InterpreterImpl implements Interpreter {
 
     private final Environment environment = new Environment();
-    private final IoOperationHandler ioOperationHandler;
-
-    public InterpreterImpl(PrintStream printStream) {
-        this.ioOperationHandler = new IoOperationHandler(printStream);
-    }
 
     @Override
     public void run(ListExpr exprs) {

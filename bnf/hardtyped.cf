@@ -2,10 +2,10 @@ comment "//" ;
 comment "/*" "*/" ;
 
 terminator nonempty Expr ";"; -- todo: should ; be put after last expression?
-coercions Expr 4;
-Exprs. Expr4 ::= "(" [Expr] ")";
+coercions Expr 5;
+Exprs. Expr5 ::= "(" [Expr] ")";
 
-Variable. Expr3 ::= Ident;
+Variable. Expr4 ::= Ident;
 
 -- Import
 Import. Expr ::= "-|" String "as" Ident;
@@ -15,7 +15,10 @@ Import1. Expr ::= "-|" String;
 LetVariable. Expr ::= "let" VarDec "=" Expr1;
 LetInference. Expr ::= "let" VarDec "=" Expr1 "in" Expr1;
 LetRec. Expr ::= "letrec" VarDec "=" Expr1;
+LetRecInference. Expr ::= "letrec" VarDec "=" Expr1 "in" Expr1;
 LetType. Expr ::= "lettype" VarDec "=" Type;
+LetTypeInference. Expr ::= "lettype" VarDec "=" Type "in" Expr1;
+
 
 -- Variable declarations
 TypedVar. VarDec ::= Ident ":" Type;
@@ -25,16 +28,15 @@ UntypedVar. VarDec ::= Ident;
 Function. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}";
 FunctionApplication. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "(" [ExprSequence] ")";
 FunctionWithReturnType. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "->" Type;
-Application. Expr3 ::= VarName "(" [ExprSequence] ")";
+Application. Expr3 ::= Expr4 "(" [ExprSequence] ")";
 PrintFunction. Expr1 ::= Print "(" Expr ")";
 ReadRealFunction. Expr1 ::= ReadReal "(" [ExprSequence] ")";
 ReadIntFunction. Expr1 ::= ReadInt "(" [ExprSequence] ")";
 ReadStringFunction. Expr1 ::= ReadString "(" [ExprSequence] ")";
 ReadBoolFunction. Expr1 ::= ReadBool "(" [ExprSequence] ")";
 
-Func. VarName ::= [VarPath] Ident;
-Lib. VarPath ::= Ident;
-terminator VarPath ".";
+ArrowExpr. Expr4 ::= Ident "->" Expr4;
+DotExpr. Expr4 ::= Expr4 "." Expr4;
 
 Seq. ExprSequence ::= Expr;
 separator ExprSequence ",";
@@ -80,12 +82,16 @@ RealValue. Expr3 ::= Double;
 StringValue. Expr3 ::= String;
 BoolValue. Expr3 ::= Bool;
 UnitValue. Expr3 ::= Unit;
-RecordConstr. Expr3 ::= "{" [Record] "}";
+RecordConst. Expr3 ::= "{" [RecordElem] "}";
+
+Elem. RecordElem ::= Ident "=" Expr3;
+separator RecordElem ",";
 
 
 -- Types
 coercions Type 3;
 
+UserType. Type2 ::= Ident;
 IntType. Type2 ::= "Int";
 RealType. Type2 ::= "Real";
 BoolType. Type2 ::= "Bool";
@@ -93,11 +99,11 @@ StringType. Type2 ::= "String";
 UnitType. Type2 ::= "Unit";
 AnyType. Type2 ::= "Any";
 FunctionType. Type1 ::= Type1 "->" Type2;
-RecordType. Type2 ::= "{" [Record] "}";
+RecordType. Type2 ::= "{" [RecordElemType] "}";
 
-BaseRecordNameValue. Record ::= VarDec "=" Expr3;
-BaseRecordName. Record ::= VarDec;
-separator Record ",";
+ElemType. RecordElemType ::= Ident ":" Type;
+separator RecordElemType ",";
+
 
 token Bool {"true"} | {"false"};
 token Unit {"unit"};

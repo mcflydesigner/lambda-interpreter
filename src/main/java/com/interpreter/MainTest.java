@@ -20,15 +20,18 @@ public class MainTest {
         PrintStream printErrorStream = new PrintStream(errorStream);
         System.setErr(printErrorStream);
         PrintStream printOutputStream = new PrintStream(outputStream);
-        System.setOut(printOutputStream);
 
         try {
             Test t = new Test(new String[0]);
             ListExpr ast = t.parse();
 
-            Interpreter interpreter = new InterpreterImpl(printOutputStream);
+            // Ignore everything above produced by basic BNF
+            System.setOut(printOutputStream);
+            Interpreter interpreter = new InterpreterImpl();
             interpreter.run(ast);
         } catch (Exception e) {
+            // Redirect error to stderr
+            System.setOut(printErrorStream);
             System.out.println("Exception occurred:");
             e.printStackTrace();
         } finally {

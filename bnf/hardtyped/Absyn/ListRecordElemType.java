@@ -2,5 +2,5 @@
 
 package hardtyped.Absyn;
 
-public class ListRecord extends java.util.LinkedList<Record> {
+public class ListRecordElemType extends java.util.LinkedList<RecordElemType> {
 }

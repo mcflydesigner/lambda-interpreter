@@ -2,6 +2,8 @@ package com.interpreter.runtime;
 
 import hardtyped.Absyn.*;
 
+import java.io.Serializable;
+
 public enum ValueType {
     INT,
     REAL,

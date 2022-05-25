@@ -44,10 +44,24 @@ public class VisitSkel
       p.expr_.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
+    public R visit(hardtyped.Absyn.LetRecInference p, A arg)
+    { /* Code for LetRecInference goes here */
+      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
     public R visit(hardtyped.Absyn.LetType p, A arg)
     { /* Code for LetType goes here */
       p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
       p.type_.accept(new TypeVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.LetTypeInference p, A arg)
+    { /* Code for LetTypeInference goes here */
+      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+      p.type_.accept(new TypeVisitor<R,A>(), arg);
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.IfStmt p, A arg)
@@ -135,14 +149,9 @@ public class VisitSkel
       p.op_.accept(new OpVisitor<R,A>(), arg);
       return null;
     }
-    public R visit(hardtyped.Absyn.Variable p, A arg)
-    { /* Code for Variable goes here */
-      //p.ident_;
-      return null;
-    }
     public R visit(hardtyped.Absyn.Application p, A arg)
     { /* Code for Application goes here */
-      p.varname_.accept(new VarNameVisitor<R,A>(), arg);
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
       for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
         x.accept(new ExprSequenceVisitor<R,A>(), arg);
       }
@@ -173,11 +182,28 @@ public class VisitSkel
       //p.unit_;
       return null;
     }
-    public R visit(hardtyped.Absyn.RecordConstr p, A arg)
-    { /* Code for RecordConstr goes here */
-      for (hardtyped.Absyn.Record x: p.listrecord_) {
-        x.accept(new RecordVisitor<R,A>(), arg);
+    public R visit(hardtyped.Absyn.RecordConst p, A arg)
+    { /* Code for RecordConst goes here */
+      for (hardtyped.Absyn.RecordElem x: p.listrecordelem_) {
+        x.accept(new RecordElemVisitor<R,A>(), arg);
       }
+      return null;
+    }
+    public R visit(hardtyped.Absyn.Variable p, A arg)
+    { /* Code for Variable goes here */
+      //p.ident_;
+      return null;
+    }
+    public R visit(hardtyped.Absyn.ArrowExpr p, A arg)
+    { /* Code for ArrowExpr goes here */
+      //p.ident_;
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.DotExpr p, A arg)
+    { /* Code for DotExpr goes here */
+      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
       return null;
     }
     public R visit(hardtyped.Absyn.Exprs p, A arg)
@@ -198,25 +224,6 @@ public class VisitSkel
     }
     public R visit(hardtyped.Absyn.UntypedVar p, A arg)
     { /* Code for UntypedVar goes here */
-      //p.ident_;
-      return null;
-    }
-  }
-  public class VarNameVisitor<R,A> implements hardtyped.Absyn.VarName.Visitor<R,A>
-  {
-    public R visit(hardtyped.Absyn.Func p, A arg)
-    { /* Code for Func goes here */
-      for (hardtyped.Absyn.VarPath x: p.listvarpath_) {
-        x.accept(new VarPathVisitor<R,A>(), arg);
-      }
-      //p.ident_;
-      return null;
-    }
-  }
-  public class VarPathVisitor<R,A> implements hardtyped.Absyn.VarPath.Visitor<R,A>
-  {
-    public R visit(hardtyped.Absyn.Lib p, A arg)
-    { /* Code for Lib goes here */
       //p.ident_;
       return null;
     }
@@ -345,12 +352,26 @@ public class VisitSkel
       return null;
     }
   }
+  public class RecordElemVisitor<R,A> implements hardtyped.Absyn.RecordElem.Visitor<R,A>
+  {
+    public R visit(hardtyped.Absyn.Elem p, A arg)
+    { /* Code for Elem goes here */
+      //p.ident_;
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      return null;
+    }
+  }
   public class TypeVisitor<R,A> implements hardtyped.Absyn.Type.Visitor<R,A>
   {
     public R visit(hardtyped.Absyn.FunctionType p, A arg)
     { /* Code for FunctionType goes here */
       p.type_1.accept(new TypeVisitor<R,A>(), arg);
       p.type_2.accept(new TypeVisitor<R,A>(), arg);
+      return null;
+    }
+    public R visit(hardtyped.Absyn.UserType p, A arg)
+    { /* Code for UserType goes here */
+      //p.ident_;
       return null;
     }
     public R visit(hardtyped.Absyn.IntType p, A arg)
@@ -379,23 +400,18 @@ public class VisitSkel
     }
     public R visit(hardtyped.Absyn.RecordType p, A arg)
     { /* Code for RecordType goes here */
-      for (hardtyped.Absyn.Record x: p.listrecord_) {
-        x.accept(new RecordVisitor<R,A>(), arg);
+      for (hardtyped.Absyn.RecordElemType x: p.listrecordelemtype_) {
+        x.accept(new RecordElemTypeVisitor<R,A>(), arg);
       }
       return null;
     }
   }
-  public class RecordVisitor<R,A> implements hardtyped.Absyn.Record.Visitor<R,A>
+  public class RecordElemTypeVisitor<R,A> implements hardtyped.Absyn.RecordElemType.Visitor<R,A>
   {
-    public R visit(hardtyped.Absyn.BaseRecordNameValue p, A arg)
-    { /* Code for BaseRecordNameValue goes here */
-      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
-      p.expr_.accept(new ExprVisitor<R,A>(), arg);
-      return null;
-    }
-    public R visit(hardtyped.Absyn.BaseRecordName p, A arg)
-    { /* Code for BaseRecordName goes here */
-      p.vardec_.accept(new VarDecVisitor<R,A>(), arg);
+    public R visit(hardtyped.Absyn.ElemType p, A arg)
+    { /* Code for ElemType goes here */
+      //p.ident_;
+      p.type_.accept(new TypeVisitor<R,A>(), arg);
       return null;
     }
   }

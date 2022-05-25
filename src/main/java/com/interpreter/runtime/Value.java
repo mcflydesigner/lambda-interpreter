@@ -1,6 +1,8 @@
 package com.interpreter.runtime;
 
-public class Value {
+import java.io.Serializable;
+
+public class Value implements Serializable {
 
     private final ValueType type;
     private final Object value;

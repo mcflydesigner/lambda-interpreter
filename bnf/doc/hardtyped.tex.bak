@@ -55,7 +55,6 @@ except \terminal{"}\ unless preceded by \verb6\6.
 
 
 
-
 Bool literals are recognized by the regular expression
 \(\{\mbox{``true''}\} \mid \{\mbox{``false''}\}\)
 
@@ -77,9 +76,6 @@ ReadString literals are recognized by the regular expression
 ReadBool literals are recognized by the regular expression
 \(\{\mbox{``readBool''}\}\)
 
-PackageExtension literals are recognized by the regular expression
-\(\{\mbox{``nk''}\}\)
-
 \subsection*{Reserved words and symbols}
 The set of reserved words is the set of terminals appearing in the grammar. Those reserved words that consist of non-letter characters are called symbols, and they are treated in a different way from those that are similar to identifiers. The lexer follows rules familiar from languages like Haskell, C, and Java, including longest match and spacing conventions.
 
@@ -88,20 +84,20 @@ The reserved words used in hardtyped are the following: \\
 \begin{tabular}{lll}
 {\reserved{Any}} &{\reserved{Bool}} &{\reserved{Int}} \\
 {\reserved{Real}} &{\reserved{String}} &{\reserved{Unit}} \\
-{\reserved{and}} &{\reserved{in}} &{\reserved{let}} \\
-{\reserved{letrec}} &{\reserved{lettype}} &{\reserved{not}} \\
-{\reserved{or}} & & \\
+{\reserved{and}} &{\reserved{as}} &{\reserved{in}} \\
+{\reserved{let}} &{\reserved{letrec}} &{\reserved{lettype}} \\
+{\reserved{not}} &{\reserved{or}} & \\
 \end{tabular}\\
 
 The symbols used in hardtyped are the following: \\
 
 \begin{tabular}{lll}
 {\symb{;}} &{\symb{(}} &{\symb{)}} \\
-{\symb{{$-$}{$|$}}} &{\symb{.}} &{\symb{/}} \\
-{\symb{{$=$}}} &{\symb{:}} &{\symb{/$\backslash$}} \\
-{\symb{\{}} &{\symb{\}}} &{\symb{{$-$}{$>$}}} \\
-{\symb{,}} &{\symb{{$|$}}} &{\symb{{$|$}:}} \\
-{\symb{{$+$}}} &{\symb{{$-$}}} &{\symb{*}} \\
+{\symb{{$-$}{$|$}}} &{\symb{{$=$}}} &{\symb{:}} \\
+{\symb{/$\backslash$}} &{\symb{\{}} &{\symb{\}}} \\
+{\symb{{$-$}{$>$}}} &{\symb{.}} &{\symb{,}} \\
+{\symb{{$|$}}} &{\symb{{$|$}:}} &{\symb{{$+$}}} \\
+{\symb{{$-$}}} &{\symb{*}} &{\symb{/}} \\
 {\symb{{$>$}}} &{\symb{{$>$}{$=$}}} &{\symb{{$=$}{$=$}}} \\
 {\symb{!{$=$}}} &{\symb{{$<$}{$=$}}} &{\symb{{$<$}}} \\
 \end{tabular}\\
@@ -117,24 +113,24 @@ and {\emptyP} (empty rule) belong to the BNF notation.
 All other symbols are terminals.\\
 
 \begin{tabular}{lll}
-{\nonterminal{ListExpr}} & {\arrow}  &{\emptyP} \\
- & {\delimit}  &{\nonterminal{Expr}}  \\
+{\nonterminal{ListExpr}} & {\arrow}  &{\nonterminal{Expr}} {\terminal{;}}  \\
  & {\delimit}  &{\nonterminal{Expr}} {\terminal{;}} {\nonterminal{ListExpr}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{Expr}} & {\arrow}  &{\nonterminal{Expr1}}  \\
- & {\delimit}  &{\terminal{{$-$}{$|$}}} {\nonterminal{ModuleIdentifier}}  \\
- & {\delimit}  &{\nonterminal{Let}}  \\
+ & {\delimit}  &{\terminal{{$-$}{$|$}}} {\nonterminal{String}} {\terminal{as}} {\nonterminal{Ident}}  \\
+ & {\delimit}  &{\terminal{{$-$}{$|$}}} {\nonterminal{String}}  \\
+ & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}}  \\
+ & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}} {\terminal{in}} {\nonterminal{Expr1}}  \\
+ & {\delimit}  &{\terminal{letrec}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}}  \\
+ & {\delimit}  &{\terminal{lettype}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Type}}  \\
  & {\delimit}  &{\nonterminal{ListIfExpr}} {\nonterminal{ElseExpr}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{Expr1}} & {\arrow}  &{\nonterminal{Expr2}}  \\
  & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}}  \\
- & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
- & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}}  \\
- & {\delimit}  &{\nonterminal{VarName}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{ReadReal}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{ReadInt}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
@@ -144,47 +140,26 @@ All other symbols are terminals.\\
 
 \begin{tabular}{lll}
 {\nonterminal{Expr2}} & {\arrow}  &{\nonterminal{Expr3}}  \\
+ & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
+ & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}}  \\
  & {\delimit}  &{\nonterminal{Op}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{Expr3}} & {\arrow}  &{\nonterminal{Expr4}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
+ & {\delimit}  &{\nonterminal{VarName}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Integer}}  \\
  & {\delimit}  &{\nonterminal{Double}}  \\
  & {\delimit}  &{\nonterminal{String}}  \\
  & {\delimit}  &{\nonterminal{Bool}}  \\
  & {\delimit}  &{\nonterminal{Unit}}  \\
- & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecord}} {\terminal{\}}}  \\
+ & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecordElem}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{Expr4}} & {\arrow}  &{\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{ModuleIdentifier}} & {\arrow}  &{\nonterminal{ListPath}} {\nonterminal{ImportFileName}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{ImportFileName}} & {\arrow}  &{\nonterminal{Ident}} {\terminal{.}} {\nonterminal{PackageExtension}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{Path}} & {\arrow}  &{\nonterminal{Ident}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{ListPath}} & {\arrow}  &{\emptyP} \\
- & {\delimit}  &{\nonterminal{Path}} {\terminal{/}} {\nonterminal{ListPath}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{Let}} & {\arrow}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}}  \\
- & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}} {\terminal{in}} {\nonterminal{Expr1}}  \\
- & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}} {\terminal{in}} {\terminal{(}} {\nonterminal{ListExpr}} {\terminal{)}}  \\
- & {\delimit}  &{\terminal{letrec}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}}  \\
- & {\delimit}  &{\terminal{lettype}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Type}}  \\
+ & {\delimit}  &{\terminal{(}} {\nonterminal{ListExpr}} {\terminal{)}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -220,13 +195,12 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{ListFuncArg}} & {\arrow}  &{\emptyP} \\
+{\nonterminal{ListFuncArg}} & {\arrow}  &{\nonterminal{FuncArg}} {\terminal{.}}  \\
  & {\delimit}  &{\nonterminal{FuncArg}} {\terminal{.}} {\nonterminal{ListFuncArg}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{IfExpr}} & {\arrow}  &{\terminal{{$|$}}} {\terminal{(}} {\nonterminal{Expr2}} {\terminal{)}} {\terminal{:}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\terminal{{$|$}}} {\terminal{(}} {\nonterminal{Expr2}} {\terminal{)}} {\terminal{:}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -236,20 +210,25 @@ All other symbols are terminals.\\
 
 \begin{tabular}{lll}
 {\nonterminal{ElseExpr}} & {\arrow}  &{\terminal{{$|$}:}} {\nonterminal{Expr}}  \\
- & {\delimit}  &{\terminal{{$|$}:}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{Op}} & {\arrow}  &{\nonterminal{Op1}}  \\
- & {\delimit}  &{\terminal{not}} {\nonterminal{Expr3}}  \\
- & {\delimit}  &{\terminal{{$+$}}} {\nonterminal{Expr3}}  \\
- & {\delimit}  &{\terminal{{$-$}}} {\nonterminal{Expr3}}  \\
+ & {\delimit}  &{\nonterminal{Expr3}} {\terminal{or}} {\nonterminal{Expr3}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{Op1}} & {\arrow}  &{\nonterminal{Op2}}  \\
- & {\delimit}  &{\nonterminal{Expr3}} {\terminal{*}} {\nonterminal{Expr3}}  \\
- & {\delimit}  &{\nonterminal{Expr3}} {\terminal{/}} {\nonterminal{Expr3}}  \\
+ & {\delimit}  &{\nonterminal{Expr3}} {\terminal{and}} {\nonterminal{Expr3}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Op2}} & {\arrow}  &{\nonterminal{Op3}}  \\
+ & {\delimit}  &{\terminal{not}} {\nonterminal{Expr3}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Op3}} & {\arrow}  &{\nonterminal{Op4}}  \\
  & {\delimit}  &{\nonterminal{Expr3}} {\terminal{{$>$}}} {\nonterminal{Expr3}}  \\
  & {\delimit}  &{\nonterminal{Expr3}} {\terminal{{$>$}{$=$}}} {\nonterminal{Expr3}}  \\
  & {\delimit}  &{\nonterminal{Expr3}} {\terminal{{$=$}{$=$}}} {\nonterminal{Expr3}}  \\
@@ -259,46 +238,66 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Op2}} & {\arrow}  &{\nonterminal{Op3}}  \\
+{\nonterminal{Op4}} & {\arrow}  &{\nonterminal{Op5}}  \\
  & {\delimit}  &{\nonterminal{Expr3}} {\terminal{{$+$}}} {\nonterminal{Expr3}}  \\
  & {\delimit}  &{\nonterminal{Expr3}} {\terminal{{$-$}}} {\nonterminal{Expr3}}  \\
- & {\delimit}  &{\nonterminal{Expr3}} {\terminal{and}} {\nonterminal{Expr3}}  \\
- & {\delimit}  &{\nonterminal{Expr3}} {\terminal{or}} {\nonterminal{Expr3}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Op3}} & {\arrow}  &{\terminal{(}} {\nonterminal{Op}} {\terminal{)}}  \\
+{\nonterminal{Op5}} & {\arrow}  &{\nonterminal{Op6}}  \\
+ & {\delimit}  &{\nonterminal{Expr3}} {\terminal{*}} {\nonterminal{Expr3}}  \\
+ & {\delimit}  &{\nonterminal{Expr3}} {\terminal{/}} {\nonterminal{Expr3}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Op6}} & {\arrow}  &{\terminal{(}} {\nonterminal{Op}} {\terminal{)}}  \\
+ & {\delimit}  &{\terminal{{$+$}}} {\nonterminal{Expr3}}  \\
+ & {\delimit}  &{\terminal{{$-$}}} {\nonterminal{Expr3}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{RecordElem}} & {\arrow}  &{\nonterminal{Ident}} {\terminal{{$=$}}} {\nonterminal{Expr3}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{ListRecordElem}} & {\arrow}  &{\emptyP} \\
+ & {\delimit}  &{\nonterminal{RecordElem}}  \\
+ & {\delimit}  &{\nonterminal{RecordElem}} {\terminal{,}} {\nonterminal{ListRecordElem}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{Type}} & {\arrow}  &{\nonterminal{Type1}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Type1}} & {\arrow}  &{\nonterminal{Type2}}  \\
+ & {\delimit}  &{\nonterminal{Type1}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type2}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Type2}} & {\arrow}  &{\nonterminal{Type3}}  \\
+ & {\delimit}  &{\nonterminal{Ident}}  \\
  & {\delimit}  &{\terminal{Int}}  \\
  & {\delimit}  &{\terminal{Real}}  \\
  & {\delimit}  &{\terminal{Bool}}  \\
  & {\delimit}  &{\terminal{String}}  \\
  & {\delimit}  &{\terminal{Unit}}  \\
  & {\delimit}  &{\terminal{Any}}  \\
- & {\delimit}  &{\nonterminal{Type}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}}  \\
- & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecord}} {\terminal{\}}}  \\
+ & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecordElemType}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Type1}} & {\arrow}  &{\nonterminal{Type2}}  \\
+{\nonterminal{Type3}} & {\arrow}  &{\terminal{(}} {\nonterminal{Type}} {\terminal{)}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Type2}} & {\arrow}  &{\terminal{(}} {\nonterminal{Type}} {\terminal{)}}  \\
+{\nonterminal{RecordElemType}} & {\arrow}  &{\nonterminal{Ident}} {\terminal{:}} {\nonterminal{Type}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Record}} & {\arrow}  &{\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr3}}  \\
- & {\delimit}  &{\nonterminal{VarDec}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{ListRecord}} & {\arrow}  &{\emptyP} \\
- & {\delimit}  &{\nonterminal{Record}}  \\
- & {\delimit}  &{\nonterminal{Record}} {\terminal{,}} {\nonterminal{ListRecord}}  \\
+{\nonterminal{ListRecordElemType}} & {\arrow}  &{\emptyP} \\
+ & {\delimit}  &{\nonterminal{RecordElemType}}  \\
+ & {\delimit}  &{\nonterminal{RecordElemType}} {\terminal{,}} {\nonterminal{ListRecordElemType}}  \\
 \end{tabular}\\
 
 

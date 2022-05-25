@@ -12,7 +12,8 @@ public class Main {
             Test t = new Test(args);
             ListExpr ast = t.parse();
 
-            Interpreter interpreter = new InterpreterImpl(System.out);
+            System.out.println("Program output:");
+            Interpreter interpreter = new InterpreterImpl();
             interpreter.run(ast);
         } catch (Exception e) {
             System.out.println("Exception occurred:");

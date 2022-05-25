@@ -32,20 +32,12 @@ start_Expr4 returns [ hardtyped.Absyn.Expr result ]
   : x=expr4 EOF
     { $result = $x.result; }
   ;
+start_Expr5 returns [ hardtyped.Absyn.Expr result ]
+  : x=expr5 EOF
+    { $result = $x.result; }
+  ;
 start_VarDec returns [ hardtyped.Absyn.VarDec result ]
   : x=varDec EOF
-    { $result = $x.result; }
-  ;
-start_VarName returns [ hardtyped.Absyn.VarName result ]
-  : x=varName EOF
-    { $result = $x.result; }
-  ;
-start_VarPath returns [ hardtyped.Absyn.VarPath result ]
-  : x=varPath EOF
-    { $result = $x.result; }
-  ;
-start_ListVarPath returns [ hardtyped.Absyn.ListVarPath result ]
-  : x=listVarPath EOF
     { $result = $x.result; }
   ;
 start_ExprSequence returns [ hardtyped.Absyn.ExprSequence result ]
@@ -104,6 +96,14 @@ start_Op6 returns [ hardtyped.Absyn.Op result ]
   : x=op6 EOF
     { $result = $x.result; }
   ;
+start_RecordElem returns [ hardtyped.Absyn.RecordElem result ]
+  : x=recordElem EOF
+    { $result = $x.result; }
+  ;
+start_ListRecordElem returns [ hardtyped.Absyn.ListRecordElem result ]
+  : x=listRecordElem EOF
+    { $result = $x.result; }
+  ;
 start_Type returns [ hardtyped.Absyn.Type result ]
   : x=type EOF
     { $result = $x.result; }
@@ -120,12 +120,12 @@ start_Type3 returns [ hardtyped.Absyn.Type result ]
   : x=type3 EOF
     { $result = $x.result; }
   ;
-start_Record returns [ hardtyped.Absyn.Record result ]
-  : x=record EOF
+start_RecordElemType returns [ hardtyped.Absyn.RecordElemType result ]
+  : x=recordElemType EOF
     { $result = $x.result; }
   ;
-start_ListRecord returns [ hardtyped.Absyn.ListRecord result ]
-  : x=listRecord EOF
+start_ListRecordElemType returns [ hardtyped.Absyn.ListRecordElemType result ]
+  : x=listRecordElemType EOF
     { $result = $x.result; }
   ;
 
@@ -148,10 +148,14 @@ expr returns [ hardtyped.Absyn.Expr result ]
     { $result = new hardtyped.Absyn.LetInference($p_5_2.result,$p_5_4.result,$p_5_6.result); }
   | Surrogate_id_SYMB_34 p_6_2=varDec Surrogate_id_SYMB_4 p_6_4=expr1
     { $result = new hardtyped.Absyn.LetRec($p_6_2.result,$p_6_4.result); }
-  | Surrogate_id_SYMB_35 p_7_2=varDec Surrogate_id_SYMB_4 p_7_4=type
-    { $result = new hardtyped.Absyn.LetType($p_7_2.result,$p_7_4.result); }
-  | p_8_1=listIfExpr p_8_2=elseExpr
-    { $result = new hardtyped.Absyn.IfStmt($p_8_1.result,$p_8_2.result); }
+  | Surrogate_id_SYMB_34 p_7_2=varDec Surrogate_id_SYMB_4 p_7_4=expr1 Surrogate_id_SYMB_32 p_7_6=expr1
+    { $result = new hardtyped.Absyn.LetRecInference($p_7_2.result,$p_7_4.result,$p_7_6.result); }
+  | Surrogate_id_SYMB_35 p_8_2=varDec Surrogate_id_SYMB_4 p_8_4=type
+    { $result = new hardtyped.Absyn.LetType($p_8_2.result,$p_8_4.result); }
+  | Surrogate_id_SYMB_35 p_9_2=varDec Surrogate_id_SYMB_4 p_9_4=type Surrogate_id_SYMB_32 p_9_6=expr1
+    { $result = new hardtyped.Absyn.LetTypeInference($p_9_2.result,$p_9_4.result,$p_9_6.result); }
+  | p_10_1=listIfExpr p_10_2=elseExpr
+    { $result = new hardtyped.Absyn.IfStmt($p_10_1.result,$p_10_2.result); }
   ;
 expr1 returns [ hardtyped.Absyn.Expr result ]
   : p_1_1=expr2
@@ -182,24 +186,32 @@ expr2 returns [ hardtyped.Absyn.Expr result ]
 expr3 returns [ hardtyped.Absyn.Expr result ]
   : p_1_1=expr4
     { $result = $p_1_1.result; }
-  | p_2_1=IDENT
-    { $result = new hardtyped.Absyn.Variable($p_2_1.getText()); }
-  | p_3_1=varName Surrogate_id_SYMB_1 p_3_3=listExprSequence Surrogate_id_SYMB_2
-    { $result = new hardtyped.Absyn.Application($p_3_1.result,$p_3_3.result); }
-  | p_4_1=INTEGER
-    { $result = new hardtyped.Absyn.IntValue(Integer.parseInt($p_4_1.getText())); }
-  | p_5_1=DOUBLE
-    { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_5_1.getText())); }
-  | p_6_1=STRING
-    { $result = new hardtyped.Absyn.StringValue($p_6_1.getText().substring(1, $p_6_1.getText().length()-1)); }
-  | p_7_1=Bool
-    { $result = new hardtyped.Absyn.BoolValue($p_7_1.getText()); }
-  | p_8_1=Unit
-    { $result = new hardtyped.Absyn.UnitValue($p_8_1.getText()); }
-  | Surrogate_id_SYMB_7 p_9_2=listRecord Surrogate_id_SYMB_8
-    { $result = new hardtyped.Absyn.RecordConstr($p_9_2.result); }
+  | p_2_1=expr4 Surrogate_id_SYMB_1 p_2_3=listExprSequence Surrogate_id_SYMB_2
+    { $result = new hardtyped.Absyn.Application($p_2_1.result,$p_2_3.result); }
+  | p_3_1=INTEGER
+    { $result = new hardtyped.Absyn.IntValue(Integer.parseInt($p_3_1.getText())); }
+  | p_4_1=DOUBLE
+    { $result = new hardtyped.Absyn.RealValue(Double.parseDouble($p_4_1.getText())); }
+  | p_5_1=STRING
+    { $result = new hardtyped.Absyn.StringValue($p_5_1.getText().substring(1, $p_5_1.getText().length()-1)); }
+  | p_6_1=Bool
+    { $result = new hardtyped.Absyn.BoolValue($p_6_1.getText()); }
+  | p_7_1=Unit
+    { $result = new hardtyped.Absyn.UnitValue($p_7_1.getText()); }
+  | Surrogate_id_SYMB_7 p_8_2=listRecordElem Surrogate_id_SYMB_8
+    { $result = new hardtyped.Absyn.RecordConst($p_8_2.result); }
   ;
 expr4 returns [ hardtyped.Absyn.Expr result ]
+  : p_1_1=expr5
+    { $result = $p_1_1.result; }
+  | p_2_1=IDENT
+    { $result = new hardtyped.Absyn.Variable($p_2_1.getText()); }
+  | p_3_1=IDENT Surrogate_id_SYMB_9 p_3_3=expr4
+    { $result = new hardtyped.Absyn.ArrowExpr($p_3_1.getText(),$p_3_3.result); }
+  | p_4_1=expr4 Surrogate_id_SYMB_10 p_4_3=expr4
+    { $result = new hardtyped.Absyn.DotExpr($p_4_1.result,$p_4_3.result); }
+  ;
+expr5 returns [ hardtyped.Absyn.Expr result ]
   : Surrogate_id_SYMB_1 p_1_2=expr Surrogate_id_SYMB_2
     { $result = $p_1_2.result; }
   | Surrogate_id_SYMB_1 p_2_2=listExpr Surrogate_id_SYMB_2
@@ -210,20 +222,6 @@ varDec returns [ hardtyped.Absyn.VarDec result ]
     { $result = new hardtyped.Absyn.TypedVar($p_1_1.getText(),$p_1_3.result); }
   | p_2_1=IDENT
     { $result = new hardtyped.Absyn.UntypedVar($p_2_1.getText()); }
-  ;
-varName returns [ hardtyped.Absyn.VarName result ]
-  : p_1_1=listVarPath p_1_2=IDENT
-    { $result = new hardtyped.Absyn.Func($p_1_1.result,$p_1_2.getText()); }
-  ;
-varPath returns [ hardtyped.Absyn.VarPath result ]
-  : p_1_1=IDENT
-    { $result = new hardtyped.Absyn.Lib($p_1_1.getText()); }
-  ;
-listVarPath returns [ hardtyped.Absyn.ListVarPath result ]
-  :  /* empty */
-    { $result = new hardtyped.Absyn.ListVarPath(); }
-  | p_2_1=listVarPath p_2_2=varPath Surrogate_id_SYMB_10
-    { $result = $p_2_1.result; $result.addLast($p_2_2.result); }
   ;
 exprSequence returns [ hardtyped.Absyn.ExprSequence result ]
   : p_1_1=expr
@@ -319,6 +317,18 @@ op6 returns [ hardtyped.Absyn.Op result ]
   | Surrogate_id_SYMB_15 p_3_2=expr3
     { $result = new hardtyped.Absyn.UnaryMinus($p_3_2.result); }
   ;
+recordElem returns [ hardtyped.Absyn.RecordElem result ]
+  : p_1_1=IDENT Surrogate_id_SYMB_4 p_1_3=expr3
+    { $result = new hardtyped.Absyn.Elem($p_1_1.getText(),$p_1_3.result); }
+  ;
+listRecordElem returns [ hardtyped.Absyn.ListRecordElem result ]
+  :  /* empty */
+    { $result = new hardtyped.Absyn.ListRecordElem(); }
+  | p_2_1=recordElem
+    { $result = new hardtyped.Absyn.ListRecordElem(); $result.addLast($p_2_1.result); }
+  | p_3_1=recordElem Surrogate_id_SYMB_11 p_3_3=listRecordElem
+    { $result = $p_3_3.result; $result.addFirst($p_3_1.result); }
+  ;
 type returns [ hardtyped.Absyn.Type result ]
   : p_1_1=type1
     { $result = $p_1_1.result; }
@@ -332,6 +342,8 @@ type1 returns [ hardtyped.Absyn.Type result ]
 type2 returns [ hardtyped.Absyn.Type result ]
   : p_1_1=type3
     { $result = $p_1_1.result; }
+  | p_2_1=IDENT
+    { $result = new hardtyped.Absyn.UserType($p_2_1.getText()); }
   | Surrogate_id_SYMB_26
     { $result = new hardtyped.Absyn.IntType(); }
   | Surrogate_id_SYMB_27
@@ -344,25 +356,23 @@ type2 returns [ hardtyped.Absyn.Type result ]
     { $result = new hardtyped.Absyn.UnitType(); }
   | Surrogate_id_SYMB_24
     { $result = new hardtyped.Absyn.AnyType(); }
-  | Surrogate_id_SYMB_7 p_8_2=listRecord Surrogate_id_SYMB_8
-    { $result = new hardtyped.Absyn.RecordType($p_8_2.result); }
+  | Surrogate_id_SYMB_7 p_9_2=listRecordElemType Surrogate_id_SYMB_8
+    { $result = new hardtyped.Absyn.RecordType($p_9_2.result); }
   ;
 type3 returns [ hardtyped.Absyn.Type result ]
   : Surrogate_id_SYMB_1 p_1_2=type Surrogate_id_SYMB_2
     { $result = $p_1_2.result; }
   ;
-record returns [ hardtyped.Absyn.Record result ]
-  : p_1_1=varDec Surrogate_id_SYMB_4 p_1_3=expr3
-    { $result = new hardtyped.Absyn.BaseRecordNameValue($p_1_1.result,$p_1_3.result); }
-  | p_2_1=varDec
-    { $result = new hardtyped.Absyn.BaseRecordName($p_2_1.result); }
+recordElemType returns [ hardtyped.Absyn.RecordElemType result ]
+  : p_1_1=IDENT Surrogate_id_SYMB_5 p_1_3=type
+    { $result = new hardtyped.Absyn.ElemType($p_1_1.getText(),$p_1_3.result); }
   ;
-listRecord returns [ hardtyped.Absyn.ListRecord result ]
+listRecordElemType returns [ hardtyped.Absyn.ListRecordElemType result ]
   :  /* empty */
-    { $result = new hardtyped.Absyn.ListRecord(); }
-  | p_2_1=record
-    { $result = new hardtyped.Absyn.ListRecord(); $result.addLast($p_2_1.result); }
-  | p_3_1=record Surrogate_id_SYMB_11 p_3_3=listRecord
+    { $result = new hardtyped.Absyn.ListRecordElemType(); }
+  | p_2_1=recordElemType
+    { $result = new hardtyped.Absyn.ListRecordElemType(); $result.addLast($p_2_1.result); }
+  | p_3_1=recordElemType Surrogate_id_SYMB_11 p_3_3=listRecordElemType
     { $result = $p_3_3.result; $result.addFirst($p_3_1.result); }
   ;
 

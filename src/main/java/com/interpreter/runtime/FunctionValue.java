@@ -3,21 +3,24 @@ package com.interpreter.runtime;
 import hardtyped.Absyn.Expr;
 import hardtyped.Absyn.ListExpr;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FunctionValue {
+public class FunctionValue implements Serializable {
 
     private final LinkedHashMap<String, FunctionParameter> parameters;
-    private final ListExpr body;
+    private final List<Expr> body;
+    private final Environment capturedContext;
 
-    public FunctionValue(LinkedHashMap<String, FunctionParameter> parameters, ListExpr body) {
+    public FunctionValue(LinkedHashMap<String, FunctionParameter> parameters, List<Expr> body, Environment capturedContext) {
         this.parameters = parameters;
         this.body = body;
+        this.capturedContext = capturedContext;
     }
 
-    public static class FunctionParameter {
+    public static class FunctionParameter implements Serializable {
 
         private final ValueType type;
         private Object bindValue;
@@ -60,7 +63,11 @@ public class FunctionValue {
         return parameters;
     }
 
-    public ListExpr getBody() {
+    public List<Expr> getBody() {
         return body;
+    }
+
+    public Environment getCapturedContext() {
+        return capturedContext;
     }
 }

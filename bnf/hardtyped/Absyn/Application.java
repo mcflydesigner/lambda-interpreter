@@ -3,9 +3,9 @@
 package hardtyped.Absyn;
 
 public class Application  extends Expr {
-  public final VarName varname_;
+  public final Expr expr_;
   public final ListExprSequence listexprsequence_;
-  public Application(VarName p1, ListExprSequence p2) { varname_ = p1; listexprsequence_ = p2; }
+  public Application(Expr p1, ListExprSequence p2) { expr_ = p1; listexprsequence_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -13,13 +13,13 @@ public class Application  extends Expr {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.Application) {
       hardtyped.Absyn.Application x = (hardtyped.Absyn.Application)o;
-      return this.varname_.equals(x.varname_) && this.listexprsequence_.equals(x.listexprsequence_);
+      return this.expr_.equals(x.expr_) && this.listexprsequence_.equals(x.listexprsequence_);
     }
     return false;
   }
 
   public int hashCode() {
-    return 37*(this.varname_.hashCode())+this.listexprsequence_.hashCode();
+    return 37*(this.expr_.hashCode())+this.listexprsequence_.hashCode();
   }
 
 

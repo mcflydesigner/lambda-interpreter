@@ -3,18 +3,20 @@ package com.interpreter.runtime.visitor;
 import com.google.common.collect.Streams;
 import com.interpreter.exception.DeclarationErrorException;
 import com.interpreter.exception.IllegalFunctionCallException;
+import com.interpreter.exception.IncorrectDeclarationException;
 import com.interpreter.exception.IncorrectFunctionArgumentException;
 import com.interpreter.runtime.Environment;
 import com.interpreter.runtime.FunctionValue;
 import com.interpreter.runtime.Value;
 import com.interpreter.runtime.ValueType;
+import com.interpreter.runtime.libs.std.IoOperationHandler;
 import hardtyped.Absyn.*;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
@@ -25,7 +27,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(Variable p, Environment arg) {
-        return null;
+        return arg.getVariableValue(p.ident_);
     }
 
     @Override
@@ -40,12 +42,34 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(LetVariable p, Environment arg) {
-        return null;
+        Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
+
+        if (!arg.isCurrentScopeGlobal()) {
+            throw new IncorrectDeclarationException(String.format(
+                    "You cannot declare global variable '%s' not in global scope",
+                    declInfo.a
+            ));
+        }
+
+        Value val = p.expr_.accept(this, arg);
+        arg.declareVariableAndAssignValue(declInfo.a, val);
+
+        return Value.ofUnit();
     }
 
     @Override
     public Value visit(LetInference p, Environment arg) {
-        return null;
+
+        Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
+
+        arg.pushScope();
+
+        Value value = p.expr_1.accept(this, arg);
+        arg.declareVariableAndAssignValue(declInfo.a, value);
+        Value result = p.expr_2.accept(this, arg);
+
+        arg.flushScope();
+        return result;
     }
 
     @Override
@@ -54,7 +78,20 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     }
 
     @Override
+    public Value visit(LetRecInference p, Environment arg) {
+        return null;
+    }
+
+    @Override
     public Value visit(LetType p, Environment arg) {
+        Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
+
+        //p.type_
+        return null;
+    }
+
+    @Override
+    public Value visit(LetTypeInference p, Environment arg) {
         return null;
     }
 
@@ -62,30 +99,42 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     public Value visit(Function p, Environment arg) {
 
         LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_);
-        return Value.ofFunction(new FunctionValue(args, p.listexpr_));
+        return Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
     }
 
     @Override
     public Value visit(FunctionApplication p, Environment arg) {
+
         LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_);
-        Value function = Value.ofFunction(new FunctionValue(args, p.listexpr_));
-        List<Value> evaluatedArgs = p.listexprsequence_.stream().map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg)).toList();
-        return evaluateFunction(function, evaluatedArgs, arg);
+        Value function = Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
+        List<Value> evaluatedArgs = p.listexprsequence_.stream()
+                .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
+                .toList();
+        return evaluateFunction(function, evaluatedArgs);
     }
 
     @Override
     public Value visit(FunctionWithReturnType p, Environment arg) {
-        return null;
+        // p.type_ is ignored since it's only for type checker
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_);
+        return Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
     }
 
     @Override
     public Value visit(Application p, Environment arg) {
-        return null;
+
+        Value fun = p.expr_.accept(this, arg);
+        List<Value> evaluatedArgs = p.listexprsequence_.stream()
+                .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
+                .toList();
+
+        return evaluateFunction(fun, evaluatedArgs);
     }
 
     @Override
     public Value visit(PrintFunction p, Environment arg) {
-        p.expr_.accept(this, arg);
+
+        IoOperationHandler.handlePrint(p.expr_.accept(this, arg));
         return Value.ofUnit();
     }
 
@@ -110,13 +159,23 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     }
 
     @Override
+    public Value visit(ArrowExpr p, Environment arg) {
+        return null;
+    }
+
+    @Override
+    public Value visit(DotExpr p, Environment arg) {
+        return null;
+    }
+
+    @Override
     public Value visit(IfStmt p, Environment arg) {
         return null;
     }
 
     @Override
     public Value visit(Operation p, Environment arg) {
-        return null;
+        return p.op_.accept(AllVisitors.opVisitor, arg);
     }
 
     @Override
@@ -126,49 +185,32 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(RealValue p, Environment arg) {
-        return null;
+        return Value.ofReal(p.double_);
     }
 
     @Override
     public Value visit(StringValue p, Environment arg) {
-        return null;
+        return Value.ofString(p.string_);
     }
 
     @Override
     public Value visit(BoolValue p, Environment arg) {
-        return null;
+        return Value.ofBool(Boolean.parseBoolean(p.bool_));
     }
 
     @Override
     public Value visit(UnitValue p, Environment arg) {
-        return null;
+        return Value.ofUnit();
     }
 
     @Override
-    public Value visit(RecordConstr p, Environment arg) {
+    public Value visit(RecordConst p, Environment arg) {
         return null;
     }
 
-//    @Override
-//    public Value visit(ApplyFunction p, Environment arg) {
-//        Value value = p.expr_.accept(this, arg);
-//        //Value args = p.vardec_.accept(this, arg);
-//
-//        return switch (value.getType()) {
-//            case FUNCTION -> handleFunction(value);
-//            case STRING -> {
-//                Value fun = arg.getVariableValue((String)value.getValue());
-//                yield handleFunction(fun);
-//            }
-//            default -> throw new IllegalFunctionCallException(String.format(
-//                            "Cannot call a function via identifier '%s' because it has type %s",
-//                            value.toString(),
-//                            value.getType().toString()
-//                        ));
-//        };
-//    }
 
-    private Value evaluateFunction(Value fun, List<Value> userArgs, Environment environment) {
+    private Value evaluateFunction(Value fun, List<Value> userArgs) {
+
         if (!fun.getType().equals(ValueType.FUNCTION)) {
             throw new IllegalFunctionCallException(String.format(
                     "Cannot call a function via identifier '%s' because it has type %s",
@@ -212,6 +254,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
             }
         }
 
+        Environment environment = funValue.getCapturedContext();
         // Function args are fully initialized by now
         environment.pushScope();
 
@@ -223,6 +266,9 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         // Execute body of the function
         List<Value> resBody = funValue.getBody().stream().map(e -> e.accept(this, environment)).toList();
+
+        environment.flushScope();
+
         return resBody.get(resBody.size() - 1);
     }
 
@@ -243,23 +289,6 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         return args;
     }
-
-//    @Override
-//    public Value visit(Not p, Environment arg) {
-//        return OperationHandler.handleUnaryOperation(
-//                UnaryOperationType.NOT,
-//                p.expr_.accept(this, arg)
-//        );
-//    }
-//
-//    @Override
-//    public Value visit(More p, Environment arg) {
-//        return OperationHandler.handleBinaryOperation(
-//                BinaryOperationType.GREATER,
-//                p.expr_1.accept(this, arg),
-//                p.expr_2.accept(this, arg)
-//        );
-//    }
 
 
 }

@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public abstract class Type implements java.io.Serializable {
   public abstract <R,A> R accept(Type.Visitor<R,A> v, A arg);
   public interface Visitor <R,A> {
+    public R visit(hardtyped.Absyn.UserType p, A arg);
     public R visit(hardtyped.Absyn.IntType p, A arg);
     public R visit(hardtyped.Absyn.RealType p, A arg);
     public R visit(hardtyped.Absyn.BoolType p, A arg);

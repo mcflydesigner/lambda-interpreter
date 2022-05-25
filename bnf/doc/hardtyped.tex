@@ -124,7 +124,9 @@ All other symbols are terminals.\\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}}  \\
  & {\delimit}  &{\terminal{let}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}} {\terminal{in}} {\nonterminal{Expr1}}  \\
  & {\delimit}  &{\terminal{letrec}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}}  \\
+ & {\delimit}  &{\terminal{letrec}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr1}} {\terminal{in}} {\nonterminal{Expr1}}  \\
  & {\delimit}  &{\terminal{lettype}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Type}}  \\
+ & {\delimit}  &{\terminal{lettype}} {\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Type}} {\terminal{in}} {\nonterminal{Expr1}}  \\
  & {\delimit}  &{\nonterminal{ListIfExpr}} {\nonterminal{ElseExpr}}  \\
 \end{tabular}\\
 
@@ -147,37 +149,30 @@ All other symbols are terminals.\\
 
 \begin{tabular}{lll}
 {\nonterminal{Expr3}} & {\arrow}  &{\nonterminal{Expr4}}  \\
- & {\delimit}  &{\nonterminal{Ident}}  \\
- & {\delimit}  &{\nonterminal{VarName}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
+ & {\delimit}  &{\nonterminal{Expr4}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{Integer}}  \\
  & {\delimit}  &{\nonterminal{Double}}  \\
  & {\delimit}  &{\nonterminal{String}}  \\
  & {\delimit}  &{\nonterminal{Bool}}  \\
  & {\delimit}  &{\nonterminal{Unit}}  \\
- & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecord}} {\terminal{\}}}  \\
+ & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecordElem}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Expr4}} & {\arrow}  &{\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
+{\nonterminal{Expr4}} & {\arrow}  &{\nonterminal{Expr5}}  \\
+ & {\delimit}  &{\nonterminal{Ident}}  \\
+ & {\delimit}  &{\nonterminal{Ident}} {\terminal{{$-$}{$>$}}} {\nonterminal{Expr4}}  \\
+ & {\delimit}  &{\nonterminal{Expr4}} {\terminal{.}} {\nonterminal{Expr4}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Expr5}} & {\arrow}  &{\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\terminal{(}} {\nonterminal{ListExpr}} {\terminal{)}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
 {\nonterminal{VarDec}} & {\arrow}  &{\nonterminal{Ident}} {\terminal{:}} {\nonterminal{Type}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{VarName}} & {\arrow}  &{\nonterminal{ListVarPath}} {\nonterminal{Ident}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{VarPath}} & {\arrow}  &{\nonterminal{Ident}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{ListVarPath}} & {\arrow}  &{\emptyP} \\
- & {\delimit}  &{\nonterminal{VarPath}} {\terminal{.}} {\nonterminal{ListVarPath}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -256,6 +251,16 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
+{\nonterminal{RecordElem}} & {\arrow}  &{\nonterminal{Ident}} {\terminal{{$=$}}} {\nonterminal{Expr3}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{ListRecordElem}} & {\arrow}  &{\emptyP} \\
+ & {\delimit}  &{\nonterminal{RecordElem}}  \\
+ & {\delimit}  &{\nonterminal{RecordElem}} {\terminal{,}} {\nonterminal{ListRecordElem}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
 {\nonterminal{Type}} & {\arrow}  &{\nonterminal{Type1}}  \\
 \end{tabular}\\
 
@@ -266,13 +271,14 @@ All other symbols are terminals.\\
 
 \begin{tabular}{lll}
 {\nonterminal{Type2}} & {\arrow}  &{\nonterminal{Type3}}  \\
+ & {\delimit}  &{\nonterminal{Ident}}  \\
  & {\delimit}  &{\terminal{Int}}  \\
  & {\delimit}  &{\terminal{Real}}  \\
  & {\delimit}  &{\terminal{Bool}}  \\
  & {\delimit}  &{\terminal{String}}  \\
  & {\delimit}  &{\terminal{Unit}}  \\
  & {\delimit}  &{\terminal{Any}}  \\
- & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecord}} {\terminal{\}}}  \\
+ & {\delimit}  &{\terminal{\{}} {\nonterminal{ListRecordElemType}} {\terminal{\}}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -280,14 +286,13 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Record}} & {\arrow}  &{\nonterminal{VarDec}} {\terminal{{$=$}}} {\nonterminal{Expr3}}  \\
- & {\delimit}  &{\nonterminal{VarDec}}  \\
+{\nonterminal{RecordElemType}} & {\arrow}  &{\nonterminal{Ident}} {\terminal{:}} {\nonterminal{Type}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{ListRecord}} & {\arrow}  &{\emptyP} \\
- & {\delimit}  &{\nonterminal{Record}}  \\
- & {\delimit}  &{\nonterminal{Record}} {\terminal{,}} {\nonterminal{ListRecord}}  \\
+{\nonterminal{ListRecordElemType}} & {\arrow}  &{\emptyP} \\
+ & {\delimit}  &{\nonterminal{RecordElemType}}  \\
+ & {\delimit}  &{\nonterminal{RecordElemType}} {\terminal{,}} {\nonterminal{ListRecordElemType}}  \\
 \end{tabular}\\
 
 

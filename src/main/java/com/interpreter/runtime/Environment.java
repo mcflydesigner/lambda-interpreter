@@ -1,13 +1,14 @@
 package com.interpreter.runtime;
 
-import com.interpreter.exception.IdentifierAlreadyDeclaredException;
+import com.interpreter.exception.IncorrectDeclarationException;
 import com.interpreter.exception.IdentifierNotFoundException;
 
+import java.io.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Map;
 
-public class Environment {
+public class Environment implements Serializable {
 
     private final Deque<Scope> scopes = new ArrayDeque<>();
 
@@ -48,13 +49,32 @@ public class Environment {
     public void declareVariableAndAssignValue(String identifier, Value value) {
         for (Scope scope : scopes) {
             if (scope.hasIdentifier(identifier)) {
-                throw new IdentifierAlreadyDeclaredException(String.format("Identifier '%s' was already declared before",
+                throw new IncorrectDeclarationException(String.format("Identifier '%s' was already declared before",
                         identifier));
             }
         }
         scopes.getLast().addDeclaration(identifier, value);
     }
 
+    public boolean isCurrentScopeGlobal() {
+        return this.scopes.size() == 1;
+    }
+
+
+    public Environment deepCopy() {
+        try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ObjectOutputStream outputStrm = new ObjectOutputStream(outputStream);
+            outputStrm.writeObject(this);
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+            ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
+            return (Environment) objInputStream.readObject();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
 }

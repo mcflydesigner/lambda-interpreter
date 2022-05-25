@@ -1,9 +1,10 @@
 package com.interpreter.runtime;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Scope {
+public class Scope implements Serializable {
 
     private final Map<String, Value> declarations = new HashMap<>();
 

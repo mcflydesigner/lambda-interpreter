@@ -2,5 +2,5 @@
 
 package hardtyped.Absyn;
 
-public class ListVarPath extends java.util.LinkedList<VarPath> {
+public class ListRecordElem extends java.util.LinkedList<RecordElem> {
 }

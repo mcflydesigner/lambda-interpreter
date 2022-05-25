@@ -2,16 +2,16 @@
 
 package hardtyped.Absyn;
 
-public class Lib  extends VarPath {
+public class UserType  extends Type {
   public final String ident_;
-  public Lib(String p1) { ident_ = p1; }
+  public UserType(String p1) { ident_ = p1; }
 
-  public <R,A> R accept(hardtyped.Absyn.VarPath.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
+  public <R,A> R accept(hardtyped.Absyn.Type.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
-    if (o instanceof hardtyped.Absyn.Lib) {
-      hardtyped.Absyn.Lib x = (hardtyped.Absyn.Lib)o;
+    if (o instanceof hardtyped.Absyn.UserType) {
+      hardtyped.Absyn.UserType x = (hardtyped.Absyn.UserType)o;
       return this.ident_.equals(x.ident_);
     }
     return false;
