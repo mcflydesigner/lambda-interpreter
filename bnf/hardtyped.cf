@@ -36,7 +36,7 @@ ReadStringFunction. Expr1 ::= ReadString "(" [ExprSequence] ")";
 ReadBoolFunction. Expr1 ::= ReadBool "(" [ExprSequence] ")";
 
 ArrowExpr. Expr4 ::= Ident "->" Expr4;
-DotExpr. Expr4 ::= Expr4 "." Expr4;
+DotExpr. Expr4 ::= Expr4 "." Ident;
 
 Seq. ExprSequence ::= Expr;
 separator ExprSequence ",";
