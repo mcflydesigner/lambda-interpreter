@@ -1,5 +1,7 @@
+-| "std";
+
 // local variable declaration
-let x: Integer = 5 in (
+let x: Int = 5 in (
     print (x);
 );
 

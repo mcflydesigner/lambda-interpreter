@@ -1,3 +1,5 @@
+-| "std";
+
 let r:Real = readReal();
 
 print(r);

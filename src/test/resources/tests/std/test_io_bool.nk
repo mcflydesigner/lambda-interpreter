@@ -1,3 +1,5 @@
+-| "std";
+
 let b:Bool = readBool();
 
 | (b): print (10);

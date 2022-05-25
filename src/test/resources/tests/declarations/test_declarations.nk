@@ -1,9 +1,11 @@
-let n: Integer = 5;
+-| "std";
+
+let n: Int = 5;
 print (n);
 let r: Real = 10.5;
 print (r);
-let b: Boolean = true;
-let b1: Boolean = true and false;
+let b: Bool = true;
+let b1: Bool = true and false;
 print (b1);
 let s: String = "Simple string";
 print (s);

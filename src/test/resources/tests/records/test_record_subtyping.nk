@@ -1,7 +1,8 @@
--| math.nk as math
+-| "math.nk" as math;
+-| "std";
 
 lettype Vector3d = {x1: Real, x2: Real, x3: Real};
 
 /\ v: Vector3d. {
-    math.sqrt (math.sqr (v.x1) + math.sqr (v.x2) + math.sqr (v.x3))
+    print (math.sqrt (math.sqr (v.x1) + math.sqr (v.x2) + math.sqr (v.x3)));
 } ({x1 = 1.1, x2 = 5.5, x3 = 1.5, x4 = 1.7});

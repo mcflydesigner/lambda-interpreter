@@ -59,4 +59,16 @@ public class TestConditions {
         Assert.assertEquals(expected, output);
         Assert.assertTrue(errorStream.toString().isEmpty());
     }
+
+    @Test
+    public void testConditionIncorr() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "test_condition_incorr.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
+
+        Assert.assertFalse(errorStream.toString().isEmpty());
+    };
+
 }

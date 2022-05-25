@@ -1,3 +1,5 @@
+-| "std";
+
 let a = (2 + 3) * 10;
 // output: 50
 print(a);

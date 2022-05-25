@@ -1,5 +1,6 @@
--| package.nk
--| package1.nk as pack
+-| "package.nk";
+-| "package1.nk" as pack;
+-| "std";
 
 let n = twice (5);
 // output: 10

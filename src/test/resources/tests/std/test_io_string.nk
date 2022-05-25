@@ -1,4 +1,4 @@
--| std.nk
+-| "std";
 
 print ("Input your name");
 

@@ -1,6 +1,8 @@
+-| "std";
+
 /\ x: String. {
     let nested_func = /\ y: String. {
-       print (y)
+       print (y);
     };
     print (x);
     nested_func (x);

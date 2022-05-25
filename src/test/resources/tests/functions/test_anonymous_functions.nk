@@ -1,8 +1,11 @@
+-| "std";
+
 let first_class_function = /\ x: String. {
     /\ y: String. {
-       print (x + y);
+        x + y;
     };
-}
+};
+
 let result_function = first_class_function ("Hello, ");
 print (result_function ("World!"));
 // Output:

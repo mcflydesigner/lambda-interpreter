@@ -67,4 +67,20 @@ public class TestArithmetic {
         Assert.assertEquals(expected, output);
         Assert.assertTrue(errorStream.toString().isEmpty());
     }
+
+    @Test
+    public void testArithmeticRelations() throws Exception {
+        InputStream inputStream = getInputStream(pathToTests + "test_arithmetic_relations.nk");
+        OutputStream errorStream = new ByteArrayOutputStream();
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        MainTest.test(inputStream, errorStream, outputStream);
+
+        String expected = "true\ntrue".trim();
+        String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
+
+        Assert.assertEquals(expected, output);
+        Assert.assertTrue(errorStream.toString().isEmpty());
+    }
+
 }

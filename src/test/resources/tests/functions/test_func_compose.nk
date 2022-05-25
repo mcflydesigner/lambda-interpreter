@@ -1,14 +1,16 @@
-let compose = /\ f1: (Integer -> Integer). f2: (Integer -> Integer). {
-    let return_func = /\ x:Integer. {
-        f1 (f2 (x));
-    }
-} -> (Integer -> Integer);
+-| "std";
 
-let twice = /\ x:Integer. {
+let compose = /\ f1: (Int -> Int). f2: (Int -> Int). {
+    /\ x:Integer. {
+        f1 (f2 (x));
+    };
+} -> (Int -> Int);
+
+let twice = /\ x:Int. {
     x*2;
 };
 
-let square = /\ x:Integer. {
+let square = /\ x:Int. {
     x*x;
 };
 

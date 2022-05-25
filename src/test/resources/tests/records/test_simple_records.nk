@@ -1,4 +1,5 @@
--| math.nk as math
+-| "math.nk" as math;
+-| "std";
 
 lettype Vector3d = {x1: Integer, x2: Integer, x3: Integer};
 
