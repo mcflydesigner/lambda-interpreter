@@ -162,7 +162,7 @@ All other symbols are terminals.\\
 {\nonterminal{Expr4}} & {\arrow}  &{\nonterminal{Expr5}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
  & {\delimit}  &{\nonterminal{Ident}} {\terminal{{$-$}{$>$}}} {\nonterminal{Expr4}}  \\
- & {\delimit}  &{\nonterminal{Expr4}} {\terminal{.}} {\nonterminal{Expr4}}  \\
+ & {\delimit}  &{\nonterminal{Expr4}} {\terminal{.}} {\nonterminal{Ident}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -199,7 +199,7 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{ListIfExpr}} & {\arrow}  &{\emptyP} \\
+{\nonterminal{ListIfExpr}} & {\arrow}  &{\nonterminal{IfExpr}}  \\
  & {\delimit}  &{\nonterminal{IfExpr}} {\nonterminal{ListIfExpr}}  \\
 \end{tabular}\\
 

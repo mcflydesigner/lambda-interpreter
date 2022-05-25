@@ -1,4 +1,6 @@
-package com.interpreter.runtime;
+package com.interpreter.runtime.env;
+
+import com.interpreter.runtime.env.value.Value;
 
 import java.io.Serializable;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
 package com.interpreter.runtime.visitor;
 
-import com.interpreter.runtime.Environment;
+import com.interpreter.runtime.env.Environment;
 import hardtyped.Absyn.*;
 import org.antlr.v4.runtime.misc.Pair;
 

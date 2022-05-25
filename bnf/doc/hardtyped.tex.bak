@@ -142,6 +142,7 @@ All other symbols are terminals.\\
 
 \begin{tabular}{lll}
 {\nonterminal{Expr2}} & {\arrow}  &{\nonterminal{Expr3}}  \\
+ & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
  & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}} {\terminal{{$-$}{$>$}}} {\nonterminal{Type}}  \\
  & {\delimit}  &{\nonterminal{Op}}  \\
 \end{tabular}\\

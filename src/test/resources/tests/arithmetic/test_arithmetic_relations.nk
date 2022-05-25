@@ -1,8 +1,7 @@
 -| "std";
 
-
-let l = true and false or true;
+let l = (true and false) or true;
 let k = (10 >= 6) and (2 == 3);
 
-print(k);
 print(l);
+print(k);

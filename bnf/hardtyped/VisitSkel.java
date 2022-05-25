@@ -202,8 +202,8 @@ public class VisitSkel
     }
     public R visit(hardtyped.Absyn.DotExpr p, A arg)
     { /* Code for DotExpr goes here */
-      p.expr_1.accept(new ExprVisitor<R,A>(), arg);
-      p.expr_2.accept(new ExprVisitor<R,A>(), arg);
+      p.expr_.accept(new ExprVisitor<R,A>(), arg);
+      //p.ident_;
       return null;
     }
     public R visit(hardtyped.Absyn.Exprs p, A arg)

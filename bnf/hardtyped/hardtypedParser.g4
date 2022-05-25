@@ -208,8 +208,8 @@ expr4 returns [ hardtyped.Absyn.Expr result ]
     { $result = new hardtyped.Absyn.Variable($p_2_1.getText()); }
   | p_3_1=IDENT Surrogate_id_SYMB_9 p_3_3=expr4
     { $result = new hardtyped.Absyn.ArrowExpr($p_3_1.getText(),$p_3_3.result); }
-  | p_4_1=expr4 Surrogate_id_SYMB_10 p_4_3=expr4
-    { $result = new hardtyped.Absyn.DotExpr($p_4_1.result,$p_4_3.result); }
+  | p_4_1=expr4 Surrogate_id_SYMB_10 p_4_3=IDENT
+    { $result = new hardtyped.Absyn.DotExpr($p_4_1.result,$p_4_3.getText()); }
   ;
 expr5 returns [ hardtyped.Absyn.Expr result ]
   : Surrogate_id_SYMB_1 p_1_2=expr Surrogate_id_SYMB_2
@@ -250,10 +250,10 @@ ifExpr returns [ hardtyped.Absyn.IfExpr result ]
     { $result = new hardtyped.Absyn.If($p_1_3.result,$p_1_6.result); }
   ;
 listIfExpr returns [ hardtyped.Absyn.ListIfExpr result ]
-  :  /* empty */
-    { $result = new hardtyped.Absyn.ListIfExpr(); }
-  | p_2_1=listIfExpr p_2_2=ifExpr
-    { $result = $p_2_1.result; $result.addLast($p_2_2.result); }
+  : p_1_1=ifExpr
+    { $result = new hardtyped.Absyn.ListIfExpr(); $result.addLast($p_1_1.result); }
+  | p_2_1=ifExpr p_2_2=listIfExpr
+    { $result = $p_2_2.result; $result.addFirst($p_2_1.result); }
   ;
 elseExpr returns [ hardtyped.Absyn.ElseExpr result ]
   : Surrogate_id_SYMB_13 p_1_2=expr

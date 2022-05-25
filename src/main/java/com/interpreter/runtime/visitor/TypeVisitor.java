@@ -1,8 +1,8 @@
 package com.interpreter.runtime.visitor;
 
-import com.interpreter.runtime.Environment;
-import com.interpreter.runtime.Value;
-import com.interpreter.runtime.ValueType;
+import com.interpreter.runtime.env.Environment;
+import com.interpreter.runtime.env.value.Value;
+import com.interpreter.runtime.env.value.ValueType;
 import hardtyped.Absyn.*;
 
 public class TypeVisitor implements Type.Visitor<ValueType, Environment> {

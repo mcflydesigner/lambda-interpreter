@@ -1,9 +1,9 @@
 package com.interpreter.runtime.visitor;
 
 import com.interpreter.exception.IncorrectDeclarationException;
-import com.interpreter.runtime.Environment;
-import com.interpreter.runtime.Value;
-import com.interpreter.runtime.ValueType;
+import com.interpreter.runtime.env.Environment;
+import com.interpreter.runtime.env.value.Value;
+import com.interpreter.runtime.env.value.ValueType;
 import hardtyped.Absyn.If;
 import hardtyped.Absyn.IfExpr;
 

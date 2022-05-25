@@ -1,7 +1,9 @@
-package com.interpreter.runtime;
+package com.interpreter.runtime.env.value;
 
+import com.interpreter.runtime.env.Environment;
+import com.interpreter.runtime.env.value.Value;
+import com.interpreter.runtime.env.value.ValueType;
 import hardtyped.Absyn.Expr;
-import hardtyped.Absyn.ListExpr;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;

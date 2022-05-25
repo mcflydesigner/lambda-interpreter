@@ -1,5 +1,6 @@
 package com.interpreter.runtime;
 
+import com.interpreter.runtime.env.Environment;
 import com.interpreter.runtime.visitor.AllVisitors;
 import hardtyped.Absyn.*;
 

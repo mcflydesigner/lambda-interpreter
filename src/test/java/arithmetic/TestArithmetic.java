@@ -76,7 +76,7 @@ public class TestArithmetic {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "true\ntrue".trim();
+        String expected = "true\nfalse".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);

@@ -1,7 +1,7 @@
 package com.interpreter.runtime.visitor;
 
-import com.interpreter.runtime.Environment;
-import com.interpreter.runtime.Value;
+import com.interpreter.runtime.env.Environment;
+import com.interpreter.runtime.env.value.Value;
 import com.interpreter.runtime.operation.BinaryOperationType;
 import com.interpreter.runtime.operation.OperationHandler;
 import com.interpreter.runtime.operation.UnaryOperationType;

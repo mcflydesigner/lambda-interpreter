@@ -233,9 +233,9 @@ public class ComposVisitor<A> implements
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.DotExpr p, A arg)
     {
-      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
-      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
-      return new hardtyped.Absyn.DotExpr(expr_1, expr_2);
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      String ident_ = p.ident_;
+      return new hardtyped.Absyn.DotExpr(expr_, ident_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Exprs p, A arg)
     {

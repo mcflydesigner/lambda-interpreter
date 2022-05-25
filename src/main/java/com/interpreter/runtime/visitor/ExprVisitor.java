@@ -5,10 +5,10 @@ import com.interpreter.exception.DeclarationErrorException;
 import com.interpreter.exception.IllegalFunctionCallException;
 import com.interpreter.exception.IncorrectDeclarationException;
 import com.interpreter.exception.IncorrectFunctionArgumentException;
-import com.interpreter.runtime.Environment;
-import com.interpreter.runtime.FunctionValue;
-import com.interpreter.runtime.Value;
-import com.interpreter.runtime.ValueType;
+import com.interpreter.runtime.env.Environment;
+import com.interpreter.runtime.env.value.FunctionValue;
+import com.interpreter.runtime.env.value.Value;
+import com.interpreter.runtime.env.value.ValueType;
 import com.interpreter.runtime.libs.std.IoOperationHandler;
 import com.interpreter.runtime.utils.DeepCopy;
 import hardtyped.Absyn.*;
@@ -107,7 +107,29 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(LetRecInference p, Environment arg) {
-        return null;
+
+        Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
+
+        Value func = p.expr_1.accept(this, arg);
+        if(!func.getType().equals(ValueType.FUNCTION)) {
+            throw new IncorrectDeclarationException(String.format(
+                    "Construction 'letrec in' must have type on right side %s, but got %s",
+                    ValueType.FUNCTION,
+                    func.getValue()
+            ));
+        }
+
+        // Update context of the recursive function
+        FunctionValue functionValue = (FunctionValue) func.getValue();
+        functionValue.getCapturedContext().declareVariableAndAssignValue(declInfo.a, func);
+
+        arg.pushScope();
+        arg.declareVariableAndAssignValue(declInfo.a, func);
+
+        Value result = p.expr_2.accept(this, arg);
+        arg.flushScope();
+
+        return result;
     }
 
     @Override
@@ -277,6 +299,9 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(RecordConst p, Environment arg) {
+
+
+
         return null;
     }
 
@@ -309,7 +334,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         Environment environment = (Environment) DeepCopy.perform(funValue.getCapturedContext());
 
         Streams.zip(funArgsList.stream(), userArgs.stream(), (funArg, userArg) -> {
-            if (!funArg.getType().equals(userArg.getType())) {
+            if (!funArg.getType().equals(ValueType.ANY) && !funArg.getType().equals(userArg.getType())) {
                 throw new IncorrectFunctionArgumentException(String.format(
                         "Incorrect type of argument passed to the function: expected %s, but got %s",
                         funArg.getType(),

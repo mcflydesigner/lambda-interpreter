@@ -1,9 +1,7 @@
 package com.interpreter.runtime.libs.std;
 
-import com.interpreter.runtime.Value;
+import com.interpreter.runtime.env.value.Value;
 
-import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class IoOperationHandler {

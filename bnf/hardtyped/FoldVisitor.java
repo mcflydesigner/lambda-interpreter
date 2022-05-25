@@ -195,8 +195,7 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
     }
     public R visit(hardtyped.Absyn.DotExpr p, A arg) {
       R r = leaf(arg);
-      r = combine(p.expr_1.accept(this, arg), r, arg);
-      r = combine(p.expr_2.accept(this, arg), r, arg);
+      r = combine(p.expr_.accept(this, arg), r, arg);
       return r;
     }
     public R visit(hardtyped.Absyn.Exprs p, A arg) {

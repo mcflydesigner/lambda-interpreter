@@ -1,4 +1,4 @@
-package com.interpreter.runtime;
+package com.interpreter.runtime.env.value;
 
 public enum ValueType {
     ANY,

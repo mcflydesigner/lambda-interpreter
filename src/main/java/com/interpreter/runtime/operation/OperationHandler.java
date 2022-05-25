@@ -1,8 +1,8 @@
 package com.interpreter.runtime.operation;
 
 import com.interpreter.exception.IllegalArgumentsOperationException;
-import com.interpreter.runtime.Value;
-import com.interpreter.runtime.ValueType;
+import com.interpreter.runtime.env.value.Value;
+import com.interpreter.runtime.env.value.ValueType;
 
 import java.util.Arrays;
 import java.util.Objects;

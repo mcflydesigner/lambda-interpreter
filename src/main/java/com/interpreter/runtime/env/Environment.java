@@ -1,12 +1,11 @@
-package com.interpreter.runtime;
+package com.interpreter.runtime.env;
 
 import com.interpreter.exception.IncorrectDeclarationException;
 import com.interpreter.exception.IdentifierNotFoundException;
-import com.interpreter.runtime.utils.DeepCopy;
+import com.interpreter.runtime.env.value.Value;
 
 import java.io.*;
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Iterator;
 import java.util.Map;
 
