@@ -10,6 +10,7 @@ import com.interpreter.runtime.FunctionValue;
 import com.interpreter.runtime.Value;
 import com.interpreter.runtime.ValueType;
 import com.interpreter.runtime.libs.std.IoOperationHandler;
+import com.interpreter.runtime.utils.DeepCopy;
 import hardtyped.Absyn.*;
 import org.antlr.v4.runtime.misc.Pair;
 
@@ -78,7 +79,30 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(LetRec p, Environment arg) {
-        return null;
+
+        Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
+        if (!arg.isCurrentScopeGlobal()) {
+            throw new IncorrectDeclarationException(String.format(
+                    "You cannot declare global variable '%s' not in global scope",
+                    declInfo.a
+            ));
+        }
+
+        Value value = p.expr_.accept(this, arg);
+        if(!value.getType().equals(ValueType.FUNCTION)) {
+            throw new IncorrectDeclarationException(String.format(
+                    "Expression letrec must have type on right side %s, but got %s",
+                    ValueType.FUNCTION,
+                    value.getValue()
+            ));
+        }
+
+        // Update context of the recursive function
+        FunctionValue functionValue = (FunctionValue) value.getValue();
+        functionValue.getCapturedContext().declareVariableAndAssignValue(declInfo.a, value);
+
+        arg.declareVariableAndAssignValue(declInfo.a, value);
+        return value;
     }
 
     @Override
@@ -110,12 +134,10 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
 
         arg.pushScope();
-
         ValueType valueType = p.type_.accept(AllVisitors.typeVisitor, arg);
         arg.declareVariableAndAssignValue(declInfo.a, Value.ofUserTypeAlias(valueType));
 
         Value result = p.expr_.accept(this, arg);
-
         arg.flushScope();
 
         return result;
@@ -125,25 +147,26 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     public Value visit(Function p, Environment arg) {
 
         LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
-        return Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
+        return Value.ofFunction(new FunctionValue(args, p.listexpr_, (Environment) DeepCopy.perform(arg)));
     }
 
     @Override
     public Value visit(FunctionApplication p, Environment arg) {
 
         LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
-        Value function = Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
+        Value fun = Value.ofFunction(new FunctionValue(args, p.listexpr_, (Environment) DeepCopy.perform(arg)));
         List<Value> evaluatedArgs = p.listexprsequence_.stream()
                 .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
                 .toList();
-        return evaluateFunction(function, evaluatedArgs);
+
+        return evaluateFunction((Value) DeepCopy.perform(fun), evaluatedArgs, arg);
     }
 
     @Override
     public Value visit(FunctionWithReturnType p, Environment arg) {
         // p.type_ is ignored since it's only for type checker
         LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
-        return Value.ofFunction(new FunctionValue(args, p.listexpr_, arg.deepCopy()));
+        return Value.ofFunction(new FunctionValue(args, p.listexpr_, (Environment) DeepCopy.perform(arg)));
     }
 
     @Override
@@ -154,7 +177,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
                 .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
                 .toList();
 
-        return evaluateFunction(fun, evaluatedArgs);
+        return evaluateFunction((Value) DeepCopy.perform(fun), evaluatedArgs, arg);
     }
 
     @Override
@@ -258,7 +281,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     }
 
 
-    private Value evaluateFunction(Value fun, List<Value> userArgs) {
+    private Value evaluateFunction(Value fun, List<Value> userArgs, Environment arg) {
 
         if (!fun.getType().equals(ValueType.FUNCTION)) {
             throw new IllegalFunctionCallException(String.format(
@@ -283,6 +306,8 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
             ));
         }
 
+        Environment environment = (Environment) DeepCopy.perform(funValue.getCapturedContext());
+
         Streams.zip(funArgsList.stream(), userArgs.stream(), (funArg, userArg) -> {
             if (!funArg.getType().equals(userArg.getType())) {
                 throw new IncorrectFunctionArgumentException(String.format(
@@ -296,14 +321,13 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
             return funArg;
         }).collect(Collectors.toList());
 
-        // High-order functions(function args are partially initialized by now)
         for (FunctionValue.FunctionParameter param : funArgs.values()) {
             if(!param.isInitialized()) {
+                // High-order functions(function is partially initialized by now)
                 return fun;
             }
         }
 
-        Environment environment = funValue.getCapturedContext();
         // Function args are fully initialized by now
         environment.pushScope();
 

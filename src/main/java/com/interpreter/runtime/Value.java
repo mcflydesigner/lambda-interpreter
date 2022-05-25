@@ -1,7 +1,5 @@
 package com.interpreter.runtime;
 
-import hardtyped.Absyn.Type;
-
 import java.io.Serializable;
 
 public class Value implements Serializable {

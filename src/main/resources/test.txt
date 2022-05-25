@@ -1,8 +1,6 @@
-let x: Bool = false;
-
-let cond1 = /\ n: Bool. {
-    | (x == true): 1
-    |:  0;
+let ex = /\ x: Int. m: Int. {
+   print(x + m);
 };
 
-print( cond1(x) );
+let f1 = ex(4);
+f1(5);

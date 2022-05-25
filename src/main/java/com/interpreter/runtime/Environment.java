@@ -2,6 +2,7 @@ package com.interpreter.runtime;
 
 import com.interpreter.exception.IncorrectDeclarationException;
 import com.interpreter.exception.IdentifierNotFoundException;
+import com.interpreter.runtime.utils.DeepCopy;
 
 import java.io.*;
 import java.util.ArrayDeque;
@@ -61,22 +62,6 @@ public class Environment implements Serializable {
 
     public boolean isCurrentScopeGlobal() {
         return this.scopes.size() == 1;
-    }
-
-
-    public Environment deepCopy() {
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ObjectOutputStream outputStrm = new ObjectOutputStream(outputStream);
-            outputStrm.writeObject(this);
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-            ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
-            return (Environment) objInputStream.readObject();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
 
