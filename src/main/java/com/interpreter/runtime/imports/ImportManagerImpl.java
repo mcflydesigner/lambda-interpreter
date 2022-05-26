@@ -13,6 +13,7 @@ import com.interpreter.shared.exceptions.ModuleAlreadyLoadedException;
 import com.interpreter.shared.exceptions.ModuleNotFoundException;
 import com.interpreter.shared.libs.LibInterface;
 import com.interpreter.shared.libs.SerializableFunction;
+import com.interpreter.shared.libs.math.MathLib;
 import com.interpreter.shared.libs.std.StdLib;
 import hardtyped.Absyn.Expr;
 import hardtyped.Absyn.ListExpr;
@@ -20,7 +21,6 @@ import hardtyped.Test;
 
 import java.io.*;
 import java.util.*;
-import java.util.function.Function;
 
 public class ImportManagerImpl implements ImportManager, Serializable {
 
@@ -30,6 +30,7 @@ public class ImportManagerImpl implements ImportManager, Serializable {
         this.libs = new HashMap<>();
 
         libs.put("std", new StdLib());
+        libs.put("math", new MathLib());
     }
 
 

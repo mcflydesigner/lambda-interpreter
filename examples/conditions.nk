@@ -1,31 +1,29 @@
-// Correct condition
-
-/\ n: Nat. {
+/\ n: Int. {
     |  (n == 1): n
     |  (n > 5): n+1
-    |: n-1
+    |: n-1;
 };
 
-letrec factorial =
-/\ n: Nat. {
+letrec factorial = /\ n: Int. {
     |  (n == 1): n
-    |:  n * factorial (n-1)
+    |:  n * factorial (n-1);
 };
+
 
 let cond_function =
-/\ n: Nat. {
-    |  (n == 1): {
-        let b = (n + 5) * 10;
-        print(b);
-        }
-    |:  n * (n+1)
-};
-
-let cond_function1 =
-/\ n: Nat. {
-    |  (n > 1 and n < 5): (
+/\ n: Int. {
+    |  (n == 1): (
         let b = (n + 5) * 10;
         print(b);
         )
-    |:  n * (n+1)
+    |:  n * (n+1);
+};
+
+let cond_function1 =
+/\ n: Int. {
+    |  ((n > 1) and (n < 5)): (
+        let b = (n + 5) * 10;
+        print(b);
+        )
+    |:  n * (n+1);
 };

@@ -1,5 +1,0 @@
-letrec factorial =
-/\ n: Int. {
-    |  (n == 1): { n }
-    |: { n * factorial(n) }
-};

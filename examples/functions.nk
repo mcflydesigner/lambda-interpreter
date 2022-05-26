@@ -1,17 +1,19 @@
 // Correct function defining
 
-let identity = /\ x: Nat. {
-    x
+let identity = /\ x: Any. {
+    x;
 };
 
 identity (10);
 
 let concat = /\ x: String. y: String. {
-    x + y
+    x + y;
 };
 
 concat ("Hello,", "World!");
 
-let mult3 = /\ x: Nat. y: Real. z: Real. {
-    x * y * z
+let mult2 = /\ x: Real. y: Real. {
+    x * y;
 };
+
+mult2 (1.0, 2.0);

@@ -1,7 +1,6 @@
 package com.interpreter.shared.libs.std;
 
 import com.interpreter.runtime.env.Environment;
-import com.interpreter.shared.exceptions.IncorrectFunctionArgumentException;
 import com.interpreter.shared.exceptions.LineColPair;
 import com.interpreter.shared.libs.LibInterface;
 import com.interpreter.runtime.env.value.Value;
@@ -9,7 +8,8 @@ import com.interpreter.runtime.env.value.ValueType;
 import com.interpreter.shared.libs.SerializableFunction;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static com.interpreter.shared.libs.LibUtils.*;
 
 public class StdLib implements LibInterface {
 
@@ -88,43 +88,6 @@ public class StdLib implements LibInterface {
         Value value = verifyArgumentsAndGetLast(environment, 1);
         verifyAllowedTypes("stringToInt", Set.of(ValueType.STRING), value);
         return Value.ofInt(Integer.parseInt((String) value.getValue()), value.getLineColPair());
-    }
-
-
-
-
-    private Value verifyArgumentsAndGetLast(Environment environment, int size) {
-
-        Map<String, Value> values = environment.getLocalScopeDefinitons();
-        verifyArgumentListSize(size, values.keySet().stream().toList());
-
-        return values.values().stream().toList().get(size - 1);
-    }
-
-    private void verifyArgumentListSize(int expectedSize, List<String> values) {
-        if (expectedSize != values.size()) {
-            throw new IncorrectFunctionArgumentException(String.format(
-                    "The functions expected %s arguments, but got %s",
-                    expectedSize,
-                    values.size()),
-                    LineColPair.of(0, 0)
-            );
-        }
-    }
-
-    private void verifyAllowedTypes(String funName, Set<ValueType> allowedTypes, Value...values) {
-
-        List<Value> wrongValues = Arrays.stream(values).filter(e -> !allowedTypes.contains(e.getType())).toList();
-        if (wrongValues.size() > 0) {
-            Value firstWrong = wrongValues.get(0);
-            throw new IncorrectFunctionArgumentException(
-                    String.format("Incorrect invocation of function '%s': expected type(s) %s, but got %s",
-                            funName,
-                            allowedTypes.stream().map(Enum::toString).collect(Collectors.joining(",")),
-                            firstWrong.getType()),
-                    firstWrong.getLineColPair()
-            );
-        }
     }
 
     @Override

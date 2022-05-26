@@ -1,4 +1,4 @@
-// Basic imports
+// Correct import
 
 -| "math";
 -| "std";
@@ -11,4 +11,6 @@ print(n);
 
 // Function from "math" lib
 print(sqrt(r));
+
 print(abs(-2.0));
+print(getE(unit));
