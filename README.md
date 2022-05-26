@@ -16,10 +16,10 @@ and hope that future developers will encourage with this interesting solutions.
 * Latexmk - 4.77(or latest)
 
 ## How to build?
-1) Clone project and open the folder with it
-2) Run bash script in your terminal `build_project.sh`:
+1) Clone project and open the folder with it.
+2) Build project via running in your terminal.
 ```shell=bash
-./build_project.sh
+mvn clean install
 ```
 3) Create a file with your extension ```test.nk```, and write your program there.
 4) Run your program in the terminal(passing the last argument as path to your file with program):
