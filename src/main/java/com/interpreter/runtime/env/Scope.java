@@ -22,4 +22,7 @@ public class Scope implements Serializable {
         return declarations.containsKey(identifier);
     }
 
+    public Map<String, Value> getDeclarations() {
+        return declarations;
+    }
 }

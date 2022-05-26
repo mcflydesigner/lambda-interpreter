@@ -1,7 +1,6 @@
 package com.interpreter.runtime.visitor;
 
-import com.interpreter.exception.IncorrectDeclarationException;
-import com.interpreter.exception.LineColPair;
+import com.interpreter.shared.exceptions.IncorrectDeclarationException;
 import com.interpreter.runtime.env.Environment;
 import com.interpreter.runtime.env.value.Value;
 import com.interpreter.runtime.env.value.ValueType;

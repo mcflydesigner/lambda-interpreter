@@ -1,6 +1,6 @@
 package com.interpreter.runtime.env.value;
 
-import com.interpreter.exception.LineColPair;
+import com.interpreter.shared.exceptions.LineColPair;
 import org.antlr.v4.runtime.misc.Pair;
 
 import java.io.Serializable;

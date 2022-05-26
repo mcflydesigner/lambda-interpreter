@@ -1,6 +1,6 @@
 package com.interpreter.runtime.operation;
 
-import com.interpreter.exception.IllegalArgumentsOperationException;
+import com.interpreter.shared.exceptions.IllegalArgumentsOperationException;
 import com.interpreter.runtime.env.value.Value;
 import com.interpreter.runtime.env.value.ValueType;
 

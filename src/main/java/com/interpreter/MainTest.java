@@ -2,6 +2,8 @@ package com.interpreter;
 
 import com.interpreter.runtime.Interpreter;
 import com.interpreter.runtime.InterpreterImpl;
+import com.interpreter.runtime.imports.ImportManager;
+import com.interpreter.runtime.imports.ImportManagerImpl;
 import hardtyped.Absyn.ListExpr;
 import hardtyped.Test;
 
@@ -13,6 +15,8 @@ import java.io.PrintStream;
     * For tests only.
 */
 public class MainTest {
+
+    public static final ImportManager importManager = new ImportManagerImpl();
 
     public static void test(InputStream inputStream, OutputStream errorStream, OutputStream outputStream) throws Exception {
 

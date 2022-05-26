@@ -1,6 +1,6 @@
 package com.interpreter.runtime.env.value;
 
-import com.interpreter.exception.LineColPair;
+import com.interpreter.shared.exceptions.LineColPair;
 import com.interpreter.runtime.env.Environment;
 import hardtyped.Absyn.Expr;
 

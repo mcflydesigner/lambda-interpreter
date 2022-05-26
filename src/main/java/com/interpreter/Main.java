@@ -2,10 +2,14 @@ package com.interpreter;
 
 import com.interpreter.runtime.Interpreter;
 import com.interpreter.runtime.InterpreterImpl;
+import com.interpreter.runtime.imports.ImportManager;
+import com.interpreter.runtime.imports.ImportManagerImpl;
 import hardtyped.Absyn.ListExpr;
 import hardtyped.Test;
 
 public class Main {
+
+    public static final ImportManager importManager = new ImportManagerImpl();
 
     public static void main(String args[]) {
         try  {

@@ -1,8 +1,10 @@
 package com.interpreter.runtime.env;
 
-import com.interpreter.exception.IncorrectDeclarationException;
-import com.interpreter.exception.IdentifierNotFoundException;
-import com.interpreter.exception.LineColPair;
+import com.interpreter.runtime.imports.ImportManager;
+import com.interpreter.runtime.imports.ImportManagerImpl;
+import com.interpreter.shared.exceptions.IncorrectDeclarationException;
+import com.interpreter.shared.exceptions.IdentifierNotFoundException;
+import com.interpreter.shared.exceptions.LineColPair;
 import com.interpreter.runtime.env.value.Value;
 
 import java.io.*;
@@ -65,5 +67,12 @@ public class Environment implements Serializable {
         return this.scopes.size() == 1;
     }
 
+    public Map<String, Value> getLocalScopeDefinitons() {
+        if (scopes.size() == 1) {
+            throw new IllegalStateException("There is no local scope available.");
+        }
+
+        return scopes.getLast().getDeclarations();
+    }
 
 }

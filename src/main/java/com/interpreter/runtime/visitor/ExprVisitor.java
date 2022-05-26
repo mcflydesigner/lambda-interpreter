@@ -1,13 +1,15 @@
 package com.interpreter.runtime.visitor;
 
 import com.google.common.collect.Streams;
-import com.interpreter.exception.*;
+import com.interpreter.Main;
 import com.interpreter.runtime.env.Environment;
 import com.interpreter.runtime.env.value.FunctionValue;
 import com.interpreter.runtime.env.value.RecordValue;
 import com.interpreter.runtime.env.value.Value;
 import com.interpreter.runtime.env.value.ValueType;
-import com.interpreter.runtime.libs.std.IoOperationHandler;
+import com.interpreter.shared.exceptions.*;
+import com.interpreter.shared.libs.std.IoOperationHandler;
+import com.interpreter.shared.exceptions.*;
 import com.interpreter.runtime.utils.DeepCopy;
 import hardtyped.Absyn.*;
 import org.antlr.v4.runtime.misc.Pair;
@@ -38,14 +40,16 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(Import1 p, Environment arg) {
-        return null;
+
+        LineColPair lineColPair = LineColPair.of(p.line_num, p.col_num);
+        Map<String, List<Expr>> registeredDefinitions = Main.importManager.loadModuleDefinitions(p.string_, lineColPair);
+        return Value.ofUnit(lineColPair);
     }
 
     @Override
     public Value visit(LetVariable p, Environment arg) {
 
         Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
-
         if (!arg.isCurrentScopeGlobal()) {
             throw new IncorrectDeclarationException(
                     String.format("You cannot declare global variable '%s' not in global scope", declInfo.a),
@@ -65,11 +69,10 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
 
         arg.pushScope();
-
         Value value = p.expr_1.accept(this, arg);
         arg.declareVariableAndAssignValue(declInfo.a, value);
-        Value result = p.expr_2.accept(this, arg);
 
+        Value result = p.expr_2.accept(this, arg);
         arg.flushScope();
 
         return result;
@@ -164,7 +167,10 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     @Override
     public Value visit(Function p, Environment arg) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg, p.line_num, p.col_num);
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
+                arg,
+                LineColPair.of(p.line_num, p.col_num));
+
         return Value.ofFunction(new FunctionValue(args,
                         p.listexpr_,
                         (Environment) DeepCopy.perform(arg)),
@@ -174,11 +180,15 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     @Override
     public Value visit(FunctionApplication p, Environment arg) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg, p.line_num, p.col_num);
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
+                arg,
+                LineColPair.of(p.line_num, p.col_num));
+
         Value fun = Value.ofFunction(new FunctionValue(args,
                         p.listexpr_,
                         (Environment) DeepCopy.perform(arg)),
                 LineColPair.of(p.line_num, p.col_num));
+
         List<Value> evaluatedArgs = p.listexprsequence_.stream()
                 .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
                 .toList();
@@ -189,7 +199,10 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     @Override
     public Value visit(FunctionWithReturnType p, Environment arg) {
         // p.type_ is ignored since it's only for type checker
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg, p.line_num, p.col_num);
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
+                arg,
+                LineColPair.of(p.line_num, p.col_num));
+
         return Value.ofFunction(new FunctionValue(args,
                         p.listexpr_,
                         (Environment) DeepCopy.perform(arg)),
@@ -392,15 +405,14 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     private LinkedHashMap<String, FunctionValue.FunctionParameter> parseFunctionArguments(
             List<FuncArg> listFuncArg,
             Environment environment,
-            int lineNum,
-            int colNum) {
+            LineColPair lineColPair) {
 
         LinkedHashMap<String, FunctionValue.FunctionParameter> args = new LinkedHashMap<>();
         listFuncArg.stream().map(e -> e.accept(AllVisitors.funcArgVisitor, null)).forEach(pair -> {
                     if (args.containsKey(pair.a)) {
                         throw new DeclarationErrorException(
                                 String.format("Inside function declaration parameter '%s' is declared more than once", pair.a),
-                                LineColPair.of(lineNum, colNum)
+                                lineColPair
                         );
                     }
 

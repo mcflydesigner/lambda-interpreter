@@ -1,4 +1,4 @@
-package com.interpreter.runtime.libs.std;
+package com.interpreter.shared.libs.std;
 
 import com.interpreter.runtime.env.value.Value;
 
