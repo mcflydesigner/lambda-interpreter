@@ -50,27 +50,11 @@ except \terminal{"}\ unless preceded by \verb6\6.
 
 
 
-
-
-
-
 Bool literals are recognized by the regular expression
 \(\{\mbox{``true''}\} \mid \{\mbox{``false''}\}\)
 
 Unit literals are recognized by the regular expression
 \(\{\mbox{``unit''}\}\)
-
-ReadReal literals are recognized by the regular expression
-\(\{\mbox{``readReal''}\}\)
-
-ReadInt literals are recognized by the regular expression
-\(\{\mbox{``readInt''}\}\)
-
-ReadString literals are recognized by the regular expression
-\(\{\mbox{``readString''}\}\)
-
-ReadBool literals are recognized by the regular expression
-\(\{\mbox{``readBool''}\}\)
 
 \subsection*{Reserved words and symbols}
 The set of reserved words is the set of terminals appearing in the grammar. Those reserved words that consist of non-letter characters are called symbols, and they are treated in a different way from those that are similar to identifiers. The lexer follows rules familiar from languages like Haskell, C, and Java, including longest match and spacing conventions.
@@ -129,10 +113,6 @@ All other symbols are terminals.\\
 \begin{tabular}{lll}
 {\nonterminal{Expr1}} & {\arrow}  &{\nonterminal{Expr2}}  \\
  & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}}  \\
- & {\delimit}  &{\nonterminal{ReadReal}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
- & {\delimit}  &{\nonterminal{ReadInt}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
- & {\delimit}  &{\nonterminal{ReadString}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
- & {\delimit}  &{\nonterminal{ReadBool}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}

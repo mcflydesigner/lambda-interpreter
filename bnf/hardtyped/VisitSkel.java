@@ -82,38 +82,6 @@ public class VisitSkel
       }
       return null;
     }
-    public R visit(hardtyped.Absyn.ReadRealFunction p, A arg)
-    { /* Code for ReadRealFunction goes here */
-      //p.readreal_;
-      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
-        x.accept(new ExprSequenceVisitor<R,A>(), arg);
-      }
-      return null;
-    }
-    public R visit(hardtyped.Absyn.ReadIntFunction p, A arg)
-    { /* Code for ReadIntFunction goes here */
-      //p.readint_;
-      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
-        x.accept(new ExprSequenceVisitor<R,A>(), arg);
-      }
-      return null;
-    }
-    public R visit(hardtyped.Absyn.ReadStringFunction p, A arg)
-    { /* Code for ReadStringFunction goes here */
-      //p.readstring_;
-      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
-        x.accept(new ExprSequenceVisitor<R,A>(), arg);
-      }
-      return null;
-    }
-    public R visit(hardtyped.Absyn.ReadBoolFunction p, A arg)
-    { /* Code for ReadBoolFunction goes here */
-      //p.readbool_;
-      for (hardtyped.Absyn.ExprSequence x: p.listexprsequence_) {
-        x.accept(new ExprSequenceVisitor<R,A>(), arg);
-      }
-      return null;
-    }
     public R visit(hardtyped.Absyn.FunctionApplication p, A arg)
     { /* Code for FunctionApplication goes here */
       for (hardtyped.Absyn.FuncArg x: p.listfuncarg_) {

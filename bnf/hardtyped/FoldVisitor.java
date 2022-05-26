@@ -76,38 +76,6 @@ public abstract class FoldVisitor<R,A> implements AllVisitor<R,A> {
       }
       return r;
     }
-    public R visit(hardtyped.Absyn.ReadRealFunction p, A arg) {
-      R r = leaf(arg);
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
-    public R visit(hardtyped.Absyn.ReadIntFunction p, A arg) {
-      R r = leaf(arg);
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
-    public R visit(hardtyped.Absyn.ReadStringFunction p, A arg) {
-      R r = leaf(arg);
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
-    public R visit(hardtyped.Absyn.ReadBoolFunction p, A arg) {
-      R r = leaf(arg);
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        r = combine(x.accept(this, arg), r, arg);
-      }
-      return r;
-    }
     public R visit(hardtyped.Absyn.FunctionApplication p, A arg) {
       R r = leaf(arg);
       for (hardtyped.Absyn.FuncArg x : p.listfuncarg_)

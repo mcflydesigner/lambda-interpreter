@@ -16,10 +16,6 @@ public class AbstractVisitor<R,A> implements AllVisitor<R,A> {
     public R visit(hardtyped.Absyn.LetTypeInference p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.IfStmt p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Function p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.ReadRealFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.ReadIntFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.ReadStringFunction p, A arg) { return visitDefault(p, arg); }
-    public R visit(hardtyped.Absyn.ReadBoolFunction p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.FunctionApplication p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg) { return visitDefault(p, arg); }
     public R visit(hardtyped.Absyn.Operation p, A arg) { return visitDefault(p, arg); }

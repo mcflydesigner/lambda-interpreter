@@ -56,10 +56,6 @@ MULTICOMMENT_antlr_builtin
 
 Bool : 't''r''u''e'|'f''a''l''s''e';
 Unit : 'u''n''i''t';
-ReadReal : 'r''e''a''d''R''e''a''l';
-ReadInt : 'r''e''a''d''I''n''t';
-ReadString : 'r''e''a''d''S''t''r''i''n''g';
-ReadBool : 'r''e''a''d''B''o''o''l';
 // String token type
 STRING : '"' -> more, mode(STRINGMODE);
 

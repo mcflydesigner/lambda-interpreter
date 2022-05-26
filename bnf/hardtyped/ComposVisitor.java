@@ -91,46 +91,6 @@ public class ComposVisitor<A> implements
       }
       return new hardtyped.Absyn.Function(listfuncarg_, listexpr_);
     }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.ReadRealFunction p, A arg)
-    {
-      String readreal_ = p.readreal_;
-      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        listexprsequence_.add(x.accept(this,arg));
-      }
-      return new hardtyped.Absyn.ReadRealFunction(readreal_, listexprsequence_);
-    }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.ReadIntFunction p, A arg)
-    {
-      String readint_ = p.readint_;
-      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        listexprsequence_.add(x.accept(this,arg));
-      }
-      return new hardtyped.Absyn.ReadIntFunction(readint_, listexprsequence_);
-    }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.ReadStringFunction p, A arg)
-    {
-      String readstring_ = p.readstring_;
-      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        listexprsequence_.add(x.accept(this,arg));
-      }
-      return new hardtyped.Absyn.ReadStringFunction(readstring_, listexprsequence_);
-    }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.ReadBoolFunction p, A arg)
-    {
-      String readbool_ = p.readbool_;
-      hardtyped.Absyn.ListExprSequence listexprsequence_ = new hardtyped.Absyn.ListExprSequence();
-      for (hardtyped.Absyn.ExprSequence x : p.listexprsequence_)
-      {
-        listexprsequence_.add(x.accept(this,arg));
-      }
-      return new hardtyped.Absyn.ReadBoolFunction(readbool_, listexprsequence_);
-    }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.FunctionApplication p, A arg)
     {
       hardtyped.Absyn.ListFuncArg listfuncarg_ = new hardtyped.Absyn.ListFuncArg();
