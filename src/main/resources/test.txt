@@ -1,0 +1,22 @@
+//lettype User = {name: String, phone: String} in (
+//let f = /\u. {
+//    print (u.name);
+//} in f ({name="Max", phone="+7", country="Russia"});
+//);
+
+lettype vec2d = {x1:Int, x2:Int};
+lettype vec3d = {x1:Int, x2:Int, x3:Int};
+
+
+lettype func = vec3d -> vec3d;
+lettype subfunc = vec2d -> vec3d;
+
+let switch2d: subfunc = /\ v2:vec2d. {
+    {x1=v2.x2, x2=v2.x1};
+} -> vec3d;
+
+
+// {x1:Int, x2:Int} -> {x1:Int, x2:Int, x3:Int}
+/\ f:func. {
+    let v2:vec2d = {x1=1, x2=2} in f (v2);
+} (switch2d);
