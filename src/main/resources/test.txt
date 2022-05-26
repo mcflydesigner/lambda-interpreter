@@ -1,5 +1,2 @@
-let f = /\ x: Integer. y: Integer. {
-    x + y
-};
-
-print(f(5, 7, 3));
+lettype Vector3d = { x1 : Real , x2 : Real , x3 : Real };
+let x = { x1 = 1 , x2 = 2 , x3 = 3 };

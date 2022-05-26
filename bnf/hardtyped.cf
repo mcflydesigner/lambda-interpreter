@@ -1,83 +1,114 @@
 comment "//" ;
 comment "/*" "*/" ;
 
-separator Expr ";";
+terminator nonempty Expr ";"; -- todo: should ; be put after last expression?
+coercions Expr 5;
+Exprs. Expr5 ::= "(" [Expr] ")";
 
--- Functions
-Function. Expr ::= "/\\" FuncArg "{" InExpr "}";
-ApplyFunction. Expr ::= Expr "(" Expr ")";
-PrintFunction. Expr ::= Print "(" Expr ")";
-ReadFunction. Expr ::= Read "(" Expr ")";
-EmptyPrintFunction. Expr ::= Print "(" ")";
-EmptyReadFunction. Expr ::= Read "(" ")";
-MultipleArgFunction. Expr ::= Expr "," Expr;
+Variable. Expr4 ::= Ident;
 
-
--- If
-If. Expr ::= "|" "(" Expr ")" ":" Expr;
-Else. Expr ::= "|:" Expr;
-
--- Basic operations
-Sum. Expr ::= Expr "+" Expr;
-Substract. Expr::= Expr "-" Expr;
-Multiply. Expr ::= Expr "*" Expr;
-Divide. Expr ::= Expr "/" Expr;
-
--- Logical operations
-And. Expr ::= Expr "and" Expr;
-Or. Expr ::= Expr "or" Expr;
-Not. Expr ::= "not" Expr;
-
--- Comparison operations
-More. Expr ::= Expr ">" Expr;
-MoreEql. Expr ::= Expr ">=" Expr;
-Eql. Expr ::= Expr "==" Expr;
-LessEql. Expr ::= Expr "<=" Expr;
-Less. Expr ::= Expr "<" Expr;
-
-UnaryPlus. Expr ::= "+" Expr;
-UnaryMinus. Expr ::= "-" Expr;
+-- Import
+Import. Expr ::= "-|" String "as" Ident;
+Import1. Expr ::= "-|" String;
 
 -- Variable initializers
-Let. Expr ::= "let" VarDec "=" Expr;
-LetInference. Expr ::= "let" VarDec "=" Expr "in" Expr;
-LetAscription. Expr ::= "let" VarDec "=" Expr "as" Type;
-LetRec. Expr ::= "letrec" VarDec "=" Expr;
-
--- Values
-IntValue. Expr ::= Integer;
-RealValue. Expr ::= Double;
-StringValue. Expr ::= String;
-BoolValue. Expr ::= Bool;
-UnitValue. Expr ::= Unit;
-
--- In-function expressions - todo: remove it
-MultipleExpressions. InExpr ::= InExpr ";" InExpr;
-FinalExpression. InExpr ::= InExpr ";";
-InnerExpression. InExpr ::= Expr;
-
--- Utility expressions
-AtomicExpression. Expr ::= Ident;
-ParenthesesExpression. Expr ::= "(" Expr ")";
-DotExpression. Expr ::= Ident "." Ident;
-
--- Function arguments
-MultipleArgs. FuncArg ::= VarDec "." FuncArg ;
-FinalArg. FuncArg ::= VarDec ".";
+LetVariable. Expr ::= "let" VarDec "=" Expr1;
+LetInference. Expr ::= "let" VarDec "=" Expr1 "in" Expr1;
+LetRec. Expr ::= "letrec" VarDec "=" Expr1;
+LetRecInference. Expr ::= "letrec" VarDec "=" Expr1 "in" Expr1;
+LetType. Expr ::= "lettype" VarDec "=" Type;
+LetTypeInference. Expr ::= "lettype" VarDec "=" Type "in" Expr1;
 
 
 -- Variable declarations
 TypedVar. VarDec ::= Ident ":" Type;
 UntypedVar. VarDec ::= Ident;
 
+-- Functions
+Function. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}";
+FunctionApplication. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "(" [ExprSequence] ")";
+FunctionWithReturnType. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "->" Type;
+Application. Expr3 ::= Expr4 "(" [ExprSequence] ")";
+PrintFunction. Expr1 ::= Print "(" Expr ")";
+ReadRealFunction. Expr1 ::= ReadReal "(" [ExprSequence] ")";
+ReadIntFunction. Expr1 ::= ReadInt "(" [ExprSequence] ")";
+ReadStringFunction. Expr1 ::= ReadString "(" [ExprSequence] ")";
+ReadBoolFunction. Expr1 ::= ReadBool "(" [ExprSequence] ")";
+
+ArrowExpr. Expr4 ::= Ident "->" Expr4;
+DotExpr. Expr4 ::= Expr4 "." Ident;
+
+Seq. ExprSequence ::= Expr;
+separator ExprSequence ",";
+
+Argument. FuncArg ::= Ident ":" Type;
+terminator nonempty FuncArg ".";
+
+-- If
+IfStmt. Expr ::= [IfExpr] ElseExpr;
+If. IfExpr ::= "|" "(" Expr2 ")" ":" Expr ;
+separator nonempty IfExpr "";
+
+Else. ElseExpr ::= "|:"  Expr ;
+
+-- Basic operations
+Operation. Expr2 ::= Op;
+coercions Op 6;
+
+Sum. Op4 ::= Expr3 "+" Expr3;
+Substract. Op4 ::= Expr3 "-" Expr3;
+Multiply. Op5 ::= Expr3 "*" Expr3;
+Divide. Op5 ::= Expr3 "/" Expr3;
+
+-- Logical operations
+And. Op1 ::= Expr3 "and" Expr3;
+Or. Op ::= Expr3 "or" Expr3;
+Not. Op2 ::= "not" Expr3;
+
+-- Comparison operations
+More. Op3 ::= Expr3 ">" Expr3;
+MoreEql. Op3 ::= Expr3 ">=" Expr3;
+Eql. Op3 ::= Expr3 "==" Expr3;
+NotEql. Op3 ::= Expr3 "!=" Expr3;
+LessEql. Op3 ::= Expr3 "<=" Expr3;
+Less. Op3 ::= Expr3 "<" Expr3;
+
+UnaryPlus. Op6 ::= "+" Expr3;
+UnaryMinus. Op6 ::= "-" Expr3;
+
+-- Values
+IntValue. Expr3 ::= Integer;
+RealValue. Expr3 ::= Double;
+StringValue. Expr3 ::= String;
+BoolValue. Expr3 ::= Bool;
+UnitValue. Expr3 ::= Unit;
+RecordConst. Expr3 ::= "{" [RecordElem] "}";
+
+Elem. RecordElem ::= Ident "=" Expr3;
+separator RecordElem ",";
+
+
 -- Types
-IntType. Type ::= "Integer";
-RealType. Type ::= "Real";
-BoolType. Type ::= "Boolean";
-StringType. Type ::= "String";
-UnitType. Type ::= "Unit";
+coercions Type 3;
+
+UserType. Type2 ::= Ident;
+IntType. Type2 ::= "Int";
+RealType. Type2 ::= "Real";
+BoolType. Type2 ::= "Bool";
+StringType. Type2 ::= "String";
+UnitType. Type2 ::= "Unit";
+AnyType. Type2 ::= "Any";
+FunctionType. Type1 ::= Type1 "->" Type2;
+RecordType. Type2 ::= "{" [RecordElemType] "}";
+
+ElemType. RecordElemType ::= Ident ":" Type;
+separator RecordElemType ",";
+
 
 token Bool {"true"} | {"false"};
 token Unit {"unit"};
 token Print {"print"};
-token Read {"read"};
+token ReadReal {"readReal"};
+token ReadInt {"readInt"};
+token ReadString {"readString"};
+token ReadBool {"readBool"};

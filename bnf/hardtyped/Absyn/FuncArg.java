@@ -5,8 +5,7 @@ package hardtyped.Absyn;
 public abstract class FuncArg implements java.io.Serializable {
   public abstract <R,A> R accept(FuncArg.Visitor<R,A> v, A arg);
   public interface Visitor <R,A> {
-    public R visit(hardtyped.Absyn.MultipleArgs p, A arg);
-    public R visit(hardtyped.Absyn.FinalArg p, A arg);
+    public R visit(hardtyped.Absyn.Argument p, A arg);
 
   }
 

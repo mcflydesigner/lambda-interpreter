@@ -3,8 +3,9 @@
 package hardtyped.Absyn;
 
 public class IfStmt  extends Expr {
-  public final IfExpr ifexpr_;
-  public IfStmt(IfExpr p1) { ifexpr_ = p1; }
+  public final ListIfExpr listifexpr_;
+  public final ElseExpr elseexpr_;
+  public IfStmt(ListIfExpr p1, ElseExpr p2) { listifexpr_ = p1; elseexpr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -12,13 +13,13 @@ public class IfStmt  extends Expr {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.IfStmt) {
       hardtyped.Absyn.IfStmt x = (hardtyped.Absyn.IfStmt)o;
-      return this.ifexpr_.equals(x.ifexpr_);
+      return this.listifexpr_.equals(x.listifexpr_) && this.elseexpr_.equals(x.elseexpr_);
     }
     return false;
   }
 
   public int hashCode() {
-    return this.ifexpr_.hashCode();
+    return 37*(this.listifexpr_.hashCode())+this.elseexpr_.hashCode();
   }
 
 

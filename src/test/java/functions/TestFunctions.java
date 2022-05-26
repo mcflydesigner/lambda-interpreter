@@ -35,7 +35,7 @@ public class TestFunctions {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "4\n4".trim();
+        String expected = "S\nS".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
@@ -65,7 +65,7 @@ public class TestFunctions {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "Hello, World!".trim();
+        String expected = "90".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
@@ -80,7 +80,7 @@ public class TestFunctions {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "sample sample".trim();
+        String expected = "30".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
         System.out.println(errorStream.toString());
         Assert.assertEquals(expected, output);
@@ -95,7 +95,7 @@ public class TestFunctions {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "Hello, World!".trim();
+        String expected = "4".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         System.out.println(errorStream.toString());

@@ -1,9 +1,9 @@
 -| "std";
 
-let string_twice = /\ s:String. {
-    print (s + " " + s);
+let int_twice = /\ s:Int. {
+    print (s + s);
 };
 
-/\ f: (String -> String). {
-    let s = "sample" in f (s);
-} (string_twice);
+/\ f: (Int -> Int). {
+    let s = 15 in f (s);
+} (int_twice);

@@ -1,30 +1,20 @@
 
-
-lettype func1 = Int->{x1:Int, x2:Int};
-
-let func1 = /\ n: Int. {
-    {x1=n, x2=n, x3=n}
-};
+lettype vec2d = {x1:Integer, x2:Integer};
+lettype vec3d = {x1:Integer, x2:Integer, x3:Integer};
 
 
-let func2 =  /\ f: Int->{x1:Int, x2:Int}. {
-    f (0)
-};
+lettype func = vec3d -> vec3d;
+lettype subfunc = vec2d -> vec3d;
 
-// type checker
-let num = /\ x:Integer {
-    x+x;
-} (5);
-
-func2 (func1);
+let switch2d: subfunc = /\ v2:vec2d {
+    {x1=v3.x2, x2=v3.x1, x3=v3.x3};
+} -> vec3d;
 
 
-/\ f:Integer. {
-    f+f;
-    unit;
-} -> Unit (5);
+// {x1:Integer, x2:Integer} -> {x1:Integer, x2:Integer, x3:Integer}
+/\ f:func {
+    let v2:vec2d = {x1=1, x2=2} in f (v2);
+} (switch2d);
 
 
-/\ a:Any {
-    a
-};
+

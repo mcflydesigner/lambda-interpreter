@@ -1,14 +1,52 @@
 package com.interpreter.runtime.operation;
 
 import com.interpreter.exception.IllegalArgumentsOperationException;
-import com.interpreter.runtime.Value;
-import com.interpreter.runtime.ValueType;
+import com.interpreter.runtime.env.value.Value;
+import com.interpreter.runtime.env.value.ValueType;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OperationHandler {
+
+    public static Value handleUnaryOperation(UnaryOperationType operationType, Value operand) {
+        return switch (operationType) {
+            case PLUS -> handleUnaryPlus(operand);
+            case MINUS -> handleUnaryMinus(operand);
+            case NOT -> handleUnaryNot(operand);
+        };
+    }
+
+    private static Value handleUnaryNot(Value operand) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.BOOL);
+        assertOperandsType("not", allowedValueTypes, operand);
+
+        return Value.ofBool(!(Boolean) operand.getValue());
+    }
+
+    private static Value handleUnaryMinus(Value operand) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
+        assertOperandsType("unary -", allowedValueTypes, operand);
+
+        if (operand.getType().equals(ValueType.INT)) {
+            return Value.ofInt(-(Integer) operand.getValue());
+        }
+
+        return Value.ofReal(-(Double) operand.getValue());
+    }
+
+    private static Value handleUnaryPlus(Value operand) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
+        assertOperandsType("unary +", allowedValueTypes, operand);
+
+        if (operand.getType().equals(ValueType.INT)) {
+            return Value.ofInt(+(Integer) operand.getValue());
+        }
+
+        return Value.ofReal(+(Double) operand.getValue());
+    }
 
     public static Value handleBinaryOperation(BinaryOperationType operationType, Value firstOp, Value secondOp) {
         return switch (operationType) {
@@ -16,13 +54,103 @@ public class OperationHandler {
             case SUBTRACTION -> handleBinarySubtraction(firstOp, secondOp);
             case MULTIPLICATION -> handleBinaryMultiplication(firstOp, secondOp);
             case DIVISION -> handleBinaryDivision(firstOp, secondOp);
+            case GREATER -> handleBinaryGreater(firstOp, secondOp);
+            case GREATER_OR_EQUAL -> handleBinaryGreaterOrEqual(firstOp, secondOp);
+            case LESS -> handleBinaryLess(firstOp, secondOp);
+            case LESS_OR_EQUAL -> handleBinaryLessOrEqual(firstOp, secondOp);
+            case EQUAL -> handleBinaryEqual(firstOp, secondOp);
+            case AND -> handleBinaryAnd(firstOp, secondOp);
+            case OR -> handleBinaryOr(firstOp, secondOp);
+            case NOT_EQUAL -> handleBinaryNotEqual(firstOp, secondOp);
         };
+    }
+
+    private static Value handleBinaryAnd(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.BOOL);
+        assertOperandsType("and", allowedValueTypes, firstOp, secondOp);
+
+        return Value.ofBool((boolean) firstOp.getValue() && (boolean) secondOp.getValue());
+    }
+
+    private static Value handleBinaryOr(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.BOOL);
+        assertOperandsType("or", allowedValueTypes, firstOp, secondOp);
+
+        return Value.ofBool((boolean) firstOp.getValue() || (boolean) secondOp.getValue());
+    }
+
+    private static Value handleBinaryGreater(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL, ValueType.STRING);
+        assertOperandsType(">", allowedValueTypes, firstOp, secondOp);
+
+        if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
+            return Value.ofBool((Integer) firstOp.getValue() > (Integer) secondOp.getValue());
+        }
+
+        if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
+            return Value.ofBool((Double) firstOp.getValue() > (Double) secondOp.getValue());
+        }
+
+        int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
+
+        return Value.ofBool(resStringComparison > 0);
+    }
+
+    private static Value handleBinaryGreaterOrEqual(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL, ValueType.STRING);
+        assertOperandsType(">=", allowedValueTypes, firstOp, secondOp);
+
+        if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
+            return Value.ofBool((Integer) firstOp.getValue() >= (Integer) secondOp.getValue());
+        }
+
+        if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
+            return Value.ofBool((Double) firstOp.getValue() >= (Double) secondOp.getValue());
+        }
+
+        int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
+
+        return Value.ofBool(resStringComparison >= 0);
+    }
+
+    private static Value handleBinaryLess(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL, ValueType.STRING);
+        assertOperandsType("<", allowedValueTypes, firstOp, secondOp);
+
+        if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
+            return Value.ofBool((Integer) firstOp.getValue() < (Integer) secondOp.getValue());
+        }
+
+        if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
+            return Value.ofBool((Double) firstOp.getValue() < (Double) secondOp.getValue());
+        }
+
+        int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
+
+        return Value.ofBool(resStringComparison < 0);
+    }
+
+    private static Value handleBinaryLessOrEqual(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL, ValueType.STRING);
+        assertOperandsType("<=", allowedValueTypes, firstOp, secondOp);
+
+        if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
+            return Value.ofBool((Integer) firstOp.getValue() <= (Integer) secondOp.getValue());
+        }
+
+        if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
+            return Value.ofBool((Double) firstOp.getValue() <= (Double) secondOp.getValue());
+        }
+
+        int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
+
+        return Value.ofBool(resStringComparison <= 0);
     }
 
     private static Value handleBinaryAddition(Value firstOp, Value secondOp) {
 
         Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
-        assertOperandsType("addition", allowedValueTypes, firstOp, secondOp);
+        assertOperandsType("+", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
             return Value.ofInt((Integer) firstOp.getValue() + (Integer) secondOp.getValue());
@@ -34,7 +162,7 @@ public class OperationHandler {
     private static Value handleBinarySubtraction(Value firstOp, Value secondOp) {
 
         Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
-        assertOperandsType("subtraction", allowedValueTypes, firstOp, secondOp);
+        assertOperandsType("-", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
             return Value.ofInt((Integer) firstOp.getValue() - (Integer) secondOp.getValue());
@@ -46,7 +174,7 @@ public class OperationHandler {
     private static Value handleBinaryMultiplication(Value firstOp, Value secondOp) {
 
         Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
-        assertOperandsType("multiplication", allowedValueTypes, firstOp, secondOp);
+        assertOperandsType("*", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
             return Value.ofInt((Integer) firstOp.getValue() * (Integer) secondOp.getValue());
@@ -58,7 +186,7 @@ public class OperationHandler {
     private static Value handleBinaryDivision(Value firstOp, Value secondOp) {
 
         Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
-        assertOperandsType("division", allowedValueTypes, firstOp, secondOp);
+        assertOperandsType("/", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
             return Value.ofInt((Integer) firstOp.getValue() / (Integer) secondOp.getValue());
@@ -66,6 +194,32 @@ public class OperationHandler {
 
         return Value.ofReal((Double) firstOp.getValue() / (Double) secondOp.getValue());
     }
+
+    private static Value handleBinaryEqual(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT,
+                ValueType.REAL,
+                ValueType.STRING,
+                ValueType.UNIT,
+                ValueType.BOOL);
+        assertOperandsType("==", allowedValueTypes, firstOp, secondOp);
+
+        return Value.ofBool(Objects.equals(firstOp.getValue(), secondOp.getValue()));
+    }
+
+    private static Value handleBinaryNotEqual(Value firstOp, Value secondOp) {
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT,
+                ValueType.REAL,
+                ValueType.STRING,
+                ValueType.UNIT,
+                ValueType.BOOL);
+        assertOperandsType("!=", allowedValueTypes, firstOp, secondOp);
+
+        return Value.ofBool(!Objects.equals(firstOp.getValue(), secondOp.getValue()));
+    }
+
+
+
+
 
     private static void assertOperandsType(String operation, Set<ValueType> allowedValueTypes, Value... values) {
 
