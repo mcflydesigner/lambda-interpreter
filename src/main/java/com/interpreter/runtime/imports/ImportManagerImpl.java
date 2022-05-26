@@ -99,7 +99,7 @@ public class ImportManagerImpl implements ImportManager, Serializable {
             ByteArrayInputStream defInput = new ByteArrayInputStream(definition.getBytes());
             ByteArrayOutputStream defOutput = new ByteArrayOutputStream();
             System.setIn(defInput);
-            System.setOut(new PrintStream(defOutput));
+//            System.setOut(new PrintStream(defOutput));
             Test t = new Test(new String[0]);
             try {
                 ListExpr ast = t.parse();
@@ -114,7 +114,7 @@ public class ImportManagerImpl implements ImportManager, Serializable {
         });
 
         System.setIn(defaultIn);
-        System.setOut(defaultOut);
+//        System.setOut(defaultOut);
 
         return result;
     }

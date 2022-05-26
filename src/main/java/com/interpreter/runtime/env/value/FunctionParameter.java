@@ -9,6 +9,7 @@ public class FunctionParameter implements Serializable {
     private ValueType type;
     private Object bindValue;
     private LineColPair lineColPair;
+    private Boolean isAssigned = false;
 
     public FunctionParameter(ValueType type) {
         this.type = type;
@@ -26,18 +27,19 @@ public class FunctionParameter implements Serializable {
     }
 
     public Value convertToValue() {
-        if (this.bindValue == null) {
-            throw new IllegalStateException("Value for function parameter must be non-null before convertation");
+        if (!this.isAssigned) {
+            throw new IllegalStateException("Value for function parameter must be set before convertation");
         }
 
         return new Value(type, bindValue, lineColPair);
     }
 
     public void setBindValue(Object bindValue) {
-        if (this.bindValue != null) {
+        if (this.isAssigned) {
             throw new IllegalStateException("Value for function parameter cannot be reassigned");
         }
         this.bindValue = bindValue;
+        this.isAssigned = true;
     }
 
     public void setConcreteType(ValueType type) {
@@ -53,6 +55,6 @@ public class FunctionParameter implements Serializable {
     }
 
     public boolean isInitialized() {
-        return bindValue != null;
+        return isAssigned;
     }
 }

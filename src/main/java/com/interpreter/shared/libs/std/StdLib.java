@@ -15,10 +15,7 @@ public class StdLib implements LibInterface {
 
     public Value print(Environment environment) {
 
-        Map<String, Value> values = environment.getLocalScopeDefinitons();
-        verifyArgumentListSize(1, values.keySet().stream().toList());
-
-        Value value = values.values().stream().toList().get(0);
+        Value value = verifyArgumentsAndGetLast(environment, 1);
         IoOperationHandler.handlePrint(value);
         return Value.ofUnit(LineColPair.of(0, 0));
     }
@@ -34,7 +31,7 @@ public class StdLib implements LibInterface {
 
         Value value = verifyArgumentsAndGetLast(environment, 1);
         verifyAllowedTypes("readReal", Set.of(ValueType.UNIT), value);
-        return Value.ofInt(IoOperationHandler.readInt(), value.getLineColPair());
+        return Value.ofReal(IoOperationHandler.readReal(), value.getLineColPair());
     }
 
     public Value readString(Environment environment) {
@@ -55,21 +52,21 @@ public class StdLib implements LibInterface {
 
         Value value = verifyArgumentsAndGetLast(environment, 1);
         verifyAllowedTypes("intToReal", Set.of(ValueType.INT), value);
-        return Value.ofReal((Double) value.getValue(), value.getLineColPair());
+        return Value.ofReal(Double.valueOf((Integer) value.getValue()), value.getLineColPair());
     }
 
     public Value intToString(Environment environment) {
 
         Value value = verifyArgumentsAndGetLast(environment, 1);
         verifyAllowedTypes("intToString", Set.of(ValueType.INT), value);
-        return Value.ofString((String) value.getValue(), value.getLineColPair());
+        return Value.ofString(value.getValue().toString(), value.getLineColPair());
     }
 
     public Value realToInt(Environment environment) {
 
         Value value = verifyArgumentsAndGetLast(environment, 1);
         verifyAllowedTypes("realToInt", Set.of(ValueType.REAL), value);
-        return Value.ofInt((Integer) value.getValue(), value.getLineColPair());
+        return Value.ofInt(((Double) value.getValue()).intValue(), value.getLineColPair());
     }
 
     public Value realToString(Environment environment) {
@@ -156,6 +153,12 @@ public class StdLib implements LibInterface {
         map.put("readReal", StdLibDefinitions.READ_REAL);
         map.put("readBool", StdLibDefinitions.READ_BOOL);
         map.put("readString", StdLibDefinitions.READ_STRING);
+        map.put("intToReal", StdLibDefinitions.INT_TO_REAL);
+        map.put("intToString", StdLibDefinitions.INT_TO_STRING);
+        map.put("realToInt", StdLibDefinitions.REAL_TO_INT);
+        map.put("realToString", StdLibDefinitions.REAL_TO_STRING);
+        map.put("stringToReal", StdLibDefinitions.STRING_TO_REAL);
+        map.put("stringToInt", StdLibDefinitions.STRING_TO_INT);
 
         return map;
     }
