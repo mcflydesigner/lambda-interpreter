@@ -144,7 +144,7 @@ public class TestFunctions {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "{x1=1,x2=2,x3=0}".trim();
+        String expected = "{x1=2, x2=1}".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         System.out.println(errorStream.toString());

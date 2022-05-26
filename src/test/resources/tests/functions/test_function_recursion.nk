@@ -1,16 +1,16 @@
 -| "std";
 
 letrec factorial =
-/\ n: Nat. {
+/\ n: Int. {
     |  (n == 1): n
     |:  n * factorial (n-1);
 } -> Int;
 
-letrec fibonacci = /\ n:Nat. {
+letrec fibonacci = /\ n:Int. {
     |  ((n == 1) or (n == 0)): n
     |:  fibonacci (n-2) + fibonacci (n-1);
 } -> Int;
 
-print (fibonacci (5));
+print (factorial (5));
 
 print (fibonacci (5));

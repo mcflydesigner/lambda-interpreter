@@ -1,9 +1,9 @@
-lettype Vector3d = { x1 : Int , x2 : Int , x3 : Int };
+-| "std";
 
-let f = /\ r : Any. {
-    r.x1 + (r.x2 + r.x3);
+let x = 5;
+let f1 = /\ n:Int. {
+    n*3;
 };
 
-let x = { x1 = 1 , x2 = 2 , x3 = 3 };
-
-print(f(x));
+lettype func = (Int -> Int) in
+(let func1 = /\ f:func. n:Int. { print(f (n)); } in func1 (f1, x));
