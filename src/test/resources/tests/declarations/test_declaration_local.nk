@@ -1,0 +1,9 @@
+-| "std";
+
+// local variable declaration
+let x: Int = 5 in (
+    print (x);
+);
+
+// Error
+print (x);

@@ -1,0 +1,14 @@
+-| "std";
+
+let r: Real = intToReal(10);
+print (r);
+let s: String = "Number: " + intToString(10);
+print (s);
+let n: Int = 10 + realToInt(10.5);
+print (n);
+let s1: String = "Real number: " + realToString(10.5);
+print (s1);
+let r1: Real = 10.5 + stringToReal("4.5");
+print (r1);
+let n1: Int = 10 + stringToInt("5");
+print (n1);

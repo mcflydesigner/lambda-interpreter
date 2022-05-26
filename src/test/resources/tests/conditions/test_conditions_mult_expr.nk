@@ -1,0 +1,14 @@
+-| "std";
+
+let cond = /\ n: Int. {
+    |  (n > 1): (
+        print (n+10);
+        n*n;
+        )
+    |: n-1;
+};
+
+// Output:
+// 12
+// 4
+print (cond (2));

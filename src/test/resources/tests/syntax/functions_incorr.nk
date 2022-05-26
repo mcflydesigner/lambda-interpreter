@@ -1,0 +1,23 @@
+// Incorrect function defining
+
+let concat = func (x: String, y: String) {
+    x + y
+};
+
+let concat = /\ x: String. y: String. {
+    x + y
+};
+
+let concat = /\ x: String, y: String {
+    x + y
+};
+
+let concat = /\ (x: String. y: String) {
+    x + y
+};
+
+let concat = (/\ x: String. y: String.) {
+    x + y
+};
+
+concat ("Hello,", "World");

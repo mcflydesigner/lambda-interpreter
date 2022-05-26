@@ -1,0 +1,9 @@
+-| "std";
+
+let x = 5;
+let f1 = /\ n:Int. {
+    n*3;
+};
+
+lettype func = (Int -> Int) in
+(let func1 = /\ f:func. n:Int. { print(f (n)); } in func1 (f1, x));

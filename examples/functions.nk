@@ -1,0 +1,19 @@
+// Correct function defining
+
+let identity = /\ x: Any. {
+    x;
+};
+
+identity (10);
+
+let concat = /\ x: String. y: String. {
+    x + y;
+};
+
+concat ("Hello,", "World!");
+
+let mult2 = /\ x: Real. y: Real. {
+    x * y;
+};
+
+mult2 (1.0, 2.0);

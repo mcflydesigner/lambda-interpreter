@@ -1,0 +1,6 @@
+// Correct record
+
+let Vector3d = {x1: Real, x2: Real, x3: Real};
+
+let vec3: Vector3d = {x1 = 1.0, x2 = 2.0, x3 = 3.0};
+

@@ -5,16 +5,30 @@ package hardtyped.Absyn;
 public abstract class Expr implements java.io.Serializable {
   public abstract <R,A> R accept(Expr.Visitor<R,A> v, A arg);
   public interface Visitor <R,A> {
-    public R visit(hardtyped.Absyn.ConstTrue p, A arg);
-    public R visit(hardtyped.Absyn.ConstFalse p, A arg);
-    public R visit(hardtyped.Absyn.If p, A arg);
-    public R visit(hardtyped.Absyn.ConstZero p, A arg);
-    public R visit(hardtyped.Absyn.Succ p, A arg);
-    public R visit(hardtyped.Absyn.Pred p, A arg);
-    public R visit(hardtyped.Absyn.IsZero p, A arg);
-    public R visit(hardtyped.Absyn.Var p, A arg);
-    public R visit(hardtyped.Absyn.Abstraction p, A arg);
+    public R visit(hardtyped.Absyn.Exprs p, A arg);
+    public R visit(hardtyped.Absyn.Variable p, A arg);
+    public R visit(hardtyped.Absyn.Import p, A arg);
+    public R visit(hardtyped.Absyn.Import1 p, A arg);
+    public R visit(hardtyped.Absyn.LetVariable p, A arg);
+    public R visit(hardtyped.Absyn.LetInference p, A arg);
+    public R visit(hardtyped.Absyn.LetRec p, A arg);
+    public R visit(hardtyped.Absyn.LetRecInference p, A arg);
+    public R visit(hardtyped.Absyn.LetType p, A arg);
+    public R visit(hardtyped.Absyn.LetTypeInference p, A arg);
+    public R visit(hardtyped.Absyn.Function p, A arg);
+    public R visit(hardtyped.Absyn.FunctionApplication p, A arg);
+    public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg);
     public R visit(hardtyped.Absyn.Application p, A arg);
+    public R visit(hardtyped.Absyn.ArrowExpr p, A arg);
+    public R visit(hardtyped.Absyn.DotExpr p, A arg);
+    public R visit(hardtyped.Absyn.IfStmt p, A arg);
+    public R visit(hardtyped.Absyn.Operation p, A arg);
+    public R visit(hardtyped.Absyn.IntValue p, A arg);
+    public R visit(hardtyped.Absyn.RealValue p, A arg);
+    public R visit(hardtyped.Absyn.StringValue p, A arg);
+    public R visit(hardtyped.Absyn.BoolValue p, A arg);
+    public R visit(hardtyped.Absyn.UnitValue p, A arg);
+    public R visit(hardtyped.Absyn.RecordConst p, A arg);
 
   }
 

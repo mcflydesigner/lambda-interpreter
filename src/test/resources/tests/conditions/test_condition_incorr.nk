@@ -1,0 +1,5 @@
+let cond1 = /\ n: Int. {
+    |: n+1;
+};
+
+print (cond1 (3));

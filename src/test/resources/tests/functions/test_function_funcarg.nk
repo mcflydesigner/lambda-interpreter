@@ -1,0 +1,9 @@
+-| "std";
+
+let int_twice = /\ s:Int. {
+    print (s + s);
+};
+
+/\ f: (Int -> Int). {
+    let s = 15 in f (s);
+} (int_twice);

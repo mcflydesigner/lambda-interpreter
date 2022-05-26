@@ -1,0 +1,6 @@
+-| "std";
+
+let x = "Test name";
+
+lettype User = String in
+(let f = /\u: User. { print(x); } in f (x));

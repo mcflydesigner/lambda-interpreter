@@ -1,0 +1,8 @@
+-| "std";
+
+let a = (2 + 3) * 10;
+// output: 50
+print(a);
+let b = (((4 + (5+1))*3)*4)/2;
+// output: 44
+print (b);

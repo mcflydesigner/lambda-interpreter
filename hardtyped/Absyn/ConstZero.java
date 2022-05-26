@@ -2,14 +2,24 @@
 
 package hardtyped.Absyn;
 
+<<<<<<<< HEAD:bnf/hardtyped/Absyn/AnyType.java
+public class AnyType  extends Type {
+  public int line_num, col_num, offset;
+  public AnyType() { }
+========
 public class ConstZero  extends Expr {
   public ConstZero() { }
+>>>>>>>> main:hardtyped/Absyn/ConstZero.java
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
   public boolean equals(java.lang.Object o) {
     if (this == o) return true;
+<<<<<<<< HEAD:bnf/hardtyped/Absyn/AnyType.java
+    if (o instanceof hardtyped.Absyn.AnyType) {
+========
     if (o instanceof hardtyped.Absyn.ConstZero) {
+>>>>>>>> main:hardtyped/Absyn/ConstZero.java
       return true;
     }
     return false;

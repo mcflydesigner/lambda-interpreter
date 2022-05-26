@@ -1,0 +1,5 @@
+-| "std";
+
+let n: Int = readInt();
+
+print (n + 5);

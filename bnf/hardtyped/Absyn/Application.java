@@ -3,8 +3,10 @@
 package hardtyped.Absyn;
 
 public class Application  extends Expr {
-  public final Expr expr_1, expr_2;
-  public Application(Expr p1, Expr p2) { expr_1 = p1; expr_2 = p2; }
+  public final Expr expr_;
+  public final ListExprSequence listexprsequence_;
+  public int line_num, col_num, offset;
+  public Application(Expr p1, ListExprSequence p2) { expr_ = p1; listexprsequence_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -12,13 +14,13 @@ public class Application  extends Expr {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.Application) {
       hardtyped.Absyn.Application x = (hardtyped.Absyn.Application)o;
-      return this.expr_1.equals(x.expr_1) && this.expr_2.equals(x.expr_2);
+      return this.expr_.equals(x.expr_) && this.listexprsequence_.equals(x.listexprsequence_);
     }
     return false;
   }
 
   public int hashCode() {
-    return 37*(this.expr_1.hashCode())+this.expr_2.hashCode();
+    return 37*(this.expr_.hashCode())+this.listexprsequence_.hashCode();
   }
 
 

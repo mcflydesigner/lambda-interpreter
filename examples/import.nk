@@ -1,0 +1,14 @@
+// Basic imports
+
+-| "math";
+-| "std";
+
+let n: Integer = 5;
+let r: Real = 10.5;
+
+// Function from "std" lib
+print(n);
+
+// Function from "math" lib
+print(sqrt(r));
+print(abs(-2.0));

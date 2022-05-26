@@ -1,0 +1,12 @@
+// Correct declarations
+
+let n: Integer = 5;
+let r: Real = 10.5;
+let b: Bool = true;
+let b1: Bool = true and false;
+let s: String = "Simple string";
+let u: Unit = unit;
+
+// Auto-inference of type
+let n1 = 5;
+let r1 = 10.5;

@@ -1,0 +1,5 @@
+-| "std";
+
+let concat = /\ x: Int. y: Int. {
+    print (x + y);
+} (45, 45);

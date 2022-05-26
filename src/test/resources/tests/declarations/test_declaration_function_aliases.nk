@@ -1,0 +1,11 @@
+-| "std";
+
+lettype function_alias = (Int -> Int);
+
+let square = /\ n:Int. {
+    n*n;
+};
+
+/\ x:Int. f:function_alias. {
+    print (f (x));
+} (5, square);

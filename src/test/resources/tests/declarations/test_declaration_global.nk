@@ -1,0 +1,7 @@
+-| "std";
+
+// global variable declaration
+let y: Real = 10.2;
+
+// output: 10.2
+print (y);

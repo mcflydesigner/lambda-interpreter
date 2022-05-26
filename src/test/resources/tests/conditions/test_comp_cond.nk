@@ -1,0 +1,15 @@
+-| "std";
+
+let cond1 =
+/\ n: Int. {
+    | ((n > 1) and (n < 5)): (n + 5) * 10
+    | ((n >= 10) or (n < 0)): (n * 3) + 5
+    |:  n * (n+1);
+};
+
+// output: 80
+print (cond1 (3));
+// output: 42
+print (cond1 (6));
+// output: 35
+print (cond1 (10));

@@ -1,0 +1,6 @@
+-| "std";
+
+let square = /\ n: Int. {
+    n*n;
+};
+print (square (5));
