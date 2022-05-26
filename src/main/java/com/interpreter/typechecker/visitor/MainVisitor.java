@@ -9,6 +9,8 @@ import hardtyped.Absyn.*;
 
 public class MainVisitor {
 
+    public boolean printTypes = false;
+
     public static final ImportManager importManager = new ImportManagerImpl();
 
     public OpVisitor opVisitor = new OpVisitor(this);
@@ -20,7 +22,7 @@ public class MainVisitor {
     public IfVisitor ifVisitor = new IfVisitor(this);
 
     public void visit(ListExpr exprs) {
-        TypeContext ctx = new TypeContext();
+        TypeContext ctx = new TypeContext(printTypes);
         exprs.forEach(expr -> expr.accept(exprVisitor, ctx));
     }
 }

@@ -7,23 +7,23 @@
 //lettype Vec2d = {x1:Real, x2:Real};
 //lettype Vec3d = {x1:Real, x2:Real, x3:Real};
 
-///\u:Unit. {
-//    | (true): {x1=1.0, x2=0.0}
-//    | (false): {x1=1.0, x2=0.0, x3=3.0}
-//    |: {x1=0.0};
-//} -> {};
+/\u:Unit. {
+    | (true): {x1=1.0, x2=0.0}
+    | (false): {x1=1.0, x2=0.0, x3=3.0}
+    |: {x1=0.0};
+} -> {};
 
 //lettype NestedRecord = {x1:{a:Int, b:Int}, x2:Int, x3:Int};
 
 //let x: NestedRecord = { x1 = {a = 1, b = 2} , x2 = 2 , x3 = 3 };
 -| "std";
 
-/\ n: Int. {
-    | ((n > 1) and (n < 5)): (
-        let x = (n + 5) * 10 in x*x;
-        print (n); // returns unit
-    )
-    | ((n >= 10) or (n < 0)): (n * 3) + 5 // returns int
-    |:  n * (n+1); //returns int
-};
+///\ n: Int. {
+//    | ((n > 1) and (n < 5)): (
+//        let x = (n + 5) * 10 in x*x;
+//       print (n); // returns unit
+//    )
+//    | ((n >= 10) or (n < 0)): (n * 3) + 5 // returns int
+//    |:  n * (n+1); //returns int
+//};
 

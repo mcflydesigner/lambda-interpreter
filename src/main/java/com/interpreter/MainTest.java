@@ -10,6 +10,7 @@ import hardtyped.Test;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Optional;
 
 /*
     * For tests only.
@@ -26,7 +27,7 @@ public class MainTest {
         PrintStream printOutputStream = new PrintStream(outputStream);
 
         try {
-            Test t = new Test(new String[0]);
+            Test t = new Test(Optional.empty());
             ListExpr ast = t.parse();
 
             // Ignore everything above produced by basic BNF

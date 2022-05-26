@@ -93,7 +93,7 @@ public class ImportManagerImpl implements ImportManager, Serializable {
             ByteArrayOutputStream defOutput = new ByteArrayOutputStream();
             System.setIn(defInput);
             System.setOut(new PrintStream(defOutput));
-            Test t = new Test(new String[0]);
+            Test t = new Test(Optional.empty());
             try {
                 ListExpr ast = t.parse();
 

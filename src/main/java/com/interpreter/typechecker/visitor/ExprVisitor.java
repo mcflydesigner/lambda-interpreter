@@ -8,6 +8,7 @@ import com.interpreter.typechecker.types.RecordType;
 import com.interpreter.typechecker.types.TypeContext;
 import com.interpreter.typechecker.types.ExprType;
 import hardtyped.Absyn.*;
+import hardtyped.PrettyPrinter;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
 
     private void processImport(String lib, Optional<String> alias, TypeContext ctx) {
         Map<String, List<Expr>> defs = MainVisitor.importManager.loadModuleDefinitions(lib, null);
-        TypeContext libContext = new TypeContext();
+        TypeContext libContext = new TypeContext(false);
         Map<String, ExprType> parsedDefs = new HashMap<>();
         for (var e : defs.entrySet()) {
             parsedDefs.put(e.getKey(), visitExprs(e.getValue(), libContext));
@@ -52,10 +53,14 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
 
     private ExprType visitExprs(List<Expr> exprs, TypeContext ctx) {
         for (int i = 0; i < exprs.size() - 1; i++) {
-            System.out.println(exprs.get(i).accept(this, ctx));
+            if (ctx.isPrintTypes())
+                System.out.println(String.format("%s: %s\n------", PrettyPrinter.print(exprs.get(i)),
+                        exprs.get(i).accept(this, ctx).toString()));
         }
         ExprType ret = exprs.get(exprs.size() - 1).accept(this, ctx);
-        System.out.println(ret);
+        if (ctx.isPrintTypes())
+            System.out.println(String.format("%s: %s\n------", PrettyPrinter.print(exprs.get(exprs.size() - 1)),
+                ret.toString()));
         return ret;
     }
 

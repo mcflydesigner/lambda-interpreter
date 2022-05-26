@@ -47,19 +47,19 @@ public class Test
   hardtypedLexer l;
   hardtypedParser p;
 
-  public Test(String[] args)
+  public Test(Optional<String> arg)
   {
     try
     {
       Reader input;
-      if (args.length == 0) input = new InputStreamReader(System.in);
-      else input = new FileReader(args[0]);
+      if (arg.isEmpty()) input = new InputStreamReader(System.in);
+      else input = new FileReader(arg.get());
       l = new hardtypedLexer(new ANTLRInputStream(input));
               l.addErrorListener(new BNFCErrorListener());
     }
     catch(IOException e)
     {
-      System.err.println("Error: File not found: " + args[0]);
+      System.err.println("Error: File not found: " + arg.orElse("System.in"));
       System.exit(1);
     }
     p = new hardtypedParser(new CommonTokenStream(l));
@@ -88,9 +88,9 @@ public class Test
     return ast;
   }
 
-  public static void main(String args[]) throws Exception
+  public static void main(String[] args) throws Exception
   {
-    Test t = new Test(args);
+    Test t = (args.length > 0) ? new Test(Optional.of(args[args.length-1])) : new Test(Optional.empty());
     try
     {
       t.parse();

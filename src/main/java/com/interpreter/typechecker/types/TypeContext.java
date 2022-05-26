@@ -10,6 +10,15 @@ import java.util.*;
 
 public class TypeContext {
 
+    private final boolean printTypes;
+
+    public TypeContext(boolean printTypes) {
+        this.printTypes = printTypes;
+    }
+    public boolean isPrintTypes() {
+        return printTypes;
+    }
+
     private final Deque<IdTypePair> variables = new ArrayDeque<>();
     private final Deque<IdTypePair> userTypes = new ArrayDeque<>();
     private final Map<String, ExprType> globalVariables = new HashMap<>();

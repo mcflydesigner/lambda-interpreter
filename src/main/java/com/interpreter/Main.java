@@ -9,16 +9,29 @@ import com.interpreter.typechecker.TypeCheckerImpl;
 import hardtyped.Absyn.ListExpr;
 import hardtyped.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 public class Main {
 
     public static final ImportManager importManager = new ImportManagerImpl();
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try  {
-            Test t = new Test(args);
+            List<String> argss = Arrays.asList(args);
+            boolean printTypes = argss.contains("--print-types");
+            Optional<String> fn;
+            if (argss.get(argss.size()-1).startsWith("--")) {
+                fn = Optional.empty();
+            } else {
+                fn = Optional.of(argss.get(argss.size()-1));
+            }
+            Test t = new Test(fn);
             ListExpr ast = t.parse();
 
             TypeChecker typeChecker = new TypeCheckerImpl();
+            typeChecker.setPrintTypes(printTypes);
             typeChecker.typeCheck(ast);
 
             System.out.println("Program output:");
