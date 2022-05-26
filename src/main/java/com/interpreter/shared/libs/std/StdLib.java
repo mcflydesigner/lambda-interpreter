@@ -133,17 +133,17 @@ public class StdLib implements LibInterface {
     @Override
     public Map<String, SerializableFunction<Environment, Value>> getFunctions() {
         Map<String, SerializableFunction<Environment, Value>> map = new HashMap<>();
-        map.put("printS", this::print);
-        map.put("readIntS", this::readInt);
-        map.put("readRealS", this::readReal);
-        map.put("readBoolS", this::readBool);
-        map.put("readStringS", this::readString);
-        map.put("intToRealS", this::intToReal);
-        map.put("intToStringS", this::intToString);
-        map.put("realToIntS", this::realToInt);
-        map.put("realToStringS", this::realToString);
-        map.put("stringToRealS", this::stringToReal);
-        map.put("stringToIntS", this::stringToInt);
+        map.put("print", this::print);
+        map.put("readInt", this::readInt);
+        map.put("readReal", this::readReal);
+        map.put("readBool", this::readBool);
+        map.put("readString", this::readString);
+        map.put("intToReal", this::intToReal);
+        map.put("intToString", this::intToString);
+        map.put("realToInt", this::realToInt);
+        map.put("realToString", this::realToString);
+        map.put("stringToReal", this::stringToReal);
+        map.put("stringToInt", this::stringToInt);
 
         return map;
     }
@@ -151,11 +151,11 @@ public class StdLib implements LibInterface {
     @Override
     public Map<String, String> getDefinitions() {
         Map<String, String> map = new HashMap<>();
-        map.put("printS", StdLibDefinitions.PRINT_DEFINITION);
-        map.put("readIntS", StdLibDefinitions.READ_INT);
-        map.put("readRealS", StdLibDefinitions.READ_REAL);
-        map.put("readBoolS", StdLibDefinitions.READ_BOOL);
-        map.put("readStringS", StdLibDefinitions.READ_STRING);
+        map.put("print", StdLibDefinitions.PRINT_DEFINITION);
+        map.put("readInt", StdLibDefinitions.READ_INT);
+        map.put("readReal", StdLibDefinitions.READ_REAL);
+        map.put("readBool", StdLibDefinitions.READ_BOOL);
+        map.put("readString", StdLibDefinitions.READ_STRING);
 
         return map;
     }

@@ -19,11 +19,6 @@ public abstract class Expr implements java.io.Serializable {
     public R visit(hardtyped.Absyn.FunctionApplication p, A arg);
     public R visit(hardtyped.Absyn.FunctionWithReturnType p, A arg);
     public R visit(hardtyped.Absyn.Application p, A arg);
-    public R visit(hardtyped.Absyn.PrintFunction p, A arg);
-    public R visit(hardtyped.Absyn.ReadRealFunction p, A arg);
-    public R visit(hardtyped.Absyn.ReadIntFunction p, A arg);
-    public R visit(hardtyped.Absyn.ReadStringFunction p, A arg);
-    public R visit(hardtyped.Absyn.ReadBoolFunction p, A arg);
     public R visit(hardtyped.Absyn.ArrowExpr p, A arg);
     public R visit(hardtyped.Absyn.DotExpr p, A arg);
     public R visit(hardtyped.Absyn.IfStmt p, A arg);

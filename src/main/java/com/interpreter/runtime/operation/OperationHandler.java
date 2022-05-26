@@ -149,14 +149,18 @@ public class OperationHandler {
 
     private static Value handleBinaryAddition(Value firstOp, Value secondOp) {
 
-        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL);
+        Set<ValueType> allowedValueTypes = Set.of(ValueType.INT, ValueType.REAL, ValueType.STRING);
         assertOperandsType("+", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
             return Value.ofInt((Integer) firstOp.getValue() + (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
-        return Value.ofReal((Double) firstOp.getValue() + (Double) secondOp.getValue(), secondOp.getLineColPair());
+        if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
+            return Value.ofReal((Double) firstOp.getValue() + (Double) secondOp.getValue(), secondOp.getLineColPair());
+        }
+
+        return Value.ofString((String) firstOp.getValue() + (String) secondOp.getValue(), secondOp.getLineColPair());
     }
 
     private static Value handleBinarySubtraction(Value firstOp, Value secondOp) {

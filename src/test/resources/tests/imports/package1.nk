@@ -1,3 +1,0 @@
-let square = /\ n: Integer. {
-    n*n;
-};

@@ -226,33 +226,6 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     }
 
     @Override
-    public Value visit(PrintFunction p, Environment arg) {
-
-        IoOperationHandler.handlePrint(p.expr_.accept(this, arg));
-        return Value.ofUnit(LineColPair.of(p.line_num, p.col_num));
-    }
-
-    @Override
-    public Value visit(ReadRealFunction p, Environment arg) {
-        return null;
-    }
-
-    @Override
-    public Value visit(ReadIntFunction p, Environment arg) {
-        return null;
-    }
-
-    @Override
-    public Value visit(ReadStringFunction p, Environment arg) {
-        return null;
-    }
-
-    @Override
-    public Value visit(ReadBoolFunction p, Environment arg) {
-        return null;
-    }
-
-    @Override
     public Value visit(ArrowExpr p, Environment arg) {
         return null;
     }

@@ -1,3 +1,0 @@
-let twice = /\ n: Integer. {
-    n*2;
-};

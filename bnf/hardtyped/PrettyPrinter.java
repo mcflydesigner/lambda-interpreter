@@ -434,56 +434,6 @@ public class PrettyPrinter
        render("}");
        if (_i_ > 1) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.PrintFunction)
-    {
-       hardtyped.Absyn.PrintFunction _printfunction = (hardtyped.Absyn.PrintFunction) foo;
-       if (_i_ > 1) render(_L_PAREN);
-       pp(_printfunction.print_, 0);
-       render("(");
-       pp(_printfunction.expr_, 0);
-       render(")");
-       if (_i_ > 1) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.ReadRealFunction)
-    {
-       hardtyped.Absyn.ReadRealFunction _readrealfunction = (hardtyped.Absyn.ReadRealFunction) foo;
-       if (_i_ > 1) render(_L_PAREN);
-       pp(_readrealfunction.readreal_, 0);
-       render("(");
-       pp(_readrealfunction.listexprsequence_, 0);
-       render(")");
-       if (_i_ > 1) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.ReadIntFunction)
-    {
-       hardtyped.Absyn.ReadIntFunction _readintfunction = (hardtyped.Absyn.ReadIntFunction) foo;
-       if (_i_ > 1) render(_L_PAREN);
-       pp(_readintfunction.readint_, 0);
-       render("(");
-       pp(_readintfunction.listexprsequence_, 0);
-       render(")");
-       if (_i_ > 1) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.ReadStringFunction)
-    {
-       hardtyped.Absyn.ReadStringFunction _readstringfunction = (hardtyped.Absyn.ReadStringFunction) foo;
-       if (_i_ > 1) render(_L_PAREN);
-       pp(_readstringfunction.readstring_, 0);
-       render("(");
-       pp(_readstringfunction.listexprsequence_, 0);
-       render(")");
-       if (_i_ > 1) render(_R_PAREN);
-    }
-    else     if (foo instanceof hardtyped.Absyn.ReadBoolFunction)
-    {
-       hardtyped.Absyn.ReadBoolFunction _readboolfunction = (hardtyped.Absyn.ReadBoolFunction) foo;
-       if (_i_ > 1) render(_L_PAREN);
-       pp(_readboolfunction.readbool_, 0);
-       render("(");
-       pp(_readboolfunction.listexprsequence_, 0);
-       render(")");
-       if (_i_ > 1) render(_R_PAREN);
-    }
     else     if (foo instanceof hardtyped.Absyn.FunctionApplication)
     {
        hardtyped.Absyn.FunctionApplication _functionapplication = (hardtyped.Absyn.FunctionApplication) foo;
@@ -1141,59 +1091,6 @@ public class PrettyPrinter
        render("]");
        render("[");
        sh(_function.listexpr_);
-       render("]");
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.PrintFunction)
-    {
-       hardtyped.Absyn.PrintFunction _printfunction = (hardtyped.Absyn.PrintFunction) foo;
-       render("(");
-       render("PrintFunction");
-       sh(_printfunction.print_);
-       sh(_printfunction.expr_);
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.ReadRealFunction)
-    {
-       hardtyped.Absyn.ReadRealFunction _readrealfunction = (hardtyped.Absyn.ReadRealFunction) foo;
-       render("(");
-       render("ReadRealFunction");
-       sh(_readrealfunction.readreal_);
-       render("[");
-       sh(_readrealfunction.listexprsequence_);
-       render("]");
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.ReadIntFunction)
-    {
-       hardtyped.Absyn.ReadIntFunction _readintfunction = (hardtyped.Absyn.ReadIntFunction) foo;
-       render("(");
-       render("ReadIntFunction");
-       sh(_readintfunction.readint_);
-       render("[");
-       sh(_readintfunction.listexprsequence_);
-       render("]");
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.ReadStringFunction)
-    {
-       hardtyped.Absyn.ReadStringFunction _readstringfunction = (hardtyped.Absyn.ReadStringFunction) foo;
-       render("(");
-       render("ReadStringFunction");
-       sh(_readstringfunction.readstring_);
-       render("[");
-       sh(_readstringfunction.listexprsequence_);
-       render("]");
-       render(")");
-    }
-    if (foo instanceof hardtyped.Absyn.ReadBoolFunction)
-    {
-       hardtyped.Absyn.ReadBoolFunction _readboolfunction = (hardtyped.Absyn.ReadBoolFunction) foo;
-       render("(");
-       render("ReadBoolFunction");
-       sh(_readboolfunction.readbool_);
-       render("[");
-       sh(_readboolfunction.listexprsequence_);
        render("]");
        render(")");
     }
