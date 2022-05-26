@@ -1,6 +1,6 @@
 package com.interpreter.typechecker.visitor;
 
-import com.interpreter.exception.IllegalArgumentsOperationException;
+import com.interpreter.shared.exceptions.TypeCheckException;
 import com.interpreter.typechecker.types.TypeContext;
 import com.interpreter.typechecker.types.ExprType;
 import hardtyped.Absyn.*;
@@ -23,7 +23,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
     private ExprType checkForEquality(Op p, ExprType left, ExprType right, Set<ExprType> allowed, int line_num, int col_num) {
         boolean wellTyped = Objects.equals(left, right) && allowed.containsAll(List.of(left, right));
         if (!wellTyped) {
-            throw new IllegalArgumentsOperationException(String.format("Illegal types for the operation %s at %d, %d",
+            throw new TypeCheckException(String.format("Illegal types for the operation %s at %d, %d",
                     PrettyPrinter.print(p), line_num, col_num));
         }
         return left;
@@ -32,7 +32,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
     private ExprType checkIfAllowed(Op p, ExprType left, Set<ExprType> allowed, int line_num, int col_num) {
         boolean wellTyped = allowed.contains(left);
         if (!wellTyped) {
-            throw new IllegalArgumentsOperationException(String.format("Illegal type for the operation %s at %d, %d",
+            throw new TypeCheckException(String.format("Illegal type for the operation %s at %d, %d",
                     PrettyPrinter.print(p), line_num, col_num));
         }
         return left;

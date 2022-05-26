@@ -4,6 +4,8 @@ import com.interpreter.runtime.Interpreter;
 import com.interpreter.runtime.InterpreterImpl;
 import com.interpreter.runtime.imports.ImportManager;
 import com.interpreter.runtime.imports.ImportManagerImpl;
+import com.interpreter.typechecker.TypeChecker;
+import com.interpreter.typechecker.TypeCheckerImpl;
 import hardtyped.Absyn.ListExpr;
 import hardtyped.Test;
 
@@ -15,6 +17,9 @@ public class Main {
         try  {
             Test t = new Test(args);
             ListExpr ast = t.parse();
+
+            TypeChecker typeChecker = new TypeCheckerImpl();
+            typeChecker.typeCheck(ast);
 
             System.out.println("Program output:");
             Interpreter interpreter = new InterpreterImpl();

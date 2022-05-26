@@ -1,6 +1,8 @@
 package com.interpreter.typechecker.types;
 
-import com.interpreter.exception.IdentifierNotFoundException;
+
+import com.interpreter.shared.exceptions.IdentifierNotFoundException;
+import com.interpreter.shared.exceptions.TypeCheckException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +25,7 @@ public class RecordType extends ExprType {
 
     public ExprType getRecordElem(String name) {
         if (!recordElems.containsKey(name)) {
-            throw new IdentifierNotFoundException(String.format("Record has no label by name %s", name));
+            throw new TypeCheckException(String.format("Record has no label by name %s", name));
         }
         return recordElems.get(name);
     }

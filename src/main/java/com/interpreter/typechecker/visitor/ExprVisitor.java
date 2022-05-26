@@ -1,19 +1,15 @@
 package com.interpreter.typechecker.visitor;
 
-import com.interpreter.exception.IllegalArgumentsOperationException;
-import com.interpreter.exception.TypeCheckException;
+import com.interpreter.shared.exceptions.LineColPair;
+import com.interpreter.shared.exceptions.TypeCheckException;
 import com.interpreter.typechecker.types.FunctionType;
 import com.interpreter.typechecker.types.IdTypePair;
 import com.interpreter.typechecker.types.RecordType;
 import com.interpreter.typechecker.types.TypeContext;
 import com.interpreter.typechecker.types.ExprType;
 import hardtyped.Absyn.*;
-import org.antlr.v4.runtime.misc.Pair;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
         ExprSequence.Visitor<ExprType, TypeContext> {
@@ -23,26 +19,44 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
         this.mainVisitor = mainVisitor;
     }
 
+
+    private void processImport(String lib, Optional<String> alias, TypeContext ctx) {
+        Map<String, List<Expr>> defs = MainVisitor.importManager.loadModuleDefinitions(lib, null);
+        TypeContext libContext = new TypeContext();
+        Map<String, ExprType> parsedDefs = new HashMap<>();
+        for (var e : defs.entrySet()) {
+            parsedDefs.put(e.getKey(), visitExprs(e.getValue(), libContext));
+        }
+        if (alias.isPresent()) {
+            ctx.addLib(alias.get(), parsedDefs);
+        } else {
+            ctx.addGlobalVariables(parsedDefs);
+        }
+    }
     @Override
-    public ExprType visit(Import p, TypeContext arg) {
-        throw new UnsupportedOperationException();
+    public ExprType visit(Import p, TypeContext ctx) {
+        processImport(p.string_, Optional.of(p.ident_), ctx);
+        return ExprType.unit();
     }
 
     @Override
-    public ExprType visit(Import1 p, TypeContext arg) {
-        throw new UnsupportedOperationException();
+    public ExprType visit(Import1 p, TypeContext ctx) {
+        processImport(p.string_, Optional.empty(), ctx);
+        return ExprType.unit();
     }
 
     @Override
-    public ExprType visit(ArrowExpr p, TypeContext arg) {
+    public ExprType visit(ArrowExpr p, TypeContext ctx) {
         throw new UnsupportedOperationException();
     }
 
     private ExprType visitExprs(List<Expr> exprs, TypeContext ctx) {
         for (int i = 0; i < exprs.size() - 1; i++) {
-            exprs.get(i).accept(this, ctx);
+            System.out.println(exprs.get(i).accept(this, ctx));
         }
-        return exprs.get(exprs.size() - 1).accept(this, ctx);
+        ExprType ret = exprs.get(exprs.size() - 1).accept(this, ctx);
+        System.out.println(ret);
+        return ret;
     }
 
     @Override
@@ -197,12 +211,6 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
     }
 
     @Override
-    public ExprType visit(PrintFunction p, TypeContext arg) {
-        p.expr_.accept(this, arg);
-        return ExprType.unit();
-    }
-
-    @Override
     public ExprType visit(ReadRealFunction p, TypeContext arg) {
         return ExprType.real();
     }
@@ -226,7 +234,7 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
     public ExprType visit(DotExpr p, TypeContext ctx) {
         ExprType actual = p.expr_.accept(this, ctx);
         if (!(actual instanceof RecordType rec)) {
-            throw new IllegalArgumentsOperationException(String.format("Not a record at %d, %d",
+            throw new TypeCheckException(String.format("Not a record at %d, %d",
                     p.line_num, p.col_num));
         }
         if (!rec.containsLabel(p.ident_)) {

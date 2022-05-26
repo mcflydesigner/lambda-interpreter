@@ -1,11 +1,15 @@
 package com.interpreter.typechecker.visitor;
 
+import com.interpreter.runtime.imports.ImportManager;
+import com.interpreter.runtime.imports.ImportManagerImpl;
 import com.interpreter.typechecker.types.TypeContext;
 import hardtyped.Absyn.*;
 
 
 
 public class MainVisitor {
+
+    public static final ImportManager importManager = new ImportManagerImpl();
 
     public OpVisitor opVisitor = new OpVisitor(this);
     public RecordVisitor recordVisitor = new RecordVisitor(this);

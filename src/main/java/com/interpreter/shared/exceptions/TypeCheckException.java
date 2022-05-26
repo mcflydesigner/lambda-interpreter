@@ -1,4 +1,4 @@
-package com.interpreter.exception;
+package com.interpreter.shared.exceptions;
 
 public class TypeCheckException extends RuntimeException {
 
