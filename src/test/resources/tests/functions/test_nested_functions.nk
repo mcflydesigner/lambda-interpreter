@@ -3,7 +3,6 @@
 /\ x: String. {
     let nested_func = /\ y: String. {
        print (y);
-    };
+    } in nested_func (x);
     print (x);
-    nested_func (x);
-} (2);
+} ("S");

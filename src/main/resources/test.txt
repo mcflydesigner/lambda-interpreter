@@ -1,3 +1,4 @@
 -| "std";
 
-printS ("test");
+print ("test");
+

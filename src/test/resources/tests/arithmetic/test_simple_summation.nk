@@ -1,5 +1,5 @@
 -| "std";
 
-let a = 5 + 2 + 4;
+let a = (5 + 2) + 4;
 // Expect 11
 print(a);

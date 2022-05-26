@@ -15,13 +15,13 @@ public class TestRecords {
     @Test
     public void testSimpleRecords() throws Exception {
         // String expected = "10\n25".trim();
-        InputStream inputStream = getInputStream(pathToTests + "test_simple_records.nk");
+        InputStream inputStream = getInputStream(pathToTests + "test_simple_record.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
         OutputStream outputStream = new ByteArrayOutputStream();
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "11.18".trim();
+        String expected = "6".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
@@ -29,7 +29,7 @@ public class TestRecords {
     }
 
     @Test
-    public void testRecords() throws Exception {
+    public void testRecordsSubtyping() throws Exception {
         // String expected = "10\n25".trim();
         InputStream inputStream = getInputStream(pathToTests + "test_record_subtyping.nk");
         OutputStream errorStream = new ByteArrayOutputStream();
@@ -37,7 +37,7 @@ public class TestRecords {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "11.18".trim();
+        String expected = "8.1".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);

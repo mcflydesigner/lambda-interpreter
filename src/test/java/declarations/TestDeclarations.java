@@ -68,7 +68,7 @@ public class TestDeclarations {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "10.5".trim();
+        String expected = "25".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);

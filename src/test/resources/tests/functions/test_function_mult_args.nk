@@ -1,5 +1,5 @@
 -| "std";
 
-let concat = /\ x: String. y: String. {
+let concat = /\ x: Int. y: Int. {
     print (x + y);
-} ("Hello,", "World!");
+} (45, 45);

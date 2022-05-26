@@ -3,12 +3,15 @@ lettype vec2d = {x1:Integer, x2:Integer};
 lettype vec3d = {x1:Integer, x2:Integer, x3:Integer};
 
 
-lettype func1 = vec3d -> vec2d;
+lettype func = vec3d -> vec3d;
+lettype subfunc = vec2d -> vec3d;
 
-lettype func2 = vec2d->vec3d;
+let switch2d: subfunc = /\ v2:vec2d. {
+    print({x1=v2.x2, x2=v2.x1});
+} -> vec3d;
 
-let v2:vec2d = {x1=1, x2=2};
 
-print (/\ v:vec2d. {
-    {x1=v.x1, x2=v.x2, x3=0};
-} (v2);)
+// {x1:Integer, x2:Integer} -> {x1:Integer, x2:Integer, x3:Integer}
+/\ f:func. {
+    let v2:vec2d = {x1=1, x2=2} in f (v2);
+} (switch2d);

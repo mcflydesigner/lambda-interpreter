@@ -1,12 +1,12 @@
 -| "std";
 
-let first_class_function = /\ x: String. {
-    /\ y: String. {
+let first_class_function = /\ x: Int. {
+    /\ y: Int. {
         x + y;
     };
 };
 
-let result_function = first_class_function ("Hello, ");
-print (result_function ("World!"));
+let result_function = first_class_function (2);
+print (result_function (2));
 // Output:
-// "Hello, World!"
+// 4
