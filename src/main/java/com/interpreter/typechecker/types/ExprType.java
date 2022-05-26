@@ -52,9 +52,6 @@ public class ExprType {
         }
         return resType;
     }
-    public static TypeVariable typeVariable() {
-        return new TypeVariable();
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -62,6 +59,10 @@ public class ExprType {
         if (o == null || getClass() != o.getClass()) return false;
         ExprType exprType = (ExprType) o;
         return type == exprType.type;
+    }
+
+    public boolean isSubtypeOf(ExprType that) {
+        return this.equals(that) || that.getType() == Type.ANY;
     }
 
     @Override
@@ -83,6 +84,5 @@ public class ExprType {
         RECORD,
         FUNCTION,
         ANY,
-        TYPEVAR
     }
 }

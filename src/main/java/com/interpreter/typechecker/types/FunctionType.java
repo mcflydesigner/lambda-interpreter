@@ -45,6 +45,31 @@ public class FunctionType extends ExprType {
         return list;
     }
 
+    public boolean isSubtypeOf(ExprType that) {
+        if (this == that || that.getType() == Type.ANY) {
+            return true;
+        }
+        if (!(that instanceof FunctionType other)) {
+            return false;
+        }
+        return other.from.isSubtypeOf(from) && to.isSubtypeOf(other.to);
+    }
+
+    public static ExprType calcReturnType(ExprType f, List<ExprType> args) {
+        if (!(f instanceof FunctionType)) return null;
+        ExprType retType = f;
+        for (var arg : args) {
+            if (!(retType instanceof FunctionType func)) {
+                return null;
+            }
+            if (!arg.isSubtypeOf(func.from)) {
+                return null;
+            }
+            retType = func.to;
+        }
+        return retType;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), from, to);

@@ -1,10 +1,8 @@
 package com.interpreter.typechecker.visitor;
 
-import com.interpreter.typechecker.types.TypeConstraint;
 import com.interpreter.typechecker.types.TypeContext;
 import hardtyped.Absyn.*;
 
-import java.util.List;
 
 
 public class MainVisitor {
@@ -20,10 +18,5 @@ public class MainVisitor {
     public void visit(ListExpr exprs) {
         TypeContext ctx = new TypeContext();
         exprs.forEach(expr -> expr.accept(exprVisitor, ctx));
-
-        List<TypeConstraint> constraints = ctx.getConstraints();
-        for (var c : constraints) {
-            System.out.println(c.toString());
-        }
     }
 }

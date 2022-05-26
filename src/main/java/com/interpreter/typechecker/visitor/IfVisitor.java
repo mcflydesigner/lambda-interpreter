@@ -8,8 +8,8 @@ import hardtyped.Absyn.If;
 import hardtyped.Absyn.IfExpr;
 import org.antlr.v4.runtime.misc.Pair;
 
-public class IfVisitor implements IfExpr.Visitor<Void, Pair<ExprType, TypeContext>>,
-        ElseExpr.Visitor<Void, Pair<ExprType, TypeContext>> {
+public class IfVisitor implements IfExpr.Visitor<ExprType, TypeContext>,
+        ElseExpr.Visitor<ExprType, TypeContext> {
 
     MainVisitor mainVisitor;
     public IfVisitor(MainVisitor mainVisitor) {
@@ -17,25 +17,15 @@ public class IfVisitor implements IfExpr.Visitor<Void, Pair<ExprType, TypeContex
     }
 
     @Override
-    public Void visit(Else p, Pair<ExprType, TypeContext> arg) {
-        ExprType retType = arg.a;
-        TypeContext ctx = arg.b;
-
-        ExprType actual = p.expr_.accept(mainVisitor.exprVisitor, ctx);
-        ctx.addSubtypeConstraint(actual, retType, p.line_num, p.col_num);
-        return null;
+    public ExprType visit(Else p, TypeContext ctx) {
+        return p.expr_.accept(mainVisitor.exprVisitor, ctx);
     }
 
     @Override
-    public Void visit(If p, Pair<ExprType, TypeContext> arg) {
-        ExprType retType = arg.a;
-        TypeContext ctx = arg.b;
-
+    public ExprType visit(If p, TypeContext ctx) {
         ExprType conditionType = p.expr_1.accept(mainVisitor.exprVisitor, ctx);
-        ctx.addEqualityConstraint(conditionType, ExprType.bool(), p.line_num, p.col_num);
+        mainVisitor.exprVisitor.checkForEquality(conditionType, ExprType.bool(), p.line_num, p.col_num);
 
-        ExprType actual = p.expr_2.accept(mainVisitor.exprVisitor, ctx);
-        ctx.addSubtypeConstraint(actual, retType, p.line_num, p.col_num);
-        return null;
+        return p.expr_2.accept(mainVisitor.exprVisitor, ctx);
     }
 }

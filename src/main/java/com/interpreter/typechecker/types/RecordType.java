@@ -23,7 +23,7 @@ public class RecordType extends ExprType {
 
     public ExprType getRecordElem(String name) {
         if (!recordElems.containsKey(name)) {
-            throw new IdentifierNotFoundException(String.format("Record has no field by name %s", name));
+            throw new IdentifierNotFoundException(String.format("Record has no label by name %s", name));
         }
         return recordElems.get(name);
     }
@@ -34,6 +34,25 @@ public class RecordType extends ExprType {
         if (!(o instanceof RecordType that)) return false;
         if (!super.equals(o)) return false;
         return Objects.equals(recordElems, that.recordElems);
+    }
+
+    public boolean isSubtypeOf(ExprType that) {
+        if (this == that || that.getType() == Type.ANY) {
+            return true;
+        }
+        if (!(that instanceof RecordType other)) {
+            return false;
+        }
+        for (var e : other.recordElems.entrySet()) {
+            if (!(recordElems.containsKey(e.getKey()) && recordElems.get(e.getKey()).isSubtypeOf(e.getValue()))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean containsLabel(String id) {
+        return recordElems.containsKey(id);
     }
 
     @Override

@@ -8,20 +8,10 @@ import java.util.*;
 
 public class TypeContext {
 
-    private final List<TypeConstraint> constraints = new ArrayList<>();
-
     private final Deque<IdTypePair> variables = new ArrayDeque<>();
     private final Deque<IdTypePair> userTypes = new ArrayDeque<>();
     private final Map<String, ExprType> globalVariables = new HashMap<>();
     private final Map<String, ExprType> globalUserTypes = new HashMap<>();
-    public void addEqualityConstraint(ExprType x, ExprType t, int line_num, int col_num) {
-        constraints.add(new TypeConstraint(x, t, line_num, col_num));
-        constraints.add(new TypeConstraint(t, x, line_num, col_num));
-    }
-
-    public void addSubtypeConstraint(ExprType x, ExprType t, int line_num, int col_num) {
-        constraints.add(new TypeConstraint(x, t, line_num, col_num));
-    }
 
     public void addGlobalType(String s, ExprType type) {
         globalVariables.put(s, type);
@@ -63,10 +53,6 @@ public class TypeContext {
             return map.get(id);
         }
         throw new IdentifierNotFoundException(String.format("Variable or type %s is not declared", id));
-    }
-
-    public List<TypeConstraint> getConstraints() {
-        return constraints;
     }
 
 }

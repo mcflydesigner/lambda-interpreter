@@ -1,7 +1,10 @@
 package com.interpreter.typechecker.visitor;
 
+import com.interpreter.exception.IllegalArgumentsOperationException;
+import com.interpreter.exception.TypeCheckException;
 import com.interpreter.typechecker.types.FunctionType;
 import com.interpreter.typechecker.types.IdTypePair;
+import com.interpreter.typechecker.types.RecordType;
 import com.interpreter.typechecker.types.TypeContext;
 import com.interpreter.typechecker.types.ExprType;
 import hardtyped.Absyn.*;
@@ -52,13 +55,28 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
         return ctx.getType(p.ident_);
     }
 
+
+    public void checkForSubtype(ExprType left, ExprType right, int line_num, int col_num) {
+        if (!left.isSubtypeOf(right)) {
+            throw new TypeCheckException(String.format("%s is not a subtype of %s at %d, %d",
+                    left.toString(), right.toString(), line_num, col_num));
+        }
+    }
+    public void checkForEquality(ExprType left, ExprType right, int line_num, int col_num) {
+        if (!left.equals(right)) {
+            throw new TypeCheckException(String.format("%s is not equal to %s at %d, %d",
+                    left.toString(), right.toString(), line_num, col_num));
+        }
+    }
     @Override
     public ExprType visit(LetVariable p, TypeContext ctx) {
         IdTypePair pair = p.vardec_.accept(mainVisitor.varDecVisitor, ctx);
         ExprType actualType = p.expr_.accept(mainVisitor.exprVisitor, ctx);
-        ctx.addSubtypeConstraint(actualType, pair.b, p.line_num, p.col_num);
+        if (pair.b != null) {
+            checkForSubtype(actualType, pair.b, p.line_num, p.col_num);
+        }
 
-        ctx.addGlobalType(pair.a, pair.b);
+        ctx.addGlobalType(pair.a, actualType);
         return ExprType.unit();
     }
 
@@ -66,9 +84,11 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
     public ExprType visit(LetInference p, TypeContext ctx) {
         IdTypePair pair = p.vardec_.accept(mainVisitor.varDecVisitor, ctx);
         ExprType actualType = p.expr_1.accept(mainVisitor.exprVisitor, ctx);
-        ctx.addSubtypeConstraint(actualType, pair.b, p.line_num, p.col_num);
+        if (pair.b != null) {
+            checkForSubtype(actualType, pair.b, p.line_num, p.col_num);
+        }
 
-        ctx.addType(pair.a, pair.b);
+        ctx.addType(pair.a, actualType);
         ExprType retType = p.expr_2.accept(mainVisitor.exprVisitor, ctx);
         ctx.removeType();
 
@@ -78,12 +98,12 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
     @Override
     public ExprType visit(LetRec p, TypeContext ctx) {
         IdTypePair pair = p.vardec_.accept(mainVisitor.varDecVisitor, ctx);
-        if (pair.b.getType() == ExprType.Type.TYPEVAR) {
+        if (pair.b == null) {
             throw new IllegalStateException("Type for recursive functions should be specified. Recursive types are not allowed");
         }
         ctx.addGlobalType(pair.a, pair.b);
         ExprType actualType = p.expr_.accept(mainVisitor.exprVisitor, ctx);
-        ctx.addSubtypeConstraint(actualType, pair.b, p.line_num, p.col_num);
+        checkForSubtype(actualType, pair.b, p.line_num, p.col_num);
 
         return ExprType.unit();
     }
@@ -91,12 +111,12 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
     @Override
     public ExprType visit(LetRecInference p, TypeContext ctx) {
         IdTypePair pair = p.vardec_.accept(mainVisitor.varDecVisitor, ctx);
-        if (pair.b.getType() == ExprType.Type.TYPEVAR) {
+        if (pair.b == null) {
             throw new IllegalStateException("Type for recursive functions should be specified. Recursive types are not allowed");
         }
         ctx.addType(pair.a, pair.b);
         ExprType actualType = p.expr_1.accept(mainVisitor.exprVisitor, ctx);
-        ctx.addSubtypeConstraint(actualType, pair.b, p.line_num, p.col_num);
+        checkForSubtype(actualType, pair.b, p.line_num, p.col_num);
         ExprType retType = p.expr_2.accept(mainVisitor.exprVisitor, ctx);
         ctx.removeType();
 
@@ -133,7 +153,10 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
         ExprType retType = visitExprs(exprs, ctx);
         args.forEach(arg -> ctx.removeType());
 
-        ctx.addSubtypeConstraint(retType, declaredType, line_num, col_num);
+        if (declaredType != null) {
+            checkForSubtype(retType, declaredType, line_num, col_num);
+            return declaredType;
+        }
 
         List<ExprType> funType = new ArrayList<>(args.stream().map(p -> p.b).toList());
         funType.add(retType);
@@ -142,12 +165,15 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
 
     @Override
     public ExprType visit(Function p, TypeContext ctx) {
-        return visitFunction(p.listfuncarg_, p.listexpr_, ExprType.typeVariable(), ctx, p.line_num, p.col_num);
+        return visitFunction(p.listfuncarg_, p.listexpr_, null, ctx, p.line_num, p.col_num);
     }
 
     @Override
     public ExprType visit(FunctionApplication p, TypeContext ctx) {
         Application app = new Application(new Function(p.listfuncarg_, p.listexpr_), p.listexprsequence_);
+        app.line_num = p.line_num;
+        app.col_num = p.col_num;
+        app.offset = p.offset;
         return app.accept(this, ctx);
     }
 
@@ -161,18 +187,13 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
     public ExprType visit(Application p, TypeContext ctx) {
         List<ExprType> args = new ArrayList<>();
         p.listexprsequence_.forEach(expr -> args.add(expr.accept(this, ctx)));
-
-        List<ExprType> funcTypes = new ArrayList<>(args.stream().map(a -> (ExprType) ExprType.typeVariable()).toList());
-        for (int i = 0; i < args.size(); i++) {
-            ctx.addSubtypeConstraint(args.get(i), funcTypes.get(i), p.line_num, p.col_num);
-        }
-
-        funcTypes.add(ExprType.typeVariable());
-        ExprType funType = ExprType.functionFromList(funcTypes);
         ExprType applicantType = p.expr_.accept(this, ctx);
-        ctx.addSubtypeConstraint(applicantType, funType, p.line_num, p.col_num);
-
-        return funcTypes.get(funcTypes.size()-1);
+        ExprType retType = FunctionType.calcReturnType(applicantType, args);
+        if (retType == null) {
+            throw new TypeCheckException(String.format("Function of type %s is not applicable to arguments: %s at %d, %d",
+                    applicantType.toString(), args.toString(), p.line_num, p.col_num));
+        }
+        return retType;
     }
 
     @Override
@@ -203,19 +224,36 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
 
     @Override
     public ExprType visit(DotExpr p, TypeContext ctx) {
-        ExprType retType = ExprType.typeVariable();
         ExprType actual = p.expr_.accept(this, ctx);
-        ctx.addSubtypeConstraint(actual, ExprType.record(List.of(new IdTypePair(p.ident_, retType))),
-                p.line_num, p.col_num);
-        return retType;
+        if (!(actual instanceof RecordType rec)) {
+            throw new IllegalArgumentsOperationException(String.format("Not a record at %d, %d",
+                    p.line_num, p.col_num));
+        }
+        if (!rec.containsLabel(p.ident_)) {
+            throw new TypeCheckException(String.format("Record does not contain label %s at %d, %d",
+                    p.ident_, p.line_num, p.col_num));
+        }
+        return rec.getRecordElem(p.ident_);
     }
 
     @Override
     public ExprType visit(IfStmt p, TypeContext ctx) {
-        ExprType retType = ExprType.typeVariable();
-        p.listifexpr_.forEach(iff -> iff.accept(mainVisitor.ifVisitor, new Pair<>(retType, ctx)));
-        p.elseexpr_.accept(mainVisitor.ifVisitor, new Pair<>(retType, ctx));
-        return retType;
+        List<ExprType> returns = new ArrayList<>();
+        p.listifexpr_.forEach(iff -> returns.add(iff.accept(mainVisitor.ifVisitor, ctx)));
+        returns.add(p.elseexpr_.accept(mainVisitor.ifVisitor, ctx));
+
+        int size = returns.size();
+        for (int i = 0; i < size; i++) {
+            boolean supertype = true;
+            for (int j = 0; j < size; j++) {
+                if (i==j) continue;
+                if (!returns.get(j).isSubtypeOf(returns.get(i)))
+                    supertype = false;
+            }
+            if (supertype) return returns.get(i);
+        }
+        throw new TypeCheckException(String.format("Return types of the if expression do not have a common supertype at %d, %d",
+                p.line_num, p.col_num));
     }
 
     @Override

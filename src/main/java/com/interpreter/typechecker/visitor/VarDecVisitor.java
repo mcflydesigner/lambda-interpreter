@@ -21,6 +21,6 @@ public class VarDecVisitor implements VarDec.Visitor<IdTypePair, TypeContext> {
 
     @Override
     public IdTypePair visit(UntypedVar p, TypeContext arg) {
-        return new IdTypePair(p.ident_, ExprType.typeVariable());
+        return new IdTypePair(p.ident_, null);
     }
 }

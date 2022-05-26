@@ -20,20 +20,20 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         this.mainVisitor = mainVisitor;
     }
 
-    private ExprType checkForEquality(Op p, ExprType left, ExprType right, Set<ExprType> allowed) {
+    private ExprType checkForEquality(Op p, ExprType left, ExprType right, Set<ExprType> allowed, int line_num, int col_num) {
         boolean wellTyped = Objects.equals(left, right) && allowed.containsAll(List.of(left, right));
         if (!wellTyped) {
-            throw new IllegalArgumentsOperationException(String.format("Illegal types for the operation %s",
-                    PrettyPrinter.print(p)));
+            throw new IllegalArgumentsOperationException(String.format("Illegal types for the operation %s at %d, %d",
+                    PrettyPrinter.print(p), line_num, col_num));
         }
         return left;
     }
 
-    private ExprType checkIfAllowed(Op p, ExprType left, Set<ExprType> allowed) {
+    private ExprType checkIfAllowed(Op p, ExprType left, Set<ExprType> allowed, int line_num, int col_num) {
         boolean wellTyped = allowed.contains(left);
         if (!wellTyped) {
-            throw new IllegalArgumentsOperationException(String.format("Illegal type for the operation %s",
-                    PrettyPrinter.print(p)));
+            throw new IllegalArgumentsOperationException(String.format("Illegal type for the operation %s at %d, %d",
+                    PrettyPrinter.print(p), line_num, col_num));
         }
         return left;
     }
@@ -43,9 +43,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
-
-        return left;
+        return checkForEquality(p, left, right, Set.of(integer(), real(), string()), p.line_num, p.col_num);
     }
 
     @Override
@@ -53,9 +51,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
-
-        return left;
+        return checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
     }
 
     @Override
@@ -63,9 +59,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
-
-        return left;
+        return checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
     }
 
     @Override
@@ -73,9 +67,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
-
-        return left;
+        return checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
     }
 
     @Override
@@ -83,9 +75,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
-
-        return bool();
+        return checkForEquality(p, left, right, Set.of(bool()), p.line_num, p.col_num);
     }
 
     @Override
@@ -93,16 +83,14 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
-
-        return bool();
+        return checkForEquality(p, left, right, Set.of(bool()), p.line_num, p.col_num);
     }
 
     @Override
     public ExprType visit(Not p, TypeContext ctx) {
         ExprType left = p.expr_.accept(this.mainVisitor.exprVisitor, ctx);
 
-        return bool();
+        return checkIfAllowed(p, left, Set.of(bool()), p.line_num, p.col_num);
     }
 
     @Override
@@ -110,7 +98,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
+        checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
 
         return bool();
     }
@@ -120,7 +108,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
+        checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
 
         return bool();
     }
@@ -130,7 +118,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
+        checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
 
         return bool();
     }
@@ -140,7 +128,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
+        checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
 
         return bool();
     }
@@ -150,7 +138,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
+        checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
 
         return bool();
     }
@@ -160,7 +148,7 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
         ExprType left = p.expr_1.accept(this.mainVisitor.exprVisitor, ctx);
         ExprType right = p.expr_2.accept(this.mainVisitor.exprVisitor, ctx);
 
-        ctx.addEqualityConstraint(left, right, p.line_num, p.col_num);
+        checkForEquality(p, left, right, Set.of(integer(), real()), p.line_num, p.col_num);
 
         return bool();
     }
@@ -169,13 +157,13 @@ public class OpVisitor implements Op.Visitor<ExprType, TypeContext> {
     public ExprType visit(UnaryPlus p, TypeContext ctx) {
         ExprType left = p.expr_.accept(this.mainVisitor.exprVisitor, ctx);
 
-        return left;
+        return checkIfAllowed(p, left, Set.of(integer(), real()), p.line_num, p.col_num);
     }
 
     @Override
     public ExprType visit(UnaryMinus p, TypeContext ctx) {
         ExprType left = p.expr_.accept(this.mainVisitor.exprVisitor, ctx);
 
-        return left;
+        return checkIfAllowed(p, left, Set.of(integer(), real()), p.line_num, p.col_num);
     }
 }
