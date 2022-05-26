@@ -10,4 +10,5 @@ public class AllVisitors {
     public static final TypeVisitor typeVisitor = new TypeVisitor();
     public static final IfExprVisitor ifExprVisitor = new IfExprVisitor();
     public static final ElseExprVisitor elseExprVisitor = new ElseExprVisitor();
+    public static final RecordElemVisitor recordElemVisitor = new RecordElemVisitor();
 }

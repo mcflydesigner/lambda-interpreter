@@ -7,6 +7,7 @@ import com.interpreter.exception.IncorrectDeclarationException;
 import com.interpreter.exception.IncorrectFunctionArgumentException;
 import com.interpreter.runtime.env.Environment;
 import com.interpreter.runtime.env.value.FunctionValue;
+import com.interpreter.runtime.env.value.RecordValue;
 import com.interpreter.runtime.env.value.Value;
 import com.interpreter.runtime.env.value.ValueType;
 import com.interpreter.runtime.libs.std.IoOperationHandler;
@@ -236,7 +237,22 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(DotExpr p, Environment arg) {
-        return null;
+        Value expr = p.expr_.accept(this, arg);
+
+        // TODO: handle imports
+        return switch (expr.getType()) {
+            case RECORD -> {
+                RecordValue recordValue = (RecordValue) expr.getValue();
+                yield  recordValue.getValue(p.ident_);
+            }
+
+            default ->
+                throw new IllegalArgumentException(String.format(
+                        "Incorrect record element access: expected type %s, but got %s",
+                        ValueType.RECORD,
+                        expr.getType()
+                ));
+        };
     }
 
     @Override
@@ -300,9 +316,9 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     @Override
     public Value visit(RecordConst p, Environment arg) {
 
-
-
-        return null;
+        List<Pair<String, Value>> recordEntries
+                = p.listrecordelem_.stream().map(e -> e.accept(AllVisitors.recordElemVisitor, arg)).toList();
+        return Value.ofRecord(recordEntries);
     }
 
 
@@ -333,7 +349,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         Environment environment = (Environment) DeepCopy.perform(funValue.getCapturedContext());
 
-        Streams.zip(funArgsList.stream(), userArgs.stream(), (funArg, userArg) -> {
+        List<FunctionValue.FunctionParameter> funParams = Streams.zip(funArgsList.stream(), userArgs.stream(), (funArg, userArg) -> {
             if (!funArg.getType().equals(ValueType.ANY) && !funArg.getType().equals(userArg.getType())) {
                 throw new IncorrectFunctionArgumentException(String.format(
                         "Incorrect type of argument passed to the function: expected %s, but got %s",
@@ -342,9 +358,13 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
                 ));
             }
 
+            if (funArg.getType().equals(ValueType.ANY)) {
+                funArg.setConcreteType(userArg.getType());
+            }
+
             funArg.setBindValue(userArg.getValue());
             return funArg;
-        }).collect(Collectors.toList());
+        }).toList();
 
         for (FunctionValue.FunctionParameter param : funArgs.values()) {
             if(!param.isInitialized()) {
