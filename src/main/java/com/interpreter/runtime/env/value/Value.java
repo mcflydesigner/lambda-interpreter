@@ -1,6 +1,9 @@
 package com.interpreter.runtime.env.value;
 
+import org.antlr.v4.runtime.misc.Pair;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class Value implements Serializable {
 
@@ -33,6 +36,8 @@ public class Value implements Serializable {
     public static Value ofUnit() { return new Value(ValueType.UNIT, null); }
 
     public static Value ofUserTypeAlias(ValueType valueType) { return new Value(ValueType.USER_ALIAS, valueType); }
+
+    public static Value ofRecord(List<Pair<String, Value>> entries) { return new Value(ValueType.RECORD, new RecordValue(entries)); }
 
     public ValueType getType() {
         return type;

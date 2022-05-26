@@ -1,2 +1,9 @@
-lettype Vector3d = { x1 : Real , x2 : Real , x3 : Real };
+lettype Vector3d = { x1 : Int , x2 : Int , x3 : Int };
+
+let f = /\ r : Any. {
+    r.x1 + (r.x2 + r.x3);
+};
+
 let x = { x1 = 1 , x2 = 2 , x3 = 3 };
+
+print(f(x));

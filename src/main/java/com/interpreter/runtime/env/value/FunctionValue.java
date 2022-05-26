@@ -24,7 +24,7 @@ public class FunctionValue implements Serializable {
 
     public static class FunctionParameter implements Serializable {
 
-        private final ValueType type;
+        private ValueType type;
         private Object bindValue;
 
         public FunctionParameter(ValueType type) {
@@ -56,6 +56,18 @@ public class FunctionValue implements Serializable {
             this.bindValue = bindValue;
         }
 
+        public void setConcreteType(ValueType type) {
+            if (this.type != ValueType.ANY) {
+                throw new IllegalStateException(String.format(
+                        "Type %s cannot be changed as it is not %s",
+                        this.type,
+                        ValueType.ANY
+                ));
+            }
+
+            this.type = type;
+        }
+
         public boolean isInitialized() {
             return bindValue != null;
         }
@@ -71,5 +83,10 @@ public class FunctionValue implements Serializable {
 
     public Environment getCapturedContext() {
         return capturedContext;
+    }
+
+    @Override
+    public String toString() {
+        return "func";
     }
 }
