@@ -2,7 +2,7 @@
 !src/**/build/
 
 # File for local tests
-./test_git_ignored.nk
+test_git_ignored.nk
 
 # Cache of project
 .gradletasknamecache
