@@ -169,7 +169,7 @@ f(unit); // Error: m is not declared in the scope
 
 This is the function that is defined within another function and can be used only 
 inside of inner function. If you want to define nested function you should use let in construction, 
-because you need to define this function in local scope:
+because you need to define this function in local scope.
 
 ```shell=bash
 -| "std";
