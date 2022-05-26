@@ -20,9 +20,9 @@ public class testStd {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "10.0\nNumber: 10\n21\nReal number: 10.5\n15.0\n15".trim();
+        String expected = "10.0\nNumber: 10\n20\nReal number: 10.5\n15.0\n15".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
-        System.out.println(errorStream.toString());
+
         Assert.assertEquals(expected, output);
         Assert.assertTrue(errorStream.toString().isEmpty());
     }

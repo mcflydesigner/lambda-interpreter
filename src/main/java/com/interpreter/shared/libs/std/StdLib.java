@@ -129,37 +129,37 @@ public class StdLib implements LibInterface {
 
     @Override
     public Map<String, SerializableFunction<Environment, Value>> getFunctions() {
-        Map<String, SerializableFunction<Environment, Value>> map = new HashMap<>();
-        map.put("print", this::print);
-        map.put("readInt", this::readInt);
-        map.put("readReal", this::readReal);
-        map.put("readBool", this::readBool);
-        map.put("readString", this::readString);
-        map.put("intToReal", this::intToReal);
-        map.put("intToString", this::intToString);
-        map.put("realToInt", this::realToInt);
-        map.put("realToString", this::realToString);
-        map.put("stringToReal", this::stringToReal);
-        map.put("stringToInt", this::stringToInt);
+        Map<String, SerializableFunction<Environment, Value>> functions = new HashMap<>();
+        functions.put("print", this::print);
+        functions.put("readInt", this::readInt);
+        functions.put("readReal", this::readReal);
+        functions.put("readBool", this::readBool);
+        functions.put("readString", this::readString);
+        functions.put("intToReal", this::intToReal);
+        functions.put("intToString", this::intToString);
+        functions.put("realToInt", this::realToInt);
+        functions.put("realToString", this::realToString);
+        functions.put("stringToReal", this::stringToReal);
+        functions.put("stringToInt", this::stringToInt);
 
-        return map;
+        return functions;
     }
 
     @Override
     public Map<String, String> getDefinitions() {
-        Map<String, String> map = new HashMap<>();
-        map.put("print", StdLibDefinitions.PRINT_DEFINITION);
-        map.put("readInt", StdLibDefinitions.READ_INT);
-        map.put("readReal", StdLibDefinitions.READ_REAL);
-        map.put("readBool", StdLibDefinitions.READ_BOOL);
-        map.put("readString", StdLibDefinitions.READ_STRING);
-        map.put("intToReal", StdLibDefinitions.INT_TO_REAL);
-        map.put("intToString", StdLibDefinitions.INT_TO_STRING);
-        map.put("realToInt", StdLibDefinitions.REAL_TO_INT);
-        map.put("realToString", StdLibDefinitions.REAL_TO_STRING);
-        map.put("stringToReal", StdLibDefinitions.STRING_TO_REAL);
-        map.put("stringToInt", StdLibDefinitions.STRING_TO_INT);
+        Map<String, String> definitions = new HashMap<>();
+        definitions.put("print", StdLibDefinitions.PRINT_DEFINITION);
+        definitions.put("readInt", StdLibDefinitions.READ_INT);
+        definitions.put("readReal", StdLibDefinitions.READ_REAL);
+        definitions.put("readBool", StdLibDefinitions.READ_BOOL);
+        definitions.put("readString", StdLibDefinitions.READ_STRING);
+        definitions.put("intToReal", StdLibDefinitions.INT_TO_REAL);
+        definitions.put("intToString", StdLibDefinitions.INT_TO_STRING);
+        definitions.put("realToInt", StdLibDefinitions.REAL_TO_INT);
+        definitions.put("realToString", StdLibDefinitions.REAL_TO_STRING);
+        definitions.put("stringToReal", StdLibDefinitions.STRING_TO_REAL);
+        definitions.put("stringToInt", StdLibDefinitions.STRING_TO_INT);
 
-        return map;
+        return definitions;
     }
 }

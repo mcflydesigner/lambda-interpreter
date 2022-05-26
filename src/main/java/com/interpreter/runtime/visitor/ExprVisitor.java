@@ -324,6 +324,13 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
             );
         }
 
+        if (userArgs.size() == 0) {
+            throw new IllegalFunctionCallException(
+                    String.format("You are not allowed to call function '%s' without arguments. At least 1 argument is required;", fun),
+                    fun.getLineColPair()
+            );
+        }
+
         FunctionValue funValue = (FunctionValue) fun.getValue();
         LinkedHashMap<String, FunctionParameter> funArgs =
                 (LinkedHashMap<String, FunctionParameter>) funValue.getParameters();
@@ -385,6 +392,13 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         if (!fun.getType().equals(ValueType.LIBRARY_FUNCTION)) {
             throw new IllegalFunctionCallException(
                     String.format("Cannot call a function via identifier '%s' because it has type %s", fun, fun.getType().toString()),
+                    fun.getLineColPair()
+            );
+        }
+
+        if (userArgs.size() == 0) {
+            throw new IllegalFunctionCallException(
+                    String.format("You are not allowed to call function '%s' without arguments. At least 1 argument is required;", fun),
                     fun.getLineColPair()
             );
         }

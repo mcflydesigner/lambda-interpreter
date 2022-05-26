@@ -24,11 +24,9 @@ import java.util.function.Function;
 
 public class ImportManagerImpl implements ImportManager, Serializable {
 
-    private final Set<String> loadedModules;
     private final Map<String, LibInterface> libs;
 
     public ImportManagerImpl() {
-        this.loadedModules = new HashSet<>();
         this.libs = new HashMap<>();
 
         libs.put("std", new StdLib());
@@ -51,11 +49,6 @@ public class ImportManagerImpl implements ImportManager, Serializable {
 
     @Override
     public void loadModuleRuntime(String name, Environment environment, LineColPair lineColPair) {
-        if (loadedModules.contains(name)) {
-            throw new ModuleAlreadyLoadedException(
-                    String.format("Module '%s' was already loaded before", name),
-                    lineColPair);
-        }
 
         Map<String, List<Expr>> libDefinitions = loadModuleDefinitions(name, lineColPair);
         Map<String, SerializableFunction<Environment, Value>> libFunctions = libs.get(name).getFunctions();
@@ -82,7 +75,6 @@ public class ImportManagerImpl implements ImportManager, Serializable {
             environment.declareVariableAndAssignValue(identifier, functionLibraryValue);
         });
 
-        loadedModules.add(name);
     }
 
 
@@ -99,7 +91,7 @@ public class ImportManagerImpl implements ImportManager, Serializable {
             ByteArrayInputStream defInput = new ByteArrayInputStream(definition.getBytes());
             ByteArrayOutputStream defOutput = new ByteArrayOutputStream();
             System.setIn(defInput);
-//            System.setOut(new PrintStream(defOutput));
+            System.setOut(new PrintStream(defOutput));
             Test t = new Test(new String[0]);
             try {
                 ListExpr ast = t.parse();
@@ -114,7 +106,7 @@ public class ImportManagerImpl implements ImportManager, Serializable {
         });
 
         System.setIn(defaultIn);
-//        System.setOut(defaultOut);
+        System.setOut(defaultOut);
 
         return result;
     }

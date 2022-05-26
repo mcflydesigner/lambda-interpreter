@@ -31,4 +31,9 @@ public class FunctionLibraryValue implements Serializable {
     public Environment getCapturedContext() {
         return capturedContext;
     }
+
+    @Override
+    public String toString() {
+        return "libraryFunction";
+    }
 }

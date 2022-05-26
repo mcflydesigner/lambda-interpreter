@@ -1,3 +1,5 @@
+-| "std";
+
 lettype Vector3d = { x1 : Int , x2 : Int , x3 : Int };
 
 let f = /\ r : Vector3d. {

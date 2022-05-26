@@ -1,3 +1,4 @@
+-| "std";
 
 lettype vec2d = {x1:Integer, x2:Integer};
 lettype vec3d = {x1:Integer, x2:Integer, x3:Integer};
