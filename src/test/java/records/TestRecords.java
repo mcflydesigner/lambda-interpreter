@@ -21,7 +21,7 @@ public class TestRecords {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "11.18".trim();
+        String expected = "6".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);

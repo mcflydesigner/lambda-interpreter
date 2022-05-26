@@ -1,7 +1,7 @@
 -| "std";
 
 let compose = /\ f1: (Int -> Int). f2: (Int -> Int). {
-    /\ x:Integer. {
+    /\ x:Int. {
         f1 (f2 (x));
     };
 } -> (Int -> Int);

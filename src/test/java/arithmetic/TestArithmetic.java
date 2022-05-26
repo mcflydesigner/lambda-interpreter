@@ -61,7 +61,7 @@ public class TestArithmetic {
 
         MainTest.test(inputStream, errorStream, outputStream);
 
-        String expected = "50\n44".trim();
+        String expected = "50\n60".trim();
         String output = outputStream.toString().trim().replaceAll("\r\n", "\n");
 
         Assert.assertEquals(expected, output);
