@@ -18,14 +18,14 @@ public class Main {
     public static final ImportManager importManager = new ImportManagerImpl();
 
     public static void main(String[] args) {
-        try  {
+        try {
             List<String> argss = Arrays.asList(args);
             boolean printTypes = argss.contains("--print-types");
             Optional<String> fn;
-            if (argss.get(argss.size()-1).startsWith("--")) {
+            if (argss.get(argss.size() - 1).startsWith("--")) {
                 fn = Optional.empty();
             } else {
-                fn = Optional.of(argss.get(argss.size()-1));
+                fn = Optional.of(argss.get(argss.size() - 1));
             }
             Test t = new Test(fn);
             ListExpr ast = t.parse();

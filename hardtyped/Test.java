@@ -47,36 +47,34 @@ public class Test
   hardtypedLexer l;
   hardtypedParser p;
 
-  public Test(Optional<String> arg)
+  public Test(String[] args)
   {
     try
     {
       Reader input;
-      if (arg.isEmpty()) input = new InputStreamReader(System.in);
-      else input = new FileReader(arg.get());
+      if (args.length == 0) input = new InputStreamReader(System.in);
+      else input = new FileReader(args[0]);
       l = new hardtypedLexer(new ANTLRInputStream(input));
-      l.addErrorListener(new BNFCErrorListener());
+              l.addErrorListener(new BNFCErrorListener());
     }
     catch(IOException e)
     {
-      System.err.println("Error: File not found: " + arg.orElse("System.in"));
+      System.err.println("Error: File not found: " + args[0]);
       System.exit(1);
     }
     p = new hardtypedParser(new CommonTokenStream(l));
-    p.addErrorListener(new BNFCErrorListener());
+            p.addErrorListener(new BNFCErrorListener());
   }
 
-  public hardtyped.Absyn.ListExpr parse() throws Exception
+  public hardtyped.Absyn.Program parse() throws Exception
   {
     /* The default parser is the first-defined entry point. */
     /* Other options are: */
-    /* expr, varDec, exprSequence, listExprSequence, funcArg,
-       listFuncArg, ifExpr, listIfExpr, elseExpr, op, recordElem,
-       listRecordElem, type, recordElemType, listRecordElemType */
-    hardtypedParser.Start_ListExprContext pc = p.start_ListExpr();
-    hardtyped.Absyn.ListExpr ast = pc.result;
+    /* listExpr, expr */
+    hardtypedParser.Start_ProgramContext pc = p.start_Program();
+    hardtyped.Absyn.Program ast = pc.result;
     System.out.println();
-    System.out.println("Parse Successful!");
+    System.out.println("Parse Succesful!");
     System.out.println();
     System.out.println("[Abstract Syntax]");
     System.out.println();
@@ -88,9 +86,9 @@ public class Test
     return ast;
   }
 
-  public static void main(String[] args) throws Exception
+  public static void main(String args[]) throws Exception
   {
-    Test t = (args.length > 0) ? new Test(Optional.of(args[args.length-1])) : new Test(Optional.empty());
+    Test t = new Test(args);
     try
     {
       t.parse();
