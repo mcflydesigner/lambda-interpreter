@@ -91,12 +91,6 @@ public class ComposVisitor<A> implements
       }
       return new hardtyped.Absyn.Function(listfuncarg_, listexpr_);
     }
-    public hardtyped.Absyn.Expr visit(hardtyped.Absyn.PrintFunction p, A arg)
-    {
-      String print_ = p.print_;
-      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
-      return new hardtyped.Absyn.PrintFunction(print_, expr_);
-    }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.ReadRealFunction p, A arg)
     {
       String readreal_ = p.readreal_;
@@ -233,9 +227,9 @@ public class ComposVisitor<A> implements
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.DotExpr p, A arg)
     {
-      hardtyped.Absyn.Expr expr_1 = p.expr_1.accept(this, arg);
-      hardtyped.Absyn.Expr expr_2 = p.expr_2.accept(this, arg);
-      return new hardtyped.Absyn.DotExpr(expr_1, expr_2);
+      hardtyped.Absyn.Expr expr_ = p.expr_.accept(this, arg);
+      String ident_ = p.ident_;
+      return new hardtyped.Absyn.DotExpr(expr_, ident_);
     }
     public hardtyped.Absyn.Expr visit(hardtyped.Absyn.Exprs p, A arg)
     {

@@ -434,16 +434,6 @@ public class PrettyPrinter
        render("}");
        if (_i_ > 1) render(_R_PAREN);
     }
-    else     if (foo instanceof hardtyped.Absyn.PrintFunction)
-    {
-       hardtyped.Absyn.PrintFunction _printfunction = (hardtyped.Absyn.PrintFunction) foo;
-       if (_i_ > 1) render(_L_PAREN);
-       pp(_printfunction.print_, 0);
-       render("(");
-       pp(_printfunction.expr_, 0);
-       render(")");
-       if (_i_ > 1) render(_R_PAREN);
-    }
     else     if (foo instanceof hardtyped.Absyn.ReadRealFunction)
     {
        hardtyped.Absyn.ReadRealFunction _readrealfunction = (hardtyped.Absyn.ReadRealFunction) foo;
@@ -592,9 +582,9 @@ public class PrettyPrinter
     {
        hardtyped.Absyn.DotExpr _dotexpr = (hardtyped.Absyn.DotExpr) foo;
        if (_i_ > 4) render(_L_PAREN);
-       pp(_dotexpr.expr_1, 4);
+       pp(_dotexpr.expr_, 4);
        render(".");
-       pp(_dotexpr.expr_2, 4);
+       pp(_dotexpr.ident_, 0);
        if (_i_ > 4) render(_R_PAREN);
     }
     else     if (foo instanceof hardtyped.Absyn.Exprs)
@@ -725,9 +715,16 @@ public class PrettyPrinter
   private static void ppListIfExpr(java.util.Iterator<hardtyped.Absyn.IfExpr> it, int _i_)
   {
     if (it.hasNext())
-    { /* cons */
+    {
       hardtyped.Absyn.IfExpr el = it.next();
-      pp(el, _i_); ppListIfExpr(it, _i_);
+      if (!it.hasNext())
+      { /* last */
+        pp(el, _i_);
+      }
+      else
+      { /* cons */
+        pp(el, _i_); ppListIfExpr(it, _i_);
+      }
     }
   }
 
@@ -1137,15 +1134,6 @@ public class PrettyPrinter
        render("]");
        render(")");
     }
-    if (foo instanceof hardtyped.Absyn.PrintFunction)
-    {
-       hardtyped.Absyn.PrintFunction _printfunction = (hardtyped.Absyn.PrintFunction) foo;
-       render("(");
-       render("PrintFunction");
-       sh(_printfunction.print_);
-       sh(_printfunction.expr_);
-       render(")");
-    }
     if (foo instanceof hardtyped.Absyn.ReadRealFunction)
     {
        hardtyped.Absyn.ReadRealFunction _readrealfunction = (hardtyped.Absyn.ReadRealFunction) foo;
@@ -1311,8 +1299,8 @@ public class PrettyPrinter
        hardtyped.Absyn.DotExpr _dotexpr = (hardtyped.Absyn.DotExpr) foo;
        render("(");
        render("DotExpr");
-       sh(_dotexpr.expr_1);
-       sh(_dotexpr.expr_2);
+       sh(_dotexpr.expr_);
+       sh(_dotexpr.ident_);
        render(")");
     }
     if (foo instanceof hardtyped.Absyn.Exprs)

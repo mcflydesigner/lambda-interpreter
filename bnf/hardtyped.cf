@@ -29,7 +29,6 @@ Function. Expr1 ::= "/\\" [FuncArg] "{" [Expr] "}";
 FunctionApplication. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "(" [ExprSequence] ")";
 FunctionWithReturnType. Expr2 ::= "/\\" [FuncArg] "{" [Expr] "}" "->" Type;
 Application. Expr3 ::= Expr4 "(" [ExprSequence] ")";
-PrintFunction. Expr1 ::= Print "(" Expr ")";
 ReadRealFunction. Expr1 ::= ReadReal "(" [ExprSequence] ")";
 ReadIntFunction. Expr1 ::= ReadInt "(" [ExprSequence] ")";
 ReadStringFunction. Expr1 ::= ReadString "(" [ExprSequence] ")";
@@ -107,7 +106,6 @@ separator RecordElemType ",";
 
 token Bool {"true"} | {"false"};
 token Unit {"unit"};
-token Print {"print"};
 token ReadReal {"readReal"};
 token ReadInt {"readInt"};
 token ReadString {"readString"};

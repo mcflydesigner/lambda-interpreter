@@ -176,19 +176,6 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{VarName}} & {\arrow}  &{\nonterminal{ListVarPath}} {\nonterminal{Ident}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{VarPath}} & {\arrow}  &{\nonterminal{Ident}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
-{\nonterminal{ListVarPath}} & {\arrow}  &{\emptyP} \\
- & {\delimit}  &{\nonterminal{VarPath}} {\terminal{.}} {\nonterminal{ListVarPath}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
 {\nonterminal{ExprSequence}} & {\arrow}  &{\nonterminal{Expr}}  \\
 \end{tabular}\\
 

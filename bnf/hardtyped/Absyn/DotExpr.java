@@ -3,8 +3,9 @@
 package hardtyped.Absyn;
 
 public class DotExpr  extends Expr {
-  public final Expr expr_1, expr_2;
-  public DotExpr(Expr p1, Expr p2) { expr_1 = p1; expr_2 = p2; }
+  public final Expr expr_;
+  public final String ident_;
+  public DotExpr(Expr p1, String p2) { expr_ = p1; ident_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
 
@@ -12,13 +13,13 @@ public class DotExpr  extends Expr {
     if (this == o) return true;
     if (o instanceof hardtyped.Absyn.DotExpr) {
       hardtyped.Absyn.DotExpr x = (hardtyped.Absyn.DotExpr)o;
-      return this.expr_1.equals(x.expr_1) && this.expr_2.equals(x.expr_2);
+      return this.expr_.equals(x.expr_) && this.ident_.equals(x.ident_);
     }
     return false;
   }
 
   public int hashCode() {
-    return 37*(this.expr_1.hashCode())+this.expr_2.hashCode();
+    return 37*(this.expr_.hashCode())+this.ident_.hashCode();
   }
 
 

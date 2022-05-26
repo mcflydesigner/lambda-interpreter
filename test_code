@@ -1,4 +1,8 @@
--| "std";
--| "module.nk" as math;
-
-math->sqrt.real(n);
+/\ n: Int. {
+    | ((n > 1) and (n < 5)): (
+        let x = (n + 5) * 10 in x*x;
+        print (n); // returns unit
+    )
+    | ((n >= 10) or (n < 0)): (n * 3) + 5 // returns int
+    |:  n * (n+1); //returns int
+};

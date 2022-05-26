@@ -54,15 +54,11 @@ except \terminal{"}\ unless preceded by \verb6\6.
 
 
 
-
 Bool literals are recognized by the regular expression
 \(\{\mbox{``true''}\} \mid \{\mbox{``false''}\}\)
 
 Unit literals are recognized by the regular expression
 \(\{\mbox{``unit''}\}\)
-
-Print literals are recognized by the regular expression
-\(\{\mbox{``print''}\}\)
 
 ReadReal literals are recognized by the regular expression
 \(\{\mbox{``readReal''}\}\)
@@ -133,7 +129,6 @@ All other symbols are terminals.\\
 \begin{tabular}{lll}
 {\nonterminal{Expr1}} & {\arrow}  &{\nonterminal{Expr2}}  \\
  & {\delimit}  &{\terminal{/$\backslash$}} {\nonterminal{ListFuncArg}} {\terminal{\{}} {\nonterminal{ListExpr}} {\terminal{\}}}  \\
- & {\delimit}  &{\nonterminal{Print}} {\terminal{(}} {\nonterminal{Expr}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{ReadReal}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{ReadInt}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
  & {\delimit}  &{\nonterminal{ReadString}} {\terminal{(}} {\nonterminal{ListExprSequence}} {\terminal{)}}  \\
@@ -162,7 +157,7 @@ All other symbols are terminals.\\
 {\nonterminal{Expr4}} & {\arrow}  &{\nonterminal{Expr5}}  \\
  & {\delimit}  &{\nonterminal{Ident}}  \\
  & {\delimit}  &{\nonterminal{Ident}} {\terminal{{$-$}{$>$}}} {\nonterminal{Expr4}}  \\
- & {\delimit}  &{\nonterminal{Expr4}} {\terminal{.}} {\nonterminal{Expr4}}  \\
+ & {\delimit}  &{\nonterminal{Expr4}} {\terminal{.}} {\nonterminal{Ident}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -199,7 +194,7 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{ListIfExpr}} & {\arrow}  &{\emptyP} \\
+{\nonterminal{ListIfExpr}} & {\arrow}  &{\nonterminal{IfExpr}}  \\
  & {\delimit}  &{\nonterminal{IfExpr}} {\nonterminal{ListIfExpr}}  \\
 \end{tabular}\\
 
