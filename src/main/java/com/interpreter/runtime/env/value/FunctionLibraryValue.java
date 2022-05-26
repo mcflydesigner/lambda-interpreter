@@ -2,16 +2,17 @@ package com.interpreter.runtime.env.value;
 
 import com.interpreter.runtime.env.Environment;
 
-import java.util.LinkedHashMap;
+import java.io.Serializable;
+import java.util.Map;
 import java.util.function.Function;
 
-public class FunctionLibraryValue {
+public class FunctionLibraryValue implements Serializable {
 
-    private final LinkedHashMap<String, FunctionValue.FunctionParameter> parameters;
+    private final Map<String, FunctionParameter> parameters;
     private final Function<Environment, Value> libFunc;
     private final Environment capturedContext;
 
-    public FunctionLibraryValue(LinkedHashMap<String, FunctionValue.FunctionParameter> parameters,
+    public FunctionLibraryValue(Map<String, FunctionParameter> parameters,
                                 Function<Environment, Value> libFunc,
                                 Environment capturedContext) {
         this.parameters = parameters;
@@ -19,4 +20,15 @@ public class FunctionLibraryValue {
         this.capturedContext = capturedContext;
     }
 
+    public Map<String, FunctionParameter> getParameters() {
+        return parameters;
+    }
+
+    public Function<Environment, Value> getLibFunc() {
+        return libFunc;
+    }
+
+    public Environment getCapturedContext() {
+        return capturedContext;
+    }
 }

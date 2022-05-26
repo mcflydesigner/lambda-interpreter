@@ -11,6 +11,6 @@ public interface ImportManager {
 
     Map<String, List<Expr>> loadModuleDefinitions(String name, LineColPair lineColPair);
 
-    Map<String, List<Expr>> loadModuleRuntime(String name, Environment environment, LineColPair lineColPair);
+    void loadModuleRuntime(String name, Environment environment, LineColPair lineColPair);
 
 }

@@ -8,6 +8,7 @@ public enum ValueType {
     STRING,
     UNIT,
     FUNCTION,
+    LIBRARY_FUNCTION,
     RECORD,
     USER_ALIAS
 }

@@ -3,10 +3,7 @@ package com.interpreter.runtime.visitor;
 import com.google.common.collect.Streams;
 import com.interpreter.Main;
 import com.interpreter.runtime.env.Environment;
-import com.interpreter.runtime.env.value.FunctionValue;
-import com.interpreter.runtime.env.value.RecordValue;
-import com.interpreter.runtime.env.value.Value;
-import com.interpreter.runtime.env.value.ValueType;
+import com.interpreter.runtime.env.value.*;
 import com.interpreter.shared.exceptions.*;
 import com.interpreter.shared.libs.std.IoOperationHandler;
 import com.interpreter.shared.exceptions.*;
@@ -42,7 +39,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     public Value visit(Import1 p, Environment arg) {
 
         LineColPair lineColPair = LineColPair.of(p.line_num, p.col_num);
-        Map<String, List<Expr>> registeredDefinitions = Main.importManager.loadModuleDefinitions(p.string_, lineColPair);
+        Main.importManager.loadModuleRuntime(p.string_, arg, lineColPair);
         return Value.ofUnit(lineColPair);
     }
 
@@ -167,7 +164,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     @Override
     public Value visit(Function p, Environment arg) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
+        LinkedHashMap<String, FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
                 arg,
                 LineColPair.of(p.line_num, p.col_num));
 
@@ -180,7 +177,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     @Override
     public Value visit(FunctionApplication p, Environment arg) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
+        LinkedHashMap<String, FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
                 arg,
                 LineColPair.of(p.line_num, p.col_num));
 
@@ -193,13 +190,17 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
                 .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
                 .toList();
 
+        if (fun.getType().equals(ValueType.LIBRARY_FUNCTION)) {
+            return evaluateLibraryFunction((Value) DeepCopy.perform(fun), evaluatedArgs);
+        }
+
         return evaluateFunction((Value) DeepCopy.perform(fun), evaluatedArgs);
     }
 
     @Override
     public Value visit(FunctionWithReturnType p, Environment arg) {
         // p.type_ is ignored since it's only for type checker
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
+        LinkedHashMap<String, FunctionParameter> args = parseFunctionArguments(p.listfuncarg_,
                 arg,
                 LineColPair.of(p.line_num, p.col_num));
 
@@ -216,6 +217,10 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         List<Value> evaluatedArgs = p.listexprsequence_.stream()
                 .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
                 .toList();
+
+        if (fun.getType().equals(ValueType.LIBRARY_FUNCTION)) {
+            return evaluateLibraryFunction((Value) DeepCopy.perform(fun), evaluatedArgs);
+        }
 
         return evaluateFunction((Value) DeepCopy.perform(fun), evaluatedArgs);
     }
@@ -347,10 +352,10 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         }
 
         FunctionValue funValue = (FunctionValue) fun.getValue();
-        LinkedHashMap<String, FunctionValue.FunctionParameter> funArgs =
-                (LinkedHashMap<String, FunctionValue.FunctionParameter>) funValue.getParameters();
+        LinkedHashMap<String, FunctionParameter> funArgs =
+                (LinkedHashMap<String, FunctionParameter>) funValue.getParameters();
 
-        List<FunctionValue.FunctionParameter> funArgsList =
+        List<FunctionParameter> funArgsList =
                 funArgs.values().stream().filter(e -> !e.isInitialized()).toList();
 
         if (userArgs.size() > funArgsList.size()) {
@@ -362,7 +367,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         Environment environment = (Environment) DeepCopy.perform(funValue.getCapturedContext());
 
-        List<FunctionValue.FunctionParameter> funParams = Streams.zip(funArgsList.stream(), userArgs.stream(), (funArg, userArg) -> {
+        List<FunctionParameter> funParams = Streams.zip(funArgsList.stream(), userArgs.stream(), (funArg, userArg) -> {
             if (!funArg.getType().equals(ValueType.ANY) && !funArg.getType().equals(userArg.getType())) {
                 throw new IncorrectFunctionArgumentException(
                         String.format("Incorrect type of argument passed to the function: expected %s, but got %s", funArg.getType(), userArg.getType()),
@@ -378,7 +383,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
             return funArg;
         }).toList();
 
-        for (FunctionValue.FunctionParameter param : funArgs.values()) {
+        for (FunctionParameter param : funArgs.values()) {
             if(!param.isInitialized()) {
                 // High-order functions(function is partially initialized by now)
                 return fun;
@@ -402,12 +407,77 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         return resBody.get(resBody.size() - 1);
     }
 
-    private LinkedHashMap<String, FunctionValue.FunctionParameter> parseFunctionArguments(
+    private Value evaluateLibraryFunction(Value fun, List<Value> userArgs) {
+
+        if (!fun.getType().equals(ValueType.LIBRARY_FUNCTION)) {
+            throw new IllegalFunctionCallException(
+                    String.format("Cannot call a function via identifier '%s' because it has type %s", fun, fun.getType().toString()),
+                    fun.getLineColPair()
+            );
+        }
+
+        FunctionLibraryValue funValue = (FunctionLibraryValue) fun.getValue();
+        LinkedHashMap<String, FunctionParameter> funArgs =
+                (LinkedHashMap<String, FunctionParameter>) funValue.getParameters();
+
+        List<FunctionParameter> funArgsList =
+                funArgs.values().stream().filter(e -> !e.isInitialized()).toList();
+
+        if (userArgs.size() > funArgsList.size()) {
+            throw new IncorrectFunctionArgumentException(
+                    String.format("Too many arguments passed for function. Expected %d, but got %d", funArgsList.size(), userArgs.size()),
+                    fun.getLineColPair()
+            );
+        }
+
+        Environment environment = (Environment) DeepCopy.perform(funValue.getCapturedContext());
+
+        List<FunctionParameter> funParams = Streams.zip(funArgsList.stream(), userArgs.stream(), (funArg, userArg) -> {
+            if (!funArg.getType().equals(ValueType.ANY) && !funArg.getType().equals(userArg.getType())) {
+                throw new IncorrectFunctionArgumentException(
+                        String.format("Incorrect type of argument passed to the function: expected %s, but got %s", funArg.getType(), userArg.getType()),
+                        fun.getLineColPair()
+                );
+            }
+
+            if (funArg.getType().equals(ValueType.ANY)) {
+                funArg.setConcreteType(userArg.getType());
+            }
+
+            funArg.setBindValue(userArg.getValue());
+            return funArg;
+        }).toList();
+
+        for (FunctionParameter param : funArgs.values()) {
+            if(!param.isInitialized()) {
+                // High-order functions(function is partially initialized by now)
+                return fun;
+            }
+        }
+
+        // Function args are fully initialized by now
+        environment.pushScope();
+
+        Map<String, Value> mappedFunArgs = funArgs.entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().convertToValue()));
+
+        environment.declareVariablesAndAssignValues(mappedFunArgs);
+
+        // Execute body of the function
+        Value resBody = funValue.getLibFunc().apply(environment);
+
+        environment.flushScope();
+
+        return resBody;
+    }
+
+    private LinkedHashMap<String, FunctionParameter> parseFunctionArguments(
             List<FuncArg> listFuncArg,
             Environment environment,
             LineColPair lineColPair) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = new LinkedHashMap<>();
+        LinkedHashMap<String, FunctionParameter> args = new LinkedHashMap<>();
         listFuncArg.stream().map(e -> e.accept(AllVisitors.funcArgVisitor, null)).forEach(pair -> {
                     if (args.containsKey(pair.a)) {
                         throw new DeclarationErrorException(
@@ -416,7 +486,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
                         );
                     }
 
-                    args.put(pair.a, new FunctionValue.FunctionParameter(pair.b.accept(AllVisitors.typeVisitor, environment)));
+                    args.put(pair.a, new FunctionParameter(pair.b.accept(AllVisitors.typeVisitor, environment)));
                 }
         );
 

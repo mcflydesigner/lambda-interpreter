@@ -34,6 +34,10 @@ public class Value implements Serializable {
         return new Value(ValueType.FUNCTION, functionValue, lineColPair);
     }
 
+    public static Value ofLibraryFunction(FunctionLibraryValue value, LineColPair lineColPair) {
+        return new Value(ValueType.LIBRARY_FUNCTION, value, lineColPair);
+    }
+
     public static Value ofBool(Boolean value, LineColPair lineColPair) {
         return new Value(ValueType.BOOL, value, lineColPair);
     }
