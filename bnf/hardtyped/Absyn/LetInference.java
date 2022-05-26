@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class LetInference  extends Expr {
   public final VarDec vardec_;
   public final Expr expr_1, expr_2;
+  public int line_num, col_num, offset;
   public LetInference(VarDec p1, Expr p2, Expr p3) { vardec_ = p1; expr_1 = p2; expr_2 = p3; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class Import  extends Expr {
   public final String string_, ident_;
+  public int line_num, col_num, offset;
   public Import(String p1, String p2) { string_ = p1; ident_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

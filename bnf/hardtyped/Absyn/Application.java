@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class Application  extends Expr {
   public final Expr expr_;
   public final ListExprSequence listexprsequence_;
+  public int line_num, col_num, offset;
   public Application(Expr p1, ListExprSequence p2) { expr_ = p1; listexprsequence_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

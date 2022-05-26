@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class RealValue  extends Expr {
   public final Double double_;
+  public int line_num, col_num, offset;
   public RealValue(Double p1) { double_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

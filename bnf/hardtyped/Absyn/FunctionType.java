@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class FunctionType  extends Type {
   public final Type type_1, type_2;
+  public int line_num, col_num, offset;
   public FunctionType(Type p1, Type p2) { type_1 = p1; type_2 = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Type.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

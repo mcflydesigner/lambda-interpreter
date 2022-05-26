@@ -6,6 +6,7 @@ public class FunctionApplication  extends Expr {
   public final ListFuncArg listfuncarg_;
   public final ListExpr listexpr_;
   public final ListExprSequence listexprsequence_;
+  public int line_num, col_num, offset;
   public FunctionApplication(ListFuncArg p1, ListExpr p2, ListExprSequence p3) { listfuncarg_ = p1; listexpr_ = p2; listexprsequence_ = p3; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class IfStmt  extends Expr {
   public final ListIfExpr listifexpr_;
   public final ElseExpr elseexpr_;
+  public int line_num, col_num, offset;
   public IfStmt(ListIfExpr p1, ElseExpr p2) { listifexpr_ = p1; elseexpr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

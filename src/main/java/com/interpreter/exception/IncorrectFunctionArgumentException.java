@@ -2,8 +2,8 @@ package com.interpreter.exception;
 
 public class IncorrectFunctionArgumentException extends BaseInterpreterException {
 
-    public IncorrectFunctionArgumentException(String message) {
-        super(message);
+    public IncorrectFunctionArgumentException(String message, LineColPair lineColPair) {
+        super(message, lineColPair);
     }
 
 }

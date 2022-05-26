@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class ArrowExpr  extends Expr {
   public final String ident_;
   public final Expr expr_;
+  public int line_num, col_num, offset;
   public ArrowExpr(String p1, Expr p2) { ident_ = p1; expr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

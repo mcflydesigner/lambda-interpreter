@@ -1,6 +1,7 @@
 package com.interpreter.runtime.env.value;
 
 import com.interpreter.exception.IncorrectDeclarationException;
+import com.interpreter.exception.LineColPair;
 import org.antlr.v4.runtime.misc.Pair;
 
 import java.io.Serializable;
@@ -15,10 +16,10 @@ public class RecordValue implements Serializable {
     public RecordValue(List<Pair<String, Value>> entries) {
         for (Pair<String, Value> entry : entries) {
             if (map.containsKey(entry.a)) {
-                throw new IncorrectDeclarationException(String.format(
-                        "Record cannot have non-unique identifiers, but got %s",
-                        entry.a
-                ));
+                throw new IncorrectDeclarationException(
+                        String.format("Record cannot have non-unique identifiers, but got %s", entry.a),
+                        entry.b.getLineColPair()
+                );
             }
 
             map.put(entry.a, entry.b);

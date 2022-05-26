@@ -23,7 +23,7 @@ public class OperationHandler {
         Set<ValueType> allowedValueTypes = Set.of(ValueType.BOOL);
         assertOperandsType("not", allowedValueTypes, operand);
 
-        return Value.ofBool(!(Boolean) operand.getValue());
+        return Value.ofBool(!(Boolean) operand.getValue(), operand.getLineColPair());
     }
 
     private static Value handleUnaryMinus(Value operand) {
@@ -31,10 +31,10 @@ public class OperationHandler {
         assertOperandsType("unary -", allowedValueTypes, operand);
 
         if (operand.getType().equals(ValueType.INT)) {
-            return Value.ofInt(-(Integer) operand.getValue());
+            return Value.ofInt(-(Integer) operand.getValue(), operand.getLineColPair());
         }
 
-        return Value.ofReal(-(Double) operand.getValue());
+        return Value.ofReal(-(Double) operand.getValue(), operand.getLineColPair());
     }
 
     private static Value handleUnaryPlus(Value operand) {
@@ -42,10 +42,10 @@ public class OperationHandler {
         assertOperandsType("unary +", allowedValueTypes, operand);
 
         if (operand.getType().equals(ValueType.INT)) {
-            return Value.ofInt(+(Integer) operand.getValue());
+            return Value.ofInt(+(Integer) operand.getValue(), operand.getLineColPair());
         }
 
-        return Value.ofReal(+(Double) operand.getValue());
+        return Value.ofReal(+(Double) operand.getValue(), operand.getLineColPair());
     }
 
     public static Value handleBinaryOperation(BinaryOperationType operationType, Value firstOp, Value secondOp) {
@@ -69,14 +69,14 @@ public class OperationHandler {
         Set<ValueType> allowedValueTypes = Set.of(ValueType.BOOL);
         assertOperandsType("and", allowedValueTypes, firstOp, secondOp);
 
-        return Value.ofBool((boolean) firstOp.getValue() && (boolean) secondOp.getValue());
+        return Value.ofBool((boolean) firstOp.getValue() && (boolean) secondOp.getValue(), secondOp.getLineColPair());
     }
 
     private static Value handleBinaryOr(Value firstOp, Value secondOp) {
         Set<ValueType> allowedValueTypes = Set.of(ValueType.BOOL);
         assertOperandsType("or", allowedValueTypes, firstOp, secondOp);
 
-        return Value.ofBool((boolean) firstOp.getValue() || (boolean) secondOp.getValue());
+        return Value.ofBool((boolean) firstOp.getValue() || (boolean) secondOp.getValue(), secondOp.getLineColPair());
     }
 
     private static Value handleBinaryGreater(Value firstOp, Value secondOp) {
@@ -84,16 +84,16 @@ public class OperationHandler {
         assertOperandsType(">", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
-            return Value.ofBool((Integer) firstOp.getValue() > (Integer) secondOp.getValue());
+            return Value.ofBool((Integer) firstOp.getValue() > (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
         if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
-            return Value.ofBool((Double) firstOp.getValue() > (Double) secondOp.getValue());
+            return Value.ofBool((Double) firstOp.getValue() > (Double) secondOp.getValue(), secondOp.getLineColPair());
         }
 
         int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
 
-        return Value.ofBool(resStringComparison > 0);
+        return Value.ofBool(resStringComparison > 0, secondOp.getLineColPair());
     }
 
     private static Value handleBinaryGreaterOrEqual(Value firstOp, Value secondOp) {
@@ -101,16 +101,16 @@ public class OperationHandler {
         assertOperandsType(">=", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
-            return Value.ofBool((Integer) firstOp.getValue() >= (Integer) secondOp.getValue());
+            return Value.ofBool((Integer) firstOp.getValue() >= (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
         if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
-            return Value.ofBool((Double) firstOp.getValue() >= (Double) secondOp.getValue());
+            return Value.ofBool((Double) firstOp.getValue() >= (Double) secondOp.getValue(), secondOp.getLineColPair());
         }
 
         int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
 
-        return Value.ofBool(resStringComparison >= 0);
+        return Value.ofBool(resStringComparison >= 0, secondOp.getLineColPair());
     }
 
     private static Value handleBinaryLess(Value firstOp, Value secondOp) {
@@ -118,16 +118,16 @@ public class OperationHandler {
         assertOperandsType("<", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
-            return Value.ofBool((Integer) firstOp.getValue() < (Integer) secondOp.getValue());
+            return Value.ofBool((Integer) firstOp.getValue() < (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
         if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
-            return Value.ofBool((Double) firstOp.getValue() < (Double) secondOp.getValue());
+            return Value.ofBool((Double) firstOp.getValue() < (Double) secondOp.getValue(), secondOp.getLineColPair());
         }
 
         int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
 
-        return Value.ofBool(resStringComparison < 0);
+        return Value.ofBool(resStringComparison < 0, secondOp.getLineColPair());
     }
 
     private static Value handleBinaryLessOrEqual(Value firstOp, Value secondOp) {
@@ -135,16 +135,16 @@ public class OperationHandler {
         assertOperandsType("<=", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
-            return Value.ofBool((Integer) firstOp.getValue() <= (Integer) secondOp.getValue());
+            return Value.ofBool((Integer) firstOp.getValue() <= (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
         if (firstOp.getType().equals(ValueType.REAL) && secondOp.getType().equals(ValueType.REAL)) {
-            return Value.ofBool((Double) firstOp.getValue() <= (Double) secondOp.getValue());
+            return Value.ofBool((Double) firstOp.getValue() <= (Double) secondOp.getValue(), secondOp.getLineColPair());
         }
 
         int resStringComparison = ((String) firstOp.getValue()).compareTo((String) secondOp.getValue());
 
-        return Value.ofBool(resStringComparison <= 0);
+        return Value.ofBool(resStringComparison <= 0, secondOp.getLineColPair());
     }
 
     private static Value handleBinaryAddition(Value firstOp, Value secondOp) {
@@ -153,10 +153,10 @@ public class OperationHandler {
         assertOperandsType("+", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
-            return Value.ofInt((Integer) firstOp.getValue() + (Integer) secondOp.getValue());
+            return Value.ofInt((Integer) firstOp.getValue() + (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
-        return Value.ofReal((Double) firstOp.getValue() + (Double) secondOp.getValue());
+        return Value.ofReal((Double) firstOp.getValue() + (Double) secondOp.getValue(), secondOp.getLineColPair());
     }
 
     private static Value handleBinarySubtraction(Value firstOp, Value secondOp) {
@@ -165,10 +165,10 @@ public class OperationHandler {
         assertOperandsType("-", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
-            return Value.ofInt((Integer) firstOp.getValue() - (Integer) secondOp.getValue());
+            return Value.ofInt((Integer) firstOp.getValue() - (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
-        return Value.ofReal((Double) firstOp.getValue() - (Double) secondOp.getValue());
+        return Value.ofReal((Double) firstOp.getValue() - (Double) secondOp.getValue(), secondOp.getLineColPair());
     }
 
     private static Value handleBinaryMultiplication(Value firstOp, Value secondOp) {
@@ -177,10 +177,10 @@ public class OperationHandler {
         assertOperandsType("*", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
-            return Value.ofInt((Integer) firstOp.getValue() * (Integer) secondOp.getValue());
+            return Value.ofInt((Integer) firstOp.getValue() * (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
-        return Value.ofReal((Double) firstOp.getValue() * (Double) secondOp.getValue());
+        return Value.ofReal((Double) firstOp.getValue() * (Double) secondOp.getValue(), secondOp.getLineColPair());
     }
 
     private static Value handleBinaryDivision(Value firstOp, Value secondOp) {
@@ -189,10 +189,10 @@ public class OperationHandler {
         assertOperandsType("/", allowedValueTypes, firstOp, secondOp);
 
         if (firstOp.getType().equals(ValueType.INT) && secondOp.getType().equals(ValueType.INT)) {
-            return Value.ofInt((Integer) firstOp.getValue() / (Integer) secondOp.getValue());
+            return Value.ofInt((Integer) firstOp.getValue() / (Integer) secondOp.getValue(), secondOp.getLineColPair());
         }
 
-        return Value.ofReal((Double) firstOp.getValue() / (Double) secondOp.getValue());
+        return Value.ofReal((Double) firstOp.getValue() / (Double) secondOp.getValue(), secondOp.getLineColPair());
     }
 
     private static Value handleBinaryEqual(Value firstOp, Value secondOp) {
@@ -203,7 +203,7 @@ public class OperationHandler {
                 ValueType.BOOL);
         assertOperandsType("==", allowedValueTypes, firstOp, secondOp);
 
-        return Value.ofBool(Objects.equals(firstOp.getValue(), secondOp.getValue()));
+        return Value.ofBool(Objects.equals(firstOp.getValue(), secondOp.getValue()), secondOp.getLineColPair());
     }
 
     private static Value handleBinaryNotEqual(Value firstOp, Value secondOp) {
@@ -214,7 +214,7 @@ public class OperationHandler {
                 ValueType.BOOL);
         assertOperandsType("!=", allowedValueTypes, firstOp, secondOp);
 
-        return Value.ofBool(!Objects.equals(firstOp.getValue(), secondOp.getValue()));
+        return Value.ofBool(!Objects.equals(firstOp.getValue(), secondOp.getValue()), secondOp.getLineColPair());
     }
 
 
@@ -226,10 +226,11 @@ public class OperationHandler {
         Arrays.stream(values).forEach(v -> {
             if (!allowedValueTypes.contains(v.getType())) {
                 throw new IllegalArgumentsOperationException(String.format(
-                        "Operation %s is not supported for operand type %s",
+                        "Operation '%s' is not supported for operand type %s",
                         operation,
-                        v.getType()
-                ));
+                        v.getType()),
+                        v.getLineColPair()
+                );
             }
         });
 
@@ -237,10 +238,10 @@ public class OperationHandler {
         Set<ValueType> actualTypes = Arrays.stream(values).map(Value::getType).collect(Collectors.toSet());
         if (actualTypes.size() != 1) {
             throw new IllegalArgumentsOperationException(String.format(
-                    "Operands error for operation %s because of different types %s. Explicit cast is required.",
+                    "Operands error for operation '%s' because of different types %s. Explicit cast is required",
                     operation,
                     actualTypes.stream().map(Enum::toString).collect(Collectors.joining(", "))
-            ));
+            ), Arrays.stream(values).findFirst().get().getLineColPair());
         }
     }
 

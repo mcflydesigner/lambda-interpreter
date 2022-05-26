@@ -1,10 +1,7 @@
 package com.interpreter.runtime.visitor;
 
 import com.google.common.collect.Streams;
-import com.interpreter.exception.DeclarationErrorException;
-import com.interpreter.exception.IllegalFunctionCallException;
-import com.interpreter.exception.IncorrectDeclarationException;
-import com.interpreter.exception.IncorrectFunctionArgumentException;
+import com.interpreter.exception.*;
 import com.interpreter.runtime.env.Environment;
 import com.interpreter.runtime.env.value.FunctionValue;
 import com.interpreter.runtime.env.value.RecordValue;
@@ -31,7 +28,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(Variable p, Environment arg) {
-        return arg.getVariableValue(p.ident_);
+        return arg.getVariableValue(p.ident_, LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
@@ -50,16 +47,16 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
         Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
 
         if (!arg.isCurrentScopeGlobal()) {
-            throw new IncorrectDeclarationException(String.format(
-                    "You cannot declare global variable '%s' not in global scope",
-                    declInfo.a
-            ));
+            throw new IncorrectDeclarationException(
+                    String.format("You cannot declare global variable '%s' not in global scope", declInfo.a),
+                    LineColPair.of(p.line_num, p.col_num)
+            );
         }
 
         Value val = p.expr_.accept(this, arg);
         arg.declareVariableAndAssignValue(declInfo.a, val);
 
-        return Value.ofUnit();
+        return Value.ofUnit(LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
@@ -83,19 +80,18 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
         if (!arg.isCurrentScopeGlobal()) {
-            throw new IncorrectDeclarationException(String.format(
-                    "You cannot declare global variable '%s' not in global scope",
-                    declInfo.a
-            ));
+            throw new IncorrectDeclarationException(
+                    String.format("You cannot declare global variable '%s' not in global scope", declInfo.a),
+                    LineColPair.of(p.line_num, p.col_num)
+            );
         }
 
         Value value = p.expr_.accept(this, arg);
         if(!value.getType().equals(ValueType.FUNCTION)) {
-            throw new IncorrectDeclarationException(String.format(
-                    "Expression letrec must have type on right side %s, but got %s",
-                    ValueType.FUNCTION,
-                    value.getValue()
-            ));
+            throw new IncorrectDeclarationException(
+                    String.format("Expression letrec must have type on right side %s, but got %s", ValueType.FUNCTION, value.getValue()),
+                    LineColPair.of(p.line_num, p.col_num)
+            );
         }
 
         // Update context of the recursive function
@@ -113,11 +109,10 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         Value func = p.expr_1.accept(this, arg);
         if(!func.getType().equals(ValueType.FUNCTION)) {
-            throw new IncorrectDeclarationException(String.format(
-                    "Construction 'letrec in' must have type on right side %s, but got %s",
-                    ValueType.FUNCTION,
-                    func.getValue()
-            ));
+            throw new IncorrectDeclarationException(
+                    String.format("Construction 'letrec in' must have type on right side %s, but got %s", ValueType.FUNCTION, func.getValue()),
+                    LineColPair.of(p.line_num, p.col_num)
+            );
         }
 
         // Update context of the recursive function
@@ -138,14 +133,14 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         Pair<String, Type> declInfo = p.vardec_.accept(AllVisitors.varDecVisitor, arg);
         if (!arg.isCurrentScopeGlobal()) {
-            throw new IncorrectDeclarationException(String.format(
-                    "You cannot declare global alias '%s' being not in global scope",
-                    declInfo.a
-            ));
+            throw new IncorrectDeclarationException(
+                    String.format("You cannot declare global alias '%s' being ouside of global scope", declInfo.a),
+                    LineColPair.of(p.line_num, p.col_num)
+            );
         }
 
         ValueType valueType = p.type_.accept(AllVisitors.typeVisitor, arg);
-        Value value = Value.ofUserTypeAlias(valueType);
+        Value value = Value.ofUserTypeAlias(valueType, LineColPair.of(p.line_num, p.col_num));
         arg.declareVariableAndAssignValue(declInfo.a, value);
         return value;
     }
@@ -158,7 +153,7 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         arg.pushScope();
         ValueType valueType = p.type_.accept(AllVisitors.typeVisitor, arg);
-        arg.declareVariableAndAssignValue(declInfo.a, Value.ofUserTypeAlias(valueType));
+        arg.declareVariableAndAssignValue(declInfo.a, Value.ofUserTypeAlias(valueType, LineColPair.of(p.line_num, p.col_num)));
 
         Value result = p.expr_.accept(this, arg);
         arg.flushScope();
@@ -169,27 +164,36 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
     @Override
     public Value visit(Function p, Environment arg) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
-        return Value.ofFunction(new FunctionValue(args, p.listexpr_, (Environment) DeepCopy.perform(arg)));
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg, p.line_num, p.col_num);
+        return Value.ofFunction(new FunctionValue(args,
+                        p.listexpr_,
+                        (Environment) DeepCopy.perform(arg)),
+                LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
     public Value visit(FunctionApplication p, Environment arg) {
 
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
-        Value fun = Value.ofFunction(new FunctionValue(args, p.listexpr_, (Environment) DeepCopy.perform(arg)));
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg, p.line_num, p.col_num);
+        Value fun = Value.ofFunction(new FunctionValue(args,
+                        p.listexpr_,
+                        (Environment) DeepCopy.perform(arg)),
+                LineColPair.of(p.line_num, p.col_num));
         List<Value> evaluatedArgs = p.listexprsequence_.stream()
                 .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
                 .toList();
 
-        return evaluateFunction((Value) DeepCopy.perform(fun), evaluatedArgs, arg);
+        return evaluateFunction((Value) DeepCopy.perform(fun), evaluatedArgs);
     }
 
     @Override
     public Value visit(FunctionWithReturnType p, Environment arg) {
         // p.type_ is ignored since it's only for type checker
-        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg);
-        return Value.ofFunction(new FunctionValue(args, p.listexpr_, (Environment) DeepCopy.perform(arg)));
+        LinkedHashMap<String, FunctionValue.FunctionParameter> args = parseFunctionArguments(p.listfuncarg_, arg, p.line_num, p.col_num);
+        return Value.ofFunction(new FunctionValue(args,
+                        p.listexpr_,
+                        (Environment) DeepCopy.perform(arg)),
+                LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
@@ -200,14 +204,14 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
                 .map(e -> e.accept(AllVisitors.exprSequenceVisitor, arg))
                 .toList();
 
-        return evaluateFunction((Value) DeepCopy.perform(fun), evaluatedArgs, arg);
+        return evaluateFunction((Value) DeepCopy.perform(fun), evaluatedArgs);
     }
 
     @Override
     public Value visit(PrintFunction p, Environment arg) {
 
         IoOperationHandler.handlePrint(p.expr_.accept(this, arg));
-        return Value.ofUnit();
+        return Value.ofUnit(LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
@@ -280,17 +284,17 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     @Override
     public Value visit(IntValue p, Environment arg) {
-        return Value.ofInt(p.integer_);
+        return Value.ofInt(p.integer_, LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
     public Value visit(RealValue p, Environment arg) {
-        return Value.ofReal(p.double_);
+        return Value.ofReal(p.double_, LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
     public Value visit(StringValue p, Environment arg) {
-        return Value.ofString(p.string_);
+        return Value.ofString(p.string_, LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
@@ -298,19 +302,17 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         Set<String> allowedValues = Set.of("true", "false");
         if (!allowedValues.contains(p.bool_)) {
-            throw new IncorrectDeclarationException(String.format(
-                    "Boolean value can take only values: %s, but got %s",
-                    String.join(",", allowedValues),
-                    p.bool_
-            ));
+            throw new IncorrectDeclarationException(
+                    String.format("Boolean value can take only values: %s, but got %s", String.join(",", allowedValues), p.bool_),
+                    LineColPair.of(p.line_num, p.col_num));
         }
 
-        return Value.ofBool(Boolean.parseBoolean(p.bool_));
+        return Value.ofBool(Boolean.parseBoolean(p.bool_), LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
     public Value visit(UnitValue p, Environment arg) {
-        return Value.ofUnit();
+        return Value.ofUnit(LineColPair.of(p.line_num, p.col_num));
     }
 
     @Override
@@ -318,18 +320,17 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
         List<Pair<String, Value>> recordEntries
                 = p.listrecordelem_.stream().map(e -> e.accept(AllVisitors.recordElemVisitor, arg)).toList();
-        return Value.ofRecord(recordEntries);
+        return Value.ofRecord(recordEntries, LineColPair.of(p.line_num, p.col_num));
     }
 
 
-    private Value evaluateFunction(Value fun, List<Value> userArgs, Environment arg) {
+    private Value evaluateFunction(Value fun, List<Value> userArgs) {
 
         if (!fun.getType().equals(ValueType.FUNCTION)) {
-            throw new IllegalFunctionCallException(String.format(
-                    "Cannot call a function via identifier '%s' because it has type %s",
-                    fun.toString(),
-                    fun.getType().toString()
-            ));
+            throw new IllegalFunctionCallException(
+                    String.format("Cannot call a function via identifier '%s' because it has type %s", fun, fun.getType().toString()),
+                    fun.getLineColPair()
+            );
         }
 
         FunctionValue funValue = (FunctionValue) fun.getValue();
@@ -340,22 +341,20 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
                 funArgs.values().stream().filter(e -> !e.isInitialized()).toList();
 
         if (userArgs.size() > funArgsList.size()) {
-            throw new IncorrectFunctionArgumentException(String.format(
-                    "Too many arguments passed for function. Expected %d, but got %d",
-                    funArgsList.size(),
-                    userArgs.size()
-            ));
+            throw new IncorrectFunctionArgumentException(
+                    String.format("Too many arguments passed for function. Expected %d, but got %d", funArgsList.size(), userArgs.size()),
+                    fun.getLineColPair()
+            );
         }
 
         Environment environment = (Environment) DeepCopy.perform(funValue.getCapturedContext());
 
         List<FunctionValue.FunctionParameter> funParams = Streams.zip(funArgsList.stream(), userArgs.stream(), (funArg, userArg) -> {
             if (!funArg.getType().equals(ValueType.ANY) && !funArg.getType().equals(userArg.getType())) {
-                throw new IncorrectFunctionArgumentException(String.format(
-                        "Incorrect type of argument passed to the function: expected %s, but got %s",
-                        funArg.getType(),
-                        userArg.getType()
-                ));
+                throw new IncorrectFunctionArgumentException(
+                        String.format("Incorrect type of argument passed to the function: expected %s, but got %s", funArg.getType(), userArg.getType()),
+                        fun.getLineColPair()
+                );
             }
 
             if (funArg.getType().equals(ValueType.ANY)) {
@@ -392,15 +391,17 @@ public class ExprVisitor implements Expr.Visitor<Value, Environment> {
 
     private LinkedHashMap<String, FunctionValue.FunctionParameter> parseFunctionArguments(
             List<FuncArg> listFuncArg,
-            Environment environment) {
+            Environment environment,
+            int lineNum,
+            int colNum) {
 
         LinkedHashMap<String, FunctionValue.FunctionParameter> args = new LinkedHashMap<>();
         listFuncArg.stream().map(e -> e.accept(AllVisitors.funcArgVisitor, null)).forEach(pair -> {
                     if (args.containsKey(pair.a)) {
-                        throw new DeclarationErrorException(String.format(
-                                "Inside function declaration parameter '%s' is declared more than once",
-                                pair.a
-                        ));
+                        throw new DeclarationErrorException(
+                                String.format("Inside function declaration parameter '%s' is declared more than once", pair.a),
+                                LineColPair.of(lineNum, colNum)
+                        );
                     }
 
                     args.put(pair.a, new FunctionValue.FunctionParameter(pair.b.accept(AllVisitors.typeVisitor, environment)));

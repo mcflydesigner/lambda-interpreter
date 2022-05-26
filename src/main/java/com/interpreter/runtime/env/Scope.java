@@ -22,8 +22,4 @@ public class Scope implements Serializable {
         return declarations.containsKey(identifier);
     }
 
-//    public boolean hasIdentifierWithType(String identifier, ValueType type) {
-//        return (declarations.get(identifier).getType().equals(type));
-//    }
-
 }

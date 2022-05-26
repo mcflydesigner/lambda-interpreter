@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class Elem  extends RecordElem {
   public final String ident_;
   public final Expr expr_;
+  public int line_num, col_num, offset;
   public Elem(String p1, Expr p2) { ident_ = p1; expr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.RecordElem.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

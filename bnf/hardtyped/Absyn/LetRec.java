@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class LetRec  extends Expr {
   public final VarDec vardec_;
   public final Expr expr_;
+  public int line_num, col_num, offset;
   public LetRec(VarDec p1, Expr p2) { vardec_ = p1; expr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

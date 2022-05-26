@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class DotExpr  extends Expr {
   public final Expr expr_;
   public final String ident_;
+  public int line_num, col_num, offset;
   public DotExpr(Expr p1, String p2) { expr_ = p1; ident_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

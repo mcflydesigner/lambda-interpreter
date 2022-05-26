@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class ReadRealFunction  extends Expr {
   public final String readreal_;
   public final ListExprSequence listexprsequence_;
+  public int line_num, col_num, offset;
   public ReadRealFunction(String p1, ListExprSequence p2) { readreal_ = p1; listexprsequence_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

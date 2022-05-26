@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class PrintFunction  extends Expr {
   public final String print_;
   public final Expr expr_;
+  public int line_num, col_num, offset;
   public PrintFunction(String p1, Expr p2) { print_ = p1; expr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

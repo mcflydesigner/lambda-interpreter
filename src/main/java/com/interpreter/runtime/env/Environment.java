@@ -2,6 +2,7 @@ package com.interpreter.runtime.env;
 
 import com.interpreter.exception.IncorrectDeclarationException;
 import com.interpreter.exception.IdentifierNotFoundException;
+import com.interpreter.exception.LineColPair;
 import com.interpreter.runtime.env.value.Value;
 
 import java.io.*;
@@ -30,7 +31,7 @@ public class Environment implements Serializable {
         scopes.removeLast();
     }
 
-    public Value getVariableValue(String identifier) {
+    public Value getVariableValue(String identifier, LineColPair lineColPair) {
         Iterator<Scope> reversedScopes = scopes.descendingIterator();
         while(reversedScopes.hasNext()) {
             Scope scope = reversedScopes.next();
@@ -39,10 +40,10 @@ public class Environment implements Serializable {
             }
         }
 
-        throw new IdentifierNotFoundException(String.format(
-                "Identifier '%s' is not declared in the scope",
-                identifier
-        ));
+        throw new IdentifierNotFoundException(
+                String.format("Identifier '%s' is not declared in the scope", identifier),
+                lineColPair
+        );
     }
 
     public void declareVariablesAndAssignValues(Map<String, Value> variables) {
@@ -52,8 +53,9 @@ public class Environment implements Serializable {
     public void declareVariableAndAssignValue(String identifier, Value value) {
         // Allow shadowing
         if (scopes.getFirst().hasIdentifier(identifier)) {
-            throw new IncorrectDeclarationException(String.format("Identifier '%s' was already declared before",
-                    identifier));
+            throw new IncorrectDeclarationException(
+                    String.format("Identifier '%s' was already declared before", identifier),
+                    value.getLineColPair());
         }
 
         scopes.getLast().addDeclaration(identifier, value);

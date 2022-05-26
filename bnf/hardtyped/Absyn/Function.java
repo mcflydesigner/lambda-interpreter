@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class Function  extends Expr {
   public final ListFuncArg listfuncarg_;
   public final ListExpr listexpr_;
+  public int line_num, col_num, offset;
   public Function(ListFuncArg p1, ListExpr p2) { listfuncarg_ = p1; listexpr_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

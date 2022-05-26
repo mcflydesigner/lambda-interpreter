@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class RecordType  extends Type {
   public final ListRecordElemType listrecordelemtype_;
+  public int line_num, col_num, offset;
   public RecordType(ListRecordElemType p1) { listrecordelemtype_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Type.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

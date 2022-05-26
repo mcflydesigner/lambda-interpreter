@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class RecordConst  extends Expr {
   public final ListRecordElem listrecordelem_;
+  public int line_num, col_num, offset;
   public RecordConst(ListRecordElem p1) { listrecordelem_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

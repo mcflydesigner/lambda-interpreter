@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class TypedVar  extends VarDec {
   public final String ident_;
   public final Type type_;
+  public int line_num, col_num, offset;
   public TypedVar(String p1, Type p2) { ident_ = p1; type_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.VarDec.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

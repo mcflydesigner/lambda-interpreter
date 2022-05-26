@@ -1,8 +1,7 @@
 package com.interpreter.runtime.env.value;
 
+import com.interpreter.exception.LineColPair;
 import com.interpreter.runtime.env.Environment;
-import com.interpreter.runtime.env.value.Value;
-import com.interpreter.runtime.env.value.ValueType;
 import hardtyped.Absyn.Expr;
 
 import java.io.Serializable;
@@ -16,7 +15,9 @@ public class FunctionValue implements Serializable {
     private final List<Expr> body;
     private final Environment capturedContext;
 
-    public FunctionValue(LinkedHashMap<String, FunctionParameter> parameters, List<Expr> body, Environment capturedContext) {
+    public FunctionValue(LinkedHashMap<String, FunctionParameter> parameters,
+                         List<Expr> body,
+                         Environment capturedContext) {
         this.parameters = parameters;
         this.body = body;
         this.capturedContext = capturedContext;
@@ -26,15 +27,17 @@ public class FunctionValue implements Serializable {
 
         private ValueType type;
         private Object bindValue;
+        private LineColPair lineColPair;
 
         public FunctionParameter(ValueType type) {
             this.type = type;
             this.bindValue = null;
         }
 
-        public FunctionParameter(ValueType type, Object value) {
+        public FunctionParameter(ValueType type, Object value, LineColPair lineColPair) {
             this.type = type;
             this.bindValue = value;
+            this.lineColPair = lineColPair;
         }
 
         public ValueType getType() {
@@ -46,7 +49,7 @@ public class FunctionValue implements Serializable {
                 throw new IllegalStateException("Value for function parameter must be non-null before convertation");
             }
 
-            return new Value(type, bindValue);
+            return new Value(type, bindValue, lineColPair);
         }
 
         public void setBindValue(Object bindValue) {

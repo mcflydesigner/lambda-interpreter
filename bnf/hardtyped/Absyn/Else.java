@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class Else  extends ElseExpr {
   public final Expr expr_;
+  public int line_num, col_num, offset;
   public Else(Expr p1) { expr_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.ElseExpr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

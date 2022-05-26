@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class UnaryMinus  extends Op {
   public final Expr expr_;
+  public int line_num, col_num, offset;
   public UnaryMinus(Expr p1) { expr_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Op.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

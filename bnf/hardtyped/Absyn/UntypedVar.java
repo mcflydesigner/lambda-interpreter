@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class UntypedVar  extends VarDec {
   public final String ident_;
+  public int line_num, col_num, offset;
   public UntypedVar(String p1) { ident_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.VarDec.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

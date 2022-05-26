@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class IntValue  extends Expr {
   public final Integer integer_;
+  public int line_num, col_num, offset;
   public IntValue(Integer p1) { integer_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

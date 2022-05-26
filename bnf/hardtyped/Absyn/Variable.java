@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class Variable  extends Expr {
   public final String ident_;
+  public int line_num, col_num, offset;
   public Variable(String p1) { ident_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

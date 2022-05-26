@@ -5,6 +5,7 @@ package hardtyped.Absyn;
 public class LetType  extends Expr {
   public final VarDec vardec_;
   public final Type type_;
+  public int line_num, col_num, offset;
   public LetType(VarDec p1, Type p2) { vardec_ = p1; type_ = p2; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

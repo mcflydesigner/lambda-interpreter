@@ -4,6 +4,7 @@ package hardtyped.Absyn;
 
 public class UserType  extends Type {
   public final String ident_;
+  public int line_num, col_num, offset;
   public UserType(String p1) { ident_ = p1; }
 
   public <R,A> R accept(hardtyped.Absyn.Type.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

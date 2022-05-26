@@ -1,5 +1,6 @@
 package com.interpreter.runtime.visitor;
 
+import com.interpreter.exception.LineColPair;
 import com.interpreter.runtime.env.Environment;
 import com.interpreter.runtime.env.value.Value;
 import com.interpreter.runtime.env.value.ValueType;
@@ -9,7 +10,7 @@ public class TypeVisitor implements Type.Visitor<ValueType, Environment> {
 
     @Override
     public ValueType visit(UserType p, Environment arg) {
-        Value value = arg.getVariableValue(p.ident_);
+        Value value = arg.getVariableValue(p.ident_, LineColPair.of(p.line_num, p.col_num));
 
         if (!value.getType().equals(ValueType.USER_ALIAS)) {
             throw new IllegalStateException(String.format(

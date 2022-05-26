@@ -6,6 +6,7 @@ public class LetTypeInference  extends Expr {
   public final VarDec vardec_;
   public final Type type_;
   public final Expr expr_;
+  public int line_num, col_num, offset;
   public LetTypeInference(VarDec p1, Type p2, Expr p3) { vardec_ = p1; type_ = p2; expr_ = p3; }
 
   public <R,A> R accept(hardtyped.Absyn.Expr.Visitor<R,A> v, A arg) { return v.visit(this, arg); }

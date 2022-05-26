@@ -3,6 +3,7 @@
 package hardtyped.Absyn;
 
 public class UnitType  extends Type {
+  public int line_num, col_num, offset;
   public UnitType() { }
 
   public <R,A> R accept(hardtyped.Absyn.Type.Visitor<R,A> v, A arg) { return v.visit(this, arg); }
