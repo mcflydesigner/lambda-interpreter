@@ -37,7 +37,7 @@ public class MathLib implements LibInterface {
 
         Value base = values.get(0);
         Value exponent = values.get(1);
-        return Value.ofReal(Math.pow((Double) base.getValue(), (Double) base.getValue()), base.getLineColPair());
+        return Value.ofReal(Math.pow((Double) base.getValue(), (Double) exponent.getValue()), base.getLineColPair());
     }
 
     public Value round(Environment environment) {
