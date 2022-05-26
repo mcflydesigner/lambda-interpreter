@@ -211,26 +211,6 @@ public class ExprVisitor implements Expr.Visitor<ExprType, TypeContext>,
     }
 
     @Override
-    public ExprType visit(ReadRealFunction p, TypeContext arg) {
-        return ExprType.real();
-    }
-
-    @Override
-    public ExprType visit(ReadIntFunction p, TypeContext arg) {
-        return ExprType.integer();
-    }
-
-    @Override
-    public ExprType visit(ReadStringFunction p, TypeContext arg) {
-        return ExprType.string();
-    }
-
-    @Override
-    public ExprType visit(ReadBoolFunction p, TypeContext arg) {
-        return ExprType.bool();
-    }
-
-    @Override
     public ExprType visit(DotExpr p, TypeContext ctx) {
         ExprType actual = p.expr_.accept(this, ctx);
         if (!(actual instanceof RecordType rec)) {
